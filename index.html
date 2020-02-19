@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="google" value="notranslate">
+        <title>BlocklyDuino</title>
+		<link rel="icon" type="image/png" href="./blocklyduino/images/logo_only.png" />
+        <link rel="stylesheet" href="./blocklyduino/css/font_awesome_all.min.css" />
+        <link rel="stylesheet" href="./blocklyduino/css/style.css" />
+        <link rel="stylesheet" href="./blocklyduino/css/keyboard_nav.css" />
+        <link rel="stylesheet" href="./blocklyduino/css/prettify.css" />
+        <link rel="stylesheet" href="./blocklyduino/css/blocklyduino.css" />
+        <!-- Blockly libraries -->
+        <script src="./blockly/blockly_compressed.js"></script>
+        <script src="./blockly/blocks_compressed.js"></script>
+        <script src="./blockly/closure/goog/base.js"></script>
+        <!-- Blockly libraries for themes and renderers -->
+        <script src="./blockly/core/renderers/minimalist/info.js"></script>
+        <script src="./blockly/core/renderers/minimalist/constants.js"></script>
+        <script src="./blockly/core/renderers/minimalist/drawer.js"></script>
+        <script src="./blockly/core/renderers/minimalist/renderer.js"></script>
+        <script src="./blockly/core/theme/modern.js"></script>
+        <script src="./blockly/core/theme/zelos.js"></script>
+        <!-- Blockly libraries of function, from different demos -->
+        <script src="./blockly/demos/keyboard_nav/line_cursor.js"></script>
+        <script src="./blockly/tests/playgrounds/screenshot.js"></script>
+        <!-- Blockly libraries of function, hacked from different demos -->
+        <script src="./blocklyduino/js/arduino_boards.js"></script>
+        <script src="./blocklyduino/js/blockly/code.js"></script>
+        <script src="./blocklyduino/js/blockly/keyboard_nav.js"></script>
+        <script src="./blocklyduino/js/blockly/playground.js"></script>
+        <script src="./blocklyduino/js/addon/prettify.js?autoload=true&amp;skin=default&amp;lang=cpp&amp;linenums=true" defer=""></script>
+        <!-- BlocklyDuino libraries of function -->
+        <script src="./blocklyduino/js/addon/FileSaver.min.js"></script>
+        <script src="./blocklyduino/js/buttons_functions.js"></script>
+        <!-- BlocklyDuino specific: block design -->
+        <script type="text/javascript" src="./blocklyduino/blocks/colors.js"></script>
+        <!--<script type="text/javascript" src="blocks/type_variable.js"></script>-->
+        <script type="text/javascript" src="./blocklyduino/blocks/arduino_base/arduino_base.js"></script>
+        <script type="text/javascript" src="./blocklyduino/blocks/grove/grove.js"></script>
+        <script type="text/javascript" src="./blocklyduino/blocks/servo/servo.js"></script>
+        <!-- BlocklyDuino specific: common generator code -->
+        <script type="text/javascript" src="./blocklyduino/generators/arduino_generator.js"></script>
+        <script type="text/javascript" src="./blocklyduino/generators/arduino/blockly/colour.js"></script>
+        <script type="text/javascript" src="./blocklyduino/generators/arduino/blockly/lists.js"></script>
+        <script type="text/javascript" src="./blocklyduino/generators/arduino/blockly/logic.js"></script>
+        <script type="text/javascript" src="./blocklyduino/generators/arduino/blockly/loops.js"></script>
+        <script type="text/javascript" src="./blocklyduino/generators/arduino/blockly/math.js"></script>
+        <script type="text/javascript" src="./blocklyduino/generators/arduino/blockly/procedures.js"></script>
+        <script type="text/javascript" src="./blocklyduino/generators/arduino/blockly/text.js"></script>
+        <script type="text/javascript" src="./blocklyduino/generators/arduino/blockly/variables.js"></script>
+        <script type="text/javascript" src="./blocklyduino/generators/arduino/blockly/variables_dynamic.js"></script>
+        <!-- BlocklyDuino specific: addon generator code -->
+        <script type="text/javascript" src="./blocklyduino/generators/arduino/arduino_base.js"></script>
+        <script type="text/javascript" src="./blocklyduino/generators/arduino/addon/grove.js"></script>
+        <script type="text/javascript" src="./blocklyduino/generators/arduino/addon/servo.js"></script>
+        <!-- BlocklyDuino specific -->
+        <!-- Blockly themes added -->
+        <script type="text/javascript" src="./blocklyduino/themes/bw.js"></script>
+        <script type="text/javascript" src="./blocklyduino/themes/themes_blocks.js"></script>
+        <script type="text/javascript" src="./blocklyduino/themes/themes_categories.js"></script>
+        <!-- BlocklyDuino external toolbox hacked -->
+        <script src="./blocklyduino/toolbox/toolbox_blocklyduino.js"></script>
+        <script src="./blocklyduino/toolbox/toolbox_standard.js"></script>
+    </head>
+    <body>
+        <table style="width: 100%; height: 100%;">
+            <tr id="optionsTop">
+                <td>
+                    <h1 class="blocklyDuinoText">BlocklyDuino</h1>
+                </td>
+                <td class="farSide">
+                    <span id="accessibilitySpan" class="blocklyDuinoText"></span>
+                    <input id="accessibilityModeCheck" type="checkbox" onclick="toggleAccessibilityMode(this.checked)">
+                    <select id="cursorChanger" name="cursor" onchange="changeCursor(this.value)">
+                        <option value="default" id="defaultCursorSpan">default</option> 
+                        <option value="basic" id="basicCursorSpan">basic</option>
+                        <option value="line" id="lineCursorSpan">line</option>
+                    </select>
+                    <span id="keyMappingSpan" class="blocklyDuinoText"></span>
+                    <input id="displayKeyMappings" type="checkbox" onclick="toggleDisplayKeyMappings(this.checked)">
+                    <form id="options">
+                        <!--                        <select name="toolbox" onchange="document.forms.options.submit('options')">
+                                                    <option value="categories">Categories (untyped variables)</option>
+                                                    <option value="categories-typed-variables">Categories (typed variables)</option>
+                                                    <option value="simple">Simple</option>
+                                                    <option value="test-blocks">Test Blocks</option>
+                                                </select>-->
+                        <span id="languageSpan" class="blocklyDuinoText">...</span>
+                        <select id="languageMenu"></select>
+                        <span id="renderSpan" class="blocklyDuinoText">...</span>
+                        <select name="renderer" onchange="document.forms.options.submit('options')">
+                            <option value="geras">Geras</option>
+                            <option value="thrasos">Thrasos</option>
+                            <option value="zelos">Zelos</option>
+                            <option value="minimalist">Minimalist</option>
+                        </select>
+                        <span id="themeSpan" class="blocklyDuinoText">...</span>
+                        <select name="theme" onchange="document.forms.options.submit('options')">
+                            <option value="classic" id="themeClassicSpan">classic</option>
+                            <option value="modern" id="themeModernSpan">modern</option>
+                            <option value="deuteranopia" id="themeDeuteranopiaSpan">deuteranopia</option>
+                            <option value="tritanopia" id="themeTritanopiaSpan">tritanopia</option>
+                            <option value="zelos" id="themeZelosSpan">zelos</option>
+                            <option value="high_contrast" id="themeHighContrastSpan">high_contrast</option>
+                            <option value="dark" id="themeDarkSpan">dark</option>
+                            <option value="blackWhite" id="themeBwSpan">blackWhite</option>
+                        </select>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td colspan=2>
+                    <table style="width: 100%">
+                        <tr id="tabRow" style="height: 1em">
+                            <td id="tab_blocks" class="tabon">...</td>
+                            <td class="tabmin tab_collapse">&nbsp;</td>
+                            <td id="tab_arduino" class="taboff tab_collapse">Arduino</td>
+                            <td class="tabmin tab_collapse">&nbsp;</td>
+                            <td id="tab_code" class="taboff">
+                                <select id="code_menu"></select>
+                            </td>
+                            <td class="tabmax">
+                                <button id="undoButton" class="iconButtons" onclick="Code.Undo()">
+                                    <span id="undoButton_span" style="font-size: 1em;">
+                                        <i class="fas fa-undo-alt"></i>
+                                    </span>
+                                </button>
+                                <button id="redoButton" class="iconButtons" onclick="Code.Redo()">
+                                    <i class="fas fa-redo-alt"></i>
+                                    <span id="redoButton_span"></span>
+                                </button>
+                                <i class="fas fa-microchip blocklyDuinoText" id="boardIcon"></i>
+                                <select id="boardMenu" onchange="changeBoard()" class="blocklyDuinoText">
+                                    <option value="none">...</option>
+                                    <option value="arduino_leonardo">Arduino Leonardo</option>
+                                    <option value="arduino_mega">Arduino Mega 2560 / ADK</option>
+                                    <option value="arduino_micro">Arduino Micro</option>
+                                    <option value="arduino_mini">Arduino Mini ATmega328</option>
+                                    <option value="arduino_nano">Arduino Nano ATmega328</option>
+                                    <option value="arduino_pro8">Arduino Pro Mini 3.3V ATmega328</option>
+                                    <option value="arduino_pro16">Arduino Pro Mini 5V ATmega328</option>
+                                    <option value="arduino_uno">Arduino Uno</option>
+                                    <option value="arduino_yun">Arduino Yùn</option>
+                                    <option value="lilypad">LilyPad Arduino ATmega328P</option>
+                                </select>
+                                <button id="verifyButton" class="iconButtons">
+                                    <span id="verifyButton_span">
+                                        <i class="fas fa-check"></i>
+                                    </span>
+                                </button>
+                                <i class="fab fa-usb blocklyDuinoText" id="serialIcon"></i>
+                                <select id="serialMenu" onchange="changeCOMport()" class="blocklyDuinoText">
+                                    <option value="none">...</option>
+                                </select>
+                                <button id="uploadButton" class="iconButtons">
+                                    <span id="uploadButton_span">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                    </span>
+                                </button>
+                                <button id="serialConnectButton" class="iconButtons" onclick="">
+                                    <span id="serialConnectButton_span">
+                                        <i class="fas fa-search"></i>
+                                    </span>
+                                </button>
+                                <button id="saveCodeButton" class="iconButtons" onclick="Code.saveArduinoFile()">
+                                    <span id="saveCodeButton_span">
+                                        <i class="fas fa-file-export"></i>
+                                    </span>
+                                </button>
+                                <button id="newButton"  class="iconButtons" onclick="Code.discard()">
+                                    <span id="newButton_span">
+                                        <i class="far fa-file"></i>
+                                    </span>
+                                </button>
+                                <button id="saveXMLButton" class="iconButtons" onclick="Code.saveXmlBlocklyFile()">
+                                    <span id="saveXMLButton_span">
+                                        <i class="fas fa-file-download"></i>
+                                    </span>
+                                </button>
+								<button id="loadXMLfakeButton" class="iconButtons" onclick="Code.openXmlDialog()">
+									<span id="loadXMLfakeButton_span">
+										<i class="fas fa-file-upload"></i>
+									</span>
+								</button>
+								<input type="file" id="loadXMLfile" hidden onchange="loadXmlBlocklyFile(this.files)" />
+                                <button id="resetButton" class="iconButtons" onclick="Code.ResetWorkspace()">
+                                    <span id="resetButton_span">
+                                        <i class="fas fa-power-off"></i>
+                                    </span>
+                                </button>
+                                <span id="content_hoverButton"></span>
+                            </td>
+                            <td class="tabFar">
+                                <button id="helpButton" class="iconButtons" onclick="toggleDisplayAbout(true)">
+                                    <span id="helpButton_span">
+                                        <i class="fas fa-question"></i>
+                                    </span>
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td style="height: 99%" colspan=2 id="content_area">
+                </td>
+            </tr>
+        </table>
+        <div id="content_blocks" class="content"></div>
+        <pre id="content_arduino" class="content prettyprint lang-cpp"></pre>
+        <div id="keyboard_nav">
+            <div id="keyboard_nav_header">
+                <span id="keyMappingModalSpan"></span>
+            </div>
+            <form id="keyboard_mappings">
+        </div>
+        <div id="aboutHelp">
+            <div id="aboutHelp_header">
+                <span id="aboutHelpModalSpan"></span>
+                <i id="aboutModalClose" class="fas fa-window-close" onclick="toggleDisplayAbout(false)" style="position: absolute; right: 15px;"></i>
+            </div>
+            <div id="aboutHelpModalContentSpan">
+            </div>
+        </div>
+    </body>
+    <script src="./blocklyduino/js/dialog.js"></script>
+</html>

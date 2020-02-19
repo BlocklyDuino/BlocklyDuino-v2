@@ -1,0 +1,59 @@
+.wrapper {
+    display: flex;
+}
+#keyboard_nav {
+    background-color: #ededed;
+    border: 1px solid black;
+    padding: 5px;
+    position: absolute;
+    z-index: 9;
+    text-align: center;
+    width: auto;
+    height: auto;
+}
+#keyboard_nav_header {
+    padding: 5px;
+    cursor: move;
+    z-index: 10;
+    background-color: #2196F3;
+    color: #fff;
+}
+#keyboard_announce {
+    font-size: 1.5em;
+    font-weight: 500;
+    text-align: center;
+}
+#keyboard_mappings {
+    font-size: 1.3em;
+    font-weight: 400;
+}
+label {
+    margin-right: .5em;
+    min-width: 100px;
+}
+div[data-actionname] {
+    display: flex;
+    width: 100%;
+}
+select {
+    font-size: .8em;
+}
+/* update original code css */
+.farSide > label, input {
+    vertical-align: middle;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+.farSide > select {
+    vertical-align: middle;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+#languageMenu {
+    vertical-align: top;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+}

@@ -1,0 +1,109 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 7 févr. 2020, 21:14:02
+    Author     : Sebastien Canet <scanet@libreduc.cc>
+*/
+
+#content_hoverButton {
+    margin: 5px;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: large;
+    color: #FFFFFF;
+}
+
+.blocklyToolboxDiv {
+    background-color: #F8F8F8;
+}
+
+.blocklyDuinoText {
+    vertical-align: middle;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.iconButtons{
+    height:36px;
+    width: 36px;
+    vertical-align: middle;
+    background: #4DB7BB;
+    color: #006468;
+    font-size: large;
+}
+.iconButtons:hover{
+    background: #FFFFFF;
+    color: #000000;
+    cursor : pointer;
+}
+.iconButtons:active{
+    background: #FFCC00;
+}
+.iconButtons:active::after {
+    transition-property: background;
+    transition-duration: 10s;
+}
+.iconButtons:disabled{
+    background: #F3F1EF;
+    color: #006468;
+    cursor : not-allowed;
+}
+/* surcharger .iconButton */
+#boardMenu{
+    color: #000000;
+}
+/* boutons classiques */
+#undoButton{
+    border-radius: 50%;
+}
+#redoButton{
+    border-radius: 50%;
+}
+#verifyButton{
+    border-radius: 50%;
+}
+#uploadButton{
+    border-radius: 50%;
+}
+#serialConnectButton{
+    border-radius: 50%;
+}
+#resetButton{
+    background: #FF0000;
+}
+#resetButton:hover{
+    background: #FFFFFF;
+}
+td.tabFar {
+    border-top-style: none !important;
+    border-left-style: none !important;
+    border-right-style: none !important;
+    padding-right: 5px;
+    text-align: left;
+}
+#helpButton{
+    border-radius: 12px;
+    cursor: help;
+}
+/* about modal */
+
+#aboutHelp {
+    background-color: #ededed;
+    border: 1px solid black;
+    padding: 5px;
+    position: absolute;
+    z-index: 9;
+    text-align: center;
+    width: 400px;
+    height: 300px;
+}
+#aboutHelp_header {
+    padding: 5px;
+    cursor: move;
+    z-index: 10;
+    background-color: #2196F3;
+    color: #fff;
+}

@@ -1,0 +1,136 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    background-color: #7FCBCD;
+    font-family: sans-serif;
+    font-size: large;
+    font-weight: bold;
+    margin: 0;
+    overflow: hidden;
+}
+
+.farSide {
+    text-align: right;
+}
+
+html[dir="RTL"] .farSide {
+    text-align: left;
+    font-color: #000000;
+}
+
+
+h1 {
+    font-weight: normal;
+    font-size: 140%;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+/* Tabs */
+#tabRow>td {
+    border: 1px solid #ccc;
+    border-bottom: none;
+}
+td.tabon {
+    border-bottom-color: #ddd !important;
+    background-color: #F8F8F8;
+    padding: 5px 19px;
+}
+td.taboff {
+    cursor: pointer;
+    padding: 5px 19px;
+    background-color: #fff;
+}
+td.taboff:hover {
+    background-color: #eee;
+}
+td.tabmin {
+    border-top-style: none !important;
+    border-left-style: none !important;
+    border-right-style: none !important;
+}
+td.tabmax {
+    border-top-style: none !important;
+    border-left-style: none !important;
+    border-right-style: none !important;
+    width: 99%;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: left;
+}
+html[dir=rtl] td.tabmax {
+    text-align: left;
+}
+#tab_code {
+    display: none;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+td {
+    padding: 0;
+    vertical-align: middle;
+}
+.content {
+    visibility: hidden;
+    margin: 0;
+    padding: 1ex;
+    position: absolute;
+    direction: ltr;
+}
+pre.content {
+    border: 1px solid #ccc;
+    overflow: scroll;
+}
+#content_blocks {
+    padding: 0;
+}
+.blocklySvg {
+    border-top: none !important;
+}
+#content_arduino {
+    background: #F8F8F8;
+    resize: none;
+    outline: none;
+    border: 1px solid #ccc;
+    font-family: monospace;
+    font-size: large;
+    overflow: scroll;
+}
+#languageMenu {
+    vertical-align: top;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 15px;
+}
+
+/* Sprited icons. */
+.icon21 {
+    height: 21px;
+    width: 21px;
+    background-image: url(../../blockly/demos/code/icons.png);
+}
+.trash {
+    background-position: 0px 0px;
+}
+.link {
+    background-position: -21px 0px;
+}
+.run {
+    background-position: -42px 0px;
+}
+
+@media (max-width: 710px) {
+    .tab_collapse {
+        display: none;
+    }
+    #tab_code {
+        display: table-cell;
+    }
+}

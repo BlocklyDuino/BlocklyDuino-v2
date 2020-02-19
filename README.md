@@ -19,7 +19,7 @@ BlocklyDuino also support [Grove](http://wiki.seeedstudio.com/Grove_System/) blo
 ### Demo
 
 BlocklyDuino is a web tool. You can give it a try at
-[Web](https://blocklyduino.github.io/BlocklyDuinoReboot/public/) to see the working BlocklyDuino.
+[Web](https://blocklyduino.github.io/BlocklyDuino-v2/) to see the working BlocklyDuino.
 
 ### Run locally on your web browser
 

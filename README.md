@@ -61,12 +61,7 @@ The project is also inspired by [ardublock](https://github.com/taweili/ardublock
 
 ### License
 
-Copyright (C) 2012~2015 Fred Lin gasolin+blockly@gmail.com & Sébastien Canet scanet@libreduc.cc
-
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *   http://www.apache.org/licenses/LICENSE-2.0
+Copyright (C) 2020 Fred Lin gasolin+blockly@gmail.com & Sébastien Canet scanet@libreduc.cc
 
 
 # Blockly [![Build Status]( https://travis-ci.org/google/blockly.svg?branch=master)](https://travis-ci.org/google/blockly)

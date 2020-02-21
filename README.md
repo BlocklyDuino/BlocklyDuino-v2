@@ -33,7 +33,7 @@ The prefered way is to put the BlocklyDuino/web folder into a web server and ope
 
 ### Integrated Arduino upload
 
-Soon an [Electron](https://www.electronjs.org/) version with [arduino-cli](https://github.com/arduino/arduino-cli) embbeded for an off-line version.
+Soon an [Electron](https://www.electronjs.org/) version with [arduino-cli](https://github.com/arduino/arduino-cli) embbeded for an off-line version: [https://github.com/BlocklyDuino/BlocklyDuinoElectron](https://github.com/BlocklyDuino/BlocklyDuinoElectron)
 
 ### Usage
 
@@ -50,6 +50,7 @@ Check changelog [here](https://github.com/BlocklyDuino/BlocklyDuino/blob/master/
 ### Tools used
 
 [Eli Grey's File Saver](https://github.com/eligrey/FileSaver.js/)
+
 [Google Code prettify](https://github.com/google/code-prettify)
 
 

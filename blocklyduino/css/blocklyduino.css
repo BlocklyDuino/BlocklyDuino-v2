@@ -52,8 +52,14 @@ and open the template in the editor.
     cursor : not-allowed;
 }
 /* surcharger .iconButton */
-#boardMenu{
+#boardMenu, #serialMenu{
     color: #000000;
+	font-size:large;
+    border: none;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
 }
 /* boutons classiques */
 #undoButton{

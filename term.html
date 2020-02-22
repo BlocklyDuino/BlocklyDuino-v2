@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<title> Moniteur série </title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.3.3.6.css"/>
+	<link rel="stylesheet" type="text/css" href="css/fontawesome.css"/>
+	<link rel="stylesheet" type="text/css" href="css/term.css"/>
+</head>
+<body>
+	<div id="title-bar">
+        <div id="title">
+			<span class="fa fa-search fa-1_75x fa-fw"></span> Moniteur série
+		</div>
+        <div id="title-bar-btns">
+			<button id="btn_quit" type="button" class="btn btn-quitBlue"><span class="fa fa-times fa-1_75x"></span></button>
+        </div>
+    </div>
+	<div id="divfenetre">
+		<div class="form-group" style="padding-left:5px;padding-right:5px;">
+			<div class="input-group input-group-md icon-addon addon-md">
+				<input type="text" placeholder="Texte" name="" id="schbox" class="form-control">
+				<span class="input-group-btn">
+					<button id="btn_envoi" type="button" class="btn btn-info">Envoyer</button>
+				</span>
+			</div>
+		</div>
+		<div id="fenetre_term"> </div>
+		<div style="padding-right:5px;text-align:right;">
+			<button id="btn_efface" type="button" class="btn btn-info">
+				<span class='fa fa-eraser'></span> Effacer
+			</button>
+			<button id="btn_csv" type="button" class="btn btn-info">
+				<span class='fa fa-eject'></span> Exporter
+			</button>
+			<button id="btn_connect" type="button" class="btn btn-info"> 
+				<span class='fa fa-play'></span> Démarrer
+			</button>
+		</div>
+	</div>
+</body>
+<script>require('../resources/app/term.js')</script>
+</html>

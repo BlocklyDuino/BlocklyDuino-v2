@@ -5,6 +5,7 @@ BlocklyDuino is a **web-based visual programming editor for [Arduino](http://www
 BlocklyDuino is based on [Blockly](https://developers.google.com/blockly/), the web-based, graphical programming editor.
 
 ![](https://github.com/BlocklyDuino/BlocklyDuino-v2/raw/master/blocklyduino/images/logo_built_on.png)
+
 BlocklyDuino provides static type language blocks and code generators for simple Arduino programming.
 
 BlocklyDuino also supports some [Grove](http://wiki.seeedstudio.com/Grove_System/) blocks to easily get started with microcontroller-based experimentation and learning.
@@ -26,9 +27,9 @@ BlocklyDuino also supports some [Grove](http://wiki.seeedstudio.com/Grove_System
 
 You can enter _accessibility_ mode by **shift clicking anywhere on the workspace** or on a block.
 
-Some basic commands for moving around are below.  
-
 Key mapping is customizable by activating 'open key mappings' option.
+
+Some basic commands for moving around are below.  
 
 
 ### Workspace Navigation

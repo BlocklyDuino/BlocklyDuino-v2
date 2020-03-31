@@ -1,10 +1,11 @@
-### Welcome to BlocklyDuino
+# Welcome to BlocklyDuino
 
-BlocklyDuino is a **web-based visual programming editor for [Arduino](http://www.arduino.cc/)**.
+BlocklyDuino is a **web-based visual programming editor for [Arduino](http://www.arduino.cc/)** electronic board.
 
-BlocklyDuino is based on [Blockly](https://developers.google.com/blockly/), the web-based, graphical programming editor. Provide static type language blocks and code generators for simple Arduino programming.
+BlocklyDuino is based on [Blockly](https://developers.google.com/blockly/), the web-based, graphical programming editor.
 
-![](https://github.com/BlocklyDuino/BlocklyDuino-v2/blob/master/blocklyduino/images/logo_built_on.png)
+![](https://github.com/BlocklyDuino/BlocklyDuino-v2/raw/master/blocklyduino/images/logo_built_on.png)
+BlocklyDuino provides static type language blocks and code generators for simple Arduino programming.
 
 BlocklyDuino also supports some [Grove](http://wiki.seeedstudio.com/Grove_System/) blocks to easily get started with microcontroller-based experimentation and learning.
 
@@ -13,12 +14,38 @@ BlocklyDuino also supports some [Grove](http://wiki.seeedstudio.com/Grove_System
 * Programming Arduino with visually drag and drop code blocks
 * Generate fully compatible Arduino source code
 * Multiple Arduino boards choice for automatic selection of pin functions
-* Interact Arduino board with 10+ predefined Grove sensor blocks
+* Interact Arduino board with at least 10+ predefined Grove sensor blocks
 * Load different on-site examples with url parameters
+* Keyboard navigation and accessibility helpers
 * Theme choice
 * Block render choice
 * Multi language
 * Keyboard navigation
+
+### Accessibility
+
+You can enter _accessibility_ mode by **shift clicking anywhere on the workspace** or on a block.
+
+Some basic commands for moving around are below.  
+
+Key mapping is customizable by activating 'open key mappings' option.
+
+  
+**Workspace Navigation**  
+
+-   W: Previous block/field/input at the same level.
+-   A: Up one level (Field (or input) -> Block -> Input (or field) -> Block -> Stack -> Workspace).
+-   S: Next block/field/input at the same level.
+-   D: Down one level (Workspace -> Stack -> Block -> Input (or field) -> Block -> Field (or input)).
+-   T: Will open the toolbox. Once in there you can moving around using the WASD keys. And insert a block by hitting Enter.
+-   X: While on a connection hit X to disconnect the block after the cursor.
+
+**Cursor**  
+The cursor controls how the user navigates the blocks, inputs, fields and connections on a workspace. Two different cursors:  
+
+-   **Default Cursor**: Allow the user to go to the previous, next, in or out location.
+-   **Basic Cursor**: Using the pre order traversal allows the user to go to the next and previous location.
+
 
 ### Demo
 

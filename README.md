@@ -9,7 +9,7 @@ BlocklyDuino provides static type language blocks and code generators for simple
 
 BlocklyDuino also supports some [Grove](http://wiki.seeedstudio.com/Grove_System/) blocks to easily get started with microcontroller-based experimentation and learning.
 
-### Features
+## Features
 
 * Programming Arduino with visually drag and drop code blocks
 * Generate fully compatible Arduino source code
@@ -22,7 +22,7 @@ BlocklyDuino also supports some [Grove](http://wiki.seeedstudio.com/Grove_System
 * Multi language
 * Keyboard navigation
 
-### Accessibility
+## Accessibility
 
 You can enter _accessibility_ mode by **shift clicking anywhere on the workspace** or on a block.
 
@@ -30,8 +30,8 @@ Some basic commands for moving around are below.
 
 Key mapping is customizable by activating 'open key mappings' option.
 
-  
-**Workspace Navigation**  
+
+### Workspace Navigation
 
 -   W: Previous block/field/input at the same level.
 -   A: Up one level (Field (or input) -> Block -> Input (or field) -> Block -> Stack -> Workspace).
@@ -40,29 +40,29 @@ Key mapping is customizable by activating 'open key mappings' option.
 -   T: Will open the toolbox. Once in there you can moving around using the WASD keys. And insert a block by hitting Enter.
 -   X: While on a connection hit X to disconnect the block after the cursor.
 
-**Cursor**  
+### Cursor 
 The cursor controls how the user navigates the blocks, inputs, fields and connections on a workspace. Two different cursors:  
 
 -   **Default Cursor**: Allow the user to go to the previous, next, in or out location.
 -   **Basic Cursor**: Using the pre order traversal allows the user to go to the next and previous location.
 
 
-### Demo
+## Demo
 
 BlocklyDuino is a web tool. You can give it a try at
 [Web](https://blocklyduino.github.io/BlocklyDuino-v2/) to see working BlocklyDuino.
 
-### Run locally on your web browser
+## Run locally on your web browser
 
 If you want to install it locally. Get code from github and open `index.html` in your browser.
 
 The prefered way is to put the BlocklyDuino/web folder into a web server and open the url like localhost/index.html for use.
 
-### Integrated Arduino upload
+## Integrated Arduino upload
 
 Soon an [Electron](https://www.electronjs.org/) version with [arduino-cli](https://github.com/arduino/arduino-cli) embbeded for an off-line version: [https://github.com/BlocklyDuino/BlocklyDuinoElectron](https://github.com/BlocklyDuino/BlocklyDuinoElectron)
 
-### Usage
+## Usage
 
 1. Open browser to BlocklyDuino and select your Arduino board, your language, your favorite theme + renderer.
 2. Drag and drop blocks to make an Arduino program.
@@ -70,18 +70,18 @@ Soon an [Electron](https://www.electronjs.org/) version with [arduino-cli](https
 4. Configure your Arduino IDE with the rght board and communication port.
 5. Press the 'Upload' button in the Arduino IDE to burn the code into a connected Arduino board.
 
-### ChangeLog
+## ChangeLog
 
 Check changelog [here](https://github.com/BlocklyDuino/BlocklyDuino/blob/master/CHANGELOG.txt)
 
-### Tools used
+## Tools used
 
 [Eli Grey's File Saver](https://github.com/eligrey/FileSaver.js/)
 
 [Google Code prettify](https://github.com/google/code-prettify)
 
 
-### Authors and Contributors
+## Authors and Contributors
 
 Sébastien Canet ([scanet@libreduc.cc](scanet@libreduc.cc)) for this reboot and Electron version.
 
@@ -93,7 +93,7 @@ Thanks Arduino and Seeeduino guys for Arduino and Grove blocks.
 
 The project is also inspired by [ardublock](https://github.com/taweili/ardublock) and [modkit](http://www.modk.it/)
 
-### License
+## License
 
 Copyright (C) 2020 Sébastien Canet scanet@libreduc.cc & Fred Lin gasolin@gmail.com
 -   Licensed under the GNU General Public License v3.0 (the "License").

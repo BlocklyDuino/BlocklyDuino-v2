@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title> Moniteur série </title>
+		<link rel="stylesheet" type="text/css" href="./css/font_awesome_all.min.css"/>
+		<link rel="stylesheet" type="text/css" href="./css/serialMonitor.css"/>
+	</head>
+	<body>
+		<div id="serialSend">
+			<input type="text" placeholder="Texte" name="" id="serialSendBox" class="form-control">
+			<span class="input-group-btn">
+				<button id="btn_serialSend" type="button" class="btn btn-info">Envoyer</button>
+			</span>
+		</div>
+		<div id="serialPeek"> </div>
+		<div id="serialButtons">
+			<select id="serialConnectSpeed_Menu" name="serialConnectSpeed_Menu">
+				<option value="none" id="none">...</option> 
+			</select>
+			<button id="btn_serialConnect" type="button" class="btn btn-info"> 
+				<span class='fa fa-play'></span> Démarrer
+			</button>
+			<button id="btn_serialPeekClear" type="button" class="btn btn-info">
+				<span class='fa fa-eraser'></span> Effacer
+			</button>
+			<button id="btn_serialPeekCSV" type="button" class="btn btn-info">
+				<span class='fa fa-eject'></span> Exporter
+			</button>
+		</div>
+	</body>
+	<script>
+		require('../../serialMonitor.js')
+		<!-- require('../resources/app/serialMonitor.js') -->
+	</script>
+</html>

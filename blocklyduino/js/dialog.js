@@ -1,6 +1,5 @@
 // Make the DIV element draggable-keyboard-dialog draggable:
 dragElement(document.getElementById("keyboard_nav"));
-dragElement(document.getElementById("aboutHelp"));
 
 function dragElement(elmnt) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -41,20 +40,8 @@ function dragElement(elmnt) {
         document.onmouseup = null;
         document.onmousemove = null;
     }
-}
-;
+};
 
-/**
- * Hide/show the key map panel.
- * @param {boolean} state The state of the checkbox. True if checked, false
- *     otherwise.
- * @package
- */
-function toggleDisplayHelp() {
-    document.getElementById('aboutHelp').style.display = 'block';
-    document.getElementById('aboutHelp').style.left = (top.innerWidth - document.getElementById('keyboard_nav').offsetWidth) / 2 + "px";
-    document.getElementById('aboutHelp').style.top = (top.innerHeight - document.getElementById('keyboard_nav').offsetHeight) / 2 + "px";
-}
 //icons button mouser over
 document.getElementById('undoButton').onmouseover = function () {
     document.getElementById("content_hoverButton").textContent = MSG['undoButton_span'];
@@ -74,16 +61,28 @@ document.getElementById('boardIcon').onmouseover = function () {
 document.getElementById('boardIcon').onmouseout = function () {
     document.getElementById("content_hoverButton").textContent = "";
 };
-document.getElementById('serialIcon').onmouseover = function () {
-    document.getElementById("content_hoverButton").textContent = MSG['serialSpan'];
+document.getElementById('boardMenu').onmouseover = function () {
+    document.getElementById("content_hoverButton").textContent = MSG['boardSpan'];
 };
-document.getElementById('serialIcon').onmouseout = function () {
+document.getElementById('boardMenu').onmouseout = function () {
     document.getElementById("content_hoverButton").textContent = "";
 };
 document.getElementById('verifyButton').onmouseover = function () {
     document.getElementById("content_hoverButton").textContent = MSG['verifyButton_span'];
 };
 document.getElementById('verifyButton').onmouseout = function () {
+    document.getElementById("content_hoverButton").textContent = "";
+};
+document.getElementById('serialIcon').onmouseover = function () {
+    document.getElementById("content_hoverButton").textContent = MSG['serialSpan'];
+};
+document.getElementById('serialIcon').onmouseout = function () {
+    document.getElementById("content_hoverButton").textContent = "";
+};
+document.getElementById('serialMenu').onmouseover = function () {
+    document.getElementById("content_hoverButton").textContent = MSG['serialSpan'];
+};
+document.getElementById('serialMenu').onmouseout = function () {
     document.getElementById("content_hoverButton").textContent = "";
 };
 document.getElementById('uploadButton').onmouseover = function () {
@@ -96,6 +95,12 @@ document.getElementById('serialConnectButton').onmouseover = function () {
     document.getElementById("content_hoverButton").textContent = MSG['serialConnectButton_span'];
 };
 document.getElementById('serialConnectButton').onmouseout = function () {
+    document.getElementById("content_hoverButton").textContent = "";
+};
+document.getElementById('viewCodeButton').onmouseover = function () {
+    document.getElementById("content_hoverButton").textContent = MSG['viewCodeButton_span'];
+};
+document.getElementById('viewCodeButton').onmouseout = function () {
     document.getElementById("content_hoverButton").textContent = "";
 };
 document.getElementById('saveCodeButton').onmouseover = function () {
@@ -126,6 +131,12 @@ document.getElementById('resetButton').onmouseover = function () {
     document.getElementById("content_hoverButton").textContent = MSG['resetButton_span'];
 };
 document.getElementById('resetButton').onmouseout = function () {
+    document.getElementById("content_hoverButton").textContent = "";
+};
+document.getElementById('setup_sideButton').onmouseover = function () {
+    document.getElementById("content_hoverButton").textContent = MSG['setup_sideButton_span'];
+};
+document.getElementById('setup_sideButton').onmouseout = function () {
     document.getElementById("content_hoverButton").textContent = "";
 };
 document.getElementById('helpButton').onmouseover = function () {

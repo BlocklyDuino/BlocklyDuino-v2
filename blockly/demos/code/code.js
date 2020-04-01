@@ -1,18 +1,7 @@
 /**
  * @license
  * Copyright 2012 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * SPDX-License-Identifier: Apache-2.0
  */
 
 /**
@@ -245,14 +234,14 @@ Code.LANG = Code.getLang();
  * List of tab names.
  * @private
  */
-Code.TABS_ = ['blocks', 'javascript', 'xml'];
+Code.TABS_ = ['blocks', 'javascript', 'php', 'python', 'dart', 'lua', 'xml'];
 
 /**
  * List of tab names with casing, for display in the UI.
  * @private
  */
 Code.TABS_DISPLAY_ = [
-  'Blocks', 'JavaScript', 'XML',
+  'Blocks', 'JavaScript', 'PHP', 'Python', 'Dart', 'Lua', 'XML',
 ];
 
 Code.selected = 'blocks';
@@ -337,6 +326,14 @@ Code.renderContent = function() {
     xmlTextarea.focus();
   } else if (content.id == 'content_javascript') {
     Code.attemptCodeGeneration(Blockly.JavaScript);
+  } else if (content.id == 'content_python') {
+    Code.attemptCodeGeneration(Blockly.Python);
+  } else if (content.id == 'content_php') {
+    Code.attemptCodeGeneration(Blockly.PHP);
+  } else if (content.id == 'content_dart') {
+    Code.attemptCodeGeneration(Blockly.Dart);
+  } else if (content.id == 'content_lua') {
+    Code.attemptCodeGeneration(Blockly.Lua);
   }
   if (typeof PR == 'object') {
     PR.prettyPrint();
@@ -463,6 +460,18 @@ Code.init = function() {
   Code.bindClick('trashButton',
       function() {Code.discard(); Code.renderContent();});
   Code.bindClick('runButton', Code.runJS);
+  // Disable the link button if page isn't backed by App Engine storage.
+  var linkButton = document.getElementById('linkButton');
+  if ('BlocklyStorage' in window) {
+    BlocklyStorage['HTTPREQUEST_ERROR'] = MSG['httpRequestError'];
+    BlocklyStorage['LINK_ALERT'] = MSG['linkAlert'];
+    BlocklyStorage['HASH_ERROR'] = MSG['hashError'];
+    BlocklyStorage['XML_ERROR'] = MSG['xmlError'];
+    Code.bindClick(linkButton,
+        function() {BlocklyStorage.link(Code.workspace);});
+  } else if (linkButton) {
+    linkButton.className = 'disabled';
+  }
 
   for (var i = 0; i < Code.TABS_.length; i++) {
     var name = Code.TABS_[i];
@@ -532,6 +541,7 @@ Code.initLanguage = function() {
   document.getElementById('title').textContent = MSG['title'];
   document.getElementById('tab_blocks').textContent = MSG['blocks'];
 
+  document.getElementById('linkButton').title = MSG['linkTooltip'];
   document.getElementById('runButton').title = MSG['runTooltip'];
   document.getElementById('trashButton').title = MSG['trashTooltip'];
 };
@@ -572,8 +582,8 @@ Code.discard = function() {
 };
 
 // Load the Code demo's language strings.
-document.write('<script src="../blockly/demos/code/msg/' + Code.LANG + '.js"></script>\n');
+document.write('<script src="msg/' + Code.LANG + '.js"></script>\n');
 // Load Blockly's language strings.
-document.write('<script src="../blockly/msg/js/' + Code.LANG + '.js"></script>\n');
+document.write('<script src="../../msg/js/' + Code.LANG + '.js"></script>\n');
 
 window.addEventListener('load', Code.init);

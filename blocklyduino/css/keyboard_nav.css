@@ -4,7 +4,7 @@
 #keyboard_nav {
     background-color: #ededed;
     border: 1px solid black;
-    padding: 5px;
+    padding: 1em;
     position: absolute;
     z-index: 9;
     text-align: center;
@@ -29,7 +29,8 @@
 }
 label {
     margin-right: .5em;
-    min-width: 100px;
+    min-width: 350px;
+    text-align: right;
 }
 div[data-actionname] {
     display: flex;

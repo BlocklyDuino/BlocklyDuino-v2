@@ -31,7 +31,7 @@ goog.provide('Blockly.Constants.arduino_base');
 goog.require('Blockly.Blocks');
 goog.require('Blockly');
 
-var mediaFolder = "./blocklyduino/images/";
+var mediaFolder = "./blocklyduino/media/";
 
 Blockly.Blocks['arduino_base_inout_buildin_led'] = {
     init: function () {

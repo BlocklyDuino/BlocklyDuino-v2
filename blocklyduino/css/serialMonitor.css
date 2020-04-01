@@ -1,0 +1,34 @@
+@CHARSET "UTF-8";
+#title {
+	position: fixed;
+	top: 0px;
+	left: 6px;
+	color:white
+}
+
+#serialSend{
+	padding:5px 5px 5px 5px;
+}
+#serialSendBox{
+	/* Firefox */
+	width: -moz-calc(100% - 77px);
+	/* WebKit */
+	width: -webkit-calc(100% - 77px);
+	/* Opera */
+	width: -o-calc(100% - 77px);
+	/* Standard */
+	width: calc(100% - 77px);
+}
+
+#serialPeek{
+	height: 415px;
+	border: 1px solid #ccc;
+	margin: 5px;
+	border-radius: 5px;
+	overflow: auto
+}
+
+#serialButtons{
+	padding-right:5px;
+	text-align:right;
+}

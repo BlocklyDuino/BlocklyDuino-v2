@@ -31,8 +31,8 @@ goog.provide('Blockly.Arduino_boards');
  * Arduino Board profiles
  *
  */
- 
-var boardsPictureFolder = "./blocklyduino/images/boards/";
+
+var boardsPictureFolder = "./blocklyduino/media/boards/";
 
 var profile = {
     none: {
@@ -320,8 +320,6 @@ function changeBoard() {
     } else {
         search = search.replace(/\?/, '?board=' + newBoard + '&');
     }
-
-    window.location = window.location.protocol + '//' +
-            window.location.host + window.location.pathname + search;
-}
-;
+    profile["default"] = profile[newBoard];
+    window.location = window.location.protocol + '//' + window.location.host + window.location.pathname + search;
+};

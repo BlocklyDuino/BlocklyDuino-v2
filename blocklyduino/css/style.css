@@ -13,6 +13,7 @@ body {
 
 .farSide {
     text-align: right;
+    vertical-align: middle;
 }
 
 html[dir="RTL"] .farSide {
@@ -78,7 +79,6 @@ td {
     vertical-align: middle;
 }
 .content {
-    visibility: hidden;
     margin: 0;
     padding: 1ex;
     position: absolute;
@@ -95,13 +95,31 @@ pre.content {
     border-top: none !important;
 }
 #content_arduino {
-    background: #F8F8F8;
-    resize: none;
-    outline: none;
-    border: 1px solid #ccc;
+	padding: 0px 5px 20px 0px;
+    display: block;
+    box-sizing: border-box;
     font-family: monospace;
-    font-size: large;
-    overflow: scroll;
+}
+#content_code {
+    background: #F5F5F5;
+    display: block;
+    height: 70%;
+    width: 100%;
+    position: relative;
+	padding: 5px 5px 20px 0px;
+    margin: 0 0 10px;
+    border: 1px solid #CCC;
+    border-radius: 4px;
+    overflow: auto;
+}
+#content_serial {
+    background: #000000;
+    color: rgba(29, 147, 47, 1);
+    display: inline;
+    height: 25%;
+    width: 100%;
+    vertical-align: bottom;
+    overflow: auto;
 }
 #languageMenu {
     vertical-align: top;

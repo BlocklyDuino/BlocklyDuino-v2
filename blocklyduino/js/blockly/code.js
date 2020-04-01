@@ -26,6 +26,7 @@
  * Create a namespace for the application.
  */
 var Code = {};
+Code.selectedTabBoard = "none";
 
 /**
  * Lookup for names of supported languages.  Keys should be in ISO 639 format.
@@ -220,6 +221,8 @@ Code.tabClick = function (clickedName) {
     if (document.getElementById('tab_blocks').classList.contains('tabon')) {
         Code.workspace.setVisible(false);
     }
+    // Deselect the button, and ensure side panel is hidden
+	Code.peekCode(false);
     // Deselect all tabs and hide all panes.
     for (var i = 0; i < Code.TABS_.length; i++) {
         var name = Code.TABS_[i];
@@ -235,25 +238,13 @@ Code.tabClick = function (clickedName) {
     selectedTab.classList.remove('taboff');
     selectedTab.classList.add('tabon');
     // Show the selected pane.
-    document.getElementById('content_' + clickedName).style.visibility =
-            'visible';
-    Code.renderContent();
-    // The code menu tab is on if the blocks tab is off.
-    var codeMenuTab = document.getElementById('tab_code');
-    if (clickedName === 'blocks') {
+    document.getElementById('content_' + clickedName).style.visibility = 'visible';
+    if (clickedName === 'blocks' && Code.workspace) {
+        Code.workspace.setVisible(false);
         Code.workspace.setVisible(true);
-        codeMenuTab.className = 'taboff';
-    } else {
-        codeMenuTab.className = 'tabon';
-    }
-    // Sync the menu's value with the clicked tab value if needed.
-    var codeMenu = document.getElementById('code_menu');
-    for (var i = 0; i < codeMenu.options.length; i++) {
-        if (codeMenu.options[i].value === clickedName) {
-            codeMenu.selectedIndex = i;
-            break;
-        }
-    }
+      }
+    Code.renderContent();
+    window.dispatchEvent(new Event('resize'));
     Blockly.svgResize(Code.workspace);
 };
 
@@ -276,7 +267,8 @@ Code.renderContent = function () {
  * @param generator {!Blockly.Generator} The generator to use.
  */
 Code.attemptCodeGeneration = function (generator) {
-    var content = document.getElementById('content_' + Code.selected);
+    // var content = document.getElementById('content_' + Code.selected);
+    var content = document.getElementById('content_code');
     content.textContent = '';
     if (Code.checkAllGeneratorFunctionsDefined(generator)) {
         var code = generator.workspaceToCode(Code.workspace);
@@ -316,12 +308,7 @@ Code.checkAllGeneratorFunctionsDefined = function (generator) {
  */
 Code.init = function () {
     // board menu as  URL choice
-    var boardId = Code.getStringParamFromUrl('board', '');
-    if (!boardId) {
-        boardId = Code.selectedTabCard;
-    }
-    document.getElementById('boardMenu').value = boardId;
-    profile.default = profile[boardId];
+    Code.setArduinoBoard();
     Code.initLanguage();
     setOnOffLine();
     var rtl = Code.isRtl();
@@ -404,9 +391,9 @@ Code.init = function () {
     Code.loadBlocks('');
 	// Hook a save function onto unload.
 	window.addEventListener('unload', auto_save_and_restore_blocks, false);
-	// if ('BlocklyStorage' in window) {
-		// BlocklyStorage.backupOnUnload(Code.workspace);
-	// }
+	if ('BlocklyStorage' in window) {
+		BlocklyStorage.backupOnUnload(Code.workspace);
+	}
     Code.tabClick(Code.selected);
     for (var i = 0; i < Code.TABS_.length; i++) {
         var name = Code.TABS_[i];
@@ -422,7 +409,6 @@ Code.init = function () {
             // Prevent clicks on child codeMenu from triggering a tab click.
             return;
         }
-        Code.changeCodingLanguage();
     });
 
     onresize();
@@ -506,16 +492,24 @@ Code.initLanguage = function () {
     document.getElementById('themeSpan').textContent = MSG['themeSpan'];
     document.getElementById('renderSpan').textContent = MSG['renderSpan'];
     document.getElementById('boardIcon').title = MSG['boardSpan'];
+    document.getElementById('boardMenu').title = MSG['boardSpan'];
     document.getElementById('serialIcon').title = MSG['serialSpan'];
-    document.getElementById('undoButton_span').title = MSG['undoButton_span'];
-    document.getElementById('redoButton_span').title = MSG['redoButton_span'];
-    document.getElementById('verifyButton_span').title = MSG['verifyButton_span'];
-    document.getElementById('uploadButton_span').title = MSG['uploadButton_span'];
-    document.getElementById('saveCodeButton_span').title = MSG['saveCodeButton_span'];
-    document.getElementById('newButton_span').title = MSG['newButton_span'];
-    document.getElementById('saveXMLButton_span').title = MSG['saveXMLButton_span'];
-    document.getElementById('loadXMLfakeButton_span').title = MSG['loadXMLfakeButton_span'];
-    document.getElementById('resetButton_span').title = MSG['resetButton_span'];
+    document.getElementById('serialMenu').title = MSG['serialSpan'];
+    document.getElementById('undoButton').title = MSG['undoButton_span'];
+    document.getElementById('redoButton').title = MSG['redoButton_span'];
+    document.getElementById('verifyButton').title = MSG['verifyButton_span'];
+    document.getElementById('uploadButton').title = MSG['uploadButton_span'];
+    document.getElementById('serialConnectButton').title = MSG['serialConnectButton_span'];
+    document.getElementById('viewCodeButton').title = MSG['viewCodeButton_span'];
+    document.getElementById('saveCodeButton').title = MSG['saveCodeButton_span'];
+    document.getElementById('newButton').title = MSG['newButton_span'];
+    document.getElementById('saveXMLButton').title = MSG['saveXMLButton_span'];
+    document.getElementById('loadXMLfakeButton').title = MSG['loadXMLfakeButton_span'];
+    document.getElementById('resetButton').title = MSG['resetButton_span'];
+    document.getElementById('setup_sideButton').title = MSG['setup_sideButton_span'];
+    document.getElementById('helpButton').title = MSG['aboutHelpModalSpan'];
+    document.getElementById('keyMappingModalSpan').textContent = MSG['keyMappingModalSpan'];
+    document.getElementById('detailedCompilation_span').textContent = MSG['detailedCompilation_span'];
 
     Blockly.navigation.ACTION_PREVIOUS.name = MSG['actionName0'];
     Blockly.navigation.ACTION_OUT.name = MSG['actionName1'];
@@ -544,10 +538,9 @@ Code.initLanguage = function () {
     document.getElementById('themeHighContrastSpan').textContent = MSG['themeHighContrastSpan'];
     document.getElementById('themeDarkSpan').textContent = MSG['themeDarkSpan'];
     document.getElementById('themeBwSpan').textContent = MSG['themeBwSpan'];
-//    document.getElementById('accessibilityExplanationSpan').innerHTML = MSG['accessibilityExplanationSpan'];
-    document.getElementById('keyMappingModalSpan').textContent = MSG['keyMappingModalSpan'];
-    document.getElementById('aboutHelpModalSpan').textContent = MSG['aboutHelpModalSpan'];
-    document.getElementById('aboutHelpModalContentSpan').textContent = MSG['aboutHelpModalContentSpan'];
+    document.getElementById('fontSizeSpan').textContent = MSG['fontSizeSpan'];
+    document.getElementById('optionFontSize').textContent = MSG['optionFontSize'];
+    document.getElementById('keyMappingExplanationSpan').innerHTML = MSG['keyMappingExplanationSpan'];
 };
 
 /**
@@ -563,6 +556,19 @@ Code.discard = function () {
         }
     }
 };
+
+/**
+ * Sets Arduino board
+ */
+Code.setArduinoBoard =  function () {
+    var boardId = Code.getStringParamFromUrl('board', '');
+    if (!boardId) {
+        boardId = Code.selectedTabBoard;
+    }
+    document.getElementById('boardMenu').value = boardId;
+    profile.default = profile[boardId];
+};
+
 
 // Load the Code demo's language strings.
 document.write('<script src="./blockly/demos/code/msg/' + Code.LANG + '.js"></script>\n');

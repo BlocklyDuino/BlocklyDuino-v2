@@ -92,7 +92,10 @@ Thanks Neil Fraser, Q.Neutron from Blockly https://developers.google.com/blockly
 
 Thanks Arduino and Seeeduino guys for Arduino and Grove blocks.
 
-The project is also inspired by [ardublock](https://github.com/taweili/ardublock) and [modkit](http://www.modk.it/)
+The BlocklyDuino project is also inspired by [ardublock](https://github.com/taweili/ardublock) and [modkit](http://www.modk.it/)
+
+This BlocklyDuino reboot project is also inspired by [Blockly@rduino](https://github.com/technologiescollege/Blockly-at-rduino),  [ardublockly](https://github.com/carlosperate/ardublockly) and [Blocklino](https://github.com/fontainejp/blocklino).
+
 
 ## License
 

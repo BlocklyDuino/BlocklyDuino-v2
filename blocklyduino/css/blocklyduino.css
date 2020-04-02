@@ -10,51 +10,51 @@ and open the template in the editor.
 
 /* Table */
 .table_wrapper {
-  height: -moz-calc(100%);
-  width: -moz-calc(100%);
-  /* WebKit */
-  height: -webkit-calc(100%);
-  width: -webkit-calc(100%);
-  /* Opera */
-  height: -o-calc(100%);
-  width: -o-calc(100%);
-  /* Standard */
-  height: calc(100%);
-  width: calc(100%);
-  padding: 0px;
+    height: -moz-calc(100%);
+    width: -moz-calc(100%);
+    /* WebKit */
+    height: -webkit-calc(100%);
+    width: -webkit-calc(100%);
+    /* Opera */
+    height: -o-calc(100%);
+    width: -o-calc(100%);
+    /* Standard */
+    height: calc(100%);
+    width: calc(100%);
+    padding: 0px;
 }
 table {
-  border-collapse: collapse;
-  margin: 0;
-  padding: 0;
-  border: none;
-  position: relative;
-  /* Firefox */
-  height: -moz-calc(100% - 40px);
-  width: -moz-calc(100% - 40px);
-  /* WebKit */
-  height: -webkit-calc(100% - 40px);
-  width: -webkit-calc(100% - 40px);
-  /* Opera */
-  height: -o-calc(100% - 40px);
-  width: -o-calc(100% - 40px);
-  /* Standard */
-  height: calc(100% - 5px);
-  width: calc(100% - 5px);
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    border: none;
+    position: relative;
+    /* Firefox */
+    height: -moz-calc(100% - 40px);
+    width: -moz-calc(100% - 40px);
+    /* WebKit */
+    height: -webkit-calc(100% - 40px);
+    width: -webkit-calc(100% - 40px);
+    /* Opera */
+    height: -o-calc(100% - 40px);
+    width: -o-calc(100% - 40px);
+    /* Standard */
+    height: calc(100% - 5px);
+    width: calc(100% - 5px);
 }
 table table {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
 }
 td {
-  padding: 0;
-  vertical-align: top;
+    padding: 0;
+    vertical-align: top;
 }
 td.td_wrapper {
-  border: none;
-  height: 100%;
+    border: none;
+    height: 100%;
 }
 #content_hoverButton {
     margin: 5px;
@@ -117,7 +117,7 @@ td.td_wrapper {
 /* surcharger .iconButton */
 #boardMenu, #serialMenu{
     color: #000000;
-	font-size:large;
+    font-size:large;
     border: none;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -125,12 +125,12 @@ td.td_wrapper {
     border-radius: 5px;
 }
 /* boutons classiques */
-#undoButton{
-    border-radius: 50%;
-}
-#redoButton{
-    border-radius: 50%;
-}
+/* #undoButton{ */
+    /* border-radius: 50%; */
+/* } */
+/* #redoButton{ */
+    /* border-radius: 50%; */
+/* } */
 #verifyButton{
     border-radius: 50%;
 }
@@ -155,91 +155,97 @@ td.tabMiddle {
     vertical-align: middle;
 }
 #helpButton{
-    border-radius: 12px;
+    border-radius: 10px;
     cursor: help;
+}
+#copyCodeButton{
+	position: absolute;
+	top: 105px;
+	right: 5px;
+    border-radius: 10px;
 }
 
 #barre_h{
-	padding : 0px;
-	margin : 0px;
+    padding : 0px;
+    margin : 0px;
     width: 100%;
-	background-color : #018790;
+    background-color : #018790;
 }
 
 /* Content blocks */
 .content_wrapper {
-  height: 100%;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  background-color: #eee;
-  overflow: hidden;
-  display: block;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    background-color: #eee;
+    overflow: hidden;
+    display: block;
 }
 .content {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  border: none;
-  direction: ltr;
-  display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    direction: ltr;
+    display: block;
 }
 .content_blocks{
-  width: 100% !important;
-  overflow: hidden;
+    width: 100% !important;
+    overflow: hidden;
 }
 /* side panel */
 .content_blocks_side {
-  /* Firefox */
-  width: -moz-calc(100% - 350px) !important;
-  /* WebKit */
-  width: -webkit-calc(100% - 350px) !important;
-  /* Opera */
-  width: -o-calc(100% - 350px) !important;
-  /* Standard */
-  width: calc(100% - 350px) !important;
-  overflow: hidden;
-  float: left;
+    /* Firefox */
+    width: -moz-calc(100% - 350px) !important;
+    /* WebKit */
+    width: -webkit-calc(100% - 350px) !important;
+    /* Opera */
+    width: -o-calc(100% - 350px) !important;
+    /* Standard */
+    width: calc(100% - 350px) !important;
+    overflow: hidden;
+    float: left;
 }
 .side_content {
-  width: 350px;
-  height: 100%;
-  right: 0px;
-  bottom: 0px;
-  float: right;
-  padding: 0;
-  margin: 0;
-  border: 0;
-  background-color: #ffffff;
-  overflow: auto !important;
-  display: none;
+    width: 350px;
+    height: 100%;
+    right: 0px;
+    bottom: 0px;
+    float: right;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background-color: #ffffff;
+    overflow: auto !important;
+    display: none;
 }
 .arduino_code_peek {
-  /* Firefox */
-  width: -moz-calc(100% - 10px) !important;
-  /* WebKit */
-  width: -webkit-calc(100% - 10px) !important;
-  /* Opera */
-  width: -o-calc(100% - 10px) !important;
-  /* Standard */
-  width: calc(100% - 10px) !important;
-  padding: 5px;
+    /* Firefox */
+    width: -moz-calc(100% - 10px) !important;
+    /* WebKit */
+    width: -webkit-calc(100% - 10px) !important;
+    /* Opera */
+    width: -o-calc(100% - 10px) !important;
+    /* Standard */
+    width: calc(100% - 10px) !important;
+    padding: 5px;
 }
 .arduino_code_peek_content {
-  border: 0;
-  overflow: visible;
-  white-space: pre !important;
+    border: 0;
+    overflow: visible;
+    white-space: pre !important;
 }
 .content_arduino {
-  resize: none;
-  outline: none;
-  border: none;
-  font-family: monospace;
-  overflow: scroll;
+    resize: none;
+    outline: none;
+    border: none;
+    font-family: monospace;
+    overflow: scroll;
 }
 .setup_content {
-  background-color: #006468;
-  padding: 5px;
-  margin: 0;
+    background-color: #006468;
+    padding: 5px;
+    margin: 0;
 }

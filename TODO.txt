@@ -1,2 +1,0 @@
-dynamic variables
-refrsh COM port on mouseover

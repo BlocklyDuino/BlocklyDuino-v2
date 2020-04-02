@@ -222,7 +222,7 @@ Code.tabClick = function (clickedName) {
         Code.workspace.setVisible(false);
     }
     // Deselect the button, and ensure side panel is hidden
-	Code.peekCode(false);
+    Code.peekCode(false);
     // Deselect all tabs and hide all panes.
     for (var i = 0; i < Code.TABS_.length; i++) {
         var name = Code.TABS_[i];
@@ -242,7 +242,7 @@ Code.tabClick = function (clickedName) {
     if (clickedName === 'blocks' && Code.workspace) {
         Code.workspace.setVisible(false);
         Code.workspace.setVisible(true);
-      }
+    }
     Code.renderContent();
     window.dispatchEvent(new Event('resize'));
     Blockly.svgResize(Code.workspace);
@@ -311,6 +311,7 @@ Code.init = function () {
     Code.setArduinoBoard();
     Code.initLanguage();
     setOnOffLine();
+    var clipboard = new Clipboard(document.getElementById('copyCodeButton'));
     var rtl = Code.isRtl();
     var container = document.getElementById('content_area');
     var onresize = function (e) {
@@ -389,11 +390,11 @@ Code.init = function () {
     Code.workspace.configureContextMenu = configureContextualMenu;
 
     Code.loadBlocks('');
-	// Hook a save function onto unload.
-	window.addEventListener('unload', auto_save_and_restore_blocks, false);
-	if ('BlocklyStorage' in window) {
-		BlocklyStorage.backupOnUnload(Code.workspace);
-	}
+    // Hook a save function onto unload.
+    window.addEventListener('unload', auto_save_and_restore_blocks, false);
+    if ('BlocklyStorage' in window) {
+        BlocklyStorage.backupOnUnload(Code.workspace);
+    }
     Code.tabClick(Code.selected);
     for (var i = 0; i < Code.TABS_.length; i++) {
         var name = Code.TABS_[i];
@@ -507,7 +508,8 @@ Code.initLanguage = function () {
     document.getElementById('loadXMLfakeButton').title = MSG['loadXMLfakeButton_span'];
     document.getElementById('resetButton').title = MSG['resetButton_span'];
     document.getElementById('setup_sideButton').title = MSG['setup_sideButton_span'];
-    document.getElementById('helpButton').title = MSG['aboutHelpModalSpan'];
+    document.getElementById('helpButton').title = MSG['helpButton_span'];
+    document.getElementById('copyCodeButton').title = MSG['copyCodeButton_span'];
     document.getElementById('keyMappingModalSpan').textContent = MSG['keyMappingModalSpan'];
     document.getElementById('detailedCompilation_span').textContent = MSG['detailedCompilation_span'];
 
@@ -539,7 +541,9 @@ Code.initLanguage = function () {
     document.getElementById('themeDarkSpan').textContent = MSG['themeDarkSpan'];
     document.getElementById('themeBwSpan').textContent = MSG['themeBwSpan'];
     document.getElementById('fontSizeSpan').textContent = MSG['fontSizeSpan'];
-    document.getElementById('optionFontSize').textContent = MSG['optionFontSize'];
+    document.getElementById('optionFontSizeBlocks').textContent = MSG['optionFontSizeBlocks'];
+    document.getElementById('optionFontSizePage').textContent = MSG['optionFontSizePage'];
+    document.getElementById('optionFontSpacingPage').textContent = MSG['optionFontSpacingPage'];
     document.getElementById('keyMappingExplanationSpan').innerHTML = MSG['keyMappingExplanationSpan'];
 };
 
@@ -560,7 +564,7 @@ Code.discard = function () {
 /**
  * Sets Arduino board
  */
-Code.setArduinoBoard =  function () {
+Code.setArduinoBoard = function () {
     var boardId = Code.getStringParamFromUrl('board', '');
     if (!boardId) {
         boardId = Code.selectedTabBoard;

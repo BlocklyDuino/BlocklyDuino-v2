@@ -40,7 +40,8 @@ function dragElement(elmnt) {
         document.onmouseup = null;
         document.onmousemove = null;
     }
-};
+}
+;
 
 //icons button mouser over
 document.getElementById('undoButton').onmouseover = function () {
@@ -143,5 +144,11 @@ document.getElementById('helpButton').onmouseover = function () {
     document.getElementById("content_hoverButton").textContent = MSG['helpButton_span'];
 };
 document.getElementById('helpButton').onmouseout = function () {
+    document.getElementById("content_hoverButton").textContent = "";
+};
+document.getElementById('copyCodeButton').onmouseover = function () {
+    document.getElementById("content_hoverButton").textContent = MSG['copyCodeButton_span'];
+};
+document.getElementById('copyCodeButton').onmouseout = function () {
     document.getElementById("content_hoverButton").textContent = "";
 };

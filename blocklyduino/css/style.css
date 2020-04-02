@@ -95,7 +95,7 @@ pre.content {
     border-top: none !important;
 }
 #content_arduino {
-	padding: 0px 5px 20px 0px;
+    padding: 0px 5px 20px 0px;
     display: block;
     box-sizing: border-box;
     font-family: monospace;
@@ -106,7 +106,7 @@ pre.content {
     height: 70%;
     width: 100%;
     position: relative;
-	padding: 5px 5px 20px 0px;
+    padding: 5px 5px 20px 0px;
     margin: 0 0 10px;
     border: 1px solid #CCC;
     border-radius: 4px;

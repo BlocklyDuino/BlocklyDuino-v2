@@ -1,36 +1,51 @@
 <!DOCTYPE HTML>
 <html lang="fr">
-	<head>
-		<meta charset="utf-8">
-		<title> Moniteur série </title>
-		<link rel="stylesheet" type="text/css" href="./css/font_awesome_all.min.css"/>
-		<link rel="stylesheet" type="text/css" href="./css/serialMonitor.css"/>
-	</head>
-	<body>
-		<div id="serialSend">
-			<input type="text" placeholder="Texte" name="" id="serialSendBox" class="form-control">
-			<span class="input-group-btn">
-				<button id="btn_serialSend" type="button" class="btn btn-info">Envoyer</button>
-			</span>
-		</div>
-		<div id="serialPeek"> </div>
-		<div id="serialButtons">
-			<select id="serialConnectSpeed_Menu" name="serialConnectSpeed_Menu">
-				<option value="none" id="none">...</option> 
-			</select>
-			<button id="btn_serialConnect" type="button" class="btn btn-info"> 
-				<span class='fa fa-play'></span> Démarrer
-			</button>
-			<button id="btn_serialPeekClear" type="button" class="btn btn-info">
-				<span class='fa fa-eraser'></span> Effacer
-			</button>
-			<button id="btn_serialPeekCSV" type="button" class="btn btn-info">
-				<span class='fa fa-eject'></span> Exporter
-			</button>
-		</div>
-	</body>
-	<script>
-		require('../../serialMonitor.js')
-		<!-- require('../resources/app/serialMonitor.js') -->
-	</script>
+    <head>
+        <meta charset="utf-8">
+        <title> Moniteur série </title>
+        <link rel="stylesheet" type="text/css" href="./css/font_awesome_all.min.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/serialMonitor.css"/>
+    </head>
+    <body>
+        <div id="serialSend">
+            <input type="text" placeholder="Texte" name="" id="serialSendBox" class="form-control">
+            <span class="input-group-btn">
+                <button id="btn_serialSend" type="button" class="btn btn-info">Envoyer</button>
+            </span>
+        </div>
+        <div id="serialPeek"> </div>
+        <div id="serialButtons">
+            <!-- <select id="serialConnectSpeed_Menu" name="serialConnectSpeed_Menu"> -->
+                <!-- <option value="none" id="none">...</option>  -->
+            <!-- </select> -->
+            <select id="serialConnectSpeed_Menu" >
+                <option value="300">300 baud</option>
+                <option value="600">600 baud</option>
+                <option value="1200">1200 baud</option>
+                <option value="2400">2400 baud</option>
+                <option value="4800">4800 baud</option>
+                <option value="9600" selected>9600 baud</option>
+                <option value="14400">14400 baud</option>
+                <option value="19200">19200 baud</option>
+                <option value="28800">28800 baud</option>
+                <option value="31250">31250 baud</option>
+                <option value="38400">38400 baud</option>
+                <option value="57600">57600 baud</option>
+                <option value="115200">115200 baud</option>
+            </select>
+            <button id="btn_serialConnect" type="button" class="btn btn-info"> 
+                <span class='fa fa-play'></span> Démarrer
+            </button>
+            <button id="btn_serialPeekClear" type="button" class="btn btn-info">
+                <span class='fa fa-eraser'></span> Effacer
+            </button>
+            <button id="btn_serialPeekCSV" type="button" class="btn btn-info">
+                <span class='fa fa-eject'></span> Exporter
+            </button>
+        </div>
+    </body>
+    <script type="text/javascript">
+        require('../serialMonitor.js');
+        <!-- require('../../resources/app.asar/serialMonitor.js') -->
+    </script>
 </html>

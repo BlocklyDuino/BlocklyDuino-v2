@@ -135,3 +135,64 @@ function configureContextualMenu(menuOptions) {
     };
     menuOptions.push(screenshotOption);
 }
+
+/**
+ * Change font size in blocks in all workspace
+ */
+function changeRenderingConstant(value) {
+    var type = document.getElementById('rendering-constant-selector').value;
+    if (type === 'fontSizeBlocks') {
+        var fontStyle = {
+            'size': value
+        };
+        Blockly.getMainWorkspace().getTheme().setFontStyle(fontStyle);
+        // Refresh theme.
+        Blockly.getMainWorkspace().setTheme(Blockly.getMainWorkspace().getTheme());
+    }
+    // if (type === 'fontSizePage') {
+        // fontSizePageModify('access', value);
+    // }
+    // if (type === 'fontSpacingPage') {
+        // document.body.style.fontSize = value + 'px';
+        // console.log(value);
+    // }
+};
+
+/**
+ * Sort and list elements with class 'access' for size change
+ */
+function getElementsByClass(searchClass, node, tag) {
+    var classElements = new Array();
+    if ( node === null )
+        node = document;
+    if ( tag === null )
+        tag = '*';
+    var els = node.getElementsByTagName(tag);
+    var elsLen = els.length;
+    var pattern = new RegExp("(^|\\s)"+searchClass+"(\\s|$)");
+    for (i = 0, j = 0; i < elsLen; i++) {
+        if ( pattern.test(els[i].className) ) {
+            classElements[j] = els[i];
+            j++;
+        }
+    }
+    return classElements;
+}
+/**
+ * Modify all element with 'class' at the 'size'
+ */
+function fontSizePageModify(classToModify, sizeToModify) {
+    var target = getElementsByClass(classToModify);
+    for (i=0; i < target.length; i++) {
+        target[i].style.fontSize = sizeToModify;
+    }
+}
+/**
+ * Modify all element with 'class' at the 'spacing'
+ */
+function fontSpacingPageModify(classToModify, spacingToModify) {
+    var target = getElementsByClass(classToModify);
+    for (i=0; i < target.length; i++) {
+        target[i].style.letterSpacing = spacingToModify;
+    }
+}

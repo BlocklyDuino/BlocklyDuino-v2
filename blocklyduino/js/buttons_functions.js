@@ -34,7 +34,8 @@ function auto_save_and_restore_blocks() {
         var text = Blockly.Xml.domToText(xml);
         window.sessionStorage.loadOnceBlocks = text;
     }
-};
+}
+;
 /**
  * Undo/redo functions
  */
@@ -55,8 +56,8 @@ Code.saveArduinoFile = function () {
     var data = Blockly.Arduino.workspaceToCode(Blockly.getMainWorkspace());
     if (fileName) {
         var blob = new Blob([data], {
-                type: 'text/plain;charset=utf-8'
-            });
+            type: 'text/plain;charset=utf-8'
+        });
         saveAs(blob, fileName + ".ino");
     }
 };
@@ -71,8 +72,8 @@ Code.saveXmlBlocklyFile = function () {
     var fileName = window.prompt('What would you like to name your file?', 'Blockly');
     if (fileName) {
         var blob = new Blob([data], {
-                type: 'text/xml;charset=utf-8'
-            });
+            type: 'text/xml;charset=utf-8'
+        });
         saveAs(blob, fileName + ".bduino");
     }
 };
@@ -118,7 +119,8 @@ function loadXmlBlocklyFile(files) {
     };
     reader.readAsText(files[0]);
     Blockly.getMainWorkspace().render();
-};
+}
+;
 
 /**
  * Reset workspace and parameters
@@ -171,7 +173,7 @@ Code.peekSetup_ = true;
  */
 Code.peekCode = function (visible) {
     var peekCodeButton = document.getElementById('viewCodeButton');
-    //need to fix because visible can be undefined
+    //needed to set a value because 'visible' can be undefined
     if (visible === true) {
         Code.peekCode_ = true;
     } else if (visible === false) {
@@ -179,19 +181,20 @@ Code.peekCode = function (visible) {
     }
     if (Code.peekCode_ === true) {
         peekCodeButton.className = 'iconButtonsClicked';
+        //hide peek code if opened
+        Code.peekSetup(false);
+        
         Code.sideContent(true);
+        Code.peekCode_ = false;
+        document.getElementById('setup_sideButton').className = 'iconButtons';
+        document.getElementById('setup_content').style.display = 'none';
         // Regenerate code
         Code.renderArduinoPeekCode();
         Code.workspace.addChangeListener(Code.renderArduinoPeekCode);
-        Code.peekCode_ = false;
-        //hide setup
-        Code.peekSetup_ = false;
-        document.getElementById('setup_sideButton').className = 'iconButtons';
-        document.getElementById('setup_content').style.display = 'none';
     } else {
+        Code.workspace.removeChangeListener(Code.renderArduinoPeekCode);
         peekCodeButton.className = 'iconButtons';
         Code.sideContent(false);
-        Code.workspace.removeChangeListener(Code.renderArduinoPeekCode);
         Code.peekCode_ = true;
     }
 };
@@ -213,14 +216,14 @@ Code.sideContent = function (visible) {
         document.getElementById('tab_blocks').className = 'tabon';
         document.getElementById('content_blocks').style.visibility = 'visible';
         document.getElementById('content_blocks').className = 'content content_blocks_side';
-        document.getElementById('arduino_code_peek').style.display = 'block';
         document.getElementById('side_content').style.display = 'block';
+        document.getElementById('arduino_code_peek').style.display = 'block';
     } else {
-        document.getElementById('arduino_code_peek').style.display = 'none';
-        document.getElementById('side_content').style.display = 'none';
-        document.getElementById('content_blocks').className = 'content content_blocks';
         document.getElementById('tab_' + oldSelectedTab).className = 'tabon';
         document.getElementById('content_' + oldSelectedTab).style.visibility = 'visible';
+        document.getElementById('content_blocks').className = 'content content_blocks';
+        document.getElementById('arduino_code_peek').style.display = 'none';
+        document.getElementById('side_content').style.display = 'none';
     }
     window.dispatchEvent(new Event('resize'));
     Code.renderContent();
@@ -241,7 +244,7 @@ Code.renderArduinoPeekCode = function () {
  */
 Code.peekSetup = function (visible) {
     var peekSetupButton = document.getElementById('setup_sideButton');
-    //need to fix because visible can be undefined
+    //needed to set a value because 'visible' can be undefined
     if (visible === true) {
         Code.peekSetup_ = true;
     } else if (visible === false) {
@@ -249,13 +252,11 @@ Code.peekSetup = function (visible) {
     }
     if (Code.peekSetup_ === true) {
         peekSetupButton.className = 'iconButtonsClicked';
+        //hide peek code if opened
+        Code.peekCode(false);
+        
         Code.sideSetup(true);
         Code.peekSetup_ = false;
-        //hide code peek
-        Code.peekCode_ = false;
-        document.getElementById('viewCodeButton').className = 'iconButtons';
-        document.getElementById('arduino_code_peek').style.display = 'none';
-        document.getElementById('side_content').style.display = 'none';
     } else {
         peekSetupButton.className = 'iconButtons';
         Code.sideSetup(false);
@@ -276,16 +277,15 @@ Code.sideSetup = function (visible) {
         document.getElementById('content_' + name).style.visibility = 'hidden';
     }
     if (visible === true) {
-        document.getElementById('setup_content').style.display = 'block';
         document.getElementById('tab_blocks').className = 'tabon';
         document.getElementById('content_blocks').style.visibility = 'visible';
         document.getElementById('content_blocks').className = 'content content_blocks_side';
+        document.getElementById('setup_content').style.display = 'block';
     } else {
-        document.getElementById('setup_content').style.display = 'none';
-        document.getElementById('content_blocks').className = 'content content_blocks';
         document.getElementById('tab_' + oldSelectedTab).className = 'tabon';
         document.getElementById('content_' + oldSelectedTab).style.visibility = 'visible';
+        document.getElementById('content_blocks').className = 'content content_blocks';
+        document.getElementById('setup_content').style.display = 'none';
     }
     window.dispatchEvent(new Event('resize'));
-    // Code.renderContent();
 };

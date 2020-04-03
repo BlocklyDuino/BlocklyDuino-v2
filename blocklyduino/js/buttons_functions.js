@@ -165,6 +165,7 @@ Code.changeRenderingConstant = function (value) {
  */
 Code.peekCode_ = true;
 Code.peekSetup_ = true;
+Code.peekCLI_ = true;
 
 /**
  * Loads/unloads the side div with a code peek
@@ -181,20 +182,23 @@ Code.peekCode = function (visible) {
     }
     if (Code.peekCode_ === true) {
         peekCodeButton.className = 'iconButtonsClicked';
-        //hide peek code if opened
+        //hide peek setup & cli if opened
         Code.peekSetup(false);
+        Code.peekCLI(false);
         
-        Code.sideContent(true);
+        Code.sideCode(true);
         Code.peekCode_ = false;
         document.getElementById('setup_sideButton').className = 'iconButtons';
         document.getElementById('setup_content').style.display = 'none';
+        document.getElementById('config_sideButton').className = 'iconButtons';
+        document.getElementById('CLI_content').style.display = 'none';
         // Regenerate code
         Code.renderArduinoPeekCode();
         Code.workspace.addChangeListener(Code.renderArduinoPeekCode);
     } else {
         Code.workspace.removeChangeListener(Code.renderArduinoPeekCode);
         peekCodeButton.className = 'iconButtons';
-        Code.sideContent(false);
+        Code.sideCode(false);
         Code.peekCode_ = true;
     }
 };
@@ -203,7 +207,7 @@ Code.peekCode = function (visible) {
  * Configure the Block panel to display code on the right
  * @param {boolean} visible Indicate if the content should be shown or hidden.
  */
-Code.sideContent = function (visible) {
+Code.sideCode = function (visible) {
     var oldSelectedTab = Code.selected;
     // Deselect all tabs and hide all panes.
     for (var i = 0; i < Code.TABS_.length; i++) {
@@ -252,11 +256,16 @@ Code.peekSetup = function (visible) {
     }
     if (Code.peekSetup_ === true) {
         peekSetupButton.className = 'iconButtonsClicked';
-        //hide peek code if opened
+        //hide peek code & cli if opened
         Code.peekCode(false);
+        Code.peekCLI(false);
         
         Code.sideSetup(true);
         Code.peekSetup_ = false;
+        document.getElementById('viewCodeButton').className = 'iconButtons';
+        document.getElementById('side_content').style.display = 'none';
+        document.getElementById('config_sideButton').className = 'iconButtons';
+        document.getElementById('CLI_content').style.display = 'none';
     } else {
         peekSetupButton.className = 'iconButtons';
         Code.sideSetup(false);
@@ -286,6 +295,66 @@ Code.sideSetup = function (visible) {
         document.getElementById('content_' + oldSelectedTab).style.visibility = 'visible';
         document.getElementById('content_blocks').className = 'content content_blocks';
         document.getElementById('setup_content').style.display = 'none';
+    }
+    window.dispatchEvent(new Event('resize'));
+};
+
+/**
+ * Loads/unloads the side div with a code peek
+ * @param {boolean} visible Optional argument, indicates the new visibility of
+ *                           the code preview.
+ */
+Code.peekCLI = function (visible) {
+    var peekCLIButton = document.getElementById('config_sideButton');
+    //needed to set a value because 'visible' can be undefined
+    if (visible === true) {
+        Code.peekCLI_ = true;
+    } else if (visible === false) {
+        Code.peekCLI_ = false;
+    }
+    if (Code.peekCLI_ === true) {
+        peekCLIButton.className = 'iconButtonsClicked';
+        //hide peek code & setup if opened
+        Code.peekCode(false);
+        Code.peekSetup(false);
+        
+        Code.sideCLI(true);
+        Code.peekCLI_ = false;
+        document.getElementById('viewCodeButton').className = 'iconButtons';
+        document.getElementById('side_content').style.display = 'none';
+        document.getElementById('setup_sideButton').className = 'iconButtons';
+        document.getElementById('setup_content').style.display = 'none';
+        // Regenerate code
+        Code.attemptCodeGeneration(Blockly.Arduino, 'cpp');
+    } else {
+        peekCLIButton.className = 'iconButtons';
+        Code.sideCLI(false);
+        Code.peekCLI_ = true;
+    }
+};
+
+/**
+ * Configure the Block panel to display setup on the right
+ * @param {boolean} visible Indicate if the content should be shown or hidden.
+ */
+Code.sideCLI = function (visible) {
+    var oldSelectedTab = Code.selected;
+    // Deselect all tabs and hide all panes.
+    for (var i = 0; i < Code.TABS_.length; i++) {
+        var name = Code.TABS_[i];
+        document.getElementById('tab_' + name).className = 'taboff';
+        document.getElementById('content_' + name).style.visibility = 'hidden';
+    }
+    if (visible === true) {
+        document.getElementById('tab_arduino').className = 'tabon';
+        document.getElementById('content_arduino').style.visibility = 'visible';
+        document.getElementById('content_arduino').className = 'content content_blocks_side';
+        document.getElementById('CLI_content').style.display = 'block';
+    } else {
+        document.getElementById('tab_' + oldSelectedTab).className = 'tabon';
+        document.getElementById('content_' + oldSelectedTab).style.visibility = 'visible';
+        document.getElementById('content_arduino').className = 'content content_blocks';
+        document.getElementById('CLI_content').style.display = 'none';
     }
     window.dispatchEvent(new Event('resize'));
 };

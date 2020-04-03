@@ -71,18 +71,21 @@
                     <td style="width: 268px;">
                         <h1 class="blocklyDuinoText">BlocklyDuino</h1>
                     </td>
-                    <td>
                     <td class="tabMiddle">
                         <span id="content_hoverButton"></span>
                     </td>
-                    </td>
-                    <td class="farSide" style="width: 80px;">
+                    <td class="farSide" style="width: 120px;">
+                        <button id="config_sideButton" class="iconButtons CLI" onclick="Code.peekCLI()">
+                            <span id="config_side_span">
+                                <i class="fas fa-terminal"></i>
+                            </span>
+                        </button>
                         <button id="setup_sideButton" class="iconButtons" onclick="Code.peekSetup()">
                             <span id="setup_side_span">
                                 <i class="fas fa-wrench"></i>
                             </span>
                         </button>
-                        <button type="button" id="helpButton" class="iconButtons" onclick="window.location.href = 'https://github.com/BlocklyDuino/BlocklyDuino-v2'">
+                        <button id="helpButton" class="iconButtons" onclick="window.location.href = 'https://github.com/BlocklyDuino/BlocklyDuino-v2'">
                             <span id="helpButton_span">
                                 <i class="fas fa-question"></i>
                             </span>
@@ -183,6 +186,54 @@
                     <td colspan="4" id="content_area" class="td_wrapper">
                         <div id="content_wrapper" class="content_wrapper">
                             <div id="content_blocks" class="content"></div>
+                            <div id="CLI_content" class="side_content setup_content CLI">
+                                <div id="configCLI" style="margin: 10px;">
+                                    <span id="CLI_title_span">CLI</span>
+                                    <br>
+                                    <button id="coreUpdateButton" class="iconButtons" onclick="">
+                                        <span id="coreUpdateButton_span">
+                                            <i class="fas fa-sync"></i>
+                                        </span>
+                                    </button>
+                                    <button id="cleanCLIcacheButton" class="iconButtons" onclick="">
+                                        <span id="cleanCLIcache_span">
+                                            <i class="fas fa-eraser"></i>
+                                        </span>
+                                    </button>
+                                    <button id="listBoardsButton" class="iconButtons" onclick="">
+                                        <span id="listBoardsButton_span">
+                                            <i class="fas fa-list"></i>
+                                        </span>
+                                    </button>
+                                    <br>
+                                    <span id="installBoard_title_span">install board</span>
+                                    <br>
+                                    <input type="text" id="installBoardsInput" name="installBoardsInput" size="10">
+                                    <button id="installBoardsButton" class="iconButtons" onclick="">
+                                        <span id="installBoardsButton_span">
+                                            <i class="fas fa-cloud-download-alt"></i>
+                                        </span>
+                                    </button>
+                                    <br>
+                                    <span id="searchlLib_title_span">search library</span>
+                                    <br>
+                                    <input type="text" id="searchlLibInput" name="searchlLibInput" size="10">
+                                    <button id="searchlLibButton" class="iconButtons" onclick="">
+                                        <span id="searchlLibButton_span">
+                                            <i class="fab fa-searchengin"></i>
+                                        </span>
+                                    </button>
+                                    <br>
+                                    <span id="installLib_title_span">install library</span>
+                                    <br>
+                                    <input type="text" id="installLibInput" name="installLibInput" size="10">
+                                    <button id="installLibButton" class="iconButtons" onclick="">
+                                        <span id="installLibButton_span">
+                                            <i class="fas fa-cloud-download-alt"></i>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
                             <div id="side_content" class="side_content">
                                 <div id="arduino_code_peek" class="arduino_code_peek">
                                     <pre id="arduino_code_peek_content" class="arduino_code_peek_content"> </pre>
@@ -196,12 +247,12 @@
                             <div id="setup_content" class="side_content setup_content">
                                 <div id="setup" style="margin: 10px;">
                                     <form id="options">
-                                        <!--                        <select name="toolbox" onchange="document.forms.options.submit('options')">
-                                                                                                <option value="categories">Categories (untyped variables)</option>
-                                                                                                <option value="categories-typed-variables">Categories (typed variables)</option>
-                                                                                                <option value="simple">Simple</option>
-                                                                                                <option value="test-blocks">Test Blocks</option>
-                                                                                        </select>-->
+                                        <!-- <select name="toolbox" onchange="document.forms.options.submit('options')"> -->
+                                                <!-- <option value="categories">Categories (untyped variables)</option> -->
+                                                <!-- <option value="categories-typed-variables">Categories (typed variables)</option> -->
+                                                <!-- <option value="simple">Simple</option> -->
+                                                <!-- <option value="test-blocks">Test Blocks</option> -->
+                                        <!-- </select> -->
                                         <span id="languageSpan" class="blocklyDuinoText">...</span>
                                         <select id="languageMenu"></select>
                                         <br>

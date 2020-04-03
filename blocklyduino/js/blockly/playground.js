@@ -96,7 +96,6 @@ function setOnOffLine() {
         document.getElementById('uploadButton').disabled = false;
         document.getElementById('serialConnectButton').disabled = false;
         document.getElementById('serialMenu').disabled = false;
-
     } else {
         document.body.style.backgroundColor = '#7fcbcd';
         document.getElementById('setup_content').style.backgroundColor = '#7fcbcd';
@@ -104,6 +103,10 @@ function setOnOffLine() {
         document.getElementById('uploadButton').disabled = true;
         document.getElementById('serialConnectButton').disabled = true;
         document.getElementById('serialMenu').disabled = true;
+        //hide everything relative to arduino-cli if online
+        var elmts = document.getElementsByClass("CLI");
+        for(var i=0; i<elmts.length; i++)
+            elmts[i].style.display='none';
     }
 }
 

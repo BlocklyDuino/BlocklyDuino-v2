@@ -27,6 +27,8 @@ BlocklyDuino also supports some [Grove](http://wiki.seeedstudio.com/Grove_System
 
 You can enter _accessibility_ mode by **shift clicking anywhere on the workspace** or on a block.
 
+Official documentation: [https://developers.google.com/blockly/guides/configure/web/keyboard-nav](https://developers.google.com/blockly/guides/configure/web/keyboard-nav)
+
 Key mapping is customizable by activating 'open key mappings' option.
 
 Some basic commands for moving around are below.  

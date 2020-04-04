@@ -1,38 +1,37 @@
 /*
- Copyright (C) 2020 Sebastien Canet <scanet@libreduc.cc>
- 
- This program is free software: you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation, either version 3 of the License, or
- (at your option) any later version.
- 
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
- 
- You should have received a copy of the GNU General Public License
- along with this program.  If not, see <http://www.gnu.org/licenses/>.
+Copyright (C) 2020 Sebastien Canet <scanet@libreduc.cc>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-/* 
- Created on : 30 janv. 2020, 18:00:25
- Author     : Sebastien Canet <scanet@libreduc.cc>
+/*
+Created on : 30 janv. 2020, 18:00:25
+Author     : Sebastien Canet <scanet@libreduc.cc>
  */
 
 'use strict';
-var Blockly;
-var workspace = null;
+var Code;
 
 function setRenderDebugOptionCheckboxState(overrideOptions) {
-    Blockly.blockRendering.Debug.config = overrideOptions || {};
+    Code.blockRendering.Debug.config = overrideOptions || {};
     if (!overrideOptions) {
         return;
     }
     var renderDebugOptionsListEl = document.getElementById('renderDebugOptions');
     var renderDebugOptionInputs =
-            renderDebugOptionsListEl.getElementsByTagName('input');
+        renderDebugOptionsListEl.getElementsByTagName('input');
     for (var i = 0, optionInput;
-            (optionInput = renderDebugOptionInputs[i]); i++) {
+        (optionInput = renderDebugOptionInputs[i]); i++) {
         var optionName = optionInput.getAttribute('data-optionName');
         optionInput.checked = !!overrideOptions[optionName];
     }
@@ -41,15 +40,15 @@ function setRenderDebugOptionCheckboxState(overrideOptions) {
 function updateRenderDebugOptions(e) {
     var target = e.target;
     var optionName = target.getAttribute('data-optionName');
-    var config = Blockly.blockRendering.Debug.config;
+    var config = Code.blockRendering.Debug.config;
     config[optionName] = !!target.checked;
     sessionStorage.setItem(
-            'blockRenderDebugOptions', JSON.stringify(config));
-    workspace.render();
+        'blockRenderDebugOptions', JSON.stringify(config));
+    Code.workspace.render();
 }
 
 function addRenderDebugOptionsCheckboxes() {
-    var renderDebugConfig = Blockly.blockRendering.Debug.config;
+    var renderDebugConfig = Code.blockRendering.Debug.config;
     var renderDebugOptionsListEl = document.getElementById('renderDebugOptions');
     var optionNames = Object.keys(renderDebugConfig);
     for (var i = 0, optionName; (optionName = optionNames[i]); i++) {
@@ -80,12 +79,36 @@ function changeTheme(themeChoice) {
         Blockly.getMainWorkspace().setTheme(Blockly.Themes.Tritanopia);
     } else if (themeChoice === "modern") {
         Blockly.getMainWorkspace().setTheme(Blockly.Themes.Modern);
+    } else if (themeChoice === "blackWhite") {
+        Blockly.getMainWorkspace().setTheme(Blockly.Themes.blackWhite);
     } else if (themeChoice === "zelos") {
         Blockly.getMainWorkspace().setTheme(Blockly.Themes.Zelos);
     } else {
-        Blockly.getMainWorkspace().setTheme(Blockly.Themes.Classic);
+        Code.workspace.setTheme(Blockly.Themes.Classic);
     }
-}
+};
+
+/**
+ * Change font size in blocks in all workspace
+ */
+function changeRenderingConstant(value) {
+    var type = document.getElementById('rendering-constant-selector').value;
+    if (type === 'fontSizeBlocks') {
+        var fontStyle = {
+            'size': value
+        };
+        Code.workspace.getTheme().setFontStyle(fontStyle);
+        // Refresh theme.
+        Code.workspace.setTheme(Code.workspace.getTheme());
+    }
+    // if (type === 'fontSizePage') {
+    // fontSizePageModify('access', value);
+    // }
+    // if (type === 'fontSpacingPage') {
+    // document.body.style.fontSize = value + 'px';
+    // console.log(value);
+    // }
+};
 
 function setOnOffLine() {
     // Set background colour to differentiate server vs local copy.
@@ -105,8 +128,8 @@ function setOnOffLine() {
         document.getElementById('serialMenu').disabled = true;
         //hide everything relative to arduino-cli if online
         var elmts = document.getElementsByClass("CLI");
-        for(var i=0; i<elmts.length; i++)
-            elmts[i].style.display='none';
+        for (var i = 0; i < elmts.length; i++)
+            elmts[i].style.display = 'none';
     }
 }
 
@@ -118,47 +141,28 @@ function getToolboxElement() {
     // The three possible values are: "simple", "categories",
     // "categories-typed-variables".
     return document.getElementById('toolbox-' + toolboxSuffix);
-}
+};
 
 function toggleAccessibilityMode(state) {
     if (state) {
-        Blockly.navigation.enableKeyboardAccessibility();
+        Code.navigation.enableKeyboardAccessibility();
     } else {
-        Blockly.navigation.disableKeyboardAccessibility();
+        Code.navigation.disableKeyboardAccessibility();
     }
-}
+};
 
-function configureContextualMenu(menuOptions) {
+function configureContextualMenu(menuOptions, e) {
     var screenshotOption = {
-        text: 'Download Screenshot',
+        text: MSG['screenshot'],
         enabled: Code.workspace.getTopBlocks().length,
         callback: function () {
             Blockly.downloadScreenshot(Code.workspace);
         }
     };
     menuOptions.push(screenshotOption);
-}
 
-/**
- * Change font size in blocks in all workspace
- */
-function changeRenderingConstant(value) {
-    var type = document.getElementById('rendering-constant-selector').value;
-    if (type === 'fontSizeBlocks') {
-        var fontStyle = {
-            'size': value
-        };
-        Blockly.getMainWorkspace().getTheme().setFontStyle(fontStyle);
-        // Refresh theme.
-        Blockly.getMainWorkspace().setTheme(Blockly.getMainWorkspace().getTheme());
-    }
-    // if (type === 'fontSizePage') {
-        // fontSizePageModify('access', value);
-    // }
-    // if (type === 'fontSpacingPage') {
-        // document.body.style.fontSize = value + 'px';
-        // console.log(value);
-    // }
+    // Adds a default-sized workspace comment to the workspace.
+    // menuOptions.push(Blockly.ContextMenu.workspaceCommentOption(Code.workspace, e));
 };
 
 /**
@@ -166,15 +170,15 @@ function changeRenderingConstant(value) {
  */
 function getElementsByClass(searchClass, node, tag) {
     var classElements = new Array();
-    if ( node === null )
+    if (node === null)
         node = document;
-    if ( tag === null )
+    if (tag === null)
         tag = '*';
     var els = node.getElementsByTagName(tag);
     var elsLen = els.length;
-    var pattern = new RegExp("(^|\\s)"+searchClass+"(\\s|$)");
+    var pattern = new RegExp("(^|\\s)" + searchClass + "(\\s|$)");
     for (i = 0, j = 0; i < elsLen; i++) {
-        if ( pattern.test(els[i].className) ) {
+        if (pattern.test(els[i].className)) {
             classElements[j] = els[i];
             j++;
         }
@@ -186,7 +190,7 @@ function getElementsByClass(searchClass, node, tag) {
  */
 function fontSizePageModify(classToModify, sizeToModify) {
     var target = getElementsByClass(classToModify);
-    for (i=0; i < target.length; i++) {
+    for (i = 0; i < target.length; i++) {
         target[i].style.fontSize = sizeToModify;
     }
 }
@@ -195,7 +199,7 @@ function fontSizePageModify(classToModify, sizeToModify) {
  */
 function fontSpacingPageModify(classToModify, spacingToModify) {
     var target = getElementsByClass(classToModify);
-    for (i=0; i < target.length; i++) {
+    for (i = 0; i < target.length; i++) {
         target[i].style.letterSpacing = spacingToModify;
     }
 }

@@ -94,7 +94,10 @@ Code.loadBlocks = function (defaultXml) {
         // Restarting Firefox fixes this, so it looks like a bug.
         var loadOnce = null;
     }
-    if (loadOnce) {
+    if ('BlocklyStorage' in window && window.location.hash.length > 1) {
+        // An href with #key trigers an AJAX call to retrieve saved blocks.
+        BlocklyStorage.retrieveXml(window.location.hash.substring(1));
+    } else if (loadOnce) {
         // Language switching stores the blocks during the reload.
         delete window.sessionStorage.loadOnceBlocks;
         var xml = Blockly.Xml.textToDom(loadOnce);
@@ -223,6 +226,8 @@ Code.tabClick = function (clickedName) {
     }
     // Deselect the button, and ensure side panel is hidden
     Code.peekCode(false);
+    Code.peekCLI(false);
+    Code.peekSetup(false);
     // Deselect all tabs and hide all panes.
     for (var i = 0; i < Code.TABS_.length; i++) {
         var name = Code.TABS_[i];
@@ -297,8 +302,8 @@ Code.checkAllGeneratorFunctionsDefined = function (generator) {
     var valid = missingBlockGenerators.length === 0;
     if (!valid) {
         var msg = 'The generator code for the following blocks not specified for ' +
-                generator.name_ + ':\n - ' + missingBlockGenerators.join('\n - ');
-        Blockly.alert(msg);  // Assuming synchronous. No callback.
+            generator.name_ + ':\n - ' + missingBlockGenerators.join('\n - ');
+        Blockly.alert(msg); // Assuming synchronous. No callback.
     }
     return valid;
 };
@@ -330,7 +335,7 @@ Code.init = function () {
         // Make the 'Blocks' tab line up with the toolbox.
         if (Code.workspace && Code.workspace.getToolbox().width) {
             document.getElementById('tab_blocks').style.minWidth =
-                    (Code.workspace.getToolbox().width - 38) + 'px';
+                (Code.workspace.getToolbox().width - 38) + 'px';
             // Account for the 19 pixel margin and on each side.
         }
     };
@@ -351,42 +356,41 @@ Code.init = function () {
     var match = location.search.match(/renderer=([^&]+)/);
     var renderer = match ? match[1] : 'geras';
     document.forms.options.elements.renderer.value = renderer;
-    Code.workspace = Blockly.inject('content_blocks',
-            {
-                comments: true,
-                collapse: true,
-                disable: true,
-                grid:
-                        {
-                            spacing: 25,
-                            length: 3,
-                            colour: '#ccc',
-                            snap: true
-                        },
-                maxBlocks: Infinity,
-                maxInstances: {'test_basic_limit_instances': 3},
-                maxTrashcanContents: 256,
-                media: './blockly/media/',
-                oneBasedIndex: true,
-                readOnly: false,
-                rtl: rtl,
-                move: {
-                    scrollbars: true,
-                    drag: true,
-                    wheel: false
-                },
-                toolbox: BLOCKLY_TOOLBOX_XML['duinoToolbox'],
-                renderer: renderer,
-                zoom:
-                        {
-                            controls: true,
-                            wheel: true,
-                            startScale: 1.0,
-                            maxScale: 4,
-                            minScale: 0.25,
-                            scaleSpeed: 1.1
-                        }
-            });
+    Code.workspace = Blockly.inject('content_blocks', {
+            comments: true,
+            collapse: true,
+            disable: true,
+            grid: {
+                spacing: 25,
+                length: 3,
+                colour: '#ccc',
+                snap: true
+            },
+            maxBlocks: Infinity,
+            maxInstances: {
+                'test_basic_limit_instances': 3
+            },
+            maxTrashcanContents: 256,
+            media: './blockly/media/',
+            oneBasedIndex: true,
+            readOnly: false,
+            rtl: rtl,
+            move: {
+                scrollbars: true,
+                drag: true,
+                wheel: false
+            },
+            toolbox: BLOCKLY_TOOLBOX_XML['duinoToolbox'],
+            renderer: renderer,
+            zoom: {
+                controls: true,
+                wheel: true,
+                startScale: 1.0,
+                maxScale: 4,
+                minScale: 0.25,
+                scaleSpeed: 1.1
+            }
+        });
     Code.workspace.configureContextMenu = configureContextualMenu;
 
     Code.loadBlocks('');
@@ -399,17 +403,19 @@ Code.init = function () {
     for (var i = 0; i < Code.TABS_.length; i++) {
         var name = Code.TABS_[i];
         Code.bindClick('tab_' + name,
-                function (name_) {
-                    return function () {
-                        Code.tabClick(name_);
-                    };
-                }(name));
+            function (name_) {
+            return function () {
+                Code.tabClick(name_);
+            };
+        }
+            (name));
     }
     Code.bindClick('tab_code', function (e) {
         if (e.target !== document.getElementById('tab_code')) {
             // Prevent clicks on child codeMenu from triggering a tab click.
             return;
         }
+        Code.changeCodingLanguage();
     });
 
     onresize();
@@ -512,6 +518,19 @@ Code.initLanguage = function () {
     document.getElementById('copyCodeButton').title = MSG['copyCodeButton_span'];
     document.getElementById('keyMappingModalSpan').textContent = MSG['keyMappingModalSpan'];
     document.getElementById('detailedCompilation_span').textContent = MSG['detailedCompilation_span'];
+    
+    document.getElementById('config_sideButton').title = MSG['config_sideButton_span'];
+    document.getElementById('CLI_title_span').textContent = MSG['CLI_title_span'];
+    document.getElementById('arduinoCLI_githubLinkButton').title = MSG['arduinoCLI_githubLinkButton_span'];
+    document.getElementById('coreUpdateButton').title = MSG['coreUpdateButton_span'];
+    document.getElementById('cleanCLIcacheButton').title = MSG['cleanCLIcacheButton_span'];
+    document.getElementById('listBoardsButton').title = MSG['listBoardsButton_span'];
+    document.getElementById('installBoardsButton').title = MSG['installBoardsButton_span'];
+    document.getElementById('searchlLibButton').title = MSG['searchlLibButton_span'];
+    document.getElementById('installLibButton').title = MSG['installLibButton_span'];
+    document.getElementById('installBoard_title_span').textContent = MSG['installBoard_title_span'];
+    document.getElementById('searchlLib_title_span').textContent = MSG['searchlLib_title_span'];
+    document.getElementById('installLib_title_span').textContent = MSG['installLib_title_span'];
 
     Blockly.navigation.ACTION_PREVIOUS.name = MSG['actionName0'];
     Blockly.navigation.ACTION_OUT.name = MSG['actionName1'];
@@ -553,7 +572,7 @@ Code.initLanguage = function () {
 Code.discard = function () {
     var count = Code.workspace.getAllBlocks(false).length;
     if (count < 2 ||
-            window.confirm(Blockly.Msg['DELETE_ALL_BLOCKS'].replace('%1', count))) {
+        window.confirm(Blockly.Msg['DELETE_ALL_BLOCKS'].replace('%1', count))) {
         Code.workspace.clear();
         if (window.location.hash) {
             window.location.hash = '';
@@ -572,7 +591,6 @@ Code.setArduinoBoard = function () {
     document.getElementById('boardMenu').value = boardId;
     profile.default = profile[boardId];
 };
-
 
 // Load the Code demo's language strings.
 document.write('<script src="./blockly/demos/code/msg/' + Code.LANG + '.js"></script>\n');

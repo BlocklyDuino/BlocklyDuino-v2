@@ -106,50 +106,50 @@ Blockly.Themes.blackWhite.defaultBlockStyles = {
 
 Blockly.Themes.blackWhite.categoryStyles = {
     "colour_category": {
-        "colour": "#000000",
+        "colour": "#FFFFFF"
     },
     "list_category": {
-        "colour": "#000000",
+        "colour": "#000000"
     },
     "logic_category": {
-        "colour": "#000000",
+        "colour": "#000000"
     },
     "loop_category": {
-        "colour": "#000000",
+        "colour": "#000000"
     },
     "math_category": {
-        "colour": "#000000",
+        "colour": "#000000"
     },
     "procedure_category": {
-        "colour": "#000000",
+        "colour": "#000000"
     },
     "text_category": {
-        "colour": "#000000",
+        "colour": "#000000"
     },
     "variable_category": {
-        "colour": "#000000",
+        "colour": "#000000"
     },
     "variable_dynamic_category": {
-        "colour": "#000000",
+        "colour": "#000000"
     },
     "arduino_category": {
-        "colour": "#000000",
+        "colour": "#000000"
     },
     "seeed_category": {
-        "colour": "#000000",
+        "colour": "#000000"
     },
     "grove_category": {
-        "colour": "#000000",
+        "colour": "#000000"
     },
     "servo_category": {
-        "colour": "#000000",
+        "colour": "#000000"
     }
 };
-
-Blockly.Themes.blackWhite =
-        new Blockly.Theme('blackWhite', Blockly.Themes.blackWhite.defaultBlockStyles,
-                Blockly.Themes.blackWhite.categoryStyles);
 
 Blockly.Themes.blackWhite.setComponentStyle('toolboxBackgroundColour', '#f9f9f9');
 Blockly.Themes.blackWhite.setComponentStyle('toolboxForegroundColour', '#f9f9f9');
 Blockly.Themes.blackWhite.setComponentStyle('flyoutOpacity', 0);
+
+Blockly.Themes.blackWhite =
+        new Blockly.Theme('blackWhite', Blockly.Themes.blackWhite.defaultBlockStyles,
+                Blockly.Themes.blackWhite.categoryStyles);

@@ -188,50 +188,58 @@
                             <div id="content_blocks" class="content"></div>
                             <div id="CLI_content" class="side_content setup_content CLI">
                                 <div id="configCLI" style="margin: 10px;">
-                                    <span id="CLI_title_span">CLI</span>
+                                    <span id="CLI_title_span" class="blocklyDuinoText">CLI</span>
                                     <br>
-                                    <button id="coreUpdateButton" class="iconButtons" onclick="">
-                                        <span id="coreUpdateButton_span">
-                                            <i class="fas fa-sync"></i>
-                                        </span>
-                                    </button>
-                                    <button id="cleanCLIcacheButton" class="iconButtons" onclick="">
-                                        <span id="cleanCLIcache_span">
-                                            <i class="fas fa-eraser"></i>
-                                        </span>
-                                    </button>
-                                    <button id="listBoardsButton" class="iconButtons" onclick="">
-                                        <span id="listBoardsButton_span">
-                                            <i class="fas fa-list"></i>
-                                        </span>
-                                    </button>
+                                    <div id="CLI_title" style="display:flex;text-align: center;">
+                                        <button id="coreUpdateButton" class="iconButtons" onclick="">
+                                            <span id="coreUpdateButton_span">
+                                                <i class="fas fa-sync"></i>
+                                            </span>
+                                        </button>
+                                        <button id="cleanCLIcacheButton" class="iconButtons" onclick="">
+                                            <span id="cleanCLIcache_span">
+                                                <i class="fas fa-eraser"></i>
+                                            </span>
+                                        </button>
+                                        <button id="listBoardsButton" class="iconButtons" onclick="">
+                                            <span id="listBoardsButton_span">
+                                                <i class="fas fa-list"></i>
+                                            </span>
+                                        </button>
+                                        <a href="https://arduino.github.io/arduino-cli/" id="arduinoCLI_githubLinkButton" target="_blank">
+                                            <img src="./blocklyduino/media/featured-CLI.png" height="40px">
+                                        </a>
+                                    </div>
                                     <br>
-                                    <span id="installBoard_title_span">install board</span>
+                                    <span id="installBoard_title_span" class="blocklyDuinoText">install board</span>
                                     <br>
-                                    <input type="text" id="installBoardsInput" name="installBoardsInput" size="10">
+                                    <input type="text" id="installBoardsInput" name="installBoardsInput" style="width: 270px;font-size:20px;">
                                     <button id="installBoardsButton" class="iconButtons" onclick="">
                                         <span id="installBoardsButton_span">
                                             <i class="fas fa-cloud-download-alt"></i>
                                         </span>
                                     </button>
                                     <br>
-                                    <span id="searchlLib_title_span">search library</span>
                                     <br>
-                                    <input type="text" id="searchlLibInput" name="searchlLibInput" size="10">
+                                    <span id="searchlLib_title_span" class="blocklyDuinoText">search library</span>
+                                    <br>
+                                    <input type="text" id="searchlLibInput" name="searchlLibInput" style="width: 270px;font-size:20px;">
                                     <button id="searchlLibButton" class="iconButtons" onclick="">
                                         <span id="searchlLibButton_span">
                                             <i class="fab fa-searchengin"></i>
                                         </span>
                                     </button>
                                     <br>
-                                    <span id="installLib_title_span">install library</span>
                                     <br>
-                                    <input type="text" id="installLibInput" name="installLibInput" size="10">
+                                    <span id="installLib_title_span" class="blocklyDuinoText">install library</span>
+                                    <br>
+                                    <input type="text" id="installLibInput" name="installLibInput" size="18" style="width: 270px;font-size:20px;">
                                     <button id="installLibButton" class="iconButtons" onclick="">
                                         <span id="installLibButton_span">
                                             <i class="fas fa-cloud-download-alt"></i>
                                         </span>
                                     </button>
+                                    <br>
                                 </div>
                             </div>
                             <div id="side_content" class="side_content">
@@ -267,7 +275,7 @@
                                         <br>
                                         <br>
                                         <span id="themeSpan" class="blocklyDuinoText">...</span>
-                                        <select name="theme" onchange="document.forms.options.submit('options')">
+                                        <select name="theme" onchange="changeTheme(this.value)">
                                             <option value="classic" id="themeClassicSpan">classic</option>
                                             <option value="modern" id="themeModernSpan">modern</option>
                                             <option value="deuteranopia" id="themeDeuteranopiaSpan">deuteranopia</option>
@@ -330,7 +338,8 @@
     </body>
     <script type="text/javascript" src="./blocklyduino/js/dialog.js"></script>
     <script type="text/javascript">
-        require('../functions.js');
+        require('../arduino_CLI_functions.js');
+        require('../arduino_IDE_functions.js');
 <!-- require('../resources/app.asar/functions.js'); -->
     </script>
 </html>

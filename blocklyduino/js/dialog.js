@@ -40,8 +40,7 @@ function dragElement(elmnt) {
         document.onmouseup = null;
         document.onmousemove = null;
     }
-}
-;
+};
 
 //icons button mouser over
 document.getElementById('undoButton').onmouseover = function () {
@@ -150,5 +149,77 @@ document.getElementById('copyCodeButton').onmouseover = function () {
     document.getElementById("content_hoverButton").textContent = MSG['copyCodeButton_span'];
 };
 document.getElementById('copyCodeButton').onmouseout = function () {
+    document.getElementById("content_hoverButton").textContent = "";
+};
+document.getElementById('config_sideButton').onmouseover = function () {
+    document.getElementById("content_hoverButton").textContent = MSG['config_sideButton_span'];
+};
+document.getElementById('config_sideButton').onmouseout = function () {
+    document.getElementById("content_hoverButton").textContent = "";
+};
+document.getElementById('coreUpdateButton').onmouseover = function () {
+    document.getElementById("content_hoverButton").textContent = MSG['coreUpdateButton_span'];
+};
+document.getElementById('coreUpdateButton').onmouseout = function () {
+    document.getElementById("content_hoverButton").textContent = "";
+};
+document.getElementById('cleanCLIcacheButton').onmouseover = function () {
+    document.getElementById("content_hoverButton").textContent = MSG['cleanCLIcacheButton_span'];
+};
+document.getElementById('cleanCLIcacheButton').onmouseout = function () {
+    document.getElementById("content_hoverButton").textContent = "";
+};
+document.getElementById('listBoardsButton').onmouseover = function () {
+    document.getElementById("content_hoverButton").textContent = MSG['listBoardsButton_span'];
+};
+document.getElementById('listBoardsButton').onmouseout = function () {
+    document.getElementById("content_hoverButton").textContent = "";
+};
+document.getElementById('installBoardsInput').onmouseover = function () {
+    document.getElementById("content_hoverButton").textContent = MSG['installBoardsInput_span'];
+};
+document.getElementById('installBoardsInput').onmouseout = function () {
+    document.getElementById("content_hoverButton").textContent = "";
+};
+document.getElementById('installBoardsButton').onmouseover = function () {
+    document.getElementById("content_hoverButton").textContent = MSG['installBoardsButton_span'];
+};
+document.getElementById('installBoardsButton').onmouseout = function () {
+    document.getElementById("content_hoverButton").textContent = "";
+};
+document.getElementById('searchlLibInput').onmouseover = function () {
+    document.getElementById("content_hoverButton").textContent = MSG['searchlLibInput_span'];
+};
+document.getElementById('searchlLibInput').onmouseout = function () {
+    document.getElementById("content_hoverButton").textContent = "";
+};
+document.getElementById('searchlLibButton').onmouseover = function () {
+    document.getElementById("content_hoverButton").textContent = MSG['searchlLibButton_span'];
+};
+document.getElementById('searchlLibButton').onmouseout = function () {
+    document.getElementById("content_hoverButton").textContent = "";
+};
+document.getElementById('installLibInput').onmouseover = function () {
+    document.getElementById("content_hoverButton").textContent = MSG['installLibInput_span'];
+};
+document.getElementById('installLibInput').onmouseout = function () {
+    document.getElementById("content_hoverButton").textContent = "";
+};
+document.getElementById('installLibButton').onmouseover = function () {
+    document.getElementById("content_hoverButton").textContent = MSG['installLibButton_span'];
+};
+document.getElementById('installLibButton').onmouseout = function () {
+    document.getElementById("content_hoverButton").textContent = "";
+};
+document.getElementById('config_sideButton').onmouseover = function () {
+    document.getElementById("content_hoverButton").textContent = MSG['config_sideButton_span'];
+};
+document.getElementById('config_sideButton').onmouseout = function () {
+    document.getElementById("content_hoverButton").textContent = "";
+};
+document.getElementById('arduinoCLI_githubLinkButton').onmouseover = function () {
+    document.getElementById("content_hoverButton").textContent = MSG['arduinoCLI_githubLinkButton_span'];
+};
+document.getElementById('arduinoCLI_githubLinkButton').onmouseout = function () {
     document.getElementById("content_hoverButton").textContent = "";
 };

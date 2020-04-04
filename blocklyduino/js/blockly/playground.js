@@ -110,6 +110,47 @@ function changeRenderingConstant(value) {
     // }
 };
 
+/**
+ * Sort and list elements with class 'access' for size change
+ */
+function getElementsByClass(searchClass, node, tag) {
+    var classElements = new Array();
+    if (node === null)
+        node = document;
+    if (tag === null)
+        tag = '*';
+    var els = node.getElementsByTagName(tag);
+    var elsLen = els.length;
+    var pattern = new RegExp("(^|\\s)" + searchClass + "(\\s|$)");
+    for (i = 0, j = 0; i < elsLen; i++) {
+        if (pattern.test(els[i].className)) {
+            classElements[j] = els[i];
+            j++;
+        }
+    }
+    return classElements;
+}
+/**
+ * Modify all element with 'class' at the 'size'
+ */
+
+function fontSizePageModify(classToModify, sizeToModify) {
+    var target = getElementsByClass(classToModify);
+    for (i = 0; i < target.length; i++) {
+        target[i].style.fontSize = sizeToModify;
+    }
+}
+
+/**
+ * Modify all element with 'class' at the 'spacing'
+ */
+function fontSpacingPageModify(classToModify, spacingToModify) {
+    var target = getElementsByClass(classToModify);
+    for (i = 0; i < target.length; i++) {
+        target[i].style.letterSpacing = spacingToModify;
+    }
+}
+
 function setOnOffLine() {
     // Set background colour to differentiate server vs local copy.
     if (location.protocol === 'file:') {
@@ -164,42 +205,3 @@ function configureContextualMenu(menuOptions, e) {
     // Adds a default-sized workspace comment to the workspace.
     // menuOptions.push(Blockly.ContextMenu.workspaceCommentOption(Code.workspace, e));
 };
-
-/**
- * Sort and list elements with class 'access' for size change
- */
-function getElementsByClass(searchClass, node, tag) {
-    var classElements = new Array();
-    if (node === null)
-        node = document;
-    if (tag === null)
-        tag = '*';
-    var els = node.getElementsByTagName(tag);
-    var elsLen = els.length;
-    var pattern = new RegExp("(^|\\s)" + searchClass + "(\\s|$)");
-    for (i = 0, j = 0; i < elsLen; i++) {
-        if (pattern.test(els[i].className)) {
-            classElements[j] = els[i];
-            j++;
-        }
-    }
-    return classElements;
-}
-/**
- * Modify all element with 'class' at the 'size'
- */
-function fontSizePageModify(classToModify, sizeToModify) {
-    var target = getElementsByClass(classToModify);
-    for (i = 0; i < target.length; i++) {
-        target[i].style.fontSize = sizeToModify;
-    }
-}
-/**
- * Modify all element with 'class' at the 'spacing'
- */
-function fontSpacingPageModify(classToModify, spacingToModify) {
-    var target = getElementsByClass(classToModify);
-    for (i = 0; i < target.length; i++) {
-        target[i].style.letterSpacing = spacingToModify;
-    }
-}

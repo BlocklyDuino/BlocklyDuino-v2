@@ -146,9 +146,9 @@ Blockly.Themes.blackWhite.categoryStyles = {
     }
 };
 
-Blockly.Themes.blackWhite.setComponentStyle('toolboxBackgroundColour', '#f9f9f9');
-Blockly.Themes.blackWhite.setComponentStyle('toolboxForegroundColour', '#f9f9f9');
-Blockly.Themes.blackWhite.setComponentStyle('flyoutOpacity', 0);
+// Blockly.Themes.blackWhite.setComponentStyle('toolboxBackgroundColour', '#f9f9f9');
+// Blockly.Themes.blackWhite.setComponentStyle('toolboxForegroundColour', '#f9f9f9');
+// Blockly.Themes.blackWhite.setComponentStyle('flyoutOpacity', 0);
 
 Blockly.Themes.blackWhite =
         new Blockly.Theme('blackWhite', Blockly.Themes.blackWhite.defaultBlockStyles,

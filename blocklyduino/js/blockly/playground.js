@@ -168,7 +168,7 @@ function setOnOffLine() {
         document.getElementById('serialConnectButton').disabled = true;
         document.getElementById('serialMenu').disabled = true;
         //hide everything relative to arduino-cli if online
-        var elmts = getElementsByClass("CLI");
+        var elmts = getElementsByClass("CLI", document, '');
         for (var i = 0; i < elmts.length; i++)
             elmts[i].style.display = 'none';
     }

@@ -155,14 +155,18 @@ function setOnOffLine() {
     // Set background colour to differentiate server vs local copy.
     if (location.protocol === 'file:') {
         document.body.style.backgroundColor = '#006468';
+        document.getElementById('CLI_content').style.backgroundColor = '#006468';
         document.getElementById('setup_content').style.backgroundColor = '#006468';
+        document.getElementById('barre_h').style.backgroundColor = '#006468';
         document.getElementById('verifyButton').disabled = false;
         document.getElementById('uploadButton').disabled = false;
         document.getElementById('serialConnectButton').disabled = false;
         document.getElementById('serialMenu').disabled = false;
     } else {
         document.body.style.backgroundColor = '#7fcbcd';
+        document.getElementById('CLI_content').style.backgroundColor = '#7fcbcd';
         document.getElementById('setup_content').style.backgroundColor = '#7fcbcd';
+        document.getElementById('barre_h').style.backgroundColor = '#7fcbcd';
         document.getElementById('verifyButton').disabled = true;
         document.getElementById('uploadButton').disabled = true;
         document.getElementById('serialConnectButton').disabled = true;

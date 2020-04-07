@@ -244,28 +244,28 @@ Code.PREV_CODE_ = 'void setup() {\n\n}\n\n\nvoid loop() {\n\n}';
 
 /** Updates the Arduino code in the side content. */
 Code.renderArduinoPeekCode = function () {
-    // var codePeakPre = document.getElementById('arduino_code_peek_content');
-    // codePeakPre.textContent = Blockly.Arduino.workspaceToCode(Code.workspace);
-    // if (typeof prettyPrintOne == 'function') {
-        // codePeakPre.innerHTML = prettyPrintOne(codePeakPre.innerHTML, 'cpp');
-    // }
-    var generatedCode = Blockly.Arduino.workspaceToCode(Code.workspace);
-    if (generatedCode !== Code.PREV_CODE_) {
-        var diff = JsDiff.diffWords(Code.PREV_CODE_, generatedCode);
-        var resultStringArray = [];
-        for (var i = 0; i < diff.length; i++) {
-            if (!diff[i].removed) {
-                var escapedCode = diff[i].value.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-                if (diff[i].added) {
-                    resultStringArray.push('<span class="code_arduino_new">' + escapedCode + '</span>');
-                } else {
-                    resultStringArray.push(escapedCode);
-                }
-            }
-        }
-        document.getElementById('arduino_code_peek_content').innerHTML = prettyPrintOne(resultStringArray.join(''), 'cpp', false);
-        Code.PREV_CODE_ = generatedCode;
+    var codePeakPre = document.getElementById('arduino_code_peek_content');
+    codePeakPre.textContent = Blockly.Arduino.workspaceToCode(Code.workspace);
+    if (typeof prettyPrintOne == 'function') {
+        codePeakPre.innerHTML = prettyPrintOne(codePeakPre.innerHTML, 'cpp');
     }
+    // var generatedCode = Blockly.Arduino.workspaceToCode(Code.workspace);
+    // if (generatedCode !== Code.PREV_CODE_) {
+        // var diff = JsDiff.diffWords(Code.PREV_CODE_, generatedCode);
+        // var resultStringArray = [];
+        // for (var i = 0; i < diff.length; i++) {
+            // if (!diff[i].removed) {
+                // var escapedCode = diff[i].value.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                // if (diff[i].added) {
+                    // resultStringArray.push('<span class="code_arduino_new">' + escapedCode + '</span>');
+                // } else {
+                    // resultStringArray.push(escapedCode);
+                // }
+            // }
+        // }
+        // document.getElementById('arduino_code_peek_content').innerHTML = prettyPrintOne(resultStringArray.join(''), 'cpp', false);
+        // Code.PREV_CODE_ = generatedCode;
+    // }
 };
 
 /**

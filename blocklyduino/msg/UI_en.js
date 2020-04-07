@@ -99,6 +99,6 @@ var MSG = {
     IDE_verif_ok: '\nVerification: OK',
     IDE_upload1: 'Board ',
     IDE_upload2: ' on port ',
-    IDE_upload3: '\Upload: in progress...\n<i class="fa fa-spinner fa-pulse fa-1_5x fa-fw"></i>',
-    IDE_upload_ok: '\Upload: OK'
+    IDE_upload3: '\nUpload: in progress...\n<i class="fa fa-spinner fa-pulse fa-1_5x fa-fw"></i>',
+    IDE_upload_ok: '\nUpload: OK'
 };

@@ -46,7 +46,10 @@ var MSG = {
     themeBwSpan: "Noir & Blanc",
     keyMappingModalSpan: "Attrbution des touches",
     detailedCompilation_span: "Résultats détaillés",
-    accessibilityExplanationSpan: "You can enter accessibility mode by <b>shift clicking anywhere on the workspace or on a block</b>. <br /><br /><b>Workspace Navigation</b><br />W: Previous block/field/input at the same level<br />A: Up one level (Field (or input) -&gt; Block -&gt; Input (or field) -&gt; Block -&gt; Stack -&gt; Workspace)<br />S: Next block/field/input at the same level<br />D: Down one level (Workspace -&gt; Stack -&gt; Block -&gt; Input (or field) -&gt; Block -&gt; Field (or input))<br />T: Will open the toolbox. Once in there you can moving around using the WASD keys. And insert a block by hitting Enter<br />X: While on a connection hit X to disconnect the block after the cursor<br /><br /><b>Cursor</b><br /><b>Default Cursor:</b> Allow the user to go to the previous, next, in or out location.<br /><b>Basic Cursor:</b> Using the pre order traversal allows the user to go to the next and previous location.</td>",
+    CLI_title_span: "Arduino compilateur - gestion",
+    installBoard_title_span: "cartes à rajouter",
+    searchlLib_title_span: "recherche de bibliothèque",
+    installLib_title_span: "installation de biblitohèque",
     actionName0: "précédent",
     actionName1: "suivant",
     actionName2: "rentrer dans le bloc",
@@ -66,7 +69,7 @@ var MSG = {
     optionFontSizeBlocks: "police das blocs",
     optionFontSizePage: "taille des écritures",
     optionFontSpacingPage: "espacement entre les lettres",
-    keyMappingExplanationSpan: "<p>You can enter <em>accessibility </em>mode by <strong>shift clicking anywhere on the workspace</strong> or on a block.</p><p>Key mapping is customizable by activating it.</p><p>You can acces more complete <strong>documentation </strong>by <strong><a href='https://github.com/BlocklyDuino/BlocklyDuino-v2' target='_blank'>clicking on '?'</a></strong>.</span></p>",
+    keyMappingExplanationSpan: "<p>Vous pouvez activer le mode <em>accessibilité </em>en appuyant sur les touches <strong>Shift + Ctrl + k</strong>.</p><p>L'attribution des touches est paramétrable en activant son panneau.</p><p>Une <strong>documentation </strong> plus complète est consultable en <strong><a href='https://github.com/BlocklyDuino/BlocklyDuino-v2' target='_blank'>cliquant sur le '?'</a></strong>.</span></p>",
     //arduino_CLI_functions.js
     config_sideButton_span: "gestion du compilateur Arduino",
     arduinoCLI_githubLinkButton_span: "documentation",
@@ -86,5 +89,15 @@ var MSG = {
     searchlLibInput_span: "taper le nom exact de la bibliothèque à chercher",
     searchlLibButton_span: "chercher cette bibliothèque",
     installLibInput_span: "taper le nom exact de la bibliothèque à installer",
-    installLibButton_span: "installer cette bibliothèque"
+    installLibButton_span: "installer cette bibliothèque",
+    //arduino_IDE_functions.js
+    IDE_connect: 'Connexion au port ',
+    IDE_select_port: 'Sélectionner un port COM !!!',
+    IDE_select_board: 'Sélectionner une carte !',
+    IDE_verif_progress: '\nVérification : en cours...\n<i class="fa fa-spinner fa-pulse fa-1_5x fa-fw"></i>',
+    IDE_verif_ok: '\nVérification : OK',
+    IDE_upload1: 'Carte ',
+    IDE_upload2: ' sur port ',
+    IDE_upload3: '\nTéléversement : en cours...\n<i class="fa fa-spinner fa-pulse fa-1_5x fa-fw"></i>',
+    IDE_upload_ok: '\nTéléversement : OK'
 };

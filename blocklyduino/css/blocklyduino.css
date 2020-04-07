@@ -244,6 +244,14 @@ td.tabMiddle {
     font-family: monospace;
     overflow: scroll;
 }
+.content_arduino_new {
+    background-color: blue;
+    resize: none;
+    outline: none;
+    border: none;
+    font-family: monospace;
+    overflow: scroll;
+}
 .setup_content {
     background-color: #006468;
     padding: 5px;

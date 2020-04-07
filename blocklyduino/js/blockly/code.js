@@ -16,7 +16,7 @@
  */
 
 /**
- * @fileoverview Arduino, hacked from Blockly's Code demo.
+ * @fileoverview BlocklyDuino, hacked from Blockly's Code demo.
  * @author fraser@google.com (Neil Fraser)
  * @author scanet@libreduc.cc (Sébastien Canet)
  */
@@ -252,7 +252,6 @@ Code.tabClick = function (clickedName) {
     window.dispatchEvent(new Event('resize'));
     Blockly.svgResize(Code.workspace);
 };
-
 /**
  * Populate the currently selected pane with content generated from the blocks.
  */
@@ -272,7 +271,6 @@ Code.renderContent = function () {
  * @param generator {!Blockly.Generator} The generator to use.
  */
 Code.attemptCodeGeneration = function (generator) {
-    // var content = document.getElementById('content_' + Code.selected);
     var content = document.getElementById('content_code');
     content.textContent = '';
     if (Code.checkAllGeneratorFunctionsDefined(generator)) {
@@ -518,7 +516,7 @@ Code.initLanguage = function () {
     document.getElementById('copyCodeButton').title = MSG['copyCodeButton_span'];
     document.getElementById('keyMappingModalSpan').textContent = MSG['keyMappingModalSpan'];
     document.getElementById('detailedCompilation_span').textContent = MSG['detailedCompilation_span'];
-    
+
     document.getElementById('config_sideButton').title = MSG['config_sideButton_span'];
     document.getElementById('CLI_title_span').textContent = MSG['CLI_title_span'];
     document.getElementById('arduinoCLI_githubLinkButton').title = MSG['arduinoCLI_githubLinkButton_span'];
@@ -598,7 +596,7 @@ document.write('<script src="./blockly/demos/code/msg/' + Code.LANG + '.js"></sc
 document.write('<script src="./blockly/msg/js/' + Code.LANG + '.js"></script>\n');
 
 // Load BlocklyDuino's language strings.
-document.write('<script src="./blocklyduino/msg/blocklyduino_' + Code.LANG + '.js"></script>\n');
+document.write('<script src="./blocklyduino/msg/UI_' + Code.LANG + '.js"></script>\n');
 document.write('<script src="./blocklyduino/msg/blocks_' + Code.LANG + '.js"></script>\n');
 document.write('<script src="./blocklyduino/msg/categories_' + Code.LANG + '.js"></script>\n');
 

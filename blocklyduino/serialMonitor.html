@@ -1,14 +1,14 @@
 <!DOCTYPE HTML>
-<html lang="fr">
+<HTML>
     <head>
         <meta charset="utf-8">
         <title> Moniteur série </title>
-        <link rel="stylesheet" type="text/css" href="./css/font_awesome_all.min.css"/>
-        <link rel="stylesheet" type="text/css" href="./css/serialMonitor.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/font_awesome_all.min.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/serialMonitor.css"/>
     </head>
     <body>
         <div id="serialSend">
-            <input type="text" placeholder="Texte" name="" id="serialSendBox" class="form-control">
+            <input type="text" placeholder="Texte" id="serialSendBox" class="form-control">
             <span class="input-group-btn">
                 <button id="btn_serialSend" type="button" class="btn btn-info">Envoyer</button>
             </span>
@@ -16,7 +16,7 @@
         <div id="serialPeek"> </div>
         <div id="serialButtons">
             <!-- <select id="serialConnectSpeed_Menu" name="serialConnectSpeed_Menu"> -->
-                <!-- <option value="none" id="none">...</option>  -->
+            <!-- <option value="none" id="none">...</option>  -->
             <!-- </select> -->
             <select id="serialConnectSpeed_Menu" >
                 <option value="300">300 baud</option>
@@ -45,7 +45,6 @@
         </div>
     </body>
     <script type="text/javascript">
-        require('../serialMonitor.js');
-        <!-- require('../../resources/app.asar/serialMonitor.js') -->
+        require('../../serialMonitor.js');
     </script>
-</html>
+</HTML>

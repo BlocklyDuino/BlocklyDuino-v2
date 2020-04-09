@@ -25,7 +25,7 @@
  */
 'use strict';
 
-goog.provide('Blockly.Arduino_boards');
+goog.provide('Blockly.Boards');
 
 /*
  * Arduino Board profiles
@@ -251,7 +251,7 @@ var profile = {
             ['14400', '14400'], ['19200', '19200'], ['28800', '28800'],
             ['31250', '31250'], ['38400', '38400'], ['57600', '57600'],
             ['115200', '115200']],
-        // serialList: ['300', '600', '1200', '2400', '4800', '9600', '14400', '19200', '28800', '31250', '38400', '57600', '115200'],
+        serialList: ['300', '600', '1200', '2400', '4800', '9600', '14400', '19200', '28800', '31250', '38400', '57600', '115200'],
         serialPin: [["0 (Rx) ; 1 (Tx)", "0"]],
         upload_arg: "arduino:avr:uno"
     },
@@ -323,4 +323,5 @@ function changeBoard() {
     }
     profile["default"] = profile[newBoard];
     window.location = window.location.protocol + '//' + window.location.host + window.location.pathname + search;
-};
+}
+;

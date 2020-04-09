@@ -1,22 +1,22 @@
 /*
-Copyright (C) 2020 Sebastien Canet <scanet@libreduc.cc>
+ Copyright (C) 2020 Sebastien Canet <scanet@libreduc.cc>
 
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 /*
-Created on : 30 janv. 2020, 18:00:25
-Author     : Sebastien Canet <scanet@libreduc.cc>
+ Created on : 30 janv. 2020, 18:00:25
+ Author     : Sebastien Canet <scanet@libreduc.cc>
  */
 
 'use strict';
@@ -29,9 +29,9 @@ function setRenderDebugOptionCheckboxState(overrideOptions) {
     }
     var renderDebugOptionsListEl = document.getElementById('renderDebugOptions');
     var renderDebugOptionInputs =
-        renderDebugOptionsListEl.getElementsByTagName('input');
+            renderDebugOptionsListEl.getElementsByTagName('input');
     for (var i = 0, optionInput;
-        (optionInput = renderDebugOptionInputs[i]); i++) {
+            (optionInput = renderDebugOptionInputs[i]); i++) {
         var optionName = optionInput.getAttribute('data-optionName');
         optionInput.checked = !!overrideOptions[optionName];
     }
@@ -43,7 +43,7 @@ function updateRenderDebugOptions(e) {
     var config = Code.blockRendering.Debug.config;
     config[optionName] = !!target.checked;
     sessionStorage.setItem(
-        'blockRenderDebugOptions', JSON.stringify(config));
+            'blockRenderDebugOptions', JSON.stringify(config));
     Code.workspace.render();
 }
 
@@ -86,7 +86,8 @@ function changeTheme(themeChoice) {
     } else {
         Code.workspace.setTheme(Blockly.Themes.Classic);
     }
-};
+}
+;
 
 /**
  * Change font size in blocks in all workspace
@@ -108,7 +109,8 @@ function changeRenderingConstant(value) {
     // document.body.style.fontSize = value + 'px';
     // console.log(value);
     // }
-};
+}
+;
 
 /**
  * Sort and list elements with class 'access' for size change
@@ -186,7 +188,8 @@ function getToolboxElement() {
     // The three possible values are: "simple", "categories",
     // "categories-typed-variables".
     return document.getElementById('toolbox-' + toolboxSuffix);
-};
+}
+;
 
 function toggleAccessibilityMode(state) {
     if (state) {
@@ -194,7 +197,8 @@ function toggleAccessibilityMode(state) {
     } else {
         Code.navigation.disableKeyboardAccessibility();
     }
-};
+}
+;
 
 function configureContextualMenu(menuOptions, e) {
     var screenshotOption = {
@@ -208,4 +212,5 @@ function configureContextualMenu(menuOptions, e) {
 
     // Adds a default-sized workspace comment to the workspace.
     // menuOptions.push(Blockly.ContextMenu.workspaceCommentOption(Code.workspace, e));
-};
+}
+;

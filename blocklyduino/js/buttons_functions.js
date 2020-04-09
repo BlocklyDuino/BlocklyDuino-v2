@@ -50,9 +50,9 @@ Code.Redo = function () {
  * Creates an INO file containing the Arduino code from the Blockly workspace and
  * prompts the users to save it into their local file system.
  */
-Code.saveArduinoFile = function () {
+Code.saveCodeFile = function () {
     var utc = new Date().toJSON().slice(0, 10).replace(/-/g, '_');
-    var fileName = window.prompt('What would you like to name your file?', "arduino_" + utc);
+    var fileName = window.prompt('What would you like to name your file?', "code_" + utc);
     var data = Blockly.Arduino.workspaceToCode(Blockly.getMainWorkspace());
     if (fileName) {
         var blob = new Blob([data], {
@@ -185,7 +185,7 @@ Code.peekCode = function (visible) {
         //hide peek setup & cli if opened
         Code.peekSetup(false);
         Code.peekCLI(false);
-        
+
         Code.sideCode(true);
         Code.peekCode_ = false;
         document.getElementById('setup_sideButton').className = 'iconButtons';
@@ -193,10 +193,10 @@ Code.peekCode = function (visible) {
         document.getElementById('config_sideButton').className = 'iconButtons';
         document.getElementById('CLI_content').style.display = 'none';
         // Regenerate code
-        Code.renderArduinoPeekCode();
-        Code.workspace.addChangeListener(Code.renderArduinoPeekCode);
+        Code.renderPeekCode();
+        Code.workspace.addChangeListener(Code.renderPeekCode);
     } else {
-        Code.workspace.removeChangeListener(Code.renderArduinoPeekCode);
+        Code.workspace.removeChangeListener(Code.renderPeekCode);
         peekCodeButton.className = 'iconButtons';
         Code.sideCode(false);
         Code.peekCode_ = true;
@@ -221,20 +221,21 @@ Code.sideCode = function (visible) {
         document.getElementById('content_blocks').style.visibility = 'visible';
         document.getElementById('content_blocks').className = 'content content_blocks_side';
         document.getElementById('side_content').style.display = 'block';
-        document.getElementById('arduino_code_peek').style.display = 'block';
+        document.getElementById('code_peek').style.display = 'block';
     } else {
         document.getElementById('tab_' + oldSelectedTab).className = 'tabon';
         document.getElementById('content_' + oldSelectedTab).style.visibility = 'visible';
         document.getElementById('content_blocks').className = 'content content_blocks';
-        document.getElementById('arduino_code_peek').style.display = 'none';
+        document.getElementById('code_peek').style.display = 'none';
         document.getElementById('side_content').style.display = 'none';
     }
     window.dispatchEvent(new Event('resize'));
+    Blockly.svgResize(Code.workspace);
     Code.renderContent();
 };
 
 /**
- * Private variable to save the previous version of the Arduino Code.
+ * Private variable to save the previous version of the code.
  * @author: Carlos Sperate
  * @type {!String}
  * @private
@@ -242,29 +243,29 @@ Code.sideCode = function (visible) {
 Code.PREV_CODE_ = 'void setup() {\n\n}\n\n\nvoid loop() {\n\n}';
 
 
-/** Updates the Arduino code in the side content. */
-Code.renderArduinoPeekCode = function () {
-    var codePeakPre = document.getElementById('arduino_code_peek_content');
+/** Updates the code in the side content. */
+Code.renderPeekCode = function () {
+    var codePeakPre = document.getElementById('code_peek_content');
     codePeakPre.textContent = Blockly.Arduino.workspaceToCode(Code.workspace);
     if (typeof prettyPrintOne == 'function') {
         codePeakPre.innerHTML = prettyPrintOne(codePeakPre.innerHTML, 'cpp');
     }
     // var generatedCode = Blockly.Arduino.workspaceToCode(Code.workspace);
     // if (generatedCode !== Code.PREV_CODE_) {
-        // var diff = JsDiff.diffWords(Code.PREV_CODE_, generatedCode);
-        // var resultStringArray = [];
-        // for (var i = 0; i < diff.length; i++) {
-            // if (!diff[i].removed) {
-                // var escapedCode = diff[i].value.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-                // if (diff[i].added) {
-                    // resultStringArray.push('<span class="code_arduino_new">' + escapedCode + '</span>');
-                // } else {
-                    // resultStringArray.push(escapedCode);
-                // }
-            // }
-        // }
-        // document.getElementById('arduino_code_peek_content').innerHTML = prettyPrintOne(resultStringArray.join(''), 'cpp', false);
-        // Code.PREV_CODE_ = generatedCode;
+    // var diff = JsDiff.diffWords(Code.PREV_CODE_, generatedCode);
+    // var resultStringArray = [];
+    // for (var i = 0; i < diff.length; i++) {
+    // if (!diff[i].removed) {
+    // var escapedCode = diff[i].value.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    // if (diff[i].added) {
+    // resultStringArray.push('<span class="code_arduino_new">' + escapedCode + '</span>');
+    // } else {
+    // resultStringArray.push(escapedCode);
+    // }
+    // }
+    // }
+    // document.getElementById('code_peek_content').innerHTML = prettyPrintOne(resultStringArray.join(''), 'cpp', false);
+    // Code.PREV_CODE_ = generatedCode;
     // }
 };
 
@@ -285,7 +286,7 @@ Code.peekSetup = function (visible) {
         //hide peek code & cli if opened
         Code.peekCode(false);
         Code.peekCLI(false);
-        
+
         Code.sideSetup(true);
         Code.peekSetup_ = false;
         document.getElementById('viewCodeButton').className = 'iconButtons';
@@ -343,7 +344,7 @@ Code.peekCLI = function (visible) {
         //hide peek code & setup if opened
         Code.peekCode(false);
         Code.peekSetup(false);
-        
+
         Code.sideCLI(true);
         Code.peekCLI_ = false;
         document.getElementById('viewCodeButton').className = 'iconButtons';
@@ -372,14 +373,14 @@ Code.sideCLI = function (visible) {
         document.getElementById('content_' + name).style.visibility = 'hidden';
     }
     if (visible === true) {
-        document.getElementById('tab_arduino').className = 'tabon';
-        document.getElementById('content_arduino').style.visibility = 'visible';
-        document.getElementById('content_arduino').className = 'content content_blocks_side';
+        document.getElementById('tab_program').className = 'tabon';
+        document.getElementById('content_program').style.visibility = 'visible';
+        document.getElementById('content_program').className = 'content content_blocks_side';
         document.getElementById('CLI_content').style.display = 'block';
     } else {
         document.getElementById('tab_' + oldSelectedTab).className = 'tabon';
         document.getElementById('content_' + oldSelectedTab).style.visibility = 'visible';
-        document.getElementById('content_arduino').className = 'content content_blocks';
+        document.getElementById('content_program').className = 'content content_blocks';
         document.getElementById('CLI_content').style.display = 'none';
     }
     window.dispatchEvent(new Event('resize'));

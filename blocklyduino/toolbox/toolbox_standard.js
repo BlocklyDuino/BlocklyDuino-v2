@@ -1,8 +1,7 @@
-
 var BLOCKLY_TOOLBOX_XML = BLOCKLY_TOOLBOX_XML || Object.create(null);
 
 /* BEGINNING BLOCKLY_TOOLBOX_XML ASSIGNMENT. DO NOT EDIT. USE BLOCKLY DEVTOOLS. */
-BLOCKLY_TOOLBOX_XML['standard'] =
+BLOCKLY_TOOLBOX_XML['toolboxStandard'] =
 // From XML string/file, replace ^\s?(\s*)?(<.*>)$ with \+$1'$2'
 // Tweak first and last line.
 '<xml xmlns="https://developers.google.com/blockly/xml">'

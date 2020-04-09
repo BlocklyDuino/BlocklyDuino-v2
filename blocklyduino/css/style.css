@@ -94,7 +94,7 @@ pre.content {
 .blocklySvg {
     border-top: none !important;
 }
-#content_arduino {
+#content_program {
     padding: 0px 5px 20px 0px;
     display: block;
     box-sizing: border-box;

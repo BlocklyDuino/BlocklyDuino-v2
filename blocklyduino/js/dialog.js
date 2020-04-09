@@ -40,7 +40,8 @@ function dragElement(elmnt) {
         document.onmouseup = null;
         document.onmousemove = null;
     }
-};
+}
+;
 
 //icons button mouser over
 document.getElementById('undoButton').onmouseover = function () {
@@ -217,9 +218,9 @@ document.getElementById('config_sideButton').onmouseover = function () {
 document.getElementById('config_sideButton').onmouseout = function () {
     document.getElementById("content_hoverButton").textContent = "";
 };
-document.getElementById('arduinoCLI_githubLinkButton').onmouseover = function () {
-    document.getElementById("content_hoverButton").textContent = MSG['arduinoCLI_githubLinkButton_span'];
+document.getElementById('CLI_githubLinkButton').onmouseover = function () {
+    document.getElementById("content_hoverButton").textContent = MSG['CLI_githubLinkButton_span'];
 };
-document.getElementById('arduinoCLI_githubLinkButton').onmouseout = function () {
+document.getElementById('CLI_githubLinkButton').onmouseout = function () {
     document.getElementById("content_hoverButton").textContent = "";
 };

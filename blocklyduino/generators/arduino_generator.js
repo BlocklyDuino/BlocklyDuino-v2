@@ -27,7 +27,7 @@
 
 goog.provide('Blockly.Arduino');
 
-goog.require('Blockly.Arduino_boards');
+goog.require('Blockly.Boards');
 goog.require('Blockly.Generator');
 goog.require('Blockly.utils.string');
 
@@ -129,7 +129,7 @@ Blockly.Arduino.init = function (workspace) {
         defvars.push('int ' + Blockly.Arduino.variableDB_.getName(devVarList[i], Blockly.Names.DEVELOPER_VARIABLE_TYPE) + ';\n');
     }
 
-    // Add user variables, but only ones that are being used.	
+    // Add user variables, but only ones that are being used.
     var variables = Blockly.Variables.allUsedVarModels(workspace);
     for (var i = 0; i < variables.length; i++) {
         defvars.push(Blockly.Arduino.variableDB_.getName(variables[i].getId(), Blockly.Variables.NAME_TYPE));

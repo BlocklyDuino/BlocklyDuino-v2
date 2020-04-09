@@ -1,5 +1,8 @@
 var MSG = {
+    title: "BlocklyDuino",
+    appName: "BlocklyDuino",
     blocks: "Bausteine",
+    prog: "Program",
     catLogic: "Logik",
     catLoops: "Schleifen",
     catMath: "Mathematik",
@@ -18,13 +21,13 @@ var MSG = {
     renderSpan: "choose renderer",
     undoButton_span: "Undo",
     redoButton_span: "Redo",
-    boardSpan: "choose Arduino board",
+    boardSpan: "choose board",
     verifyButton_span: "Verify code",
     serialSpan: "choose COM port",
     uploadButton_span: "Upload",
     viewCodeButton_span: "Code peek",
     serialConnectButton_span: "Serial monitor",
-    saveCodeButton_span: "Export Arduino Code",
+    saveCodeButton_span: "Export Code",
     newButton_span: "New project",
     saveXMLButton_span: "Save to BlocklyDuino file",
     loadXMLfakeButton_span: "Load BlocklyDuino file",
@@ -70,9 +73,9 @@ var MSG = {
     optionFontSizePage: "Page Font Size",
     optionFontSpacingPage: "Page Font Spacing",
     keyMappingExplanationSpan: "<p>You can enter <em>accessibility </em>mode by hitting <strong>Shift + Ctrl + k</strong>.</p><p>Key mapping is customizable by activating it.</p><p>You can acces more complete <strong>documentation </strong>by <strong><a href='https://github.com/BlocklyDuino/BlocklyDuino-v2' target='_blank'>clicking on '?'</a></strong>.</span></p>",
-    //arduino_CLI_functions.js
+    //CLI_functions.js
     config_sideButton_span: "Arduino CLI control",
-    arduinoCLI_githubLinkButton_span: "documentation",
+    CLI_githubLinkButton_span: "documentation",
     coreUpdateButton_msg: "Updating...\n<i class='fa fa-spinner fa-pulse fa-1_5x fa-fw'></i>",
     cleanCLIcacheButton_msg: "Cleaning...\n<i class='fa fa-spinner fa-pulse fa-1_5x fa-fw'></i>",
     cleanCLIcacheButton_error_msg: "Error deleting folder .\\tmp",
@@ -90,7 +93,7 @@ var MSG = {
     searchlLibButton_span: "search this library",
     installLibInput_span: "name of library to install",
     installLibButton_span: "install this library",
-    //arduino_IDE_functions.js
+    //IDE_functions.js
     IDE_connect: 'Connect to port ',
     IDE_select_port: 'Select a port !',
     IDE_select_board: 'Select a board !',

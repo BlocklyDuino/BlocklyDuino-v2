@@ -32,6 +32,7 @@ Code.selectedTabBoard = "none";
  * Lookup for names of supported languages.  Keys should be in ISO 639 format.
  */
 Code.LANGUAGE_NAME = {
+    'ca': 'Català - Valencià',
     'de': 'Deutsch',
     'en': 'English',
     'fr': 'Français',
@@ -206,13 +207,13 @@ Code.LANG = Code.getLang();
  * List of tab names.
  * @private
  */
-Code.TABS_ = ['blocks', 'arduino'];
+Code.TABS_ = ['blocks', 'program'];
 
 /**
  * List of tab names with casing, for display in the UI.
  * @private
  */
-Code.TABS_DISPLAY_ = ['Blocks', 'Arduino'];
+Code.TABS_DISPLAY_ = ['Blocks', 'Prog'];
 
 Code.selected = 'blocks';
 
@@ -258,7 +259,7 @@ Code.tabClick = function (clickedName) {
 Code.renderContent = function () {
     var content = document.getElementById('content_' + Code.selected);
     // Initialize the pane.
-    if (content.id === 'content_arduino') {
+    if (content.id === 'content_program') {
         Code.attemptCodeGeneration(Blockly.Arduino, 'cpp');
     }
     if (typeof PR === 'object') {
@@ -300,7 +301,7 @@ Code.checkAllGeneratorFunctionsDefined = function (generator) {
     var valid = missingBlockGenerators.length === 0;
     if (!valid) {
         var msg = 'The generator code for the following blocks not specified for ' +
-            generator.name_ + ':\n - ' + missingBlockGenerators.join('\n - ');
+                generator.name_ + ':\n - ' + missingBlockGenerators.join('\n - ');
         Blockly.alert(msg); // Assuming synchronous. No callback.
     }
     return valid;
@@ -311,7 +312,7 @@ Code.checkAllGeneratorFunctionsDefined = function (generator) {
  */
 Code.init = function () {
     // board menu as  URL choice
-    Code.setArduinoBoard();
+    Code.setBoard();
     Code.initLanguage();
     setOnOffLine();
     var clipboard = new Clipboard(document.getElementById('copyCodeButton'));
@@ -333,7 +334,7 @@ Code.init = function () {
         // Make the 'Blocks' tab line up with the toolbox.
         if (Code.workspace && Code.workspace.getToolbox().width) {
             document.getElementById('tab_blocks').style.minWidth =
-                (Code.workspace.getToolbox().width - 38) + 'px';
+                    (Code.workspace.getToolbox().width - 38) + 'px';
             // Account for the 19 pixel margin and on each side.
         }
     };
@@ -355,40 +356,40 @@ Code.init = function () {
     var renderer = match ? match[1] : 'geras';
     document.forms.options.elements.renderer.value = renderer;
     Code.workspace = Blockly.inject('content_blocks', {
-            comments: true,
-            collapse: true,
-            disable: true,
-            grid: {
-                spacing: 25,
-                length: 3,
-                colour: '#ccc',
-                snap: true
-            },
-            maxBlocks: Infinity,
-            maxInstances: {
-                'test_basic_limit_instances': 3
-            },
-            maxTrashcanContents: 256,
-            media: './blockly/media/',
-            oneBasedIndex: true,
-            readOnly: false,
-            rtl: rtl,
-            move: {
-                scrollbars: true,
-                drag: true,
-                wheel: false
-            },
-            toolbox: BLOCKLY_TOOLBOX_XML['duinoToolbox'],
-            renderer: renderer,
-            zoom: {
-                controls: true,
-                wheel: true,
-                startScale: 1.0,
-                maxScale: 4,
-                minScale: 0.25,
-                scaleSpeed: 1.1
-            }
-        });
+        comments: true,
+        collapse: true,
+        disable: true,
+        grid: {
+            spacing: 25,
+            length: 3,
+            colour: '#ccc',
+            snap: true
+        },
+        maxBlocks: Infinity,
+        maxInstances: {
+            'test_basic_limit_instances': 3
+        },
+        maxTrashcanContents: 256,
+        media: './blockly/media/',
+        oneBasedIndex: true,
+        readOnly: false,
+        rtl: rtl,
+        move: {
+            scrollbars: true,
+            drag: true,
+            wheel: false
+        },
+        toolbox: BLOCKLY_TOOLBOX_XML['toolboxDuino'],
+        renderer: renderer,
+        zoom: {
+            controls: true,
+            wheel: true,
+            startScale: 1.0,
+            maxScale: 4,
+            minScale: 0.25,
+            scaleSpeed: 1.1
+        }
+    });
     Code.workspace.configureContextMenu = configureContextualMenu;
 
     Code.loadBlocks('');
@@ -401,12 +402,12 @@ Code.init = function () {
     for (var i = 0; i < Code.TABS_.length; i++) {
         var name = Code.TABS_[i];
         Code.bindClick('tab_' + name,
-            function (name_) {
-            return function () {
-                Code.tabClick(name_);
-            };
-        }
-            (name));
+                function (name_) {
+                    return function () {
+                        Code.tabClick(name_);
+                    };
+                }
+        (name));
     }
     Code.bindClick('tab_code', function (e) {
         if (e.target !== document.getElementById('tab_code')) {
@@ -489,9 +490,10 @@ Code.initLanguage = function () {
     }
     codeMenu.addEventListener('change', Code.changeCodingLanguage);
     // Inject language strings.
-    // document.title += ' ' + MSG['title'];
-    // document.getElementById('title').textContent = MSG['title'];
+    document.title = MSG['title'];
+    document.getElementById('appName').textContent = MSG['appName'];
     document.getElementById('tab_blocks').textContent = MSG['blocks'];
+    document.getElementById('tab_program').textContent = MSG['prog'];
     //change Blockly title buttons by this one
     document.getElementById('languageSpan').textContent = MSG['languageSpan'];
     document.getElementById('themeSpan').textContent = MSG['themeSpan'];
@@ -519,7 +521,7 @@ Code.initLanguage = function () {
 
     document.getElementById('config_sideButton').title = MSG['config_sideButton_span'];
     document.getElementById('CLI_title_span').textContent = MSG['CLI_title_span'];
-    document.getElementById('arduinoCLI_githubLinkButton').title = MSG['arduinoCLI_githubLinkButton_span'];
+    document.getElementById('CLI_githubLinkButton').title = MSG['CLI_githubLinkButton_span'];
     document.getElementById('coreUpdateButton').title = MSG['coreUpdateButton_span'];
     document.getElementById('cleanCLIcacheButton').title = MSG['cleanCLIcacheButton_span'];
     document.getElementById('listBoardsButton').title = MSG['listBoardsButton_span'];
@@ -570,7 +572,7 @@ Code.initLanguage = function () {
 Code.discard = function () {
     var count = Code.workspace.getAllBlocks(false).length;
     if (count < 2 ||
-        window.confirm(Blockly.Msg['DELETE_ALL_BLOCKS'].replace('%1', count))) {
+            window.confirm(Blockly.Msg['DELETE_ALL_BLOCKS'].replace('%1', count))) {
         Code.workspace.clear();
         if (window.location.hash) {
             window.location.hash = '';
@@ -581,7 +583,7 @@ Code.discard = function () {
 /**
  * Sets Arduino board
  */
-Code.setArduinoBoard = function () {
+Code.setBoard = function () {
     var boardId = Code.getStringParamFromUrl('board', '');
     if (!boardId) {
         boardId = Code.selectedTabBoard;

@@ -1,6 +1,6 @@
 var BLOCKLY_TOOLBOX_XML = BLOCKLY_TOOLBOX_XML || Object.create(null);
 
-BLOCKLY_TOOLBOX_XML['duinoToolbox'] =
+BLOCKLY_TOOLBOX_XML['toolboxDuino'] =
 // From XML string/file, replace ^\s?(\s*)?(<.*>)$ with \+$1'$2'
 // Tweak first and last line.
 '<xml xmlns="https://developers.google.com/blockly/xml" id="blocklyduinoToolbox">'

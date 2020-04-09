@@ -8,6 +8,13 @@ and open the template in the editor.
     Author     : Sebastien Canet <scanet@libreduc.cc>
 */
 
+.TitleText {
+    vertical-align: middle;
+    color: #FFFFFF;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
 /* Table */
 .table_wrapper {
     height: -moz-calc(100%);
@@ -50,7 +57,7 @@ table table {
 }
 td {
     padding: 0;
-    vertical-align: top;
+    vertical-align: middle;
 }
 td.td_wrapper {
     border: none;
@@ -68,12 +75,12 @@ td.td_wrapper {
     background-color: #F8F8F8;
 }
 
-.blocklyDuinoText {
+.UIText {
     vertical-align: middle;
     color: #FFFFFF;
     font-weight: bold;
 }
-.blocklyDuinoTextSmall {
+.UITextSmall {
     vertical-align: middle;
     color: #FFFFFF;
     font-size: large;
@@ -126,10 +133,10 @@ td.td_wrapper {
 }
 /* boutons classiques */
 /* #undoButton{ */
-    /* border-radius: 50%; */
+/* border-radius: 50%; */
 /* } */
 /* #redoButton{ */
-    /* border-radius: 50%; */
+/* border-radius: 50%; */
 /* } */
 #verifyButton{
     border-radius: 50%;
@@ -159,9 +166,9 @@ td.tabMiddle {
     cursor: help;
 }
 #copyCodeButton{
-	position: absolute;
-	top: 105px;
-	right: 5px;
+    position: absolute;
+    top: 105px;
+    right: 5px;
     border-radius: 10px;
 }
 
@@ -194,6 +201,7 @@ td.tabMiddle {
 .content_blocks{
     width: 100% !important;
     overflow: hidden;
+    /* transition: all .5s; */
 }
 /* side panel */
 .content_blocks_side {
@@ -207,6 +215,7 @@ td.tabMiddle {
     width: calc(100% - 350px) !important;
     overflow: hidden;
     float: left;
+    /* transition: all .5s; */
 }
 .side_content {
     width: 350px;
@@ -220,8 +229,9 @@ td.tabMiddle {
     background-color: #ffffff;
     overflow: auto !important;
     display: none;
+    /* transition: all .5s; */
 }
-.arduino_code_peek {
+.code_peek {
     /* Firefox */
     width: -moz-calc(100% - 10px) !important;
     /* WebKit */
@@ -232,19 +242,19 @@ td.tabMiddle {
     width: calc(100% - 10px) !important;
     padding: 5px;
 }
-.arduino_code_peek_content {
+.code_peek_content {
     border: 0;
     overflow: visible;
     white-space: pre !important;
 }
-.content_arduino {
+.content_program {
     resize: none;
     outline: none;
     border: none;
     font-family: monospace;
     overflow: scroll;
 }
-.content_arduino_new {
+.content_program_new {
     background-color: blue;
     resize: none;
     outline: none;

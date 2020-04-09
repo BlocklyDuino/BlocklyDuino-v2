@@ -63,13 +63,13 @@ Blockly.Arduino['grove_tilt_switch'] = function (block) {
 /*
  int buttonPin = 1;
  int buzzerPin = 2;
- 
+
  char notes[] = "cdefgabC "; // a space represents a rest
  const int length = sizeof(notes); // the number of notes
  int beats[length] = { 1,1,1,1,1,1,1,1,1};
- 
+
  int tempo = 300;
- 
+
  void playTone(int tone, int duration) {
  for (long i = 0; i < duration * 1000L; i += tone * 2) {
  digitalWrite(buzzerPin, HIGH);
@@ -78,11 +78,11 @@ Blockly.Arduino['grove_tilt_switch'] = function (block) {
  delayMicroseconds(tone);
  }
  }
- 
+
  void playNote(char note, int duration) {
  char names[] = { 'c', 'd', 'e', 'f', 'g', 'a', 'b', 'C'};
  int tones[] = { 1915, 1700, 1519, 1432, 1275, 1136, 1014, 956 };
- 
+
  // play the tone corresponding to the note name
  for (int i = 0; i < length; i++) {
  if (names[i] == note) {
@@ -90,12 +90,12 @@ Blockly.Arduino['grove_tilt_switch'] = function (block) {
  }
  }
  }
- 
+
  void setup() {
  pinMode(buzzerPin, OUTPUT);
  pinMode(buttonPin,INPUT);
  }
- 
+
  void loop() {
  if(digitalRead(buttonPin))
  {
@@ -105,7 +105,7 @@ Blockly.Arduino['grove_tilt_switch'] = function (block) {
  } else {
  playNote(notes[i], beats[i] * tempo);
  }
- 
+
  // pause between notes
  delay(tempo / 20);
  }
@@ -143,12 +143,12 @@ Blockly.Arduino['grove_temperature_sensor'] = function (block) {
  #include <SerialLCD.h>
  #include <SoftwareSerial.h> //block is a must
  SerialLCD slcd(11,12);//block is a must, assign soft serial pins
- 
+
  void setup()
  {
  slcd.begin();// set up :
  }
- 
+
  void loop()
  {
  slcd.backlight();// Turn on the backlight: //noBacklight

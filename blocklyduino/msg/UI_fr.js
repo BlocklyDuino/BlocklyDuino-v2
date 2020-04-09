@@ -1,5 +1,8 @@
 var MSG = {
+    title: "BlocklyDuino",
+    appName: "BlocklyDuino",
     blocks: "Blocs",
+    prog: "Programme",
     catLogic: "Logique",
     catLoops: "Boucles",
     catMath: "Math",
@@ -24,10 +27,10 @@ var MSG = {
     uploadButton_span: "téléverser",
     viewCodeButton_span: "aperçu du code",
     serialConnectButton_span: "moniteur série",
-    saveCodeButton_span: "exporte le code Arduino",
+    saveCodeButton_span: "exporte le code",
     newButton_span: "nouveau projet",
-    saveXMLButton_span: "enregistrer le fichier BlocklyDuino",
-    loadXMLfakeButton_span: "ouvrir un fichier BlocklyDuino",
+    saveXMLButton_span: "enregistrer le fichier Blockly",
+    loadXMLfakeButton_span: "ouvrir un fichier Blockly",
     resetButton_span: "réinitialiser BlocklyDuino",
     helpButton_span: "aide",
     copyCodeButton_span: "copier le code dans le presse papiers",
@@ -46,7 +49,7 @@ var MSG = {
     themeBwSpan: "Noir & Blanc",
     keyMappingModalSpan: "Attrbution des touches",
     detailedCompilation_span: "Résultats détaillés",
-    CLI_title_span: "Arduino compilateur - gestion",
+    CLI_title_span: "compilateur - gestion",
     installBoard_title_span: "cartes à rajouter",
     searchlLib_title_span: "recherche de bibliothèque",
     installLib_title_span: "installation de biblitohèque",
@@ -70,9 +73,9 @@ var MSG = {
     optionFontSizePage: "taille des écritures",
     optionFontSpacingPage: "espacement entre les lettres",
     keyMappingExplanationSpan: "<p>Vous pouvez activer le mode <em>accessibilité </em>en appuyant sur les touches <strong>Shift + Ctrl + k</strong>.</p><p>L'attribution des touches est paramétrable en activant son panneau.</p><p>Une <strong>documentation </strong> plus complète est consultable en <strong><a href='https://github.com/BlocklyDuino/BlocklyDuino-v2' target='_blank'>cliquant sur le '?'</a></strong>.</span></p>",
-    //arduino_CLI_functions.js
-    config_sideButton_span: "gestion du compilateur Arduino",
-    arduinoCLI_githubLinkButton_span: "documentation",
+    //CLI_functions.js
+    config_sideButton_span: "gestion du compilateur",
+    CLI_githubLinkButton_span: "documentation",
     coreUpdateButton_msg: "Mise à jour en cours...\n<i class='fa fa-spinner fa-pulse fa-1_5x fa-fw'></i>",
     cleanCLIcacheButton_msg: "Nettoyage en cours...\n<i class='fa fa-spinner fa-pulse fa-1_5x fa-fw'></i>",
     cleanCLIcacheButton_error_msg: "Erreur de suppression du dossier .\\tmp",
@@ -90,7 +93,7 @@ var MSG = {
     searchlLibButton_span: "chercher cette bibliothèque",
     installLibInput_span: "taper le nom exact de la bibliothèque à installer",
     installLibButton_span: "installer cette bibliothèque",
-    //arduino_IDE_functions.js
+    //IDE_functions.js
     IDE_connect: 'Connexion au port ',
     IDE_select_port: 'Sélectionner un port COM !!!',
     IDE_select_board: 'Sélectionner une carte !',

@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE HTML>
+<HTML>
     <head>
         <meta charset="utf-8">
         <meta name="google" value="notranslate">
@@ -69,7 +69,7 @@
             <table>
                 <tr id="optionsTop">
                     <td style="width: 268px;">
-                        <h1 class="blocklyDuinoText">BlocklyDuino</h1>
+                        <span id="appName" class='TitleText'></span> 
                     </td>
                     <td class="tabMiddle">
                         <span id="content_hoverButton"></span>
@@ -96,9 +96,9 @@
                     <td colspan="4">
                         <table style="width: 100%">
                             <tr id="tabRow" style="height: 1em">
-                                <td id="tab_blocks" class="tabon">...</td>
+                                <td id="tab_blocks" class="tabon">Blocks</td>
                                 <td class="tabmin tab_collapse">&nbsp;</td>
-                                <td id="tab_arduino" class="taboff tab_collapse">Arduino</td>
+                                <td id="tab_program" class="taboff tab_collapse">Program</td>
                                 <td class="tabmin tab_collapse">&nbsp;</td>
                                 <td id="tab_code" class="taboff">
                                     <select id="code_menu"></select>
@@ -113,8 +113,8 @@
                                         <i class="fas fa-redo-alt"></i>
                                         <span id="redoButton_span"></span>
                                     </button>
-                                    <i class="fas fa-microchip blocklyDuinoText" id="boardIcon"></i>
-                                    <select id="boardMenu" onchange="changeBoard()" class="blocklyDuinoText">
+                                    <i class="fas fa-microchip UIText" id="boardIcon"></i>
+                                    <select id="boardMenu" onchange="changeBoard()" class="UIText">
                                         <option value="none" selected="selected">...</option>
                                         <option value="arduino_leonardo">Arduino Leonardo</option>
                                         <option value="arduino_mega">Arduino Mega 2560 / ADK</option>
@@ -132,8 +132,8 @@
                                             <i class="fas fa-check"></i>
                                         </span>
                                     </button>
-                                    <i class="fab fa-usb blocklyDuinoText" id="serialIcon"></i>
-                                    <select id="serialMenu" class="blocklyDuinoText">
+                                    <i class="fab fa-usb UIText" id="serialIcon"></i>
+                                    <select id="serialMenu" class="UIText">
                                         <option value="none">...</option>
                                     </select>
                                     <button id="uploadButton" class="iconButtons">
@@ -151,7 +151,7 @@
                                             <i class="fas fa-code"></i>
                                         </span>
                                     </button>
-                                    <button id="saveCodeButton" class="iconButtons" onclick="Code.saveArduinoFile()">
+                                    <button id="saveCodeButton" class="iconButtons" onclick="Code.saveCodeFile()">
                                         <span id="saveCodeButton_span">
                                             <i class="fas fa-file-export"></i>
                                         </span>
@@ -188,7 +188,7 @@
                             <div id="content_blocks" class="content"></div>
                             <div id="CLI_content" class="side_content setup_content CLI">
                                 <div id="configCLI" style="margin: 10px;">
-                                    <span id="CLI_title_span" class="blocklyDuinoText">CLI</span>
+                                    <span id="CLI_title_span" class="UIText">CLI</span>
                                     <br>
                                     <div id="CLI_title" style="display:flex;text-align: center;">
                                         <button id="coreUpdateButton" class="iconButtons" onclick="">
@@ -206,12 +206,12 @@
                                                 <i class="fas fa-list"></i>
                                             </span>
                                         </button>
-                                        <a href="https://arduino.github.io/arduino-cli/" id="arduinoCLI_githubLinkButton" target="_blank">
-                                            <img src="./blocklyduino/media/featured-CLI.png" height="40px">
+                                        <a href="https://arduino.github.io/arduino-cli/" id="CLI_githubLinkButton" target="_blank">
+                                            <img src="./blocklyduino/media/featured-CLI.png" style="height: 40px" />
                                         </a>
                                     </div>
                                     <br>
-                                    <span id="installBoard_title_span" class="blocklyDuinoText">install board</span>
+                                    <span id="installBoard_title_span" class="UIText">install board</span>
                                     <br>
                                     <input type="text" id="installBoardsInput" name="installBoardsInput" style="width: 270px;font-size:20px;">
                                     <button id="installBoardsButton" class="iconButtons" onclick="">
@@ -221,7 +221,7 @@
                                     </button>
                                     <br>
                                     <br>
-                                    <span id="searchlLib_title_span" class="blocklyDuinoText">search library</span>
+                                    <span id="searchlLib_title_span" class="UIText">search library</span>
                                     <br>
                                     <input type="text" id="searchlLibInput" name="searchlLibInput" style="width: 270px;font-size:20px;">
                                     <button id="searchlLibButton" class="iconButtons" onclick="">
@@ -231,7 +231,7 @@
                                     </button>
                                     <br>
                                     <br>
-                                    <span id="installLib_title_span" class="blocklyDuinoText">install library</span>
+                                    <span id="installLib_title_span" class="UIText">install library</span>
                                     <br>
                                     <input type="text" id="installLibInput" name="installLibInput" size="18" style="width: 270px;font-size:20px;">
                                     <button id="installLibButton" class="iconButtons" onclick="">
@@ -243,9 +243,9 @@
                                 </div>
                             </div>
                             <div id="side_content" class="side_content">
-                                <div id="arduino_code_peek" class="arduino_code_peek">
-                                    <pre id="arduino_code_peek_content" class="arduino_code_peek_content"> </pre>
-                                    <button id="copyCodeButton" class="iconButtons" data-clipboard-action="copy" data-clipboard-target="#arduino_code_peek">
+                                <div id="code_peek" class="code_peek">
+                                    <pre id="code_peek_content" class="code_peek_content"> </pre>
+                                    <button id="copyCodeButton" class="iconButtons" data-clipboard-action="copy" data-clipboard-target="#code_peek">
                                         <span id="copyCodeButton_span">
                                             <i class="far fa-copy"></i>
                                         </span>
@@ -256,16 +256,16 @@
                                 <div id="setup" style="margin: 10px;">
                                     <form id="options">
                                         <!-- <select name="toolbox" onchange="document.forms.options.submit('options')"> -->
-                                                <!-- <option value="categories">Categories (untyped variables)</option> -->
-                                                <!-- <option value="categories-typed-variables">Categories (typed variables)</option> -->
-                                                <!-- <option value="simple">Simple</option> -->
-                                                <!-- <option value="test-blocks">Test Blocks</option> -->
+                                        <!-- <option value="categories">Categories (untyped variables)</option> -->
+                                        <!-- <option value="categories-typed-variables">Categories (typed variables)</option> -->
+                                        <!-- <option value="simple">Simple</option> -->
+                                        <!-- <option value="test-blocks">Test Blocks</option> -->
                                         <!-- </select> -->
-                                        <span id="languageSpan" class="blocklyDuinoText">...</span>
+                                        <span id="languageSpan" class="UIText">...</span>
                                         <select id="languageMenu"></select>
                                         <br>
                                         <br>
-                                        <span id="renderSpan" class="blocklyDuinoText">...</span>
+                                        <span id="renderSpan" class="UIText">...</span>
                                         <select name="renderer" onchange="document.forms.options.submit('options')">
                                             <option value="geras">Geras</option>
                                             <option value="thrasos">Thrasos</option>
@@ -274,7 +274,7 @@
                                         </select>
                                         <br>
                                         <br>
-                                        <span id="themeSpan" class="blocklyDuinoText">...</span>
+                                        <span id="themeSpan" class="UIText">...</span>
                                         <select name="theme" onchange="changeTheme(this.value)">
                                             <option value="classic" id="themeClassicSpan">classic</option>
                                             <option value="modern" id="themeModernSpan">modern</option>
@@ -287,7 +287,7 @@
                                         </select>
                                     </form>
                                     <br>
-                                    <span id="fontSizeSpan" class="blocklyDuinoText"></span>
+                                    <span id="fontSizeSpan" class="UIText"></span>
                                     <select id="rendering-constant-selector">
                                         <option value="fontSizeBlocks" id="optionFontSizeBlocks">Blocks Font Size</option>
                                         <option value="fontSizePage" id="optionFontSizePage">Page Font Size</option>
@@ -299,10 +299,10 @@
                                            onchange="changeRenderingConstant(this.value)" />
                                     <br>
                                     <br>
-                                    <span id="accessibilitySpan" class="blocklyDuinoText"></span>
+                                    <span id="accessibilitySpan" class="UIText"></span>
                                     <input id="accessibilityModeCheck" type="checkbox" onclick="toggleAccessibilityMode(this.checked)">
                                     <br>
-                                    <span id="keyMappingSpan" class="blocklyDuinoText"></span>
+                                    <span id="keyMappingSpan" class="UIText"></span>
                                     <input id="displayKeyMappings" type="checkbox" onclick="toggleDisplayKeyMappings(this.checked)">
                                     <br>
                                     <select id="cursorChanger" name="cursor" onchange="changeCursor(this.value)">
@@ -311,16 +311,17 @@
                                         <option value="line" id="lineCursorSpan">line</option>
                                     </select>
                                     <br>
-                                    <span id="keyMappingExplanationSpan" class="blocklyDuinoTextSmall"></span>
+                                    <span id="keyMappingExplanationSpan" class="UITextSmall"></span>
                                 </div>
                             </div>
-                            <div id="content_arduino" class="content">
-                                <pre id="content_code" class="content content_arduino prettyprint lang-cpp"></pre>
+                            <div id="content_program" class="content">
+                                <pre id="content_code" class="content content_program prettyprint lang-cpp"></pre>
                                 <div id="barre_h">
                                     <div id="checkDetails">
                                         <input type="checkbox" name="detailedCompilation" id="detailedCompilation"/>
                                         <span id="detailedCompilation_span" style="color: white;"> </span>
                                     </div>
+                                    <a href="blocklyduino/serialMonitor.html"></a>
                                 </div>
                                 <div id="content_serial" class="content"></div>
                             </div>
@@ -333,13 +334,13 @@
             <div id="keyboard_nav_header">
                 <span id="keyMappingModalSpan"></span>
             </div>
-            <form id="keyboard_mappings">
+            <form id="keyboard_mappings"></form>
         </div>
     </body>
     <script type="text/javascript" src="./blocklyduino/js/dialog.js"></script>
     <script type="text/javascript">
-        require('../arduino_CLI_functions.js');
-        require('../arduino_IDE_functions.js');
+        require('../CLI_functions.js');
+        require('../IDE_functions.js');
 <!-- require('../resources/app.asar/functions.js'); -->
     </script>
-</html>
+</HTML>

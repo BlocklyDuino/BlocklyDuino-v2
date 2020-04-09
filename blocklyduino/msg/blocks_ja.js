@@ -42,5 +42,5 @@ Blockly.Msg.ARDUINO_NOTONE_INPUT = "サウンド出力終了　ピン：";
 Blockly.Msg.ARDUINO_NOTONE_TOOLTIP = "サウンドをミュートします";//"mutes the sound on the selected pin";
 Blockly.Msg.ARDUINO_NOTONE_HELPURL = "https://www.arduino.cc/reference/jp/language/functions/advanced-io/notone/";//"http://arduino.cc/en/Reference/AnalogWrite";
 Blockly.Msg.ARDUINO_SERIAL_PRINT_CONTENT = "シリアルでデータを送る　ポート:";
-Blockly.Msg.ARDUINO_SERIAL_PRINT_TOOLTIP = "sends data over the serial port for sruvaillance by the monitor in ASCII";
+Blockly.Msg.ARDUINO_SERIAL_PRINT_TOOLTIP = "データを送信してモニターで監視します";//"sends data over the serial port for sruvaillance by the monitor in ASCII";
 Blockly.Msg.ARDUINO_SERIAL_PRINT_HELPURL = "http://www.arduino.cc/en/Serial/Print";

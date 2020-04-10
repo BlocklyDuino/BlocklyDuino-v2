@@ -28,8 +28,6 @@ var MSG = {
     newButton_span: "Projecte nou",
     saveXMLButton_span: "Desa fitxer BlocklyDuino",
     loadXMLfakeButton_span: "Carrega fitxer BlocklyDuino",
-    loadXML_span: "Replace existing blocks?\n'Cancel' will merge.",
-    loadXML_error_span: "Error parsing XML:\n",
     resetButton_span: "Restableix BlocklyDuino",
     helpButton_span: "ajuda",
     copyCodeButton_span: "Copia codi a  porta-retalls",
@@ -53,7 +51,6 @@ var MSG = {
     installBoard_title_span: "instal·la placa al CLI",
     searchlLib_title_span: "cerca una biblioteca",
     installLib_title_span: "instal·la biblioteca  al CLI",
-    accessibilityExplanationSpan: "You can enter accessibility mode by <b>shift clicking anywhere on the workspace or on a block</b>. <br /><br /><b>Workspace Navigation</b><br />W: Previous block/field/input at the same level<br />A: Up one level (Field (or input) -&gt; Block -&gt; Input (or field) -&gt; Block -&gt; Stack -&gt; Workspace)<br />S: Next block/field/input at the same level<br />D: Down one level (Workspace -&gt; Stack -&gt; Block -&gt; Input (or field) -&gt; Block -&gt; Field (or input))<br />T: Will open the toolbox. Once in there you can moving around using the WASD keys. And insert a block by hitting Enter<br />X: While on a connection hit X to disconnect the block after the cursor<br /><br /><b>Cursor</b><br /><b>Default Cursor:</b> Allow the user to go to the previous, next, in or out location.<br /><b>Basic Cursor:</b> Using the pre order traversal allows the user to go to the next and previous location.</td>",
     actionName0: "previ",
     actionName1: "següent",
     actionName2: "entra al bloc",
@@ -73,7 +70,7 @@ var MSG = {
     optionFontSizeBlocks: "Mida del tipus de lletra blocs",
     optionFontSizePage: "Mida del tipus de lletra pàgina",
     optionFontSpacingPage: "Espaiat de lletra pàgina",
-    keyMappingExplanationSpan: "<p>Podeu entrar al mode <em>accessibilitat </em> <strong> prement en quansevol lloc a l'espai de treball </strong> o en un bloc.</p><p> El mapa del teclat es pot personalitzar.</p><p> Podeu veure <strong>documentació </strong> més completa si <strong><a href='https://github.com/BlocklyDuino/BlocklyDuino-v2' target='_blank'> premeu aquí '?'</a></strong>.</span></p>",
+    keyMappingExplanationSpan: "<p>Podeu entrar al mode <em>accessibilitat </em> prement <strong>Shift + Ctrl + k</strong>.</p><p>El mapa del teclat es pot personalitzar activant-lo.</p><p> Podeu veure <strong>documentació </strong> més completa si <strong><a href='https://github.com/BlocklyDuino/BlocklyDuino-v2' target='_blank'>premeu aquí '?'</a></strong>.</span></p>",
     //arduino_CLI_functions.js
     config_sideButton_span: "Control del compilador Arduino CLI",
     arduinoCLI_githubLinkButton_span: "documentació",
@@ -94,4 +91,14 @@ var MSG = {
     searchlLibButton_span: "cerca aquesta biblioteca",
     installLibInput_span: "nom de la biblioteca a instal·lar",
     installLibButton_span: "instal·la aquesta biblioteca"
+    //arduino_IDE_functions.js
+    IDE_connect: 'Connecta al port ',
+    IDE_select_port: 'Selecciona el port !',
+    IDE_select_board: 'Selecciona la placa !',
+    IDE_verif_progress: '\nVerificació: en progres...\n<i class="fa fa-spinner fa-pulse fa-1_5x fa-fw"></i>',
+    IDE_verif_ok: '\nVerificació: D\'acord',
+    IDE_upload1: 'Placa ',
+    IDE_upload2: ' al port ',
+    IDE_upload3: '\nCàrrega: en progres...\n<i class="fa fa-spinner fa-pulse fa-1_5x fa-fw"></i>',
+    IDE_upload_ok: '\nCàrrega: D\'acord'
 };

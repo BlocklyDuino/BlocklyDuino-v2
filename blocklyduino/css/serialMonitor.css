@@ -1,4 +1,7 @@
 @CHARSET "UTF-8";
+body {
+    background-color: #F8F8F8;
+}
 #title {
     position: fixed;
     top: 0px;
@@ -25,7 +28,8 @@
     border: 1px solid #ccc;
     margin: 5px;
     border-radius: 5px;
-    overflow: auto
+    overflow: auto;
+    background-color: #FFFFFF;
 }
 
 #serialButtons{

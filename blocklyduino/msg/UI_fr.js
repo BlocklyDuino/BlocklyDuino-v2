@@ -31,6 +31,8 @@ var MSG = {
     newButton_span: "nouveau projet",
     saveXMLButton_span: "enregistrer le fichier Blockly",
     loadXMLfakeButton_span: "ouvrir un fichier Blockly",
+    loadXML_span: "Remplacer les blocs déjà présents ?\n'Annuler' les rajoutera.",
+    loadXML_error_span: "Erreur dans le fichier Blockly :\n",
     resetButton_span: "réinitialiser BlocklyDuino",
     helpButton_span: "aide",
     copyCodeButton_span: "copier le code dans le presse papiers",

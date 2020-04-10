@@ -52,14 +52,11 @@ Code.Redo = function () {
  */
 Code.saveCodeFile = function () {
     var utc = new Date().toJSON().slice(0, 10).replace(/-/g, '_');
-    var fileName = window.prompt('What would you like to name your file?', "code_" + utc);
     var data = Blockly.Arduino.workspaceToCode(Blockly.getMainWorkspace());
-    if (fileName) {
-        var blob = new Blob([data], {
-            type: 'text/plain;charset=utf-8'
-        });
-        saveAs(blob, fileName + ".ino");
-    }
+    var blob = new Blob([data], {
+        type: 'text/plain;charset=utf-8'
+    });
+    saveAs(blob, "code_" + utc + ".ino");
 };
 
 /**
@@ -69,13 +66,10 @@ Code.saveCodeFile = function () {
 Code.saveXmlBlocklyFile = function () {
     var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
     var data = Blockly.Xml.domToPrettyText(xml);
-    var fileName = window.prompt('What would you like to name your file?', 'Blockly');
-    if (fileName) {
-        var blob = new Blob([data], {
-            type: 'text/xml;charset=utf-8'
-        });
-        saveAs(blob, fileName + ".bduino");
-    }
+    var blob = new Blob([data], {
+        type: 'text/xml;charset=utf-8'
+    });
+    saveAs(blob, "BlocklyDuino.bduino");
 };
 
 /**
@@ -104,11 +98,11 @@ function loadXmlBlocklyFile(files) {
             try {
                 var xml = Blockly.Xml.textToDom(target.result);
             } catch (e) {
-                alert('Error parsing XML:\n' + e);
+                alert(MSG['loadXML_error_span'] + e);
                 return;
             }
             var count = Blockly.getMainWorkspace().getAllBlocks().length;
-            if (count && confirm('Replace existing blocks?\n"Cancel" will merge.')) {
+            if (count && confirm(MSG['loadXML_span'])) {
                 Blockly.getMainWorkspace().clear();
             }
             Blockly.Xml.domToWorkspace(xml, Blockly.getMainWorkspace());

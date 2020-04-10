@@ -28,6 +28,8 @@ var MSG = {
     newButton_span: "Projecte nou",
     saveXMLButton_span: "Desa fitxer BlocklyDuino",
     loadXMLfakeButton_span: "Carrega fitxer BlocklyDuino",
+    loadXML_span: "Replace existing blocks?\n'Cancel' will merge.",
+    loadXML_error_span: "Error parsing XML:\n",
     resetButton_span: "Restableix BlocklyDuino",
     helpButton_span: "ajuda",
     copyCodeButton_span: "Copia codi a  porta-retalls",

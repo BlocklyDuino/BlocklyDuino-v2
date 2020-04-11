@@ -35,6 +35,7 @@ Code.LANGUAGE_NAME = {
     'ca': 'Català - Valencià',
     'de': 'Deutsch',
     'en': 'English',
+    'es': 'Español',
     'fr': 'Français',
     'ja': '日本語'
 };

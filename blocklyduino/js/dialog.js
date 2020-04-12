@@ -1,8 +1,12 @@
 // Make the DIV element draggable-keyboard-dialog draggable:
 dragElement(document.getElementById("keyboard_nav"));
+dragDiv(document.getElementById("barre_h"), "V");
 
 function dragElement(elmnt) {
-    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    var pos1 = 0,
+    pos2 = 0,
+    pos3 = 0,
+    pos4 = 0;
     if (document.getElementById(elmnt.id + "_header")) {
         // if present, the header is where you move the DIV from:
         document.getElementById(elmnt.id + "_header").onmousedown = dragMouseDown;
@@ -40,8 +44,63 @@ function dragElement(elmnt) {
         document.onmouseup = null;
         document.onmousemove = null;
     }
-}
-;
+};
+
+// function is used for dragging and moving in rpogram TAB
+function dragDiv(element, direction) {
+    var md; // remember mouse down info
+    const first = document.getElementById("content_code");
+    const second = document.getElementById("content_serial");
+
+    element.onmousedown = onMouseDown;
+
+    function onMouseDown(e) {
+        //console.log("mouse down: " + e.clientX);
+        md = {
+            e,
+            offsetLeft: element.offsetLeft,
+            offsetTop: element.offsetTop,
+            firstHeight: first.offsetHeight,
+            secondHeight: second.offsetHeight,
+            firstWidth: first.offsetWidth,
+            secondWidth: second.offsetWidth
+        };
+        document.onmousemove = onMouseMove;
+        document.onmouseup = () => {
+            //console.log("mouse up");
+            document.onmousemove = document.onmouseup = null;
+        }
+    }
+
+    function onMouseMove(e) {
+        //console.log("mouse move: " + e.clientX);
+        var delta = {
+            x: e.clientX - md.e.x,
+            y: e.clientY - md.e.y
+        };
+
+        if (direction === "V") // Horizontal
+        {
+            // prevent negative-sized elements
+            delta.y = Math.min(Math.max(delta.y, -md.firstHeight),
+                    md.secondHeight);
+
+            element.style.top = md.offsetTop + delta.y + "px";
+            first.style.height = (md.firstHeight + delta.y) + "px";
+            second.style.height = (md.secondHeight - delta.y) + "px";
+        }
+        if (direction === "H") // Horizontal
+        {
+            // prevent negative-sized elements
+            delta.x = Math.min(Math.max(delta.x, -md.firstWidth),
+                    md.secondWidth);
+
+            element.style.left = md.offsetLeft + delta.x + "px";
+            first.style.width = (md.firstWidth + delta.x) + "px";
+            second.style.width = (md.secondWidth - delta.x) + "px";
+        }
+    }
+};
 
 //icons button mouser over
 document.getElementById('undoButton').onmouseover = function () {

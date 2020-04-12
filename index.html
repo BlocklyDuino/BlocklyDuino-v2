@@ -26,6 +26,7 @@
         <script src="./blockly/tests/playgrounds/screenshot.js"></script>
         <!-- Blockly libraries of function, hacked from different demos -->
         <script src="./blocklyduino/js/boards.js"></script>
+        <script src="./blocklyduino/js/typed_variable.js"></script>
         <script src="./blocklyduino/js/blockly/code.js"></script>
         <script src="./blocklyduino/js/blockly/keyboard_nav.js"></script>
         <script src="./blocklyduino/js/blockly/playground.js"></script>
@@ -40,6 +41,7 @@
         <script type="text/javascript" src="./blocklyduino/blocks/arduino_base/arduino_base.js"></script>
         <script type="text/javascript" src="./blocklyduino/blocks/grove/grove.js"></script>
         <script type="text/javascript" src="./blocklyduino/blocks/servo/servo.js"></script>
+        <script type="text/javascript" src="./blocklyduino/blocks/typed_variable.js"></script>
         <!-- BlocklyDuino specific: common generator code -->
         <script type="text/javascript" src="./blocklyduino/generators/arduino_generator.js"></script>
         <script type="text/javascript" src="./blocklyduino/generators/arduino/blockly/colour.js"></script>
@@ -50,9 +52,9 @@
         <script type="text/javascript" src="./blocklyduino/generators/arduino/blockly/procedures.js"></script>
         <script type="text/javascript" src="./blocklyduino/generators/arduino/blockly/text.js"></script>
         <script type="text/javascript" src="./blocklyduino/generators/arduino/blockly/variables.js"></script>
-        <script type="text/javascript" src="./blocklyduino/generators/arduino/blockly/variables_dynamic.js"></script>
         <!-- BlocklyDuino specific: addon generator code -->
         <script type="text/javascript" src="./blocklyduino/generators/arduino/arduino_base.js"></script>
+        <script type="text/javascript" src="./blocklyduino/generators/arduino/typed_variable.js"></script>
         <script type="text/javascript" src="./blocklyduino/generators/arduino/addon/grove.js"></script>
         <script type="text/javascript" src="./blocklyduino/generators/arduino/addon/servo.js"></script>
         <!-- BlocklyDuino specific -->
@@ -320,6 +322,9 @@
                                     <div id="checkDetails">
                                         <input type="checkbox" name="detailedCompilation" id="detailedCompilation"/>
                                         <span id="detailedCompilation_span" style="color: white;"> </span>
+                                    </div>
+                                    <div id="sizeGripper">
+                                        <img src="./blocklyduino/media/vsizegrip.png" />
                                     </div>
                                     <a href="blocklyduino/serialMonitor.html"></a>
                                 </div>

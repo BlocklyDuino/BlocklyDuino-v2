@@ -172,13 +172,6 @@ td.tabMiddle {
     border-radius: 10px;
 }
 
-#barre_h{
-    padding : 0px;
-    margin : 0px;
-    width: 100%;
-    background-color : #018790;
-}
-
 /* Content blocks */
 .content_wrapper {
     height: 100%;

@@ -94,32 +94,46 @@ pre.content {
 .blocklySvg {
     border-top: none !important;
 }
-#content_program {
-    padding: 0px 5px 20px 0px;
-    display: block;
-    box-sizing: border-box;
-    font-family: monospace;
+.content_program {
+    display: flex;
+    width: 100%;
+    height: 100%;
 }
 #content_code {
     background: #F5F5F5;
-    display: block;
     height: 70%;
+    min-height: 15%;
     width: 100%;
     position: relative;
-    padding: 5px 5px 20px 0px;
-    margin: 0 0 10px;
-    border: 1px solid #CCC;
-    border-radius: 4px;
     overflow: auto;
+}
+#barre_h{
+    padding : 0px;
+    margin : 0px;
+    width: 100%;
+    background-color : #018790;
+    /* prevent browser's built-in drag from interfering */
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+#sizeGripper{
+    cursor: row-resize;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100px;
+    height: 100%;
+    margin: auto;
 }
 #content_serial {
     background: #000000;
     color: rgba(29, 147, 47, 1);
-    display: inline;
+    /* display: inline; */
     height: 25%;
+    min-height: 15%;
     width: 100%;
-    vertical-align: bottom;
-    overflow: auto;
+    /* vertical-align: bottom; */
+    /* overflow: auto; */
 }
 #languageMenu {
     vertical-align: top;

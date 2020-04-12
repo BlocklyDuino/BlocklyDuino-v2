@@ -302,7 +302,7 @@ Code.checkAllGeneratorFunctionsDefined = function (generator) {
     var valid = missingBlockGenerators.length === 0;
     if (!valid) {
         var msg = 'The generator code for the following blocks not specified for ' +
-                generator.name_ + ':\n - ' + missingBlockGenerators.join('\n - ');
+            generator.name_ + ':\n - ' + missingBlockGenerators.join('\n - ');
         Blockly.alert(msg); // Assuming synchronous. No callback.
     }
     return valid;
@@ -335,7 +335,7 @@ Code.init = function () {
         // Make the 'Blocks' tab line up with the toolbox.
         if (Code.workspace && Code.workspace.getToolbox().width) {
             document.getElementById('tab_blocks').style.minWidth =
-                    (Code.workspace.getToolbox().width - 38) + 'px';
+                (Code.workspace.getToolbox().width - 38) + 'px';
             // Account for the 19 pixel margin and on each side.
         }
     };
@@ -357,40 +357,48 @@ Code.init = function () {
     var renderer = match ? match[1] : 'geras';
     document.forms.options.elements.renderer.value = renderer;
     Code.workspace = Blockly.inject('content_blocks', {
-        comments: true,
-        collapse: true,
-        disable: true,
-        grid: {
-            spacing: 25,
-            length: 3,
-            colour: '#ccc',
-            snap: true
-        },
-        maxBlocks: Infinity,
-        maxInstances: {
-            'test_basic_limit_instances': 3
-        },
-        maxTrashcanContents: 256,
-        media: './blockly/media/',
-        oneBasedIndex: true,
-        readOnly: false,
-        rtl: rtl,
-        move: {
-            scrollbars: true,
-            drag: true,
-            wheel: false
-        },
-        toolbox: BLOCKLY_TOOLBOX_XML['toolboxDuino'],
-        renderer: renderer,
-        zoom: {
-            controls: true,
-            wheel: true,
-            startScale: 1.0,
-            maxScale: 4,
-            minScale: 0.25,
-            scaleSpeed: 1.1
-        }
-    });
+            comments: true,
+            collapse: true,
+            disable: true,
+            grid: {
+                spacing: 25,
+                length: 3,
+                colour: '#ccc',
+                snap: true
+            },
+            maxBlocks: Infinity,
+            maxInstances: {
+                'test_basic_limit_instances': 3
+            },
+            maxTrashcanContents: 256,
+            media: './blockly/media/',
+            oneBasedIndex: true,
+            readOnly: false,
+            rtl: rtl,
+            move: {
+                scrollbars: true,
+                drag: true,
+                wheel: false
+            },
+            toolbox: BLOCKLY_TOOLBOX_XML['toolboxDuino'],
+            renderer: renderer,
+            zoom: {
+                controls: true,
+                wheel: true,
+                startScale: 1.0,
+                maxScale: 4,
+                minScale: 0.25,
+                scaleSpeed: 1.1
+            }
+        });        
+    
+    Code.workspace.registerButtonCallback('createVarBtnInt', createVarBtnIntCallBack);   
+    Code.workspace.registerButtonCallback('createVarBtnFloat', createVarBtnFloatCallBack);
+    Code.workspace.registerButtonCallback('createVarBtnString', createVarBtnStringCallBack);
+    Code.workspace.registerToolboxCategoryCallback('VARIABLE_DYNAMIQUE', intVariablesCallBack); 
+    Code.workspace.registerToolboxCategoryCallback('VARIABLE_DYNAMIQUE', floatVariablesCallBack);
+    Code.workspace.registerToolboxCategoryCallback('VARIABLE_DYNAMIQUE', stringVariablesCallBack);
+    
     Code.workspace.configureContextMenu = configureContextualMenu;
 
     Code.loadBlocks('');
@@ -403,12 +411,12 @@ Code.init = function () {
     for (var i = 0; i < Code.TABS_.length; i++) {
         var name = Code.TABS_[i];
         Code.bindClick('tab_' + name,
-                function (name_) {
-                    return function () {
-                        Code.tabClick(name_);
-                    };
-                }
-        (name));
+            function (name_) {
+            return function () {
+                Code.tabClick(name_);
+            };
+        }
+            (name));
     }
     Code.bindClick('tab_code', function (e) {
         if (e.target !== document.getElementById('tab_code')) {
@@ -573,7 +581,7 @@ Code.initLanguage = function () {
 Code.discard = function () {
     var count = Code.workspace.getAllBlocks(false).length;
     if (count < 2 ||
-            window.confirm(Blockly.Msg['DELETE_ALL_BLOCKS'].replace('%1', count))) {
+        window.confirm(Blockly.Msg['DELETE_ALL_BLOCKS'].replace('%1', count))) {
         Code.workspace.clear();
         if (window.location.hash) {
             window.location.hash = '';

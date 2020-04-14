@@ -1,5 +1,8 @@
 var MSG = {
+    title: "BlocklyDuino",
+    appName: "BlocklyDuino",    
     blocks: "Bloques",
+    prog: "Program",    
     catLogic: "Lógica",
     catLoops: "Bucles",
     catMath: "Matemáticas",
@@ -28,6 +31,8 @@ var MSG = {
     newButton_span: "Proyecto nuevo",
     saveXMLButton_span: "Guarda fichero BlocklyDuino",
     loadXMLfakeButton_span: "Carga fichero BlocklyDuino",
+    loadXML_span: "Replace existing blocks?\n'Cancel' will merge.",
+    loadXML_error_span: "Error parsing XML:\n",
     resetButton_span: "Restablece BlocklyDuino",
     helpButton_span: "ayuda",
     copyCodeButton_span: "Copia código a  portapapeles",
@@ -51,7 +56,6 @@ var MSG = {
     installBoard_title_span: "instala placa al CLI",
     searchlLib_title_span: "busca una biblioteca",
     installLib_title_span: "instala biblioteca  al CLI",
-    accessibilityExplanationSpan: "You can enter accessibility mode by <b>shift clicking anywhere on the workspace or on a block</b>. <br /><br /><b>Workspace Navigation</b><br />W: Previous block/field/input at the same level<br />A: Up one level (Field (or input) -&gt; Block -&gt; Input (or field) -&gt; Block -&gt; Stack -&gt; Workspace)<br />S: Next block/field/input at the same level<br />D: Down one level (Workspace -&gt; Stack -&gt; Block -&gt; Input (or field) -&gt; Block -&gt; Field (or input))<br />T: Will open the toolbox. Once in there you can moving around using the WASD keys. And insert a block by hitting Enter<br />X: While on a connection hit X to disconnect the block after the cursor<br /><br /><b>Cursor</b><br /><b>Default Cursor:</b> Allow the user to go to the previous, next, in or out location.<br /><b>Basic Cursor:</b> Using the pre order traversal allows the user to go to the next and previous location.</td>",
     actionName0: "previo",
     actionName1: "siguiente",
     actionName2: "entra al bloque",
@@ -72,9 +76,9 @@ var MSG = {
     optionFontSizePage: "Tamaño del tipo de letra página",
     optionFontSpacingPage: "Espaciado de letra página",
     keyMappingExplanationSpan: "<p>Podéis entrar al modo <em>accesibilidaa </em> <strong> pulsando en cualquier lugar del espacio de trabajo </strong> o en un bloque.</p><p> El mapa del teclado se puede personalizar.</p><p> Podéis ver <strong>documentación </strong> mas completa si <strong><a href='https://github.com/BlocklyDuino/BlocklyDuino-v2' target='_blank'> pulsáis aquí '?'</a></strong>.</span></p>",
-    //arduino_CLI_functions.js
+    //CLI_functions.js
     config_sideButton_span: "Control del compilador Arduino CLI",
-    arduinoCLI_githubLinkButton_span: "documentación",
+    CLI_githubLinkButton_span: "documentación",
     coreUpdateButton_msg: "Se está actualizando...\n<i class='fa fa-spinner fa-pulse fa-1_5x fa-fw'></i>",
     cleanCLIcacheButton_msg: "Se está limpiando...\n<i class='fa fa-spinner fa-pulse fa-1_5x fa-fw'></i>",
     cleanCLIcacheButton_error_msg: "Error suprimiendo la carpeta .\\tmp",
@@ -91,5 +95,15 @@ var MSG = {
     searchlLibInput_span: "nombre de la biblioteca a buscar",
     searchlLibButton_span: "busca esta biblioteca",
     installLibInput_span: "nombre de la biblioteca a instalar",
-    installLibButton_span: "instala esta biblioteca"
+    installLibButton_span: "instala esta biblioteca",
+    //IDE_functions.js
+    IDE_connect: 'Connect to port ',
+    IDE_select_port: 'Select a port !',
+    IDE_select_board: 'Select a board !',
+    IDE_verif_progress: '\nVerification: in progress...\n<i class="fa fa-spinner fa-pulse fa-1_5x fa-fw"></i>',
+    IDE_verif_ok: '\nVerification: OK',
+    IDE_upload1: 'Board ',
+    IDE_upload2: ' on port ',
+    IDE_upload3: '\nUpload: in progress...\n<i class="fa fa-spinner fa-pulse fa-1_5x fa-fw"></i>',
+    IDE_upload_ok: '\nUpload: OK'
 };

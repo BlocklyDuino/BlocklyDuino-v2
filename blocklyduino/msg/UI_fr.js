@@ -49,6 +49,7 @@ var MSG = {
     themeHighContrastSpan: "Contraste élevé",
     themeDarkSpan: "Sombre",
     themeBwSpan: "Noir & Blanc",
+    compilationInProgress: "Carte",
     keyMappingModalSpan: "Attrbution des touches",
     detailedCompilation_span: "Résultats détaillés",
     CLI_title_span: "compilateur - gestion",

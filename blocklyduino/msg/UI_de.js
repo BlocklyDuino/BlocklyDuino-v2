@@ -49,6 +49,7 @@ var MSG = {
     themeHighContrastSpan: "High Contrast",
     themeDarkSpan: "Dark",
     themeBwSpan: "Black & White",
+    compilationInProgress: "Board",    
     keyMappingModalSpan: "Set key mappings below",
     detailedCompilation_span: "Detailed compilation verbose",
     CLI_title_span: "Arduino CLI setup",

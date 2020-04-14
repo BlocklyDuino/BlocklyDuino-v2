@@ -224,8 +224,14 @@ Code.sideCode = function (visible) {
         document.getElementById('side_content').style.display = 'none';
     }
     window.dispatchEvent(new Event('resize'));
+    document.getElementById('side_content').addEventListener('webkitTransitionEnd', transitionEnded, false);
+};
+
+var transitionEnded = function(){
     Blockly.svgResize(Code.workspace);
     Code.renderContent();
+     done = true;
+     document.getElementById('side_content').removeEventListener('webkitTransitionEnd', transitionEnded, false);
 };
 
 /**

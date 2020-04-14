@@ -196,7 +196,7 @@ td.tabMiddle {
     overflow: hidden;
     /* transition: all .5s; */
 }
-/* side panel */
+/* tab blocks when side panel activated */
 .content_blocks_side {
     /* Firefox */
     width: -moz-calc(100% - 350px) !important;
@@ -208,8 +208,9 @@ td.tabMiddle {
     width: calc(100% - 350px) !important;
     overflow: hidden;
     float: left;
-    /* transition: all .5s; */
+    transition: all .5s;
 }
+/* side panel */
 .side_content {
     width: 350px;
     height: 100%;
@@ -222,7 +223,7 @@ td.tabMiddle {
     background-color: #ffffff;
     overflow: auto !important;
     display: none;
-    /* transition: all .5s; */
+    transition: all .5s;
 }
 .code_peek {
     /* Firefox */

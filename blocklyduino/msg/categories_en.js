@@ -5,6 +5,9 @@ goog.provide('Blockly.Msg.categories_en');
 goog.require('Blockly.Msg');
 
 // toolbox categories name
+Blockly.Msg.CAT_VAR_NUM = "numbers";
+Blockly.Msg.CAT_VAR_TEXT = "text";
+Blockly.Msg.CAT_VAR_BOOLEAN = "boolean";
 Blockly.Msg.CAT_ARDUINO = "Arduino";
 Blockly.Msg.CAT_ARDUINO_IO = "Input / Output";
 Blockly.Msg.CAT_SERVO = "Servo";

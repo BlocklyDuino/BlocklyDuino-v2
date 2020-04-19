@@ -390,14 +390,16 @@ Code.init = function () {
                 minScale: 0.25,
                 scaleSpeed: 1.1
             }
-        });        
-    
+        });
+    //button callback register with functions
     Code.workspace.registerButtonCallback('createVarBtnInt', createVarBtnIntCallBack);   
     Code.workspace.registerButtonCallback('createVarBtnFloat', createVarBtnFloatCallBack);
     Code.workspace.registerButtonCallback('createVarBtnString', createVarBtnStringCallBack);
-    Code.workspace.registerToolboxCategoryCallback('VARIABLE_DYNAMIQUE', intVariablesCallBack); 
-    Code.workspace.registerToolboxCategoryCallback('VARIABLE_DYNAMIQUE', floatVariablesCallBack);
-    Code.workspace.registerToolboxCategoryCallback('VARIABLE_DYNAMIQUE', stringVariablesCallBack);
+    Code.workspace.registerButtonCallback('createVarBtnBoolean', createVarBtnBooleanCallBack);
+    //add blocks in toolbox
+    Code.workspace.registerToolboxCategoryCallback('VARIABLE_TYPED_NUM', numVariablesCallBack);
+    Code.workspace.registerToolboxCategoryCallback('VARIABLE_TYPED_TEXT', textVariablesCallBack);
+    Code.workspace.registerToolboxCategoryCallback('VARIABLE_TYPED_BOOLEAN', booleanVariablesCallBack);
     
     Code.workspace.configureContextMenu = configureContextualMenu;
 

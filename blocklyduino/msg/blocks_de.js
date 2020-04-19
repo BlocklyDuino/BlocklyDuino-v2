@@ -10,6 +10,10 @@ Blockly.Msg.TITLE2 = " > web-based visual programming editor for arduino";
 Blockly.Msg.FIELDDROPDOWN = [["HIGH", "HIGH"], ["LOW", "LOW"]];
 
 //Arduino base cateory blocks
+Blockly.Msg.VAR_CREATE_INT = "integer";
+Blockly.Msg.VAR_CREATE_FLOAT = "float";
+Blockly.Msg.VAR_CREATE_STRING = "string";
+Blockly.Msg.VAR_CREATE_BOOLEAN = "boolean";
 Blockly.Msg.ARDUINO_INOUT_BUILDIN_LED_HELPURL = "http://arduino.cc/en/Reference/DigitalWrite";
 Blockly.Msg.ARDUINO_INOUT_BUILDIN_LED_INPUT = "put the LEDs on the card to logic";
 Blockly.Msg.ARDUINO_INOUT_BUILDIN_LED_TOOLTIP = "off or turn on the LED on the Arduino board";

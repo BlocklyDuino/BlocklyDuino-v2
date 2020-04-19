@@ -10,6 +10,10 @@ Blockly.Msg.TITLE2 = " > programmation visuelle par blocs pour Arduino";
 Blockly.Msg.FIELDDROPDOWN = [["1 (état haut)", "HIGH"], ["0 (état bas)", "LOW"]];
 
 //Arduino base cateory blocks
+Blockly.Msg.VAR_CREATE_INT = "de type nombre entier";
+Blockly.Msg.VAR_CREATE_FLOAT = "de type nombre à virgule";
+Blockly.Msg.VAR_CREATE_STRING = "de type chaîne de caractère";
+Blockly.Msg.VAR_CREATE_BOOLEAN = "de type booléen";
 Blockly.Msg.ARDUINO_INOUT_BUILDIN_LED_HELPURL = "http://arduino.cc/en/Reference/DigitalWrite";
 Blockly.Msg.ARDUINO_INOUT_BUILDIN_LED_INPUT = "mettre la DEL sur la carte à l'état logique";
 Blockly.Msg.ARDUINO_INOUT_BUILDIN_LED_TOOLTIP = "éteint ou allume la DEL sur la carte Arduino";

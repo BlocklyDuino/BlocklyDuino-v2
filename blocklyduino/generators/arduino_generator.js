@@ -45,30 +45,29 @@ Blockly.Arduino = new Blockly.Generator('Arduino');
  * @private
  */
 Blockly.Arduino.addReservedWords(
-        // http://arduino.cc/en/Reference/HomePage
-        'setup,loop,if,else,for,switch,case,while,do,break,continue,return,goto,define,include,HIGH,LOW,INPUT,OUTPUT,INPUT_PULLUP,true,false,interger, constants,floating,point,void,bookean,char,unsigned,byte,int,word,long,float,double,string,String,array,static, volatile,const,sizeof,pinMode,digitalWrite,digitalRead,analogReference,analogRead,analogWrite,tone,noTone,shiftOut,shitIn,pulseIn,millis,micros,delay,delayMicroseconds,min,max,abs,constrain,map,pow,sqrt,sin,cos,tan,randomSeed,random,lowByte,highByte,bitRead,bitWrite,bitSet,bitClear,bit,attachInterrupt,detachInterrupt,interrupts,noInterrupts'
-        );
+    // http://arduino.cc/en/Reference/HomePage
+    'setup,loop,if,else,for,switch,case,while,do,break,continue,return,goto,define,include,HIGH,LOW,INPUT,OUTPUT,INPUT_PULLUP,true,false,interger, constants,floating,point,void,bookean,char,unsigned,byte,int,word,long,float,double,string,String,array,static, volatile,const,sizeof,pinMode,digitalWrite,digitalRead,analogReference,analogRead,analogWrite,tone,noTone,shiftOut,shitIn,pulseIn,millis,micros,delay,delayMicroseconds,min,max,abs,constrain,map,pow,sqrt,sin,cos,tan,randomSeed,random,lowByte,highByte,bitRead,bitWrite,bitSet,bitClear,bit,attachInterrupt,detachInterrupt,interrupts,noInterrupts');
 
 /**
  * Order of operation ENUMs.
  *
  */
-Blockly.Arduino.ORDER_ATOMIC = 0;         // 0 "" ...
-Blockly.Arduino.ORDER_UNARY_POSTFIX = 1;  // expr++ expr-- () [] .
-Blockly.Arduino.ORDER_UNARY_PREFIX = 2;   // -expr !expr ~expr ++expr --expr
+Blockly.Arduino.ORDER_ATOMIC = 0; // 0 "" ...
+Blockly.Arduino.ORDER_UNARY_POSTFIX = 1; // expr++ expr-- () [] .
+Blockly.Arduino.ORDER_UNARY_PREFIX = 2; // -expr !expr ~expr ++expr --expr
 Blockly.Arduino.ORDER_MULTIPLICATIVE = 3; // * / % ~/
-Blockly.Arduino.ORDER_ADDITIVE = 4;       // + -
-Blockly.Arduino.ORDER_SHIFT = 5;          // << >>
-Blockly.Arduino.ORDER_RELATIONAL = 6;     // is is! >= > <= <
-Blockly.Arduino.ORDER_EQUALITY = 7;       // == != === !==
-Blockly.Arduino.ORDER_BITWISE_AND = 8;    // &
-Blockly.Arduino.ORDER_BITWISE_XOR = 9;    // ^
-Blockly.Arduino.ORDER_BITWISE_OR = 10;    // |
-Blockly.Arduino.ORDER_LOGICAL_AND = 11;   // &&
-Blockly.Arduino.ORDER_LOGICAL_OR = 12;    // ||
-Blockly.Arduino.ORDER_CONDITIONAL = 13;   // expr ? expr : expr
-Blockly.Arduino.ORDER_ASSIGNMENT = 14;    // = *= /= ~/= %= += -= <<= >>= &= ^= |=
-Blockly.Arduino.ORDER_NONE = 99;          // (...)
+Blockly.Arduino.ORDER_ADDITIVE = 4; // + -
+Blockly.Arduino.ORDER_SHIFT = 5; // << >>
+Blockly.Arduino.ORDER_RELATIONAL = 6; // is is! >= > <= <
+Blockly.Arduino.ORDER_EQUALITY = 7; // == != === !==
+Blockly.Arduino.ORDER_BITWISE_AND = 8; // &
+Blockly.Arduino.ORDER_BITWISE_XOR = 9; // ^
+Blockly.Arduino.ORDER_BITWISE_OR = 10; // |
+Blockly.Arduino.ORDER_LOGICAL_AND = 11; // &&
+Blockly.Arduino.ORDER_LOGICAL_OR = 12; // ||
+Blockly.Arduino.ORDER_CONDITIONAL = 13; // expr ? expr : expr
+Blockly.Arduino.ORDER_ASSIGNMENT = 14; // = *= /= ~/= %= += -= <<= >>= &= ^= |=
+Blockly.Arduino.ORDER_NONE = 99; // (...)
 
 /**
  * List of outer-inner pairings that do NOT require parentheses.
@@ -105,42 +104,42 @@ Blockly.Arduino.ORDER_OVERRIDES = [
  * @param {!Blockly.Workspace} workspace Workspace to generate code from.
  */
 Blockly.Arduino.init = function (workspace) {
-    // Create a dictionary of definitions to be printed before setups.
+    // Create a dictionary of definitions to be printed at the top of the sketch
+    Blockly.Arduino.includes_ = Object.create(null);
+    // Create a dictionary of global definitions to be printed after variables
     Blockly.Arduino.definitions_ = Object.create(null);
-    // Create a dictionary of setups to be printed before the code.
-    Blockly.Arduino.setups_ = Object.create(null);
+    // Create a dictionary of variables
+    Blockly.Arduino.variables_ = Object.create(null);
+    // Create a dictionary of functions from the code generator
+    Blockly.Arduino.codeFunctions_ = Object.create(null);
+    // Create a dictionary of functions created by the user
+    Blockly.Arduino.userFunctions_ = Object.create(null);
     // Create a dictionary mapping desired function names in definitions_
-    // to actual function names (to avoid collisions with user functions).
+    // to actual function names (to avoid collisions with user functions)
     Blockly.Arduino.functionNames_ = Object.create(null);
+    // Create a dictionary of setups to be printed in the setup() function
+    Blockly.Arduino.setups_ = Object.create(null);
 
     if (!Blockly.Arduino.variableDB_) {
         Blockly.Arduino.variableDB_ =
-                new Blockly.Names(Blockly.Arduino.RESERVED_WORDS_);
+            new Blockly.Names(Blockly.Arduino.RESERVED_WORDS_);
     } else {
         Blockly.Arduino.variableDB_.reset();
     }
 
     Blockly.Arduino.variableDB_.setVariableMap(workspace.getVariableMap());
-
-    var defvars = [];
-    // Add developer variables (not created or named by the user).
-    var devVarList = Blockly.Variables.allDeveloperVariables(workspace);
-    for (var i = 0; i < devVarList.length; i++) {
-        defvars.push('int ' + Blockly.Arduino.variableDB_.getName(devVarList[i], Blockly.Names.DEVELOPER_VARIABLE_TYPE) + ';\n');
-    }
-
-    // Add user variables, but only ones that are being used.
-    var variables = Blockly.Variables.allUsedVarModels(workspace);
-    for (var i = 0; i < variables.length; i++) {
-        defvars.push(Blockly.Arduino.variableDB_.getName(variables[i].getId(), Blockly.Variables.NAME_TYPE));
-    }
-
-    Blockly.Arduino.definitions_['variables'] = defvars.join('\n');
-
-    // Declare all of the variables.
-    if (defvars.length) {
-        Blockly.Arduino.definitions_['variables'] =
-                'int ' + defvars.join(', ') + ';\n';
+    Blockly.Arduino.definitions_['variables'] = "";
+    
+    // get all types from all variable in workspace
+    var allTypes = Code.workspace.getVariableTypes();
+    for (var i = 0; i < allTypes.length - 1; i++) {
+        var defvars = [];
+        // get all variable for one of this type
+        var allVarOfType = Code.workspace.getVariablesOfType(allTypes[i]);
+        for (var j = 0; j < allVarOfType.length; j++) {
+            defvars.push(allVarOfType[j].name);
+        }
+        Blockly.Arduino.definitions_['variables'] += allTypes[i] + ' ' + defvars.join(', ') + ';\n';
     }
 };
 
@@ -150,35 +149,62 @@ Blockly.Arduino.init = function (workspace) {
  * @return {string} Completed code.
  */
 Blockly.Arduino.finish = function (code) {
-    // Indent every line.
-    code = '  ' + code.replace(/\n/g, '\n  ');
-    code = code.replace(/\n\s+$/, '\n');
-    code = 'void loop() \n{\n' + code + '\n}';
-
-    // Convert the definitions dictionary into a list.
-    var imports = [];
-    var definitions = [];
-    for (var name in Blockly.Arduino.definitions_) {
-        var def = Blockly.Arduino.definitions_[name];
-        if (def.match(/^#include/)) {
-            imports.push(def);
-        } else {
-            definitions.push(def);
-        }
+    var includes = [],
+    definitions = [],
+    variables = [],
+    functions = [],
+    BLOCK_GLOBALS_ARRAY_SIZE = [];
+    for (var name in Blockly.Arduino.includes_) {
+        includes.push(Blockly.Arduino.includes_[name]);
     }
-
-    // Convert the setups dictionary into a list.
-    var setups = [];
+    if (includes.length) {
+        includes.push('\n');
+    }
+    for (var name in Blockly.Arduino.variables_) {
+        variables.push(Blockly.Arduino.variables_[name]);
+    }
+    if (variables.length) {
+        variables.push('\n');
+    }
+    for (var name in Blockly.Arduino.definitions_) {
+        definitions.push(Blockly.Arduino.definitions_[name]);
+    }
+    if (definitions.length) {
+        definitions.push('\n');
+    }
+    for (var name in Blockly.Arduino.codeFunctions_) {
+        functions.push(Blockly.Arduino.codeFunctions_[name]);
+    }
+    for (var name in Blockly.Arduino.userFunctions_) {
+        functions.push(Blockly.Arduino.userFunctions_[name]);
+    }
+    if (functions.length) {
+        functions.push('\n');
+    }
+    var setups = [''],
+    userSetupCode = '';
+    if (Blockly.Arduino.setups_['userSetupCode'] !== undefined) {
+        userSetupCode = '\n' + Blockly.Arduino.setups_['userSetupCode'];
+        delete Blockly.Arduino.setups_['userSetupCode'];
+    }
     for (var name in Blockly.Arduino.setups_) {
         setups.push(Blockly.Arduino.setups_[name]);
     }
-    // Clean up temporary data.
+    if (userSetupCode) {
+        setups.push(userSetupCode);
+    }
+    delete Blockly.Arduino.includes_;
     delete Blockly.Arduino.definitions_;
+    delete Blockly.Arduino.codeFunctions_;
+    delete Blockly.Arduino.userFunctions_;
     delete Blockly.Arduino.functionNames_;
+    delete Blockly.Arduino.setups_;
+    delete Blockly.Arduino.pins_;
     Blockly.Arduino.variableDB_.reset();
-
-    var allDefs = imports.join('\n') + '\n\n' + definitions.join('\n') + '\nvoid setup() \n{\n  ' + setups.join('\n  ') + '\n}' + '\n\n';
-    return allDefs.replace(/\n\n+/g, '\n\n').replace(/\n*$/, '\n\n\n') + code;
+    var allDefs = includes.join('\n') + variables.join('\n') + definitions.join('\n') + functions.join('\n');
+    var setup = 'void setup() {' + setups.join('\n  ') + '\n}\n\n';
+    var loop = 'void loop() {\n  ' + code.replace(/\n/g, '\n  ') + '\n}';
+    return allDefs + setup + loop;
 };
 
 /**
@@ -200,9 +226,9 @@ Blockly.Arduino.scrubNakedValue = function (line) {
 Blockly.Arduino.quote_ = function (string) {
     // TODO: This is a quick hack.  Replace with goog.string.quote
     string = string.replace(/\\/g, '\\\\')
-            .replace(/\n/g, '\\\n')
-            .replace(/\$/g, '\\$')
-            .replace(/'/g, '\\\'');
+        .replace(/\n/g, '\\\n')
+        .replace(/\$/g, '\\$')
+        .replace(/'/g, '\\\'');
     return '\"' + string + '\"';
 };
 

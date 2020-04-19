@@ -10,6 +10,10 @@ Blockly.Msg.TITLE2 = " > Programación visual de bloques para Arduino";
 Blockly.Msg.FIELDDROPDOWN = [["1 (activado)", "HIGH"], ["0 (desactivado)", "LOW"]];
 
 //Arduino base cateory blocks
+Blockly.Msg.VAR_CREATE_INT = "integer";
+Blockly.Msg.VAR_CREATE_FLOAT = "float";
+Blockly.Msg.VAR_CREATE_STRING = "string";
+Blockly.Msg.VAR_CREATE_BOOLEAN = "boolean";
 Blockly.Msg.ARDUINO_INOUT_BUILDIN_LED_HELPURL = "http://arduino.cc/en/Reference/DigitalWrite";
 Blockly.Msg.ARDUINO_INOUT_BUILDIN_LED_INPUT = "pon el LED en el estado lógico";
 Blockly.Msg.ARDUINO_INOUT_BUILDIN_LED_TOOLTIP = "para o enciende el LED en la placa Arduino";

@@ -34,8 +34,7 @@ function auto_save_and_restore_blocks() {
         var text = Blockly.Xml.domToText(xml);
         window.sessionStorage.loadOnceBlocks = text;
     }
-}
-;
+};
 /**
  * Undo/redo functions
  */
@@ -52,11 +51,22 @@ Code.Redo = function () {
  */
 Code.saveCodeFile = function () {
     var utc = new Date().toJSON().slice(0, 10).replace(/-/g, '_');
-    var data = Blockly.Arduino.workspaceToCode(Blockly.getMainWorkspace());
-    var blob = new Blob([data], {
-        type: 'text/plain;charset=utf-8'
-    });
-    saveAs(blob, "code_" + utc + ".ino");
+    var dataToSave = Blockly.Arduino.workspaceToCode(Blockly.getMainWorkspace());
+    var blob = new Blob([dataToSave], {
+            type: 'text/plain;charset=utf-8'
+        });
+    var fileNameSave = prompt(MSG['saveXML_span']);
+    if (fileNameSave !== null) {
+        var fakeDownloadLink = document.createElement("a");
+        fakeDownloadLink.download = fileNameSave + ".ino";
+        fakeDownloadLink.href = window.URL.createObjectURL(blob);
+        fakeDownloadLink.onclick = function destroyClickedElement(event) {
+            document.body.removeChild(event.target);
+        };
+        fakeDownloadLink.style.display = "none";
+        document.body.appendChild(fakeDownloadLink);
+        fakeDownloadLink.click();
+    }
 };
 
 /**
@@ -64,12 +74,23 @@ Code.saveCodeFile = function () {
  * prompts the users to save it into their local file system.
  */
 Code.saveXmlBlocklyFile = function () {
-    var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
-    var data = Blockly.Xml.domToPrettyText(xml);
-    var blob = new Blob([data], {
-        type: 'text/xml;charset=utf-8'
-    });
-    saveAs(blob, "BlocklyDuino.bduino");
+    var xmlData = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
+    var dataToSave = Blockly.Xml.domToPrettyText(xmlData);
+    var blob = new Blob([dataToSave], {
+            type: 'text/xml;charset=utf-8'
+        });
+    var fileNameSave = prompt(MSG['saveXML_span']);
+    if (fileNameSave !== null) {
+        var fakeDownloadLink = document.createElement("a");
+        fakeDownloadLink.download = fileNameSave + ".bduino";
+        fakeDownloadLink.href = window.URL.createObjectURL(blob);
+        fakeDownloadLink.onclick = function destroyClickedElement(event) {
+            document.body.removeChild(event.target);
+        };
+        fakeDownloadLink.style.display = "none";
+        document.body.appendChild(fakeDownloadLink);
+        fakeDownloadLink.click();
+    }
 };
 
 /**
@@ -85,7 +106,7 @@ Code.openXmlDialog = function () {
  */
 function loadXmlBlocklyFile(files) {
     // Only allow uploading one file
-    if (files.length != 1) {
+    if (files.length !== 1) {
         return;
     }
 
@@ -96,7 +117,7 @@ function loadXmlBlocklyFile(files) {
         // 2 == FileReader.DONE
         if (target.readyState === 2) {
             try {
-                var xml = Blockly.Xml.textToDom(target.result);
+                var xmlData = Blockly.Xml.textToDom(target.result);
             } catch (e) {
                 alert(MSG['loadXML_error_span'] + e);
                 return;
@@ -105,16 +126,15 @@ function loadXmlBlocklyFile(files) {
             if (count && confirm(MSG['loadXML_span'])) {
                 Blockly.getMainWorkspace().clear();
             }
-            Blockly.Xml.domToWorkspace(xml, Blockly.getMainWorkspace());
+            Blockly.Xml.domToWorkspace(xmlData, Blockly.getMainWorkspace());
         }
         // Reset value of input after loading because Chrome will not fire
         // a 'change' event if the same file is loaded again.
         document.getElementById('loadXMLfile').value = '';
     };
-    reader.readAsText(files[0]);
+    reader.readAsText(files[0], "UTF-8");
     Blockly.getMainWorkspace().render();
-}
-;
+};
 
 /**
  * Reset workspace and parameters
@@ -227,11 +247,11 @@ Code.sideCode = function (visible) {
     document.getElementById('side_content').addEventListener('webkitTransitionEnd', transitionEnded, false);
 };
 
-var transitionEnded = function(){
+var transitionEnded = function () {
     Blockly.svgResize(Code.workspace);
     Code.renderContent();
-     done = true;
-     document.getElementById('side_content').removeEventListener('webkitTransitionEnd', transitionEnded, false);
+    done = true;
+    document.getElementById('side_content').removeEventListener('webkitTransitionEnd', transitionEnded, false);
 };
 
 /**
@@ -241,7 +261,6 @@ var transitionEnded = function(){
  * @private
  */
 Code.PREV_CODE_ = 'void setup() {\n\n}\n\n\nvoid loop() {\n\n}';
-
 
 /** Updates the code in the side content. */
 Code.renderPeekCode = function () {

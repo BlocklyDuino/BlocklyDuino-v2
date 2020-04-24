@@ -10,59 +10,6 @@
         <link rel="stylesheet" href="./blocklyduino/css/keyboard_nav.css" />
         <link rel="stylesheet" href="./blocklyduino/css/prettify.css" />
         <link rel="stylesheet" href="./blocklyduino/css/blocklyduino.css" />
-        <!-- Blockly libraries -->
-        <script src="./blockly/blockly_compressed.js"></script>
-        <script src="./blockly/blocks_compressed.js"></script>
-        <script src="./blockly/closure/goog/base.js"></script>
-        <!-- Blockly libraries for themes and renderers -->
-        <script src="./blockly/core/renderers/minimalist/info.js"></script>
-        <script src="./blockly/core/renderers/minimalist/constants.js"></script>
-        <script src="./blockly/core/renderers/minimalist/drawer.js"></script>
-        <script src="./blockly/core/renderers/minimalist/renderer.js"></script>
-        <script src="./blockly/core/theme/modern.js"></script>
-        <script src="./blockly/core/theme/zelos.js"></script>
-        <!-- Blockly libraries of function, from different demos -->
-        <script src="./blockly/demos/keyboard_nav/line_cursor.js"></script>
-        <script src="./blockly/tests/playgrounds/screenshot.js"></script>
-        <!-- Blockly libraries of function, hacked from different demos -->
-        <script src="./blocklyduino/js/boards.js"></script>
-        <script src="./blocklyduino/js/typed_variable.js"></script>
-        <script src="./blocklyduino/js/blockly/code.js"></script>
-        <script src="./blocklyduino/js/blockly/keyboard_nav.js"></script>
-        <script src="./blocklyduino/js/blockly/playground.js"></script>
-        <!-- BlocklyDuino libraries of external functions -->
-        <script src="./blocklyduino/js/addon/prettify.js?autoload=true&amp;skin=default&amp;lang=cpp&amp;linenums=true" defer=""></script>
-        <script src="./blocklyduino/js/addon/clipboard.min.js"></script>
-        <script src="./blocklyduino/js/addon/diff.js"></script>
-        <script src="./blocklyduino/js/buttons_functions.js"></script>
-        <!-- BlocklyDuino specific: block design -->
-        <script type="text/javascript" src="./blocklyduino/blocks/colors.js"></script>
-        <script type="text/javascript" src="./blocklyduino/blocks/arduino_base/arduino_base.js"></script>
-        <script type="text/javascript" src="./blocklyduino/blocks/grove/grove.js"></script>
-        <script type="text/javascript" src="./blocklyduino/blocks/servo/servo.js"></script>
-        <script type="text/javascript" src="./blocklyduino/blocks/typed_variable.js"></script>
-        <!-- BlocklyDuino specific: common generator code -->
-        <script type="text/javascript" src="./blocklyduino/generators/arduino_generator.js"></script>
-        <script type="text/javascript" src="./blocklyduino/generators/arduino/blockly/colour.js"></script>
-        <script type="text/javascript" src="./blocklyduino/generators/arduino/blockly/lists.js"></script>
-        <script type="text/javascript" src="./blocklyduino/generators/arduino/blockly/logic.js"></script>
-        <script type="text/javascript" src="./blocklyduino/generators/arduino/blockly/loops.js"></script>
-        <script type="text/javascript" src="./blocklyduino/generators/arduino/blockly/math.js"></script>
-        <script type="text/javascript" src="./blocklyduino/generators/arduino/blockly/procedures.js"></script>
-        <script type="text/javascript" src="./blocklyduino/generators/arduino/blockly/text.js"></script>
-        <!-- BlocklyDuino specific: addon generator code -->
-        <script type="text/javascript" src="./blocklyduino/generators/arduino/arduino_base.js"></script>
-        <script type="text/javascript" src="./blocklyduino/generators/arduino/typed_variable.js"></script>
-        <script type="text/javascript" src="./blocklyduino/generators/arduino/addon/grove.js"></script>
-        <script type="text/javascript" src="./blocklyduino/generators/arduino/addon/servo.js"></script>
-        <!-- BlocklyDuino specific -->
-        <!-- Blockly themes added -->
-        <script type="text/javascript" src="./blocklyduino/themes/bw.js"></script>
-        <script type="text/javascript" src="./blocklyduino/themes/themes_blocks.js"></script>
-        <script type="text/javascript" src="./blocklyduino/themes/themes_categories.js"></script>
-        <!-- BlocklyDuino external toolbox hacked -->
-        <script src="./blocklyduino/toolbox/toolbox_blocklyduino.js"></script>
-        <script src="./blocklyduino/toolbox/toolbox_standard.js"></script>
     </head>
     <body>
         <div class="table_wrapper">
@@ -340,7 +287,61 @@
             <form id="keyboard_mappings"></form>
         </div>
     </body>
-    <script type="text/javascript" src="./blocklyduino/js/dialog.js"></script>
+    <!-- load JavaScript just before the closing HTML body tag ensures the scripts don’t block loading of other content and page content is readable before scripts are downloaded and executed -->
+    <!-- Blockly libraries -->
+    <script src="./blockly/blockly_compressed.js"></script>
+    <script src="./blockly/blocks_compressed.js"></script>
+    <script src="./blockly/closure/goog/base.js"></script>
+    <!-- Blockly libraries for themes and renderers -->
+    <script src="./blockly/core/renderers/minimalist/info.js"></script>
+    <script src="./blockly/core/renderers/minimalist/constants.js"></script>
+    <script src="./blockly/core/renderers/minimalist/drawer.js"></script>
+    <script src="./blockly/core/renderers/minimalist/renderer.js"></script>
+    <script src="./blockly/core/theme/modern.js"></script>
+    <script src="./blockly/core/theme/zelos.js"></script>
+    <!-- Blockly libraries of function, from different demos -->
+    <script src="./blockly/demos/keyboard_nav/line_cursor.js"></script>
+    <script src="./blockly/tests/playgrounds/screenshot.js"></script>
+    <!-- Blockly libraries of function, hacked from different demos -->
+    <script src="./blocklyduino/js/boards.js"></script>
+    <script src="./blocklyduino/js/typed_variable.js"></script>
+    <script src="./blocklyduino/js/blockly/code.js"></script>
+    <script src="./blocklyduino/js/blockly/keyboard_nav.js"></script>
+    <script src="./blocklyduino/js/blockly/playground.js"></script>
+    <!-- BlocklyDuino libraries of external functions -->
+    <script src="./blocklyduino/js/addon/prettify.js?autoload=true&amp;skin=default&amp;lang=cpp&amp;linenums=true" defer=""></script>
+    <script src="./blocklyduino/js/addon/clipboard.min.js"></script>
+    <script src="./blocklyduino/js/addon/diff.js"></script>
+    <script src="./blocklyduino/js/buttons_functions.js"></script>
+    <script src="./blocklyduino/js/dialog.js"></script>
+    <!-- BlocklyDuino specific: block design -->
+    <script type="text/javascript" src="./blocklyduino/blocks/colors.js"></script>
+    <script type="text/javascript" src="./blocklyduino/blocks/arduino_base/arduino_base.js"></script>
+    <script type="text/javascript" src="./blocklyduino/blocks/grove/grove.js"></script>
+    <script type="text/javascript" src="./blocklyduino/blocks/servo/servo.js"></script>
+    <script type="text/javascript" src="./blocklyduino/blocks/typed_variable.js"></script>
+    <!-- BlocklyDuino specific: common generator code -->
+    <script type="text/javascript" src="./blocklyduino/generators/arduino_generator.js"></script>
+    <script type="text/javascript" src="./blocklyduino/generators/arduino/blockly/colour.js"></script>
+    <script type="text/javascript" src="./blocklyduino/generators/arduino/blockly/lists.js"></script>
+    <script type="text/javascript" src="./blocklyduino/generators/arduino/blockly/logic.js"></script>
+    <script type="text/javascript" src="./blocklyduino/generators/arduino/blockly/loops.js"></script>
+    <script type="text/javascript" src="./blocklyduino/generators/arduino/blockly/math.js"></script>
+    <script type="text/javascript" src="./blocklyduino/generators/arduino/blockly/procedures.js"></script>
+    <script type="text/javascript" src="./blocklyduino/generators/arduino/blockly/text.js"></script>
+    <!-- BlocklyDuino specific: addon generator code -->
+    <script type="text/javascript" src="./blocklyduino/generators/arduino/arduino_base.js"></script>
+    <script type="text/javascript" src="./blocklyduino/generators/arduino/typed_variable.js"></script>
+    <script type="text/javascript" src="./blocklyduino/generators/arduino/addon/grove.js"></script>
+    <script type="text/javascript" src="./blocklyduino/generators/arduino/addon/servo.js"></script>
+    <!-- BlocklyDuino specific -->
+    <!-- Blockly themes added -->
+    <script type="text/javascript" src="./blocklyduino/themes/bw.js"></script>
+    <script type="text/javascript" src="./blocklyduino/themes/themes_blocks.js"></script>
+    <script type="text/javascript" src="./blocklyduino/themes/themes_categories.js"></script>
+    <!-- BlocklyDuino external toolbox hacked -->
+    <script src="./blocklyduino/toolbox/toolbox_blocklyduino.js"></script>
+    <script src="./blocklyduino/toolbox/toolbox_standard.js"></script>
     <script type="text/javascript">
         require('../CLI_functions.js');
         require('../IDE_functions.js');

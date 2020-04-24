@@ -7,6 +7,14 @@ and open the template in the editor.
     Created on : 7 févr. 2020, 21:14:02
     Author     : Sebastien Canet <scanet@libreduc.cc>
 */
+/* 
+    From Blockly demo code : style.css
+*/
+
+
+/* 
+    From Blockly demo keyboard navigation : keyboard_nav.css
+*/
 
 .TitleText {
     vertical-align: middle;
@@ -132,12 +140,6 @@ td.td_wrapper {
     border-radius: 5px;
 }
 /* boutons classiques */
-/* #undoButton{ */
-/* border-radius: 50%; */
-/* } */
-/* #redoButton{ */
-/* border-radius: 50%; */
-/* } */
 #verifyButton{
     border-radius: 50%;
 }

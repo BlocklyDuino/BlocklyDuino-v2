@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<HTML>
+    <head>
+        <meta charset="utf-8">
+        <title> Moniteur série </title>
+        <link rel="stylesheet" type="text/css" href="../blocklyduino/css/font_awesome_all.min.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/serialMonitorPlotter.css"/>
+    </head>
+    <body>
+        <div class="grid-container">
+            <div id="serialSend" class="serialSend">
+                <input type="text" placeholder="Texte" id="serialSendBox" class="form-control">
+                <span class="input-group-btn">
+                    <button id="btn_serialSend" type="button" class="btn btn-info">Envoyer</button>
+                </span>
+            </div>
+            <div id="serialPeek" class="serialPeek"> </div>
+            <div id="serialGraphWindow" class="serialGraphWindow">
+                <canvas id="serialGraph" width="475" height="415"> </canvas>                
+            </div>
+            <div id="serialButtons" class="serialButtons">
+                <select id="serialConnectSpeed_Menu" > </select>
+                <button id="btn_serialConnect" type="button" class="btn btn-info"> 
+                    <span class='fa fa-play'></span> Démarrer
+                </button>
+                <button id="btn_serialPeekClear" type="button" class="btn btn-info">
+                    <span class='fa fa-eraser'></span> Effacer
+                </button>
+                <button id="btn_serialPeekCSV" type="button" class="btn btn-info">
+                    <span class='fa fa-eject'></span> Exporter
+                </button>
+                <button id="btn_serialChart" type="button" class="btn btn-info">
+                    <span class='fa fa-chart-line'></span> Graphique
+                </button>
+                <button id="btn_serialChartPause" type="button" class="btn btn-info" style="visibility: hidden;"> 
+                    <span class='fa fa-play'></span> Démarrer
+                </button>
+            </div>
+        </div>
+    </body>
+    <script src="./js/addon/smoothie.js"></script>
+    <script src="./js/serialMonitorPlotter.js"></script>
+    <script type="text/javascript">
+        require('../../serialMonitor.js');
+    </script>
+</HTML>

@@ -10,7 +10,7 @@ var MSG = {
     catLists: "☰ Lists",
     catColour: "🌈 Colour",
     catVariables: "❓ Variables",
-    catFunctions: "🝡(x) Functions",
+    catFunctions: "ƒ(x) Functions",
     listVariable: "list",
     textVariable: "text",
     screenshot: "Download Screenshot",

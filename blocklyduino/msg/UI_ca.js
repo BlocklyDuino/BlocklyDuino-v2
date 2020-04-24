@@ -10,7 +10,7 @@ var MSG = {
     catLists: "☰ Llstes",
     catColour: "🌈 Color",
     catVariables: "❓ Variables",
-    catFunctions: "🝡(x) Funcions",
+    catFunctions: "ƒ(x) Funcions",
     listVariable: "llista",
     textVariable: "text",
     screenshot: "Descarrega una captura de pantalla",
@@ -95,7 +95,7 @@ var MSG = {
     searchlLibInput_span: "nom de la bibliteca a cercar",
     searchlLibButton_span: "cerca aquesta biblioteca",
     installLibInput_span: "nom de la biblioteca a instal·lar",
-    installLibButton_span: "instal·la aquesta biblioteca"
+    installLibButton_span: "instal·la aquesta biblioteca",
     //IDE_functions.js
     IDE_connect: 'Connecta al port ',
     IDE_select_port: 'Selecciona el port !',

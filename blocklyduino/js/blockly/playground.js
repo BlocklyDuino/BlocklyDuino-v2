@@ -1,16 +1,16 @@
 /*
  Copyright (C) 2020 Sebastien Canet <scanet@libreduc.cc>
-
+ 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation, either version 3 of the License, or
  (at your option) any later version.
-
+ 
  This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
-
+ 
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -42,8 +42,7 @@ function updateRenderDebugOptions(e) {
     var optionName = target.getAttribute('data-optionName');
     var config = Code.blockRendering.Debug.config;
     config[optionName] = !!target.checked;
-    sessionStorage.setItem(
-            'blockRenderDebugOptions', JSON.stringify(config));
+    sessionStorage.setItem('blockRenderDebugOptions', JSON.stringify(config));
     Code.workspace.render();
 }
 
@@ -157,7 +156,6 @@ function setOnOffLine() {
     // Set background colour to differentiate server vs local copy.
     if (location.protocol === 'file:') {
         document.body.style.backgroundColor = '#006468';
-        document.getElementById('CLI_content').style.backgroundColor = '#006468';
         document.getElementById('setup_content').style.backgroundColor = '#006468';
         document.getElementById('barre_h').style.backgroundColor = '#006468';
         document.getElementById('verifyButton').disabled = false;
@@ -166,7 +164,6 @@ function setOnOffLine() {
         document.getElementById('serialMenu').disabled = false;
     } else {
         document.body.style.backgroundColor = '#7fcbcd';
-        document.getElementById('CLI_content').style.backgroundColor = '#7fcbcd';
         document.getElementById('setup_content').style.backgroundColor = '#7fcbcd';
         document.getElementById('barre_h').style.backgroundColor = '#7fcbcd';
         document.getElementById('verifyButton').disabled = true;
@@ -176,7 +173,7 @@ function setOnOffLine() {
         // hide everything relative to arduino-cli if online
         var elmts = getElementsByClass("CLI", null, null);
         for (var i = 0; i < elmts.length; i++)
-            elmts[i].style.display = 'none';
+            elmts[i].disabled = 'true';
     }
 }
 

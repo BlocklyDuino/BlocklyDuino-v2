@@ -34,7 +34,8 @@ function auto_save_and_restore_blocks() {
         var text = Blockly.Xml.domToText(xml);
         window.sessionStorage.loadOnceBlocks = text;
     }
-};
+}
+;
 /**
  * Undo/redo functions
  */
@@ -53,8 +54,8 @@ Code.saveCodeFile = function () {
     var utc = new Date().toJSON().slice(0, 10).replace(/-/g, '_');
     var dataToSave = Blockly.Arduino.workspaceToCode(Blockly.getMainWorkspace());
     var blob = new Blob([dataToSave], {
-            type: 'text/plain;charset=utf-8'
-        });
+        type: 'text/plain;charset=utf-8'
+    });
     var fileNameSave = prompt(MSG['saveXML_span']);
     if (fileNameSave !== null) {
         var fakeDownloadLink = document.createElement("a");
@@ -77,8 +78,8 @@ Code.saveXmlBlocklyFile = function () {
     var xmlData = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
     var dataToSave = Blockly.Xml.domToPrettyText(xmlData);
     var blob = new Blob([dataToSave], {
-            type: 'text/xml;charset=utf-8'
-        });
+        type: 'text/xml;charset=utf-8'
+    });
     var fileNameSave = prompt(MSG['saveXML_span']);
     if (fileNameSave !== null) {
         var fakeDownloadLink = document.createElement("a");
@@ -104,7 +105,7 @@ Code.openXmlDialog = function () {
 /**
  * Load blocks from local file.
  */
-function loadXmlBlocklyFile(files) {
+Code.loadXmlBlocklyFile = function (files) {
     // Only allow uploading one file
     if (files.length !== 1) {
         return;
@@ -134,7 +135,8 @@ function loadXmlBlocklyFile(files) {
     };
     reader.readAsText(files[0], "UTF-8");
     Blockly.getMainWorkspace().render();
-};
+}
+;
 
 /**
  * Reset workspace and parameters

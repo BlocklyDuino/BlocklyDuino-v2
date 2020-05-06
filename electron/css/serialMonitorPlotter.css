@@ -10,9 +10,9 @@ body {
 }
 
 .grid-container {
-  display: grid;
-  gap: 1px 1px;
-  grid-template-areas: "serialSend serialSend" "serialPeek serialGraphWindow" "serialButtons serialButtons";
+    display: grid;
+    gap: 1px 1px;
+    grid-template-areas: "serialSend serialSend" "serialPeek serialGraphWindow" "serialButtons serialButtons";
 }
 
 .serialSend{
@@ -60,11 +60,10 @@ body {
     grid-area: serialGraphButtons;
 }
 #serialGraph {
-	background: #444;
-	margin: 5px;
-	font-family: consolas;
-	color: white;
-	font-size: 10px;
-	pointer-events: none;
+    background: #444;
+    margin: 5px;
+    font-family: consolas;
+    color: white;
+    font-size: 10px;
+    pointer-events: none;
 }
-        

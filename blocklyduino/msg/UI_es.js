@@ -25,7 +25,6 @@ var MSG = {
     verifyButton_span: "Verifica código",
     serialSpan: "escoge puerto COM",
     uploadButton_span: "Carga",
-    viewCodeButton_span: "Vista del código",
     serialConnectButton_span: "Monitor serie",
     saveCodeButton_span: "Exporta código Arduino",
     newButton_span: "Proyecto nuevo",

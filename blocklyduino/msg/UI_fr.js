@@ -25,7 +25,6 @@ var MSG = {
     verifyButton_span: "compiler le code",
     serialSpan: "choix du port COM",
     uploadButton_span: "téléverser",
-    viewCodeButton_span: "aperçu du code",
     serialConnectButton_span: "moniteur série",
     saveCodeButton_span: "exporte le code",
     newButton_span: "nouveau projet",

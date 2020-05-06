@@ -22,11 +22,11 @@ var numVariablesCallBack = function (currWorkspace) {
             var firstVariable = allIntVars[allIntVars.length - 1];
             var gap = 24;
             var blockText =
-                '<xml>' +
-                '<block type="vars_set_int" gap="' + gap + '">' +
-                '<field name="VAR_SET_INT" variabletype="int">' + firstVariable.name + '</field>' +
-                '</block>' +
-                '</xml>';
+                    '<xml>' +
+                    '<block type="vars_set_int" gap="' + gap + '">' +
+                    '<field name="VAR_SET_INT" variabletype="int">' + firstVariable.name + '</field>' +
+                    '</block>' +
+                    '</xml>';
             var block = Blockly.Xml.textToDom(blockText).firstChild;
             xmlList.push(block);
         }
@@ -34,11 +34,11 @@ var numVariablesCallBack = function (currWorkspace) {
             allIntVars.sort(Blockly.VariableModel.compareByType);
             for (var i = 0, variable; variable = allIntVars[i]; i++) {
                 var blockText =
-                    '<xml>' +
-                    '<block type="vars_get_int" gap="8">' +
-                    '<field name="VAR_GET_INT" variabletype="int">' + variable.name + '</field>' +
-                    '</block>' +
-                    '</xml>';
+                        '<xml>' +
+                        '<block type="vars_get_int" gap="8">' +
+                        '<field name="VAR_GET_INT" variabletype="int">' + variable.name + '</field>' +
+                        '</block>' +
+                        '</xml>';
                 var block = Blockly.Xml.textToDom(blockText).firstChild;
                 xmlList.push(block);
             }
@@ -53,11 +53,11 @@ var numVariablesCallBack = function (currWorkspace) {
             var firstVariable = allFloatVars[allFloatVars.length - 1];
             var gap = 24;
             var blockText =
-                '<xml>' +
-                '<block type="vars_set_float" gap="' + gap + '">' +
-                '<field name="VAR_SET_FLOAT" variabletype="float">' + firstVariable.name + '</field>' +
-                '</block>' +
-                '</xml>';
+                    '<xml>' +
+                    '<block type="vars_set_float" gap="' + gap + '">' +
+                    '<field name="VAR_SET_FLOAT" variabletype="float">' + firstVariable.name + '</field>' +
+                    '</block>' +
+                    '</xml>';
             var block = Blockly.Xml.textToDom(blockText).firstChild;
             xmlList.push(block);
         }
@@ -65,11 +65,11 @@ var numVariablesCallBack = function (currWorkspace) {
             allFloatVars.sort(Blockly.VariableModel.compareByType);
             for (var i = 0, variable; variable = allFloatVars[i]; i++) {
                 var blockText =
-                    '<xml>' +
-                    '<block type="vars_get_float" gap="8">' +
-                    '<field name="VAR_GET_FLOAT" variabletype="float">' + variable.name + '</field>' +
-                    '</block>' +
-                    '</xml>';
+                        '<xml>' +
+                        '<block type="vars_get_float" gap="8">' +
+                        '<field name="VAR_GET_FLOAT" variabletype="float">' + variable.name + '</field>' +
+                        '</block>' +
+                        '</xml>';
                 var block = Blockly.Xml.textToDom(blockText).firstChild;
                 xmlList.push(block);
             }
@@ -89,11 +89,11 @@ var textVariablesCallBack = function (currWorkspace) {
             var firstVariable = allStringVars[allStringVars.length - 1];
             var gap = 24;
             var blockText =
-                '<xml>' +
-                '<block type="vars_set_string" gap="' + gap + '">' +
-                '<field name="VAR_SET_STRING" variabletype="String">' + firstVariable.name + '</field>' +
-                '</block>' +
-                '</xml>';
+                    '<xml>' +
+                    '<block type="vars_set_string" gap="' + gap + '">' +
+                    '<field name="VAR_SET_STRING" variabletype="String">' + firstVariable.name + '</field>' +
+                    '</block>' +
+                    '</xml>';
             var block = Blockly.Xml.textToDom(blockText).firstChild;
             xmlList.push(block);
         }
@@ -101,11 +101,11 @@ var textVariablesCallBack = function (currWorkspace) {
             allStringVars.sort(Blockly.VariableModel.compareByType);
             for (var i = 0, variable; variable = allStringVars[i]; i++) {
                 var blockText =
-                    '<xml>' +
-                    '<block type="vars_get_string" gap="8">' +
-                    '<field name="VAR_GET_STRING" variabletype="String">' + variable.name + '</field>' +
-                    '</block>' +
-                    '</xml>';
+                        '<xml>' +
+                        '<block type="vars_get_string" gap="8">' +
+                        '<field name="VAR_GET_STRING" variabletype="String">' + variable.name + '</field>' +
+                        '</block>' +
+                        '</xml>';
                 var block = Blockly.Xml.textToDom(blockText).firstChild;
                 xmlList.push(block);
             }
@@ -125,11 +125,11 @@ var booleanVariablesCallBack = function (currWorkspace) {
             var firstVariable = allStringVars[allStringVars.length - 1];
             var gap = 24;
             var blockText =
-                '<xml>' +
-                '<block type="vars_set_boolean" gap="' + gap + '">' +
-                '<field name="VAR_SET_BOOLEAN" variabletype="bool">' + firstVariable.name + '</field>' +
-                '</block>' +
-                '</xml>';
+                    '<xml>' +
+                    '<block type="vars_set_boolean" gap="' + gap + '">' +
+                    '<field name="VAR_SET_BOOLEAN" variabletype="bool">' + firstVariable.name + '</field>' +
+                    '</block>' +
+                    '</xml>';
             var block = Blockly.Xml.textToDom(blockText).firstChild;
             xmlList.push(block);
         }
@@ -137,11 +137,11 @@ var booleanVariablesCallBack = function (currWorkspace) {
             allStringVars.sort(Blockly.VariableModel.compareByType);
             for (var i = 0, variable; variable = allStringVars[i]; i++) {
                 var blockText =
-                    '<xml>' +
-                    '<block type="vars_get_boolean" gap="8">' +
-                    '<field name="VAR_GET_BOOLEAN" variabletype="bool">' + variable.name + '</field>' +
-                    '</block>' +
-                    '</xml>';
+                        '<xml>' +
+                        '<block type="vars_get_boolean" gap="8">' +
+                        '<field name="VAR_GET_BOOLEAN" variabletype="bool">' + variable.name + '</field>' +
+                        '</block>' +
+                        '</xml>';
                 var block = Blockly.Xml.textToDom(blockText).firstChild;
                 xmlList.push(block);
             }

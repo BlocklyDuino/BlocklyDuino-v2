@@ -251,7 +251,7 @@ Code.checkAllGeneratorFunctionsDefined = function (generator) {
     var valid = missingBlockGenerators.length === 0;
     if (!valid) {
         var msg = 'The generator code for the following blocks not specified for ' +
-            generator.name_ + ':\n - ' + missingBlockGenerators.join('\n - ');
+                generator.name_ + ':\n - ' + missingBlockGenerators.join('\n - ');
         Blockly.alert(msg); // Assuming synchronous. No callback.
     }
     return valid;
@@ -269,23 +269,23 @@ Code.init = function () {
     var rtl = Code.isRtl();
     var container = document.getElementById('content_area');
     var blocklyDiv = document.getElementById('content_blocks');
-	var onresize = function(e) {
-		var element = container;
-		var x = 0;
-		var y = 0;
-		do {
-			x += element.offsetLeft;
-			y += element.offsetTop;
-			element = element.offsetParent;
-		} while (element);
-		blocklyDiv.style.left = x + 'px';
-		blocklyDiv.style.top = y + 'px';
-		blocklyDiv.style.width = container.offsetWidth + 'px';
-		blocklyDiv.style.height = container.offsetHeight + 'px';
-		Blockly.svgResize(Code.workspace);
-	};
+    var onresize = function (e) {
+        var element = container;
+        var x = 0;
+        var y = 0;
+        do {
+            x += element.offsetLeft;
+            y += element.offsetTop;
+            element = element.offsetParent;
+        } while (element);
+        blocklyDiv.style.left = x + 'px';
+        blocklyDiv.style.top = y + 'px';
+        blocklyDiv.style.width = container.offsetWidth + 'px';
+        blocklyDiv.style.height = container.offsetHeight + 'px';
+        Blockly.svgResize(Code.workspace);
+    };
     window.addEventListener('resize', onresize, false);
-    
+
     for (var messageKey in MSG) {
         if (messageKey.indexOf('cat') === 0) {
             Blockly.Msg[messageKey.toUpperCase()] = MSG[messageKey];
@@ -295,44 +295,44 @@ Code.init = function () {
     var match = location.search.match(/renderer=([^&]+)/);
     var renderer = match ? match[1] : 'geras';
     document.forms.options.elements.renderer.value = renderer;
-    
     Code.workspace = Blockly.inject('content_blocks', {
-            comments: true,
-            collapse: true,
-            disable: true,
-            grid: {
-                spacing: 25,
-                length: 3,
-                colour: '#ccc',
-                snap: true
-            },
-            maxBlocks: Infinity,
-            maxInstances: {
-                'test_basic_limit_instances': 3
-            },
-            maxTrashcanContents: 256,
-            media: './blockly/media/',
-            oneBasedIndex: true,
-            readOnly: false,
-            rtl: rtl,
-            move: {
-                scrollbars: true,
-                drag: true,
-                wheel: false
-            },
-            toolbox: BLOCKLY_TOOLBOX_XML['toolboxDuino'],
-            renderer: renderer,
-            zoom: {
-                controls: true,
-                wheel: true,
-                startScale: 1.0,
-                maxScale: 4,
-                minScale: 0.25,
-                scaleSpeed: 1.1
-            }
-        });
+        comments: true,
+        collapse: true,
+        disable: true,
+        grid: {
+            spacing: 25,
+            length: 3,
+            colour: '#ccc',
+            snap: true
+        },
+        maxBlocks: Infinity,
+        maxInstances: {
+            'test_basic_limit_instances': 3
+        },
+        maxTrashcanContents: 256,
+        media: './blockly/media/',
+        oneBasedIndex: true,
+        readOnly: false,
+        rtl: rtl,
+        move: {
+            scrollbars: true,
+            drag: true,
+            wheel: false
+        },
+        toolbox: BLOCKLY_TOOLBOX_XML['toolboxDuino'],
+        renderer: renderer,
+        zoom: {
+            controls: true,
+            wheel: true,
+            startScale: 1.0,
+            maxScale: 4,
+            minScale: 0.25,
+            scaleSpeed: 1.1
+        }
+    });
+    
     //button callback register with functions
-    Code.workspace.registerButtonCallback('createVarBtnInt', createVarBtnIntCallBack);   
+    Code.workspace.registerButtonCallback('createVarBtnInt', createVarBtnIntCallBack);
     Code.workspace.registerButtonCallback('createVarBtnFloat', createVarBtnFloatCallBack);
     Code.workspace.registerButtonCallback('createVarBtnString', createVarBtnStringCallBack);
     Code.workspace.registerButtonCallback('createVarBtnBoolean', createVarBtnBooleanCallBack);
@@ -340,7 +340,7 @@ Code.init = function () {
     Code.workspace.registerToolboxCategoryCallback('VARIABLE_TYPED_NUM', numVariablesCallBack);
     Code.workspace.registerToolboxCategoryCallback('VARIABLE_TYPED_TEXT', textVariablesCallBack);
     Code.workspace.registerToolboxCategoryCallback('VARIABLE_TYPED_BOOLEAN', booleanVariablesCallBack);
-    
+
     Code.workspace.configureContextMenu = configureContextualMenu;
 
     Code.loadBlocks('');
@@ -351,7 +351,7 @@ Code.init = function () {
     }
     onresize();
     Blockly.svgResize(Code.workspace);
-    
+
     //change theme color
     match = location.search.match(/theme=([^&]+)/);
     var theme = match ? match[1] : 'classic';
@@ -377,56 +377,54 @@ Code.init = function () {
         Blockly.navigation.ACTION_MOVE_WS_CURSOR_RIGHT
     ];
     createKeyMappingList(actions);
-    
-	// function used for dragging and moving splitted windows
+
+    // function used for dragging and moving splitted windows
     // needs onresize function defined ahead
-	function dragElement( element, direction, first, second) {
-		var mouse_down_info;
-		element.onmousedown = onMouseDown;		
-		function onMouseDown( e ) {
-			mouse_down_info = {e,
-				  offsetLeft:  element.offsetLeft,
-				  offsetTop:   element.offsetTop,
-				  firstWidth:  first.offsetWidth,
-				  secondWidth: second.offsetWidth,
-				  firstHeight:  first.offsetHeight,
-				  secondHeight: second.offsetHeight};
-			document.onmousemove = onMouseMove;
-			document.onmouseup = () => {
-				//console.log("mouse up");
-				document.onmousemove = document.onmouseup = null;
-				}
-		}		
-		function onMouseMove( e ) {
-			var delta = {x: e.clientX - mouse_down_info.e.x, y: e.clientY - mouse_down_info.e.y};			
-			if (direction === "H" ) // Horizontal
-				{
-				// prevent negative-sized elements
-				delta.x = Math.min(Math.max(delta.x, -mouse_down_info.firstWidth), mouse_down_info.secondWidth);	    
-				element.style.left = mouse_down_info.offsetLeft + delta.x + "px";
-				first.style.width = (mouse_down_info.firstWidth + delta.x) + "px";
-				second.style.width = (mouse_down_info.secondWidth - delta.x) + "px";
-				}			
-			if (direction === "V" ) // Vertical
-				{
-				// prevent negative-sized elements
-				delta.y = Math.min(Math.max(delta.y, -mouse_down_info.firstHeight), mouse_down_info.secondHeight);	    
-				element.style.top = mouse_down_info.offsetTop + delta.y + "px";
-				first.style.height = (mouse_down_info.firstHeight + delta.y) + "px";
-				second.style.height = (mouse_down_info.secondHeight - delta.y) + "px";
-				}
-		onresize();
-		Blockly.svgResize(Code.workspace);
-		}
-	}
-	dragElement(document.getElementById("separator"), "H", document.getElementById("content_area"), document.getElementById("code_peek"));
-	dragElement(document.getElementById("barre_h"), "V", document.getElementById("wrapper_up"), document.getElementById("content_serial"));    
+    function dragElement(element, direction, first, second) {
+        var mouse_down_info;
+        element.onmousedown = onMouseDown;
+        function onMouseDown(e) {
+            mouse_down_info = {e,
+                offsetLeft: element.offsetLeft,
+                offsetTop: element.offsetTop,
+                firstWidth: first.offsetWidth,
+                secondWidth: second.offsetWidth,
+                firstHeight: first.offsetHeight,
+                secondHeight: second.offsetHeight};
+            document.onmousemove = onMouseMove;
+            document.onmouseup = () => {
+                //console.log("mouse up");
+                document.onmousemove = document.onmouseup = null;
+            }
+        }
+        function onMouseMove(e) {
+            var delta = {x: e.clientX - mouse_down_info.e.x, y: e.clientY - mouse_down_info.e.y};
+            if (direction === "H") // Horizontal
+            {
+                // prevent negative-sized elements
+                delta.x = Math.min(Math.max(delta.x, -mouse_down_info.firstWidth), mouse_down_info.secondWidth);
+                element.style.left = mouse_down_info.offsetLeft + delta.x + "px";
+                first.style.width = (mouse_down_info.firstWidth + delta.x) + "px";
+                second.style.width = (mouse_down_info.secondWidth - delta.x) + "px";
+            }
+            if (direction === "V") // Vertical
+            {
+                // prevent negative-sized elements
+                delta.y = Math.min(Math.max(delta.y, -mouse_down_info.firstHeight), mouse_down_info.secondHeight);
+                element.style.top = mouse_down_info.offsetTop + delta.y + "px";
+                first.style.height = (mouse_down_info.firstHeight + delta.y) + "px";
+                second.style.height = (mouse_down_info.secondHeight - delta.y) + "px";
+            }
+            onresize();
+            Blockly.svgResize(Code.workspace);
+        }
+    }
+    dragElement(document.getElementById("separator"), "H", document.getElementById("content_area"), document.getElementById("code_peek"));
+    dragElement(document.getElementById("barre_h"), "V", document.getElementById("wrapper_up"), document.getElementById("content_serial"));
     Code.renderPeekCode();
     Code.workspace.addChangeListener(Code.renderPeekCode);
 };
 
-    
-	
 /**
  * Initialize the page language.
  */
@@ -463,7 +461,7 @@ Code.initLanguage = function () {
         languageMenu.options.add(option);
     }
     languageMenu.addEventListener('change', Code.changeLanguage, true);
-    
+
     // Inject language strings.
     document.title = MSG['title'];
     document.getElementById('appName').textContent = MSG['appName'];
@@ -544,7 +542,7 @@ Code.initLanguage = function () {
 Code.discard = function () {
     var count = Code.workspace.getAllBlocks(false).length;
     if (count < 2 ||
-        window.confirm(Blockly.Msg['DELETE_ALL_BLOCKS'].replace('%1', count))) {
+            window.confirm(Blockly.Msg['DELETE_ALL_BLOCKS'].replace('%1', count))) {
         Code.workspace.clear();
         if (window.location.hash) {
             window.location.hash = '';

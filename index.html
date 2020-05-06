@@ -87,7 +87,7 @@
                                 <i class="fas fa-file-upload"></i>
                             </span>
                         </button>
-                        <input type="file" id="loadXMLfile" hidden onchange="loadXmlBlocklyFile(this.files)" />
+                        <input type="file" id="loadXMLfile" hidden onchange="Code.loadXmlBlocklyFile(this.files)" />
                         <button id="resetButton" class="iconButtons" onclick="Code.ResetWorkspace()">
                             <span id="resetButton_span">
                                 <i class="fas fa-power-off"></i>
@@ -148,17 +148,17 @@
                         <span id="CLI_title_span" class="UIText">CLI</span>
                         <br>
                         <div id="CLI_title" style="display:flex;text-align: center;">
-                            <button id="coreUpdateButton" class="iconButtons" onclick="">
+                            <button id="coreUpdateButton" class="iconButtons CLI" onclick="">
                                 <span id="coreUpdateButton_span">
                                     <i class="fas fa-sync"></i>
                                 </span>
                             </button>
-                            <button id="cleanCLIcacheButton" class="iconButtons" onclick="">
+                            <button id="cleanCLIcacheButton" class="iconButtons CLI" onclick="">
                                 <span id="cleanCLIcache_span">
                                     <i class="fas fa-eraser"></i>
                                 </span>
                             </button>
-                            <button id="listBoardsButton" class="iconButtons" onclick="">
+                            <button id="listBoardsButton" class="iconButtons CLI" onclick="">
                                 <span id="listBoardsButton_span">
                                     <i class="fas fa-list"></i>
                                 </span>
@@ -168,10 +168,10 @@
                             </a>
                         </div>
                         <br>
-                        <span id="installBoard_title_span" class="UIText">install board</span>
+                        <span id="installBoard_title_span" class="UIText CLI">install board</span>
                         <br>
                         <input type="text" id="installBoardsInput" name="installBoardsInput" style="width: 250px;font-size:20px;">
-                        <button id="installBoardsButton" class="iconButtons" onclick="">
+                        <button id="installBoardsButton" class="iconButtons CLI" onclick="">
                             <span id="installBoardsButton_span">
                                 <i class="fas fa-cloud-download-alt"></i>
                             </span>
@@ -181,7 +181,7 @@
                         <span id="searchlLib_title_span" class="UIText">search library</span>
                         <br>
                         <input type="text" id="searchlLibInput" name="searchlLibInput" style="width: 250px;font-size:20px;">
-                        <button id="searchlLibButton" class="iconButtons" onclick="">
+                        <button id="searchlLibButton" class="iconButtons CLI" onclick="">
                             <span id="searchlLibButton_span">
                                 <i class="fab fa-searchengin"></i>
                             </span>
@@ -191,7 +191,7 @@
                         <span id="installLib_title_span" class="UIText">install library</span>
                         <br>
                         <input type="text" id="installLibInput" name="installLibInput" size="18" style="width: 250px;font-size:20px;">
-                        <button id="installLibButton" class="iconButtons" onclick="">
+                        <button id="installLibButton" class="iconButtons CLI" onclick="">
                             <span id="installLibButton_span">
                                 <i class="fas fa-cloud-download-alt"></i>
                             </span>
@@ -328,8 +328,8 @@
     <script src="./blocklyduino/toolbox/toolbox_blocklyduino.js"></script>
     <script src="./blocklyduino/toolbox/toolbox_standard.js"></script>
     <script type="text/javascript">
-        require('../CLI_functions.js');
-        require('../IDE_functions.js');
+                        require('../CLI_functions.js');
+                        require('../IDE_functions.js');
 <!-- require('../resources/app.asar/functions.js'); -->
     </script>
 </HTML>

@@ -10,26 +10,87 @@
         <link rel="stylesheet" href="./blocklyduino/css/keyboard_nav.css" />
         <link rel="stylesheet" href="./blocklyduino/css/prettify.css" />
         <link rel="stylesheet" href="./blocklyduino/css/blocklyduino.css" />
+        <link rel="stylesheet" href="./blocklyduino/css/lateral-panel.css" />
     </head>
     <body>
         <div class="table_wrapper">
-            <table>
-                <tr id="optionsTop">
+            <table style="width: 100%; height: 100%;">
+                <tr id="optionsTop" style="height: 40px;">
                     <td style="width: 268px;">
                         <span id="appName" class='TitleText'></span> 
                     </td>
                     <td class="tabMiddle">
                         <span id="content_hoverButton"></span>
                     </td>
-                    <td class="farSide" style="width: 120px;">
-                        <button id="config_sideButton" class="iconButtons CLI" onclick="Code.peekCLI()">
-                            <span id="config_side_span">
-                                <i class="fas fa-terminal"></i>
+                </tr>
+                <tr style="height: 40px;">
+                    <td class="tabmax" colspan="2">
+                        <button id="undoButton" class="iconButtons" onclick="Code.Undo()">
+                            <span id="undoButton_span" style="font-size: 1em;">
+                                <i class="fas fa-undo-alt"></i>
                             </span>
                         </button>
-                        <button id="setup_sideButton" class="iconButtons" onclick="Code.peekSetup()">
-                            <span id="setup_side_span">
-                                <i class="fas fa-wrench"></i>
+                        <button id="redoButton" class="iconButtons" onclick="Code.Redo()">
+                            <i class="fas fa-redo-alt"></i>
+                            <span id="redoButton_span"></span>
+                        </button>
+                        <i class="fas fa-microchip UIText" id="boardIcon"></i>
+                        <select id="boardMenu" onchange="changeBoard()" class="UIText">
+                            <option value="none" selected="selected">...</option>
+                            <option value="arduino_leonardo">Arduino Leonardo</option>
+                            <option value="arduino_mega">Arduino Mega 2560 / ADK</option>
+                            <option value="arduino_micro">Arduino Micro</option>
+                            <option value="arduino_mini">Arduino Mini ATmega328</option>
+                            <option value="arduino_nano">Arduino Nano ATmega328</option>
+                            <option value="arduino_pro8">Arduino Pro Mini 3.3V ATmega328</option>
+                            <option value="arduino_pro16">Arduino Pro Mini 5V ATmega328</option>
+                            <option value="arduino_uno">Arduino Uno</option>
+                            <option value="arduino_yun">Arduino Yùn</option>
+                            <option value="lilypad">LilyPad Arduino ATmega328P</option>
+                        </select>
+                        <button id="verifyButton" class="iconButtons">
+                            <span id="verifyButton_span">
+                                <i class="fas fa-check"></i>
+                            </span>
+                        </button>
+                        <i class="fab fa-usb UIText" id="serialIcon"></i>
+                        <select id="serialMenu" class="UIText">
+                            <option value="none">...</option>
+                        </select>
+                        <button id="uploadButton" class="iconButtons">
+                            <span id="uploadButton_span">
+                                <i class="fas fa-sign-out-alt"></i>
+                            </span>
+                        </button>
+                        <button id="serialConnectButton" class="iconButtons">
+                            <span id="serialConnectButton_span">
+                                <i class="fas fa-search"></i>
+                            </span>
+                        </button>
+                        <button id="saveCodeButton" class="iconButtons" onclick="Code.saveCodeFile()">
+                            <span id="saveCodeButton_span">
+                                <i class="fas fa-file-export"></i>
+                            </span>
+                        </button>
+                        <button id="newButton"  class="iconButtons" onclick="Code.discard()">
+                            <span id="newButton_span">
+                                <i class="far fa-file"></i>
+                            </span>
+                        </button>
+                        <button id="saveXMLButton" class="iconButtons" onclick="Code.saveXmlBlocklyFile()">
+                            <span id="saveXMLButton_span">
+                                <i class="fas fa-file-download"></i>
+                            </span>
+                        </button>
+                        <button id="loadXMLfakeButton" class="iconButtons" onclick="Code.openXmlDialog()">
+                            <span id="loadXMLfakeButton_span">
+                                <i class="fas fa-file-upload"></i>
+                            </span>
+                        </button>
+                        <input type="file" id="loadXMLfile" hidden onchange="loadXmlBlocklyFile(this.files)" />
+                        <button id="resetButton" class="iconButtons" onclick="Code.ResetWorkspace()">
+                            <span id="resetButton_span">
+                                <i class="fas fa-power-off"></i>
                             </span>
                         </button>
                         <button id="helpButton" class="iconButtons" onclick="window.location.href = 'https://github.com/BlocklyDuino/BlocklyDuino-v2'">
@@ -39,159 +100,16 @@
                         </button>
                     </td>
                 </tr>
-                <tr>
-                    <td colspan="4">
-                        <table style="width: 100%">
-                            <tr id="tabRow" style="height: 1em">
-                                <td id="tab_blocks" class="tabon">Blocks</td>
-                                <td class="tabmin tab_collapse">&nbsp;</td>
-                                <td id="tab_program" class="taboff tab_collapse">Program</td>
-                                <td class="tabmin tab_collapse">&nbsp;</td>
-                                <td id="tab_code" class="taboff">
-                                    <select id="code_menu"></select>
-                                </td>
-                                <td class="tabmax">
-                                    <button id="undoButton" class="iconButtons" onclick="Code.Undo()">
-                                        <span id="undoButton_span" style="font-size: 1em;">
-                                            <i class="fas fa-undo-alt"></i>
-                                        </span>
-                                    </button>
-                                    <button id="redoButton" class="iconButtons" onclick="Code.Redo()">
-                                        <i class="fas fa-redo-alt"></i>
-                                        <span id="redoButton_span"></span>
-                                    </button>
-                                    <i class="fas fa-microchip UIText" id="boardIcon"></i>
-                                    <select id="boardMenu" onchange="changeBoard()" class="UIText">
-                                        <option value="none" selected="selected">...</option>
-                                        <option value="arduino_leonardo">Arduino Leonardo</option>
-                                        <option value="arduino_mega">Arduino Mega 2560 / ADK</option>
-                                        <option value="arduino_micro">Arduino Micro</option>
-                                        <option value="arduino_mini">Arduino Mini ATmega328</option>
-                                        <option value="arduino_nano">Arduino Nano ATmega328</option>
-                                        <option value="arduino_pro8">Arduino Pro Mini 3.3V ATmega328</option>
-                                        <option value="arduino_pro16">Arduino Pro Mini 5V ATmega328</option>
-                                        <option value="arduino_uno">Arduino Uno</option>
-                                        <option value="arduino_yun">Arduino Yùn</option>
-                                        <option value="lilypad">LilyPad Arduino ATmega328P</option>
-                                    </select>
-                                    <button id="verifyButton" class="iconButtons">
-                                        <span id="verifyButton_span">
-                                            <i class="fas fa-check"></i>
-                                        </span>
-                                    </button>
-                                    <i class="fab fa-usb UIText" id="serialIcon"></i>
-                                    <select id="serialMenu" class="UIText">
-                                        <option value="none">...</option>
-                                    </select>
-                                    <button id="uploadButton" class="iconButtons">
-                                        <span id="uploadButton_span">
-                                            <i class="fas fa-sign-out-alt"></i>
-                                        </span>
-                                    </button>
-                                    <button id="serialConnectButton" class="iconButtons">
-                                        <span id="serialConnectButton_span">
-                                            <i class="fas fa-search"></i>
-                                        </span>
-                                    </button>
-                                    <button id="viewCodeButton" class="iconButtons" onclick="Code.peekCode()">
-                                        <span id="viewCodeButton_span">
-                                            <i class="fas fa-code"></i>
-                                        </span>
-                                    </button>
-                                    <button id="saveCodeButton" class="iconButtons" onclick="Code.saveCodeFile()">
-                                        <span id="saveCodeButton_span">
-                                            <i class="fas fa-file-export"></i>
-                                        </span>
-                                    </button>
-                                    <button id="newButton"  class="iconButtons" onclick="Code.discard()">
-                                        <span id="newButton_span">
-                                            <i class="far fa-file"></i>
-                                        </span>
-                                    </button>
-                                    <button id="saveXMLButton" class="iconButtons" onclick="Code.saveXmlBlocklyFile()">
-                                        <span id="saveXMLButton_span">
-                                            <i class="fas fa-file-download"></i>
-                                        </span>
-                                    </button>
-                                    <button id="loadXMLfakeButton" class="iconButtons" onclick="Code.openXmlDialog()">
-                                        <span id="loadXMLfakeButton_span">
-                                            <i class="fas fa-file-upload"></i>
-                                        </span>
-                                    </button>
-                                    <input type="file" id="loadXMLfile" hidden onchange="loadXmlBlocklyFile(this.files)" />
-                                    <button id="resetButton" class="iconButtons" onclick="Code.ResetWorkspace()">
-                                        <span id="resetButton_span">
-                                            <i class="fas fa-power-off"></i>
-                                        </span>
-                                    </button>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="4" id="content_area" class="td_wrapper">
-                        <div id="content_wrapper" class="content_wrapper">
-                            <div id="content_blocks" class="content"></div>
-                            <div id="CLI_content" class="side_content setup_content CLI">
-                                <div id="configCLI" style="margin: 10px;">
-                                    <span id="CLI_title_span" class="UIText">CLI</span>
-                                    <br>
-                                    <div id="CLI_title" style="display:flex;text-align: center;">
-                                        <button id="coreUpdateButton" class="iconButtons" onclick="">
-                                            <span id="coreUpdateButton_span">
-                                                <i class="fas fa-sync"></i>
-                                            </span>
-                                        </button>
-                                        <button id="cleanCLIcacheButton" class="iconButtons" onclick="">
-                                            <span id="cleanCLIcache_span">
-                                                <i class="fas fa-eraser"></i>
-                                            </span>
-                                        </button>
-                                        <button id="listBoardsButton" class="iconButtons" onclick="">
-                                            <span id="listBoardsButton_span">
-                                                <i class="fas fa-list"></i>
-                                            </span>
-                                        </button>
-                                        <a href="https://arduino.github.io/arduino-cli/" id="CLI_githubLinkButton" target="_blank">
-                                            <img src="./blocklyduino/media/featured-CLI.png" style="height: 40px" />
-                                        </a>
-                                    </div>
-                                    <br>
-                                    <span id="installBoard_title_span" class="UIText">install board</span>
-                                    <br>
-                                    <input type="text" id="installBoardsInput" name="installBoardsInput" style="width: 270px;font-size:20px;">
-                                    <button id="installBoardsButton" class="iconButtons" onclick="">
-                                        <span id="installBoardsButton_span">
-                                            <i class="fas fa-cloud-download-alt"></i>
-                                        </span>
-                                    </button>
-                                    <br>
-                                    <br>
-                                    <span id="searchlLib_title_span" class="UIText">search library</span>
-                                    <br>
-                                    <input type="text" id="searchlLibInput" name="searchlLibInput" style="width: 270px;font-size:20px;">
-                                    <button id="searchlLibButton" class="iconButtons" onclick="">
-                                        <span id="searchlLibButton_span">
-                                            <i class="fab fa-searchengin"></i>
-                                        </span>
-                                    </button>
-                                    <br>
-                                    <br>
-                                    <span id="installLib_title_span" class="UIText">install library</span>
-                                    <br>
-                                    <input type="text" id="installLibInput" name="installLibInput" size="18" style="width: 270px;font-size:20px;">
-                                    <button id="installLibButton" class="iconButtons" onclick="">
-                                        <span id="installLibButton_span">
-                                            <i class="fas fa-cloud-download-alt"></i>
-                                        </span>
-                                    </button>
-                                    <br>
+                <tr style="width: 100%; height: 100%;">
+                    <td colspan="2">
+                        <div class="content_wrapper">
+                            <div id="wrapper_up" class="wrapper_up">
+                                <div id="content_area">
+                                    <div id="content_blocks"></div>
                                 </div>
-                            </div>
-                            <div id="side_content" class="side_content">
-                                <div id="code_peek" class="code_peek">
-                                    <pre id="code_peek_content" class="code_peek_content"> </pre>
+                                <div id="separator" ></div>
+                                <div id="code_peek">
+                                    <pre id="code_peek_content" class="code_peek_content prettyprint linenums"> </pre>
                                     <button id="copyCodeButton" class="iconButtons" data-clipboard-action="copy" data-clipboard-target="#code_peek">
                                         <span id="copyCodeButton_span">
                                             <i class="far fa-copy"></i>
@@ -199,82 +117,13 @@
                                     </button>
                                 </div>
                             </div>
-                            <div id="setup_content" class="side_content setup_content">
-                                <div id="setup" style="margin: 10px;">
-                                    <form id="options">
-                                        <!-- <select name="toolbox" onchange="document.forms.options.submit('options')"> -->
-                                        <!-- <option value="categories">Categories (untyped variables)</option> -->
-                                        <!-- <option value="categories-typed-variables">Categories (typed variables)</option> -->
-                                        <!-- <option value="simple">Simple</option> -->
-                                        <!-- <option value="test-blocks">Test Blocks</option> -->
-                                        <!-- </select> -->
-                                        <span id="languageSpan" class="UIText">...</span>
-                                        <select id="languageMenu"></select>
-                                        <br>
-                                        <br>
-                                        <span id="renderSpan" class="UIText">...</span>
-                                        <select name="renderer" onchange="document.forms.options.submit('options')">
-                                            <option value="geras">Geras</option>
-                                            <option value="thrasos">Thrasos</option>
-                                            <option value="zelos">Zelos</option>
-                                            <option value="minimalist">Minimalist</option>
-                                        </select>
-                                        <br>
-                                        <br>
-                                        <span id="themeSpan" class="UIText">...</span>
-                                        <select name="theme" onchange="changeTheme(this.value)">
-                                            <option value="classic" id="themeClassicSpan">classic</option>
-                                            <option value="modern" id="themeModernSpan">modern</option>
-                                            <option value="deuteranopia" id="themeDeuteranopiaSpan">deuteranopia</option>
-                                            <option value="tritanopia" id="themeTritanopiaSpan">tritanopia</option>
-                                            <option value="zelos" id="themeZelosSpan">zelos</option>
-                                            <option value="high_contrast" id="themeHighContrastSpan">high_contrast</option>
-                                            <option value="dark" id="themeDarkSpan">dark</option>
-                                            <option value="blackWhite" id="themeBwSpan">blackWhite</option>
-                                        </select>
-                                    </form>
-                                    <br>
-                                    <span id="fontSizeSpan" class="UIText"></span>
-                                    <select id="rendering-constant-selector">
-                                        <option value="fontSizeBlocks" id="optionFontSizeBlocks">Blocks Font Size</option>
-                                        <option value="fontSizePage" id="optionFontSizePage">Page Font Size</option>
-                                        <option value="fontSpacingPage" id="optionFontSpacingPage">Page Font Spacing</option>
-                                    </select>
-                                    <br>
-                                    <input type="range" min="3" max="50" value="4"
-                                           oninput="changeRenderingConstant(this.value)"
-                                           onchange="changeRenderingConstant(this.value)" />
-                                    <br>
-                                    <br>
-                                    <span id="accessibilitySpan" class="UIText"></span>
-                                    <input id="accessibilityModeCheck" type="checkbox" onclick="toggleAccessibilityMode(this.checked)">
-                                    <br>
-                                    <span id="keyMappingSpan" class="UIText"></span>
-                                    <input id="displayKeyMappings" type="checkbox" onclick="toggleDisplayKeyMappings(this.checked)">
-                                    <br>
-                                    <select id="cursorChanger" name="cursor" onchange="changeCursor(this.value)">
-                                        <option value="default" id="defaultCursorSpan">default</option> 
-                                        <option value="basic" id="basicCursorSpan">basic</option>
-                                        <option value="line" id="lineCursorSpan">line</option>
-                                    </select>
-                                    <br>
-                                    <span id="keyMappingExplanationSpan" class="UITextSmall"></span>
+                            <div id="barre_h">
+                                <div id="checkDetails">
+                                    <input type="checkbox" name="detailedCompilation" id="detailedCompilation"/>
+                                    <span id="detailedCompilation_span" style="color: white;"> </span>
                                 </div>
                             </div>
-                            <div id="content_program" class="content">
-                                <pre id="content_code" class="content content_program prettyprint lang-cpp"></pre>
-                                <div id="barre_h">
-                                    <div id="checkDetails">
-                                        <input type="checkbox" name="detailedCompilation" id="detailedCompilation"/>
-                                        <span id="detailedCompilation_span" style="color: white;"> </span>
-                                    </div>
-                                    <div id="sizeGripper">
-                                        <img src="./blocklyduino/media/vsizegrip.png" />
-                                    </div>
-                                    <a href="blocklyduino/serialMonitor.html"></a>
-                                </div>
-                                <div id="content_serial" class="content"></div>
-                            </div>
+                            <div id="content_serial"></div>
                         </div>
                     </td>
                 </tr>
@@ -285,6 +134,142 @@
                 <span id="keyMappingModalSpan"></span>
             </div>
             <form id="keyboard_mappings"></form>
+        </div>
+        <div id="lateral-panel-CLI">
+            <input id="lateral-panel-CLI-input" type="checkbox">
+            <label id="lateral-panel-CLI-label" for="lateral-panel-CLI-input" class="label_panel">
+                <span id="config_side_span">
+                    <i class="fas fa-terminal"></i>
+                </span>
+            </label>
+            <div id="lateral-panel-CLI-bloc">
+                <div id="CLI_content" class="side_content config_content CLI">
+                    <div id="configCLI">
+                        <span id="CLI_title_span" class="UIText">CLI</span>
+                        <br>
+                        <div id="CLI_title" style="display:flex;text-align: center;">
+                            <button id="coreUpdateButton" class="iconButtons" onclick="">
+                                <span id="coreUpdateButton_span">
+                                    <i class="fas fa-sync"></i>
+                                </span>
+                            </button>
+                            <button id="cleanCLIcacheButton" class="iconButtons" onclick="">
+                                <span id="cleanCLIcache_span">
+                                    <i class="fas fa-eraser"></i>
+                                </span>
+                            </button>
+                            <button id="listBoardsButton" class="iconButtons" onclick="">
+                                <span id="listBoardsButton_span">
+                                    <i class="fas fa-list"></i>
+                                </span>
+                            </button>
+                            <a href="https://arduino.github.io/arduino-cli/" id="CLI_githubLinkButton" target="_blank">
+                                <img src="./blocklyduino/media/featured-CLI.png" style="height: 40px" />
+                            </a>
+                        </div>
+                        <br>
+                        <span id="installBoard_title_span" class="UIText">install board</span>
+                        <br>
+                        <input type="text" id="installBoardsInput" name="installBoardsInput" style="width: 250px;font-size:20px;">
+                        <button id="installBoardsButton" class="iconButtons" onclick="">
+                            <span id="installBoardsButton_span">
+                                <i class="fas fa-cloud-download-alt"></i>
+                            </span>
+                        </button>
+                        <br>
+                        <br>
+                        <span id="searchlLib_title_span" class="UIText">search library</span>
+                        <br>
+                        <input type="text" id="searchlLibInput" name="searchlLibInput" style="width: 250px;font-size:20px;">
+                        <button id="searchlLibButton" class="iconButtons" onclick="">
+                            <span id="searchlLibButton_span">
+                                <i class="fab fa-searchengin"></i>
+                            </span>
+                        </button>
+                        <br>
+                        <br>
+                        <span id="installLib_title_span" class="UIText">install library</span>
+                        <br>
+                        <input type="text" id="installLibInput" name="installLibInput" size="18" style="width: 250px;font-size:20px;">
+                        <button id="installLibButton" class="iconButtons" onclick="">
+                            <span id="installLibButton_span">
+                                <i class="fas fa-cloud-download-alt"></i>
+                            </span>
+                        </button>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="lateral-panel-setup">
+            <input id="lateral-panel-setup-input" type="checkbox">
+            <label id="lateral-panel-setup-label" for="lateral-panel-setup-input" class="label_panel">
+                <span id="setup_side_span">
+                    <i class="fas fa-wrench"></i>
+                </span>
+            </label>
+            <div id="lateral-panel-setup-bloc">
+                <div id="setup_content" class="side_content config_content">
+                    <form id="options">
+                        <!-- <select name="toolbox" onchange="document.forms.options.submit('options')"> -->
+                        <!-- <option value="categories">Categories (untyped variables)</option> -->
+                        <!-- <option value="categories-typed-variables">Categories (typed variables)</option> -->
+                        <!-- <option value="simple">Simple</option> -->
+                        <!-- <option value="test-blocks">Test Blocks</option> -->
+                        <!-- </select> -->
+                        <span id="languageSpan" class="UIText">...</span>
+                        <select id="languageMenu"></select>
+                        <br>
+                        <br>
+                        <span id="renderSpan" class="UIText">...</span>
+                        <select name="renderer" onchange="document.forms.options.submit('options')">
+                            <option value="geras">Geras</option>
+                            <option value="thrasos">Thrasos</option>
+                            <option value="zelos">Zelos</option>
+                            <option value="minimalist">Minimalist</option>
+                        </select>
+                        <br>
+                        <br>
+                        <span id="themeSpan" class="UIText">...</span>
+                        <select name="theme" onchange="changeTheme(this.value)">
+                            <option value="classic" id="themeClassicSpan">classic</option>
+                            <option value="modern" id="themeModernSpan">modern</option>
+                            <option value="deuteranopia" id="themeDeuteranopiaSpan">deuteranopia</option>
+                            <option value="tritanopia" id="themeTritanopiaSpan">tritanopia</option>
+                            <option value="zelos" id="themeZelosSpan">zelos</option>
+                            <option value="high_contrast" id="themeHighContrastSpan">high_contrast</option>
+                            <option value="dark" id="themeDarkSpan">dark</option>
+                            <option value="blackWhite" id="themeBwSpan">blackWhite</option>
+                        </select>
+                    </form>
+                    <br>
+                    <span id="fontSizeSpan" class="UIText"></span>
+                    <select id="rendering-constant-selector">
+                        <option value="fontSizeBlocks" id="optionFontSizeBlocks">Blocks Font Size</option>
+                        <option value="fontSizePage" id="optionFontSizePage">Page Font Size</option>
+                        <option value="fontSpacingPage" id="optionFontSpacingPage">Page Font Spacing</option>
+                    </select>
+                    <br>
+                    <input type="range" min="3" max="50" value="4"
+                           oninput="changeRenderingConstant(this.value)"
+                           onchange="changeRenderingConstant(this.value)" />
+                    <br>
+                    <br>
+                    <span id="accessibilitySpan" class="UIText"></span>
+                    <input id="accessibilityModeCheck" type="checkbox" onclick="toggleAccessibilityMode(this.checked)">
+                    <br>
+                    <span id="keyMappingSpan" class="UIText"></span>
+                    <input id="displayKeyMappings" type="checkbox" onclick="toggleDisplayKeyMappings(this.checked)">
+                    <br>
+                    <select id="cursorChanger" name="cursor" onchange="changeCursor(this.value)">
+                        <option value="default" id="defaultCursorSpan">default</option> 
+                        <option value="basic" id="basicCursorSpan">basic</option>
+                        <option value="line" id="lineCursorSpan">line</option>
+                    </select>
+                    <br>
+                    <span id="keyMappingExplanationSpan" class="UITextSmall"></span>
+                </div>
+            </div>
         </div>
     </body>
     <!-- load JavaScript just before the closing HTML body tag ensures the scripts don’t block loading of other content and page content is readable before scripts are downloaded and executed -->
@@ -309,7 +294,7 @@
     <script src="./blocklyduino/js/blockly/keyboard_nav.js"></script>
     <script src="./blocklyduino/js/blockly/playground.js"></script>
     <!-- BlocklyDuino libraries of external functions -->
-    <script src="./blocklyduino/js/addon/prettify.js?autoload=true&amp;skin=default&amp;lang=cpp&amp;linenums=true" defer=""></script>
+    <script src="./blocklyduino/js/addon/prettify.js"></script>
     <script src="./blocklyduino/js/addon/clipboard.min.js"></script>
     <script src="./blocklyduino/js/addon/diff.js"></script>
     <script src="./blocklyduino/js/buttons_functions.js"></script>

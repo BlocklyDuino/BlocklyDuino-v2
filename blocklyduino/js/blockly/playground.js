@@ -173,7 +173,7 @@ function setOnOffLine() {
         document.getElementById('uploadButton').disabled = true;
         document.getElementById('serialConnectButton').disabled = true;
         document.getElementById('serialMenu').disabled = true;
-        //hide everything relative to arduino-cli if online
+        // hide everything relative to arduino-cli if online
         var elmts = getElementsByClass("CLI", null, null);
         for (var i = 0; i < elmts.length; i++)
             elmts[i].style.display = 'none';
@@ -193,9 +193,9 @@ function getToolboxElement() {
 
 function toggleAccessibilityMode(state) {
     if (state) {
-        Code.navigation.enableKeyboardAccessibility();
+        Blockly.navigation.enableKeyboardAccessibility();
     } else {
-        Code.navigation.disableKeyboardAccessibility();
+        Blockly.navigation.disableKeyboardAccessibility();
     }
 }
 ;

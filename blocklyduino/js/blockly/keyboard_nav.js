@@ -292,7 +292,7 @@ function createKeyMappingList(actions) {
         actionDiv.setAttribute('data-actionname', action.name);
         actionDiv.action = action;
 
-        var labelDiv = document.createElement('label');
+        var labelDiv = document.createElement('labelDiv');
         labelDiv.innerText = action.name;
         labelDiv.setAttribute('id', action.name + '_label');
 

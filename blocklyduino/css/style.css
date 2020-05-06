@@ -11,17 +11,6 @@ body {
     overflow: hidden;
 }
 
-.farSide {
-    text-align: right;
-    vertical-align: middle;
-}
-
-html[dir="RTL"] .farSide {
-    text-align: left;
-    font-color: #000000;
-}
-
-
 h1 {
     font-weight: normal;
     font-size: 140%;
@@ -30,28 +19,10 @@ h1 {
 }
 
 /* Tabs */
-#tabRow>td {
-    border: 1px solid #ccc;
-    border-bottom: none;
+html[dir=rtl] td.tabmax {
+    text-align: left;
 }
-td.tabon {
-    border-bottom-color: #ddd !important;
-    background-color: #F8F8F8;
-    padding: 5px 19px;
-}
-td.taboff {
-    cursor: pointer;
-    padding: 5px 19px;
-    background-color: #fff;
-}
-td.taboff:hover {
-    background-color: #eee;
-}
-td.tabmin {
-    border-top-style: none !important;
-    border-left-style: none !important;
-    border-right-style: none !important;
-}
+
 td.tabmax {
     border-top-style: none !important;
     border-left-style: none !important;
@@ -61,108 +32,12 @@ td.tabmax {
     padding-right: 10px;
     text-align: left;
 }
-html[dir=rtl] td.tabmax {
-    text-align: left;
-}
-#tab_code {
-    display: none;
-}
-
-table {
-    border-collapse: collapse;
-    margin: 0;
-    padding: 0;
-    border: none;
-}
-td {
-    padding: 0;
-    vertical-align: middle;
-}
-.content {
-    margin: 0;
-    padding: 1ex;
-    position: absolute;
-    direction: ltr;
-}
-pre.content {
-    border: 1px solid #ccc;
-    overflow: scroll;
-}
-#content_blocks {
-    padding: 0;
-}
-.blocklySvg {
-    border-top: none !important;
-}
-.content_program {
-    display: flex;
-    width: 100%;
-    height: 100%;
-}
-#content_code {
-    background: #F5F5F5;
-    height: 70%;
-    min-height: 15%;
-    width: 100%;
-    position: relative;
-    overflow: auto;
-}
-#barre_h{
-    padding : 0px;
-    margin : 0px;
-    width: 100%;
-    background-color : #018790;
-    /* prevent browser's built-in drag from interfering */
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-#sizeGripper{
-    cursor: row-resize;
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 100px;
-    height: 100%;
-    margin: auto;
-}
-#content_serial {
-    background: #000000;
-    color: rgba(29, 147, 47, 1);
-    /* display: inline; */
-    height: 25%;
-    min-height: 15%;
-    width: 100%;
-    /* vertical-align: bottom; */
-    /* overflow: auto; */
-}
 #languageMenu {
     vertical-align: top;
     margin-left: 15px;
     margin-right: 15px;
     margin-top: 15px;
 }
-
-/* Sprited icons. */
-.icon21 {
-    height: 21px;
-    width: 21px;
-    background-image: url(../../blockly/demos/code/icons.png);
-}
-.trash {
-    background-position: 0px 0px;
-}
-.link {
-    background-position: -21px 0px;
-}
-.run {
-    background-position: -42px 0px;
-}
-
-@media (max-width: 710px) {
-    .tab_collapse {
-        display: none;
-    }
-    #tab_code {
-        display: table-cell;
-    }
+pre.prettyprint {
+    border: none !important;
 }

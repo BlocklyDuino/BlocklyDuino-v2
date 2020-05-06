@@ -1,6 +1,5 @@
 // Make the DIV element draggable-keyboard-dialog draggable:
 dragElement(document.getElementById("keyboard_nav"));
-dragDiv(document.getElementById("barre_h"), "V");
 
 function dragElement(elmnt) {
     var pos1 = 0,
@@ -43,62 +42,6 @@ function dragElement(elmnt) {
         // stop moving when mouse button is released:
         document.onmouseup = null;
         document.onmousemove = null;
-    }
-};
-
-// function is used for dragging and moving in rpogram TAB
-function dragDiv(element, direction) {
-    var md; // remember mouse down info
-    const first = document.getElementById("content_code");
-    const second = document.getElementById("content_serial");
-
-    element.onmousedown = onMouseDown;
-
-    function onMouseDown(e) {
-        //console.log("mouse down: " + e.clientX);
-        md = {
-            e,
-            offsetLeft: element.offsetLeft,
-            offsetTop: element.offsetTop,
-            firstHeight: first.offsetHeight,
-            secondHeight: second.offsetHeight,
-            firstWidth: first.offsetWidth,
-            secondWidth: second.offsetWidth
-        };
-        document.onmousemove = onMouseMove;
-        document.onmouseup = () => {
-            //console.log("mouse up");
-            document.onmousemove = document.onmouseup = null;
-        }
-    }
-
-    function onMouseMove(e) {
-        //console.log("mouse move: " + e.clientX);
-        var delta = {
-            x: e.clientX - md.e.x,
-            y: e.clientY - md.e.y
-        };
-
-        if (direction === "V") // Horizontal
-        {
-            // prevent negative-sized elements
-            delta.y = Math.min(Math.max(delta.y, -md.firstHeight),
-                    md.secondHeight);
-
-            element.style.top = md.offsetTop + delta.y + "px";
-            first.style.height = (md.firstHeight + delta.y) + "px";
-            second.style.height = (md.secondHeight - delta.y) + "px";
-        }
-        if (direction === "H") // Horizontal
-        {
-            // prevent negative-sized elements
-            delta.x = Math.min(Math.max(delta.x, -md.firstWidth),
-                    md.secondWidth);
-
-            element.style.left = md.offsetLeft + delta.x + "px";
-            first.style.width = (md.firstWidth + delta.x) + "px";
-            second.style.width = (md.secondWidth - delta.x) + "px";
-        }
     }
 };
 
@@ -157,12 +100,6 @@ document.getElementById('serialConnectButton').onmouseover = function () {
 document.getElementById('serialConnectButton').onmouseout = function () {
     document.getElementById("content_hoverButton").textContent = "";
 };
-document.getElementById('viewCodeButton').onmouseover = function () {
-    document.getElementById("content_hoverButton").textContent = MSG['viewCodeButton_span'];
-};
-document.getElementById('viewCodeButton').onmouseout = function () {
-    document.getElementById("content_hoverButton").textContent = "";
-};
 document.getElementById('saveCodeButton').onmouseover = function () {
     document.getElementById("content_hoverButton").textContent = MSG['saveCodeButton_span'];
 };
@@ -193,10 +130,10 @@ document.getElementById('resetButton').onmouseover = function () {
 document.getElementById('resetButton').onmouseout = function () {
     document.getElementById("content_hoverButton").textContent = "";
 };
-document.getElementById('setup_sideButton').onmouseover = function () {
+document.getElementById('lateral-panel-setup-label').onmouseover = function () {
     document.getElementById("content_hoverButton").textContent = MSG['setup_sideButton_span'];
 };
-document.getElementById('setup_sideButton').onmouseout = function () {
+document.getElementById('lateral-panel-setup-label').onmouseout = function () {
     document.getElementById("content_hoverButton").textContent = "";
 };
 document.getElementById('helpButton').onmouseover = function () {
@@ -211,10 +148,10 @@ document.getElementById('copyCodeButton').onmouseover = function () {
 document.getElementById('copyCodeButton').onmouseout = function () {
     document.getElementById("content_hoverButton").textContent = "";
 };
-document.getElementById('config_sideButton').onmouseover = function () {
+document.getElementById('lateral-panel-CLI-label').onmouseover = function () {
     document.getElementById("content_hoverButton").textContent = MSG['config_sideButton_span'];
 };
-document.getElementById('config_sideButton').onmouseout = function () {
+document.getElementById('lateral-panel-CLI-label').onmouseout = function () {
     document.getElementById("content_hoverButton").textContent = "";
 };
 document.getElementById('coreUpdateButton').onmouseover = function () {
@@ -271,10 +208,10 @@ document.getElementById('installLibButton').onmouseover = function () {
 document.getElementById('installLibButton').onmouseout = function () {
     document.getElementById("content_hoverButton").textContent = "";
 };
-document.getElementById('config_sideButton').onmouseover = function () {
+document.getElementById('lateral-panel-CLI-label').onmouseover = function () {
     document.getElementById("content_hoverButton").textContent = MSG['config_sideButton_span'];
 };
-document.getElementById('config_sideButton').onmouseout = function () {
+document.getElementById('lateral-panel-CLI-label').onmouseout = function () {
     document.getElementById("content_hoverButton").textContent = "";
 };
 document.getElementById('CLI_githubLinkButton').onmouseover = function () {

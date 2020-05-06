@@ -1,6 +1,6 @@
-.wrapper {
-    display: flex;
-}
+/* .wrapper { */
+    /* display: flex; */
+/* } */
 #keyboard_nav {
     background-color: #ededed;
     border: 1px solid black;
@@ -27,7 +27,7 @@
     font-size: 1.3em;
     font-weight: 400;
 }
-label {
+labelDiv {
     margin-right: .5em;
     min-width: 350px;
     text-align: right;
@@ -40,7 +40,7 @@ select {
     font-size: .8em;
 }
 /* update original code css */
-.farSide > label, input {
+.farSide > labelDiv, input {
     vertical-align: middle;
     margin-left: 5px;
     margin-right: 5px;

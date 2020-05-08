@@ -36,7 +36,7 @@ var MSG = {
     resetButton_span: "Restableix BlocklyDuino",
     helpButton_span: "ajuda",
     copyCodeButton_span: "Copia codi a  porta-retalls",
-    accessibilitySpan: "habilita mode accessibilitat:",
+    accessibilitySpan: "habilita mode accessibilitat (Shift + Ctrl + K):",
     defaultCursorSpan: "Cursor per defecte",
     basicCursorSpan: "Cursor bàsic",
     lineCursorSpan: "Cursor línia",
@@ -75,7 +75,7 @@ var MSG = {
     optionFontSizeBlocks: "Mida del tipus de lletra blocs",
     optionFontSizePage: "Mida del tipus de lletra pàgina",
     optionFontSpacingPage: "Espaiat de lletra pàgina",
-    keyMappingExplanationSpan: "<p>Podeu entrar al mode <em>accessibilitat </em> prement <strong>Shift + Ctrl + k</strong>.</p><p>El mapa del teclat es pot personalitzar activant-lo.</p><p> Podeu veure <strong>documentació </strong> més completa si <strong><a href='https://github.com/BlocklyDuino/BlocklyDuino-v2' target='_blank'>premeu aquí '?'</a></strong>.</span></p>",
+    keyMappingExplanationSpan: "accessibility: <a href='https://github.com/BlocklyDuino/BlocklyDuino-v2' target='_blank'>online documentation</a>",
     //CLI_functions.js
     config_sideButton_span: "Control del compilador Arduino CLI",
     arduinoCLI_githubLinkButton_span: "documentació",

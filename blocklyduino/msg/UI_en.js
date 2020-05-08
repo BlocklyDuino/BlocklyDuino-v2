@@ -36,7 +36,7 @@ var MSG = {
     resetButton_span: "Reset BlocklyDuino",
     helpButton_span: "help",
     copyCodeButton_span: "copy code to clipboard",
-    accessibilitySpan: "enable Accessibility Mode:",
+    accessibilitySpan: "enable Accessibility Mode (Shift + Ctrl + K):",
     defaultCursorSpan: "Default Cursor",
     basicCursorSpan: "Basic Cursor",
     lineCursorSpan: "Line Cursor",
@@ -75,7 +75,7 @@ var MSG = {
     optionFontSizeBlocks: "Blocks Font Size",
     optionFontSizePage: "Page Font Size",
     optionFontSpacingPage: "Page Font Spacing",
-    keyMappingExplanationSpan: "<p>You can enter <em>accessibility </em>mode by hitting <strong>Shift + Ctrl + k</strong>.</p><p>Key mapping is customizable by activating it.</p><p>You can acces more complete <strong>documentation </strong>by <strong><a href='https://github.com/BlocklyDuino/BlocklyDuino-v2' target='_blank'>clicking on '?'</a></strong>.</span></p>",
+    keyMappingExplanationSpan: "accessibility: <a href='https://github.com/BlocklyDuino/BlocklyDuino-v2' target='_blank'>online documentation</a>",
     //CLI_functions.js
     config_sideButton_span: "Arduino CLI control",
     CLI_githubLinkButton_span: "documentation",

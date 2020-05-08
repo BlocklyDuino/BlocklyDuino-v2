@@ -25,7 +25,7 @@ BlocklyDuino also supports some [Grove](http://wiki.seeedstudio.com/Grove_System
 
 ## Accessibility
 
-You can enter _accessibility_ mode by **shift clicking anywhere on the workspace** or on a block.
+You can enter _accessibility_ mode by **hitting Shift + Ctrl + k**.
 
 Official documentation: [https://developers.google.com/blockly/guides/configure/web/keyboard-nav](https://developers.google.com/blockly/guides/configure/web/keyboard-nav)
 

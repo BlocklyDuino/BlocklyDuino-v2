@@ -205,30 +205,40 @@ Code.getBBox_ = function (element) {
 Code.LANG = Code.getLang();
 
 /**
+ * Private variable to save the previous version of the Arduino Code.
+ * @type {!String}
+ * @private
+ */
+Code.PREV_CODE_ = 'void setup() {\n\n}\n\n\nvoid loop() {\n\n}';
+
+/**
  * Populate the currently selected pane with content generated from the blocks.
  */
 Code.renderContent = function () {
-    Code.attemptCodeGeneration(Blockly.Arduino);
+    var codePeakPre = document.getElementById('code_peek_content');
+    var generatedCode = Blockly.Arduino.workspaceToCode(Code.workspace);
+    codePeakPre.textContent = Blockly.Arduino.workspaceToCode(Code.workspace);
+    if (generatedCode !== Code.PREV_CODE_) {
+        var diff = JsDiff.diffWords(Code.PREV_CODE_, generatedCode);
+        var resultStringArray = [];
+        for (var i = 0; i < diff.length; i++) {
+            if (!diff[i].removed) {
+                var escapedCode = diff[i].value.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                if (diff[i].added) {
+                    resultStringArray.push(
+                        '<span class="new_code_highlight">' + escapedCode + '</span>');
+                } else {
+                    resultStringArray.push(escapedCode);
+                }
+            }
+        }
+        Code.PREV_CODE_ = generatedCode;
+        codePeakPre.innerHTML = PR.prettyPrintOne(resultStringArray.join(''), 'cpp');
+    }
+    // Remove the 'prettyprinted' class, so that Prettify will recalculate.
+    codePeakPre.className = codePeakPre.className.replace('prettyprinted', '');
     if (typeof PR == 'object') {
         PR.prettyPrint();
-    }
-};
-
-/**
- * Attempt to generate the code and display it in the UI, pretty printed.
- * @param generator {!Blockly.Generator} The generator to use.
- */
-Code.attemptCodeGeneration = function (generator) {
-    var content = document.getElementById('code_peek_content');
-    content.textContent = '';
-    if (Code.checkAllGeneratorFunctionsDefined(generator)) {
-        var code = generator.workspaceToCode(Code.workspace);
-        content.textContent = code;
-        // Remove the 'prettyprinted' class, so that Prettify will recalculate.
-        content.className = content.className.replace('prettyprinted', '');
-        content.className = content.className.replace('prettyprint', '');
-        content.className = content.className.replacee(/\bprettyprint\b/g, '');
-        content.classList.remove("prettyprint");
     }
 };
 
@@ -251,7 +261,7 @@ Code.checkAllGeneratorFunctionsDefined = function (generator) {
     var valid = missingBlockGenerators.length === 0;
     if (!valid) {
         var msg = 'The generator code for the following blocks not specified for ' +
-                generator.name_ + ':\n - ' + missingBlockGenerators.join('\n - ');
+            generator.name_ + ':\n - ' + missingBlockGenerators.join('\n - ');
         Blockly.alert(msg); // Assuming synchronous. No callback.
     }
     return valid;
@@ -267,6 +277,7 @@ Code.init = function () {
     setOnOffLine();
     var clipboard = new Clipboard(document.getElementById('copyCodeButton'));
     var rtl = Code.isRtl();
+    //define resizable workspace
     var container = document.getElementById('content_area');
     var blocklyDiv = document.getElementById('content_blocks');
     var onresize = function (e) {
@@ -296,41 +307,41 @@ Code.init = function () {
     var renderer = match ? match[1] : 'geras';
     document.forms.options.elements.renderer.value = renderer;
     Code.workspace = Blockly.inject('content_blocks', {
-        comments: true,
-        collapse: true,
-        disable: true,
-        grid: {
-            spacing: 25,
-            length: 3,
-            colour: '#ccc',
-            snap: true
-        },
-        maxBlocks: Infinity,
-        maxInstances: {
-            'test_basic_limit_instances': 3
-        },
-        maxTrashcanContents: 256,
-        media: './blockly/media/',
-        oneBasedIndex: true,
-        readOnly: false,
-        rtl: rtl,
-        move: {
-            scrollbars: true,
-            drag: true,
-            wheel: false
-        },
-        toolbox: BLOCKLY_TOOLBOX_XML['toolboxDuino'],
-        renderer: renderer,
-        zoom: {
-            controls: true,
-            wheel: true,
-            startScale: 1.0,
-            maxScale: 4,
-            minScale: 0.25,
-            scaleSpeed: 1.1
-        }
-    });
-    
+            comments: true,
+            collapse: true,
+            disable: true,
+            grid: {
+                spacing: 25,
+                length: 3,
+                colour: '#ccc',
+                snap: true
+            },
+            maxBlocks: Infinity,
+            maxInstances: {
+                'test_basic_limit_instances': 3
+            },
+            maxTrashcanContents: 256,
+            media: './blockly/media/',
+            oneBasedIndex: true,
+            readOnly: false,
+            rtl: rtl,
+            move: {
+                scrollbars: true,
+                drag: true,
+                wheel: false
+            },
+            toolbox: BLOCKLY_TOOLBOX_XML['toolboxDuino'],
+            renderer: renderer,
+            zoom: {
+                controls: true,
+                wheel: true,
+                startScale: 1.0,
+                maxScale: 4,
+                minScale: 0.25,
+                scaleSpeed: 1.1
+            }
+        });
+
     //button callback register with functions
     Code.workspace.registerButtonCallback('createVarBtnInt', createVarBtnIntCallBack);
     Code.workspace.registerButtonCallback('createVarBtnFloat', createVarBtnFloatCallBack);
@@ -343,7 +354,32 @@ Code.init = function () {
 
     Code.workspace.configureContextMenu = configureContextualMenu;
 
-    Code.loadBlocks('');
+	// load blocks stored in session or passed by url
+	var urlFile = Code.getStringParamFromUrl('url', '');
+	var loadOnce = null;
+	try {
+			loadOnce = window.localStorage.loadOnceBlocks;
+		} catch (e) {
+			// Firefox sometimes throws a SecurityError when accessing
+			// localStorage.
+			// Restarting Firefox fixes this, so it looks like a bug.
+		}        
+	if (urlFile) {
+		if (loadOnce !== null)
+			{
+			if (!confirm(MSG['xmlLoad']))
+				{
+				Code.loadBlocks();
+				}
+			}
+		// $.get( urlFile, function( data ) {
+	        // Code.loadBlocks(data );
+			// }, 'text');
+	} else {
+		Code.loadBlocks();
+	}
+    
+    // Code.loadBlocks('');
     // Hook a save function onto unload.
     window.addEventListener('unload', auto_save_and_restore_blocks, false);
     if ('BlocklyStorage' in window) {
@@ -357,9 +393,7 @@ Code.init = function () {
     var theme = match ? match[1] : 'classic';
     document.forms.options.elements.theme.value = theme;
     changeTheme(theme);
-
-    // Lazy-load the syntax-highlighting.
-    window.setTimeout(Code.importPrettify, 1);
+    
     //keyboard nav attribution
     var actions = [
         Blockly.navigation.ACTION_PREVIOUS,
@@ -384,13 +418,15 @@ Code.init = function () {
         var mouse_down_info;
         element.onmousedown = onMouseDown;
         function onMouseDown(e) {
-            mouse_down_info = {e,
+            mouse_down_info = {
+                e,
                 offsetLeft: element.offsetLeft,
                 offsetTop: element.offsetTop,
                 firstWidth: first.offsetWidth,
                 secondWidth: second.offsetWidth,
                 firstHeight: first.offsetHeight,
-                secondHeight: second.offsetHeight};
+                secondHeight: second.offsetHeight
+            };
             document.onmousemove = onMouseMove;
             document.onmouseup = () => {
                 //console.log("mouse up");
@@ -398,7 +434,10 @@ Code.init = function () {
             }
         }
         function onMouseMove(e) {
-            var delta = {x: e.clientX - mouse_down_info.e.x, y: e.clientY - mouse_down_info.e.y};
+            var delta = {
+                x: e.clientX - mouse_down_info.e.x,
+                y: e.clientY - mouse_down_info.e.y
+            };
             if (direction === "H") // Horizontal
             {
                 // prevent negative-sized elements
@@ -406,6 +445,10 @@ Code.init = function () {
                 element.style.left = mouse_down_info.offsetLeft + delta.x + "px";
                 first.style.width = (mouse_down_info.firstWidth + delta.x) + "px";
                 second.style.width = (mouse_down_info.secondWidth - delta.x) + "px";
+                if (document.getElementById("code_peek").offsetWidth < 50)
+                    document.getElementById("copyCodeButton").style.visibility = 'hidden';
+                else
+                    document.getElementById("copyCodeButton").style.visibility = 'visible';
             }
             if (direction === "V") // Vertical
             {
@@ -421,8 +464,12 @@ Code.init = function () {
     }
     dragElement(document.getElementById("separator"), "H", document.getElementById("content_area"), document.getElementById("code_peek"));
     dragElement(document.getElementById("barre_h"), "V", document.getElementById("wrapper_up"), document.getElementById("content_serial"));
-    Code.renderPeekCode();
-    Code.workspace.addChangeListener(Code.renderPeekCode);
+
+    Code.renderContent();
+    Code.workspace.addChangeListener(Code.renderContent);
+
+    // Lazy-load the syntax-highlighting.
+    window.setTimeout(Code.importPrettify, 1);
 };
 
 /**
@@ -473,6 +520,7 @@ Code.initLanguage = function () {
     document.getElementById('boardMenu').title = MSG['boardSpan'];
     document.getElementById('serialIcon').title = MSG['serialSpan'];
     document.getElementById('serialMenu').title = MSG['serialSpan'];
+    document.getElementById('fullScreenButton').title = MSG['fullScreenButton_span'];
     document.getElementById('undoButton').title = MSG['undoButton_span'];
     document.getElementById('redoButton').title = MSG['redoButton_span'];
     document.getElementById('verifyButton').title = MSG['verifyButton_span'];
@@ -488,7 +536,7 @@ Code.initLanguage = function () {
     document.getElementById('copyCodeButton').title = MSG['copyCodeButton_span'];
     document.getElementById('keyMappingModalSpan').textContent = MSG['keyMappingModalSpan'];
     document.getElementById('detailedCompilation_span').textContent = MSG['detailedCompilation_span'];
-
+    // CLI panel
     document.getElementById('lateral-panel-CLI-label').title = MSG['config_sideButton_span'];
     document.getElementById('CLI_title_span').textContent = MSG['CLI_title_span'];
     document.getElementById('CLI_githubLinkButton').title = MSG['CLI_githubLinkButton_span'];
@@ -500,22 +548,8 @@ Code.initLanguage = function () {
     document.getElementById('installLibButton').title = MSG['installLibButton_span'];
     document.getElementById('installBoard_title_span').textContent = MSG['installBoard_title_span'];
     document.getElementById('searchlLib_title_span').textContent = MSG['searchlLib_title_span'];
-    document.getElementById('installLib_title_span').textContent = MSG['installLib_title_span'];
-
-    Blockly.navigation.ACTION_PREVIOUS.name = MSG['actionName0'];
-    Blockly.navigation.ACTION_OUT.name = MSG['actionName1'];
-    Blockly.navigation.ACTION_NEXT.name = MSG['actionName2'];
-    Blockly.navigation.ACTION_IN.name = MSG['actionName3'];
-    Blockly.navigation.ACTION_INSERT.name = MSG['actionName4'];
-    Blockly.navigation.ACTION_MARK.name = MSG['actionName5'];
-    Blockly.navigation.ACTION_DISCONNECT.name = MSG['actionName6'];
-    Blockly.navigation.ACTION_TOOLBOX.name = MSG['actionName7'];
-    Blockly.navigation.ACTION_EXIT.name = MSG['actionName8'];
-    Blockly.navigation.ACTION_MOVE_WS_CURSOR_UP.name = MSG['actionName9'];
-    Blockly.navigation.ACTION_MOVE_WS_CURSOR_LEFT.name = MSG['actionName10'];
-    Blockly.navigation.ACTION_MOVE_WS_CURSOR_DOWN.name = MSG['actionName11'];
-    Blockly.navigation.ACTION_MOVE_WS_CURSOR_RIGHT.name = MSG['actionName12'];
-
+    document.getElementById('installLib_title_span').textContent = MSG['installLib_title_span'];    
+    //setup panel
     document.getElementById('accessibilitySpan').textContent = MSG['accessibilitySpan'];
     document.getElementById('defaultCursorSpan').textContent = MSG['defaultCursorSpan'];
     document.getElementById('basicCursorSpan').textContent = MSG['basicCursorSpan'];
@@ -534,6 +568,21 @@ Code.initLanguage = function () {
     document.getElementById('optionFontSizePage').textContent = MSG['optionFontSizePage'];
     document.getElementById('optionFontSpacingPage').textContent = MSG['optionFontSpacingPage'];
     document.getElementById('keyMappingExplanationSpan').innerHTML = MSG['keyMappingExplanationSpan'];
+    //keyboard nav
+    Blockly.navigation.ACTION_PREVIOUS.name = MSG['actionName0'];
+    Blockly.navigation.ACTION_OUT.name = MSG['actionName1'];
+    Blockly.navigation.ACTION_NEXT.name = MSG['actionName2'];
+    Blockly.navigation.ACTION_IN.name = MSG['actionName3'];
+    Blockly.navigation.ACTION_INSERT.name = MSG['actionName4'];
+    Blockly.navigation.ACTION_MARK.name = MSG['actionName5'];
+    Blockly.navigation.ACTION_DISCONNECT.name = MSG['actionName6'];
+    Blockly.navigation.ACTION_TOOLBOX.name = MSG['actionName7'];
+    Blockly.navigation.ACTION_EXIT.name = MSG['actionName8'];
+    Blockly.navigation.ACTION_MOVE_WS_CURSOR_UP.name = MSG['actionName9'];
+    Blockly.navigation.ACTION_MOVE_WS_CURSOR_LEFT.name = MSG['actionName10'];
+    Blockly.navigation.ACTION_MOVE_WS_CURSOR_DOWN.name = MSG['actionName11'];
+    Blockly.navigation.ACTION_MOVE_WS_CURSOR_RIGHT.name = MSG['actionName12'];
+    
 };
 
 /**
@@ -542,7 +591,7 @@ Code.initLanguage = function () {
 Code.discard = function () {
     var count = Code.workspace.getAllBlocks(false).length;
     if (count < 2 ||
-            window.confirm(Blockly.Msg['DELETE_ALL_BLOCKS'].replace('%1', count))) {
+        window.confirm(Blockly.Msg['DELETE_ALL_BLOCKS'].replace('%1', count))) {
         Code.workspace.clear();
         if (window.location.hash) {
             window.location.hash = '';

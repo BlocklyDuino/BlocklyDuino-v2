@@ -86,6 +86,7 @@ pre.prettyprint {
 }
 
 ol.linenums {
+    margin-left: 5px;
     margin-top: 0;
     margin-bottom: 0
 }

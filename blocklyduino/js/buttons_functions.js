@@ -34,8 +34,67 @@ function auto_save_and_restore_blocks() {
         var text = Blockly.Xml.domToText(xml);
         window.sessionStorage.loadOnceBlocks = text;
     }
-}
-;
+};
+
+var fullScreen_ = false;
+
+/**
+ * Full screen, thanks to HTML5 API
+ */
+function fullScreen(_element) {
+    var elementClicked = _element || document.documentElement;
+    // HTML5
+    if (document.fullscreenElement) {
+        if (!document.fullscreenElement) {
+            elementClicked.requestFullscreen();
+            document.addEventListener('fullscreenchange', exitFullScreen, false);
+        } else {
+            document.exitFullscreen();
+            document.removeEventListener('fullscreenchange', exitFullScreen, false);
+        }
+    } else
+        // Mozilla
+        if (document.mozFullScreenEnabled) {
+            if (!document.mozFullScreenElement) {
+                elementClicked.mozRequestFullScreen();
+                document.addEventListener('mozfullscreenchange', exitFullScreen, false);
+            } else {
+                document.mozCancelFullScreen();
+                document.removeEventListener('mozfullscreenchange', exitFullScreen, false);
+            }
+        } else
+            // Chrome, Safari and Opera
+            if (document.webkitFullscreenEnabled) {
+                if (!document.webkitFullscreenElement) {
+                    elementClicked.webkitRequestFullscreen();
+                    document.addEventListener('webkitfullscreenchange', exitFullScreen, false);
+                } else {
+                    document.webkitExitFullscreen();
+                    document.removeEventListener('webkitfullscreenchange', exitFullScreen, false);
+                }
+            } else
+                // IE/Edge
+                if (document.msFullscreenEnabled) {
+                    if (!document.msFullscreenElement) {
+                        elementClicked.msRequestFullscreen();
+                        document.addEventListener('MSFullscreenChange', exitFullScreen, false);
+                    } else {
+                        document.msExitFullscreen();
+                        document.removeEventListener('MSFullscreenChange', exitFullScreen, false);
+                    }
+                }
+};
+function exitFullScreen()
+{
+if (document.fullscreenElement || document.webkitIsFullScreen || document.mozFullScreen || document.msFullscreenElement !== null)
+    if (fullScreen_ === false) {
+        fullScreenButton.className = 'iconButtonsClicked';
+        fullScreen_ = true;
+    } else {
+        fullScreenButton.className = 'iconButtons';
+        fullScreen_ = false;
+    }
+};
 /**
  * Undo/redo functions
  */
@@ -54,8 +113,8 @@ Code.saveCodeFile = function () {
     var utc = new Date().toJSON().slice(0, 10).replace(/-/g, '_');
     var dataToSave = Blockly.Arduino.workspaceToCode(Blockly.getMainWorkspace());
     var blob = new Blob([dataToSave], {
-        type: 'text/plain;charset=utf-8'
-    });
+            type: 'text/plain;charset=utf-8'
+        });
     var fileNameSave = prompt(MSG['saveXML_span']);
     if (fileNameSave !== null) {
         var fakeDownloadLink = document.createElement("a");
@@ -78,8 +137,8 @@ Code.saveXmlBlocklyFile = function () {
     var xmlData = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
     var dataToSave = Blockly.Xml.domToPrettyText(xmlData);
     var blob = new Blob([dataToSave], {
-        type: 'text/xml;charset=utf-8'
-    });
+            type: 'text/xml;charset=utf-8'
+        });
     var fileNameSave = prompt(MSG['saveXML_span']);
     if (fileNameSave !== null) {
         var fakeDownloadLink = document.createElement("a");
@@ -92,6 +151,23 @@ Code.saveXmlBlocklyFile = function () {
         document.body.appendChild(fakeDownloadLink);
         fakeDownloadLink.click();
     }
+};
+
+/**
+ * Add or replace a parameter to the URL.
+ * 
+ * @param {string} name The name of the parameter.
+ * @param {string} value Value to set
+ * @return {string} The url completed with parameter and value
+ */
+Code.addReplaceParamToUrl = function(url, param, value) {
+	var re = new RegExp("([?&])" + param + "=.*?(&|$)", "i");
+	var separator = url.indexOf('?') !== -1 ? "&" : "?";
+	if (url.match(re)) {
+		return url.replace(re, '$1' + param + "=" + value + '$2');
+	} else {
+		return url + separator + param + "=" + value;
+	}
 };
 
 /**
@@ -110,7 +186,6 @@ Code.loadXmlBlocklyFile = function (files) {
     if (files.length !== 1) {
         return;
     }
-
     // FileReader
     var reader = new FileReader();
     reader.onloadend = function (event) {
@@ -129,14 +204,18 @@ Code.loadXmlBlocklyFile = function (files) {
             }
             Blockly.Xml.domToWorkspace(xmlData, Blockly.getMainWorkspace());
         }
-        // Reset value of input after loading because Chrome will not fire
-        // a 'change' event if the same file is loaded again.
-        document.getElementById('loadXMLfile').value = '';
+        var search = window.location.search;
+        search = search.replace(/([?&]url=)[^&]*/, '');
+        window.location = window.location.protocol + '//'
+                + window.location.host + window.location.pathname
+                + search;
     };
+    // Reset value of input after loading because Chrome will not fire
+    // a 'change' event if the same file is loaded again.
+    document.getElementById('loadXMLfile').value = '';
     reader.readAsText(files[0], "UTF-8");
     Blockly.getMainWorkspace().render();
-}
-;
+};
 
 /**
  * Reset workspace and parameters
@@ -173,38 +252,4 @@ Code.changeRenderingConstant = function (value) {
     }
     // Refresh theme.
     Blockly.getMainWorkspace().setTheme(Blockly.getMainWorkspace().getTheme());
-};
-
-/**
- * Private variable to save the previous version of the code.
- * @author: Carlos Sperate
- * @type {!String}
- * @private
- */
-Code.PREV_CODE_ = 'void setup() {\n\n}\n\n\nvoid loop() {\n\n}';
-
-/** Updates the code in the side content. */
-Code.renderPeekCode = function () {
-    var codePeakPre = document.getElementById('code_peek_content');
-    codePeakPre.textContent = Blockly.Arduino.workspaceToCode(Code.workspace);
-    if (typeof prettyPrintOne == 'function') {
-        codePeakPre.innerHTML = prettyPrintOne(codePeakPre.innerHTML, 'cpp');
-    }
-    // var generatedCode = Blockly.Arduino.workspaceToCode(Code.workspace);
-    // if (generatedCode !== Code.PREV_CODE_) {
-    // var diff = JsDiff.diffWords(Code.PREV_CODE_, generatedCode);
-    // var resultStringArray = [];
-    // for (var i = 0; i < diff.length; i++) {
-    // if (!diff[i].removed) {
-    // var escapedCode = diff[i].value.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    // if (diff[i].added) {
-    // resultStringArray.push('<span class="code_arduino_new">' + escapedCode + '</span>');
-    // } else {
-    // resultStringArray.push(escapedCode);
-    // }
-    // }
-    // }
-    // document.getElementById('code_peek_content').innerHTML = prettyPrintOne(resultStringArray.join(''), 'cpp', false);
-    // Code.PREV_CODE_ = generatedCode;
-    // }
 };

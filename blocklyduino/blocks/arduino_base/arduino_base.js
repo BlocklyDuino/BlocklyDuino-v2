@@ -93,7 +93,7 @@ Blockly.Blocks['arduino_base_inout_analog_write'] = {
                 .appendField(new Blockly.FieldDropdown(profile.default.dropdownPWM), "PIN");
         this.appendValueInput("PWM", 'Number')
                 .appendField(Blockly.Msg.ARDUINO_INOUT_ANALOG_WRITE_INPUT2)
-                .setCheck('Number');
+                .setCheck(intCompatibility);
         this.setInputsInline(true);
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
@@ -108,7 +108,7 @@ Blockly.Blocks['arduino_base_inout_analog_read'] = {
         this.appendDummyInput()
                 .appendField(Blockly.Msg.ARDUINO_INOUT_ANALOG_READ_INPUT)
                 .appendField(new Blockly.FieldDropdown(profile.default.dropdownAnalog), "PIN");
-        this.setOutput(true, 'Number');
+        this.setOutput(true, 'int');
         this.setTooltip(Blockly.Msg.ARDUINO_INOUT_ANALOG_READ_TOOLTIP);
         this.setHelpUrl(Blockly.Msg.ARDUINO_INOUT_ANALOG_READ_HELPURL);
         this.setStyle('arduino_blocks');
@@ -119,7 +119,7 @@ Blockly.Blocks['arduino_base_delay'] = {
     init: function () {
         this.appendValueInput("DELAY_TIME", 'Number')
                 .appendField(Blockly.Msg.ARDUINO_BASE_DELAY_DELAY_TIME)
-                .setCheck('Number');
+                .setCheck(intCompatibility);
         this.setInputsInline(true);
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
@@ -134,7 +134,7 @@ Blockly.Blocks['arduino_base_angle'] = {
         this.appendDummyInput()
                 .appendField(Blockly.Msg.ARDUINO_BASE_ANGLE)
                 .appendField(new Blockly.FieldAngle(90), 'ANGLE');
-        this.setOutput(true, 'Number');
+        this.setOutput(true, intCompatibility);
         this.setTooltip(Blockly.Msg.ARDUINO_BASE_ANGLE_TOOLTIP);
         this.setHelpUrl(Blockly.Msg.ARDUINO_BASE_ANGLE_HELPURL);
         this.setStyle('arduino_blocks');
@@ -159,10 +159,10 @@ Blockly.Blocks['arduino_base_map'] = {
     init: function () {
         this.appendValueInput("NUM", 'Number')
                 .appendField("Map ")
-                .setCheck('Number');
+                .setCheck(intCompatibility);
         this.appendValueInput("DMAX", 'Number')
                 .appendField("value to [0-")
-                .setCheck('Number');
+                .setCheck(intCompatibility);
         this.appendDummyInput()
                 .appendField("]");
         this.setInputsInline(true);
@@ -180,7 +180,7 @@ Blockly.Blocks['arduino_base_inout_tone'] = {
                 .appendField(new Blockly.FieldDropdown(profile.default.dropdownDigital), "PIN");
         this.appendValueInput("NUM", "Number")
                 .appendField(Blockly.Msg.ARDUINO_TONE_INPUT2)
-                .setCheck("Number");
+                .setCheck(intCompatibility);
         this.setInputsInline(true);
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
@@ -207,7 +207,8 @@ Blockly.Blocks['arduino_base_inout_notone'] = {
 Blockly.Blocks['arduino_base_serial_print'] = {
     init: function () {
         this.appendValueInput("CONTENT", 'String')
-                .appendField(Blockly.Msg.ARDUINO_SERIAL_PRINT_CONTENT);
+                .appendField(Blockly.Msg.ARDUINO_SERIAL_PRINT_CONTENT)
+                .setCheck(stringCompatibility);
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setTooltip(Blockly.Msg.ARDUINO_SERIAL_PRINT_TOOLTIP);

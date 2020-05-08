@@ -1,3 +1,8 @@
+var intCompatibility = ['int', 'Number'];
+var floatCompatibility = ['int', 'float', 'Number'];
+var stringCompatibility = ['String'];
+var booleanCompatibility = ['Boolean'];
+
 var createVarBtnIntCallBack = function (button) {
     Blockly.Variables.createVariableButtonHandler(button.getTargetWorkspace(), null, 'int');
 };

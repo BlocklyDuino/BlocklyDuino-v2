@@ -207,14 +207,7 @@ td.tabMiddle {
     overflow: hidden;
 }
 #content_area{
-    /* Firefox */
-    width: -moz-calc(100% - 30px);
-    /* WebKit */
-    width: -webkit-calc(100% - 30px);
-    /* Opera */
-    width: -o-calc(100% - 30px);
-    /* Standard */
-    width: calc(100% - 30px);
+    width: 100%;
     height: 100%;
     min-width: 10px;
 }
@@ -238,7 +231,7 @@ td.tabMiddle {
     background-color: #FFFFFF;
     width: 100%;
     height: 100%;
-    min-width: 10px;
+    min-width: 5px;
 }
 #barre_h{
     cursor: row-resize;
@@ -261,4 +254,9 @@ td.tabMiddle {
     width: 100%;
     height: 10px;
     min-height: 10px;
+}
+
+/* Colours for the new code highlighting in code peek */
+.new_code_highlight {
+  background-color: #FFF200; /* same color as blockly highlight */
 }

@@ -19,6 +19,7 @@ var MSG = {
     languageSpan: "choix de la langue",
     themeSpan: "choix du thème",
     renderSpan: "choix de la forme",
+    fullScreenButton_span: "plein écran",
     undoButton_span: "annuler",
     redoButton_span: "refaire",
     boardSpan: "choix de la carte",
@@ -104,5 +105,16 @@ var MSG = {
     IDE_upload1: 'Carte ',
     IDE_upload2: ' sur port ',
     IDE_upload3: '\nTéléversement : en cours...\n<i class="fa fa-spinner fa-pulse fa-1_5x fa-fw"></i>',
-    IDE_upload_ok: '\nTéléversement : OK'
+    IDE_upload_ok: '\nTéléversement : OK',
+    serial_btn_start: "<span class='fa fa-play'></span> Démarrer",
+    serial_info_stop: 'arrêt<br>',
+    serial_btn_stop: "<span class='fa fa-pause'></span> Arrêter",
+    serial_info_start: 'démarrage de la communication<br>',
+    serial_CSV: 'Exporter les données au format CSV',
+    btn_serialSend_span: 'Envoyer',
+    btn_serialConnect_span: 'Démarrer',
+    btn_serialPeekClear_span: 'Effacer',
+    btn_serialPeekCSV_span: 'Exporter',
+    btn_serialChart_span: 'Graphique',
+    btn_serialChartPause_span: 'Démarrer'
 };

@@ -43,10 +43,15 @@ function dragElement(elmnt) {
         document.onmouseup = null;
         document.onmousemove = null;
     }
-}
-;
+};
 
 //icons button mouser over
+document.getElementById('fullScreenButton').onmouseover = function () {
+    document.getElementById("content_hoverButton").textContent = MSG['fullScreenButton_span'];
+};
+document.getElementById('fullScreenButton').onmouseout = function () {
+    document.getElementById("content_hoverButton").textContent = "";
+};
 document.getElementById('undoButton').onmouseover = function () {
     document.getElementById("content_hoverButton").textContent = MSG['undoButton_span'];
 };

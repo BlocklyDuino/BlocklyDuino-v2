@@ -32,12 +32,6 @@ td.tabmax {
     padding-right: 10px;
     text-align: left;
 }
-#languageMenu {
-    vertical-align: top;
-    margin-left: 15px;
-    margin-right: 15px;
-    margin-top: 15px;
-}
 pre.prettyprint {
     border: none !important;
 }

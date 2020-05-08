@@ -40,7 +40,7 @@ Blockly.Blocks['servo_move'] = {
                 .appendField("PIN#")
                 .appendField(new Blockly.FieldDropdown(profile.default.dropdownDigital), "PIN");
         this.appendValueInput("DEGREE")
-                .setCheck('Number')
+                .setCheck(intCompatibility)
                 .setAlign(Blockly.ALIGN_RIGHT)
                 .appendField("Degree (0~180)");
         this.setPreviousStatement(true, null);
@@ -61,7 +61,7 @@ Blockly.Blocks['servo_read_degrees'] = {
         this.appendDummyInput()
                 .setAlign(Blockly.ALIGN_RIGHT)
                 .appendField("Read Degrees")
-        this.setOutput(true, 'Number');
+        this.setOutput(true, "int");
         this.setTooltip('return that degree with the last servo move.');
         this.setHelpUrl('http://playground.arduino.cc/ComponentLib/servo');
         this.setStyle('servo_blocks');

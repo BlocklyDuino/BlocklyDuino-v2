@@ -72,7 +72,7 @@ Blockly.Blocks['grove_rotary_angle'] = {
                 .appendField(new Blockly.FieldImage(groveMediaFolder + "Grove-Rotary_Angle_Sensor-P-.jpg", 64, 64))
                 .appendField("PIN#")
                 .appendField(new Blockly.FieldDropdown(profile.default.dropdownAnalog), "PIN");
-        this.setOutput(true, 'Number');
+        this.setOutput(true, 'int');
         this.setTooltip('Analog output between 0 and Vcc');
         this.setHelpUrl('http://wiki.seeedstudio.com/Grove-Rotary_Angle_Sensor/');
         this.setStyle('grove_blocks');
@@ -134,7 +134,7 @@ Blockly.Blocks['grove_temperature_sensor'] = {
                 .appendField(new Blockly.FieldImage(groveMediaFolder + "Temperature1.jpg", 64, 64))
                 .appendField("PIN#")
                 .appendField(new Blockly.FieldDropdown(profile.default.dropdownAnalog), "PIN")
-        this.setOutput(true, 'Number');
+        this.setOutput(true, 'int');
         this.setTooltip('return number of ambient temperature in ℃');
         this.setHelpUrl('http://wiki.seeedstudio.com/Grove-Temperature_Sensor/');
         this.setStyle('grove_blocks');
@@ -149,15 +149,15 @@ Blockly.Blocks['grove_serial_lcd_print'] = {
                 .appendField("PIN#")
                 .appendField(new Blockly.FieldDropdown(profile.default.dropdownDigital), "PIN");
         this.appendValueInput("TEXT1")
-                .setCheck('String')
+                .setCheck(stringCompatibility)
                 .setAlign(Blockly.ALIGN_RIGHT)
                 .appendField("print line1");
         this.appendValueInput("TEXT2")
-                .setCheck('String')
+                .setCheck(stringCompatibility)
                 .setAlign(Blockly.ALIGN_RIGHT)
                 .appendField("print line2")
         this.appendValueInput("DELAY_TIME")
-                .setCheck('Number')
+                .setCheck(intCompatibility)
                 .setAlign(Blockly.ALIGN_RIGHT)
                 .appendField("Delay");
         this.setPreviousStatement(true, null);
@@ -215,7 +215,7 @@ Blockly.Blocks['grove_sound_sensor'] = {
                 .appendField(new Blockly.FieldImage(groveMediaFolder + "sound_sensor.jpg", 64, 64))
                 .appendField("PIN#")
                 .appendField(new Blockly.FieldDropdown(profile.default.dropdownAnalog), "PIN")
-        this.setOutput(true, 'Number');
+        this.setOutput(true, 'int');
         this.setTooltip('Detect the sound strength of the environment');
         this.setHelpUrl('http://wiki.seeedstudio.com/Grove-Sound_Sensor/');
         this.setStyle('grove_blocks');
@@ -229,7 +229,7 @@ Blockly.Blocks['grove_pir_motion_sensor'] = {
                 .appendField(new Blockly.FieldImage(groveMediaFolder + "Grove_-_PIR_Motion_Sensor.jpg", 64, 64))
                 .appendField("PIN#")
                 .appendField(new Blockly.FieldDropdown(profile.default.dropdownDigital), "PIN")
-        this.setOutput(true, 'Number');
+        this.setOutput(true, 'int');
         this.setTooltip('When anyone moves in it\'s detecting range, the sensor outputs HIGH.');
         this.setHelpUrl('http://wiki.seeedstudio.com/Grove-PIR_Motion_Sensor/');
         this.setStyle('grove_blocks');
@@ -259,7 +259,7 @@ Blockly.Blocks['grove_ultrasonic_ranger'] = {
                 .appendField(new Blockly.FieldDropdown(profile.default.dropdownDigital), "PIN")
                 .appendField("unit")
                 .appendField(new Blockly.FieldDropdown([["cm", "cm"], ["inch", "inch"]]), "UNIT");
-        this.setOutput(true, 'Number');
+        this.setOutput(true, 'float');
         this.setTooltip('Non-contact distance measurement module');
         this.setHelpUrl('http://wiki.seeedstudio.com/Grove-Ultrasonic_Ranger/');
         this.setStyle('grove_blocks');
@@ -293,7 +293,7 @@ Blockly.Blocks['grove_thumb_joystick'] = {
                 .appendField(new Blockly.FieldDropdown(profile.default.dropdownAnalog), "PIN")
                 .appendField("axis")
                 .appendField(new Blockly.FieldDropdown([["x", "x"], ["y", "y"]]), "AXIS");
-        this.setOutput(true, 'Number');
+        this.setOutput(true, 'int');
         this.setTooltip('output two analog values(200~800) representing two directions');
         this.setHelpUrl('http://wiki.seeedstudio.com/Grove-Thumb_Joystick/');
         this.setStyle('grove_blocks');
@@ -479,27 +479,3 @@ Blockly.Blocks['grove_bluetooth_slave'] = {
         this.setStyle('grove_blocks');
     }
 };
-//http://www.seeedstudio.com/wiki/File:Twig-Temp%26Humi.jpg
-//http://www.seeedstudio.com/wiki/Grove-_Temperature_and_Humidity_Sensor
-
-//http://www.seeedstudio.com/wiki/Grove_-_125KHz_RFID_Reader
-
-/*
- void setup()
- {
- pinMode( 3 , OUTPUT);
- pinMode( 1 , INPUT);
- }
- 
- void loop()
- {
- if (digitalRead( 1))
- {
- digitalWrite( 3 , HIGH);
- }
- else
- {
- digitalWrite( 1 , LOW);
- }
- }
- */

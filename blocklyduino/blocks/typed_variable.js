@@ -2,11 +2,6 @@
 
 goog.provide('Blockly.Constants.VariablesTyped');
 
-var intCompatibility = ['int'];
-var floatCompatibility = ['int', 'float'];
-var stringCompatibility = ['String'];
-var booleanCompatibility = ['bool'];
-
 Blockly.Blocks['vars_set_int'] = {
   init: function() {
     this.appendValueInput("VALUE")
@@ -104,7 +99,7 @@ Blockly.Blocks['vars_get_boolean'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(new Blockly.FieldVariable("", null, ['bool'], 'bool'), "VAR_GET_BOOLEAN");
-    this.setOutput(true, "bool");
+    this.setOutput(true, "Boolean");
     this.setStyle('variable_blocks');
     this.setTooltip("");
     this.setHelpUrl("");

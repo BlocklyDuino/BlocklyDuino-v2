@@ -3,6 +3,7 @@
     display: grid;
     align-items: center;
     text-align: center;
+    color: #006468;
 }
 #lateral-panel-setup {
     z-index: 9999;
@@ -53,12 +54,6 @@
     position: absolute;
     top: 50%;
     right: 50%;
-    box-sizing: border-box;
-    width: 1em;
-    height: 1em;
-    border: .5em solid currentColor;
-    border-width: .5em .5em 0 0;
-    color: #888;
     transition: all .5s;
     transform: translate(50%, -50%) rotate(45deg);
 }
@@ -115,15 +110,10 @@
     position: absolute;
     top: 50%;
     right: 50%;
-    box-sizing: border-box;
-    width: 1em;
-    height: 1em;
-    border: .5em solid currentColor;
-    border-width: .5em .5em 0 0;
-    color: #888;
     transition: all .5s;
     transform: translate(50%, -50%) rotate(45deg);
 }
 #lateral-panel-CLI-input:checked ~ #lateral-panel-CLI-label:before {
-    transform: translate(50%, -50%) rotate(-135deg);
+    transform: translate(50%, -50%) rotate(180deg);
+    text-orientation: mixed;
 }

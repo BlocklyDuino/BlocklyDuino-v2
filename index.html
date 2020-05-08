@@ -5,12 +5,12 @@
         <meta name="google" value="notranslate">
         <title>BlocklyDuino</title>
         <link rel="icon" type="image/png" href="./blocklyduino/media/logo_only.png" />
-        <link rel="stylesheet" href="./blocklyduino/css/font_awesome_all.min.css" />
-        <link rel="stylesheet" href="./blocklyduino/css/style.css" />
-        <link rel="stylesheet" href="./blocklyduino/css/keyboard_nav.css" />
-        <link rel="stylesheet" href="./blocklyduino/css/prettify.css" />
         <link rel="stylesheet" href="./blocklyduino/css/blocklyduino.css" />
+        <link rel="stylesheet" href="./blocklyduino/css/font_awesome_all.min.css" />
+        <link rel="stylesheet" href="./blocklyduino/css/keyboard_nav.css" />
         <link rel="stylesheet" href="./blocklyduino/css/lateral-panel.css" />
+        <link rel="stylesheet" href="./blocklyduino/css/prettify.css" />
+        <link rel="stylesheet" href="./blocklyduino/css/style.css" />
     </head>
     <body>
         <div class="table_wrapper">
@@ -19,12 +19,17 @@
                     <td style="width: 268px;">
                         <span id="appName" class='TitleText'></span> 
                     </td>
-                    <td class="tabMiddle">
+                    <td class="tabMiddle" style="width: 100%;">
                         <span id="content_hoverButton"></span>
                     </td>
                 </tr>
                 <tr style="height: 40px;">
                     <td class="tabmax" colspan="2">
+                        <button id="fullScreenButton" class="iconButtons" onclick="fullScreen()">
+                            <span id="fullScreenButton_span" style="font-size: 1em;">
+                                <i class="fas fa-expand-arrows-alt"></i>
+                            </span>
+                        </button>
                         <button id="undoButton" class="iconButtons" onclick="Code.Undo()">
                             <span id="undoButton_span" style="font-size: 1em;">
                                 <i class="fas fa-undo-alt"></i>
@@ -294,9 +299,9 @@
     <script src="./blocklyduino/js/blockly/keyboard_nav.js"></script>
     <script src="./blocklyduino/js/blockly/playground.js"></script>
     <!-- BlocklyDuino libraries of external functions -->
-    <script src="./blocklyduino/js/addon/prettify.js"></script>
     <script src="./blocklyduino/js/addon/clipboard.min.js"></script>
     <script src="./blocklyduino/js/addon/diff.js"></script>
+    <script src="./blocklyduino/js/addon/prettify.js"></script>
     <script src="./blocklyduino/js/buttons_functions.js"></script>
     <script src="./blocklyduino/js/dialog.js"></script>
     <!-- BlocklyDuino specific: block design -->
@@ -328,8 +333,8 @@
     <script src="./blocklyduino/toolbox/toolbox_blocklyduino.js"></script>
     <script src="./blocklyduino/toolbox/toolbox_standard.js"></script>
     <script type="text/javascript">
-                        require('../CLI_functions.js');
-                        require('../IDE_functions.js');
+        require('../CLI_functions.js');
+        require('../IDE_functions.js');
 <!-- require('../resources/app.asar/functions.js'); -->
     </script>
 </HTML>

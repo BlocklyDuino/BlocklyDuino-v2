@@ -19,6 +19,7 @@ var MSG = {
     languageSpan: "tria idioma",
     themeSpan: "tria tema",
     renderSpan: "tria renderitzador",
+    fullScreenButton_span: "full screen",
     undoButton_span: "Desfés",
     redoButton_span: "Refés",
     boardSpan: "tria placa Arduino",
@@ -104,5 +105,16 @@ var MSG = {
     IDE_upload1: 'Placa ',
     IDE_upload2: ' al port ',
     IDE_upload3: '\nCàrrega: en progres...\n<i class="fa fa-spinner fa-pulse fa-1_5x fa-fw"></i>',
-    IDE_upload_ok: '\nCàrrega: D\'acord'
+    IDE_upload_ok: '\nCàrrega: D\'acord',
+    serial_btn_start: "<span class='fa fa-play'></span> Start",
+    serial_info_stop: 'stop<br>',
+    serial_btn_stop: "<span class='fa fa-pause'></span> Stop",
+    serial_info_start: 'communication starting<br>',
+    serial_CSV: 'Export data to CSV',
+    btn_serialSend_span: 'Send',
+    btn_serialConnect_span: 'Start',
+    btn_serialPeekClear_span: 'Clean',
+    btn_serialPeekCSV_span: 'Export',
+    btn_serialChart_span: 'Graph',
+    btn_serialChartPause_span: 'Start'
 };

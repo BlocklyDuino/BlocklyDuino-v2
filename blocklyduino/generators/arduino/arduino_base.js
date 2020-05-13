@@ -81,11 +81,6 @@ Blockly.Arduino['arduino_base_angle'] = function (block) {
     return [angle, Blockly.Arduino.ORDER_ATOMIC];
 };
 
-Blockly.Arduino['arduino_base_date'] = function (block) {
-    var angle = this.getFieldValue('DATE');
-    return [angle, Blockly.Arduino.ORDER_ATOMIC];
-};
-
 Blockly.Arduino['arduino_base_map'] = function (block) {
     var value_num = Blockly.Arduino.valueToCode(this, 'NUM', Blockly.Arduino.ORDER_NONE);
     var value_dmax = Blockly.Arduino.valueToCode(this, 'DMAX', Blockly.Arduino.ORDER_ATOMIC);

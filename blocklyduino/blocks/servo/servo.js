@@ -31,7 +31,6 @@ goog.require('Blockly');
 
 var servoMediaFolder = "./blocklyduino/blocks/servo/";
 
-//http://www.seeedstudio.com/depot/emax-9g-es08a-high-sensitive-mini-servo-p-760.html?cPath=170_171
 Blockly.Blocks['servo_move'] = {
     init: function () {
         this.appendDummyInput()

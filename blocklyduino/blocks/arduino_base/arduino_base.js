@@ -141,34 +141,20 @@ Blockly.Blocks['arduino_base_angle'] = {
     }
 };
 
-Blockly.Blocks['arduino_base_date'] = {
-    init: function () {
-        this.appendDummyInput()
-                .appendField('date:')
-                // according to docs, the field date adds 60% file size and might not be needed
-                //.appendField(new Blockly.FieldDate(''), 'DATE');
-                .appendField('DATE');
-        this.setOutput(true, 'Number');
-        this.setTooltip('Date entrie as yyyy-mm-dd');
-        this.setHelpUrl('');
-        this.setStyle('arduino_blocks');
-    }
-};
-
 Blockly.Blocks['arduino_base_map'] = {
     init: function () {
         this.appendValueInput("NUM", 'Number')
-                .appendField("Map ")
+                .appendField(Blockly.Msg.ARDUINO_BASE_MAP1)
                 .setCheck(intCompatibility);
         this.appendValueInput("DMAX", 'Number')
-                .appendField("value to [0-")
+                .appendField(Blockly.Msg.ARDUINO_BASE_MAP2)
                 .setCheck(intCompatibility);
         this.appendDummyInput()
                 .appendField("]");
         this.setInputsInline(true);
         this.setOutput(true);
-        this.setTooltip('Re-maps a number from [0-1024] to another.');
-        this.setHelpUrl('https://www.arduino.cc/reference/en/language/functions/math/map/');
+        this.setTooltip(Blockly.Msg.ARDUINO_BASE_MAP_TOOLTIP);
+        this.setHelpUrl(Blockly.Msg.ARDUINO_BASE_MAP_HELPURL);
         this.setStyle('arduino_blocks');
     }
 };

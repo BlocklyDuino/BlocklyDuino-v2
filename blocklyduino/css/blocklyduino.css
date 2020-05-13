@@ -30,8 +30,9 @@ and open the template in the editor.
 .TitleText {
     vertical-align: middle;
     color: #FFFFFF;
-    font-size: xx-large;
+    font-size: x-large;
     font-weight: bold;
+    padding-left: 5px;
 }
 
 /* Table */
@@ -82,7 +83,7 @@ td {
     margin: 5px;
     padding: 10px;
     border-radius: 4px;
-    font-size: large;
+    font-size: x-large;
     color: #FFFFFF;
 }
 
@@ -101,14 +102,16 @@ td {
     font-size: large;
     font-weight: bold;
 }
-
-.iconButtons{
+.CLI {
     height:36px;
-    width: 36px;
+}
+.iconButtons{
+    padding:2px;
+    line-height:0;
     vertical-align: middle;
     background: #4DB7BB;
     color: #006468;
-    font-size: large;
+    font-size: x-large;
 }
 .iconButtons:hover{
     background: #FFFFFF;
@@ -128,12 +131,12 @@ td {
     cursor : not-allowed;
 }
 .iconButtonsClicked{
-    height:36px;
-    width: 36px;
+    padding:2px;
+    line-height:0;
     vertical-align: middle;
     background: #FFCC00;
     color: #006468;
-    font-size: large;
+    font-size: x-large;
 }
 
 /* surcharger .iconButton */
@@ -171,14 +174,14 @@ td.tabMiddle {
     vertical-align: middle;
 }
 #helpButton{
-    border-radius: 10px;
+    border-radius: 5px;
     cursor: help;
 }
 #copyCodeButton{
     position: absolute;
-    top: 105px;
+    top: 75px;
     right: 5px;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 /* Content blocks */

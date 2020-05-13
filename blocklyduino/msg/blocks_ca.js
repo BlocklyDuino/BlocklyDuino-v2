@@ -9,6 +9,24 @@ Blockly.Msg.TITLE2 = " > Programació visual de blocs per a Arduino";
 //text in blocks
 Blockly.Msg.FIELDDROPDOWN = [["1 (activat)", "HIGH"], ["0 (desactivat)", "LOW"]];
 
+//blockly logic
+Blockly.Msg.CONTROLS_SWITCH_CASEBREAK_TOOLTIP = "Afegeix una condició al bloc de «casos».";
+Blockly.Msg.CONTROLS_SWITCH_DEFAULT_TOOLTIP = "Afegeix una condició final per defecte.";
+Blockly.Msg.CONTROLS_SWITCH_HELPURL = "https://en.wikipedia.org/wiki/Switch_statement";
+Blockly.Msg.CONTROLS_SWITCH_SWITCH_TOOLTIP = "Afegeix, retira, o classifica les seccions d'aquest bloc.";
+Blockly.Msg.CONTROLS_SWITCH_VAR_TITLE = "selecciona ( ";
+Blockly.Msg.CONTROLS_SWITCH_VAR_TAIL = ")";
+Blockly.Msg.CONTROLS_SWITCH_MSG_DEFAULT = "per defecte";
+Blockly.Msg.CONTROLS_SWITCH_MSG_CASEBREAK = "cas";
+Blockly.Msg.CONTROLS_SWITCH_MSG_SWITCHVAR = "Selecciona (var)";
+Blockly.Msg.CONTROLS_SWITCH_MSG_DO = "fes";
+Blockly.Msg.CONTROLS_SWITCH_TOOLTIP_1 = "Si el valor és cert llavors executa les ordres següents.";
+Blockly.Msg.CONTROLS_SWITCH_TOOLTIP_2 = "Si el valor és cert executa el primer bloc d'ordres. En cas contrari executa el bloc següent d'ordres.";
+Blockly.Msg.CONTROLS_SWITCH_TOOLTIP_3 = "Si el valor és cert executa el primer bloc d'ordres. En cas contrari executa el bloc següent d'ordres si la condició és certa.";
+Blockly.Msg.CONTROLS_SWITCH_TOOLTIP_4 = "Si el valor és cert executa el primer bloc d'ordres. En cas contrari executa el bloc següent d'ordres si la condició és certa. Si ninguna condició és verifica, llavors executa el darrer bloc d'ordres per defecte.";
+Blockly.Msg.CONTROLS_SWITCH_VAR_TOOLTIP = "Desplaça el bloc des de l'esquerra per afegir-lo.";
+Blockly.Msg.CONTROLS_SWITCH_CASEBREAK_TOOLTIP = "Afegeix un bloc d'ordres cas trenca";
+Blockly.Msg.CONTROLS_SWITCH_DEFAULT_TOOLTIP ="Afegeix un bloc d'accions per defecte";
 //Arduino base cateory blocks
 Blockly.Msg.VAR_CREATE_INT = "integer";
 Blockly.Msg.VAR_CREATE_FLOAT = "float";
@@ -38,6 +56,10 @@ Blockly.Msg.ARDUINO_BASE_DELAY_HELPURL = "http://arduino.cc/en/Reference/delay";
 Blockly.Msg.ARDUINO_BASE_ANGLE = "angle de: ";
 Blockly.Msg.ARDUINO_BASE_ANGLE_TOOLTIP = "angle té un valor entre 0~180°";
 Blockly.Msg.ARDUINO_BASE_ANGLE_HELPURL = "";
+Blockly.Msg.ARDUINO_BASE_MAP1 = "map";
+Blockly.Msg.ARDUINO_BASE_MAP2 = "value to [0-";
+Blockly.Msg.ARDUINO_BASE_MAP_TOOLTIP = "Re-maps a number from [0-1024] to another."
+Blockly.Msg.ARDUINO_BASE_MAP_HELPURL = "https://www.arduino.cc/reference/en/language/functions/math/map/";
 Blockly.Msg.ARDUINO_TONE_INPUT1 = "emet un só al pin";
 Blockly.Msg.ARDUINO_TONE_INPUT2 = "d'una freqüència (Hz)";
 Blockly.Msg.ARDUINO_TONE_TOOLTIP = "emet un só al pin seleccionat";

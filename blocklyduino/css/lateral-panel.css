@@ -5,62 +5,7 @@
     text-align: center;
     color: #006468;
 }
-#lateral-panel-setup {
-    z-index: 9999;
-    position: fixed;
-    top: 0;
-    right: -700px;
-    width: 350px;
-    min-height: 100vh;
-    transform: translateX(-100%);
-}
-#lateral-panel-setup-input {
-    position: absolute;
-    right: -999em;
-}
-#lateral-panel-setup-label {
-    z-index: 1;
-    position: absolute;
-    top: 2px;
-    right: 100%;
-    width: 36px;
-    height: 36px;
-    cursor: pointer;
-}
-#lateral-panel-setup-bloc {
-    z-index: 0;
-    position: absolute;
-    top: 0;
-    right: 0;
-    box-sizing: border-box;
-    width: 350px;
-    height: 100%;
-    overflow: auto;
-}
-#lateral-panel-setup-input:checked ~ #lateral-panel-setup-label {
-    right: 200%;
-}   
-#lateral-panel-setup-input:checked ~ #lateral-panel-setup-bloc {
-    transform: translateX(-100%);
-}
-#lateral-panel-setup-label,
-#lateral-panel-setup-bloc {
-    font-size: inherit;
-    background: #FFF;
-    box-shadow: -0.5em 0 .4em rgba(0, 0, 0, 0.3);
-    transition: all .5s;
-}
-#lateral-panel-setup-label:before {
-    position: absolute;
-    top: 50%;
-    right: 50%;
-    transition: all .5s;
-    transform: translate(50%, -50%) rotate(45deg);
-}
-#lateral-panel-setup-input:checked ~ #lateral-panel-setup-label:before {
-    transform: translate(50%, -50%) rotate(-135deg);
-}
-
+#lateral-panel-setup,
 #lateral-panel-CLI {
     z-index: 9999;
     position: fixed;
@@ -70,22 +15,14 @@
     min-height: 100vh;
     transform: translateX(-100%);
 }
+#lateral-panel-setup-input,
 #lateral-panel-CLI-input {
     position: absolute;
     right: -999em;
 }
-#lateral-panel-CLI-label {
-    z-index: 1;
-    position: absolute;
-    top: 42px;
-    right: 100%;
-    width: 36px;
-    height: 36px;
-    cursor: pointer;
-}
+#lateral-panel-setup-bloc,
 #lateral-panel-CLI-bloc {
     z-index: 0;
-    position: absolute;
     top: 0;
     right: 0;
     box-sizing: border-box;
@@ -93,27 +30,46 @@
     height: 100%;
     overflow: auto;
 }
-#lateral-panel-CLI-input:checked ~ #lateral-panel-CLI-label {
-    right: 200%;
-}   
-#lateral-panel-CLI-input:checked ~ #lateral-panel-CLI-bloc {
-    transform: translateX(-100%);
+#lateral-panel-setup-label {
+    z-index: 1;
+    top: 2px;
+    right: 100%;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    font-size: x-large;
+}
+#lateral-panel-CLI-label {
+    z-index: 1;
+    top: 34px;
+    right: 100%;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    font-size: x-large;
 }
 #lateral-panel-CLI-label,
-#lateral-panel-CLI-bloc {
-    font-size: inherit;
+#lateral-panel-CLI-bloc,
+#lateral-panel-setup-label,
+#lateral-panel-setup-bloc {
+    position: absolute;
     background: #FFF;
     box-shadow: -0.5em 0 .4em rgba(0, 0, 0, 0.3);
     transition: all .5s;
 }
+#lateral-panel-setup-input:checked ~ #lateral-panel-setup-label,
+#lateral-panel-CLI-input:checked ~ #lateral-panel-CLI-label {
+    right: 200%;
+}   
+#lateral-panel-setup-input:checked ~ #lateral-panel-setup-bloc,
+#lateral-panel-CLI-input:checked ~ #lateral-panel-CLI-bloc {
+    transform: translateX(-100%);
+}
+#lateral-panel-setup-label:before,
 #lateral-panel-CLI-label:before {
     position: absolute;
     top: 50%;
     right: 50%;
     transition: all .5s;
     transform: translate(50%, -50%) rotate(45deg);
-}
-#lateral-panel-CLI-input:checked ~ #lateral-panel-CLI-label:before {
-    transform: translate(50%, -50%) rotate(180deg);
-    text-orientation: mixed;
 }

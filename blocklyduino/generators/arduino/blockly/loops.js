@@ -62,13 +62,16 @@ Blockly.Arduino['controls_repeat'] =
 
 Blockly.Arduino['controls_whileUntil'] = function(block) {
   // Do while/until loop.
-  var until = block.getFieldValue('MODE') == 'UNTIL';
-  var argument0 = Blockly.Arduino.valueToCode(block, 'BOOL',
-      until ? Blockly.Arduino.ORDER_LOGICAL_NOT :
-      Blockly.Arduino.ORDER_NONE) || 'false';
-  var branch = Blockly.Arduino.statementToCode(block, 'DO');
-  branch = Blockly.Arduino.addLoopTrap(branch, block.id);
-  if (until) {
+  var argument0 = Blockly.Arduino.valueToCode(this, 'BOOL', Blockly.Arduino.ORDER_NONE) || 'false';
+  var branch = Blockly.Arduino.statementToCode(this, 'DO');
+  if (Blockly.Arduino.INFINITE_LOOP_TRAP) {
+    branch = Blockly.Arduino.INFINITE_LOOP_TRAP.replace(/%1/g,
+        '\'' + this.id + '\'') + branch;
+  }
+  if (this.getFieldValue ('MODE') == 'UNTIL') {
+    if (!argument0.match(/^\w+$/)) {
+      argument0 = '(' + argument0 + ')';
+    }
     argument0 = '!' + argument0;
   }
   return 'while (' + argument0 + ') {\n' + branch + '}\n';
@@ -91,7 +94,7 @@ Blockly.Arduino['controls_for'] = function(block) {
       Blockly.isNumber(increment)) {
     // All arguments are simple numbers.
     var up = parseFloat(argument0) <= parseFloat(argument1);
-    code = 'for (' + variable0 + ' = ' + argument0 + '; ' +
+    code = 'for (int ' + variable0 + ' = ' + argument0 + '; ' +
         variable0 + (up ? ' <= ' : ' >= ') + argument1 + '; ' +
         variable0;
     var step = Math.abs(parseFloat(increment));

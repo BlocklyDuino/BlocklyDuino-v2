@@ -165,7 +165,7 @@ function setOnOffLine() {
         document.getElementById('serialMenu').disabled = false;
     } else {
         document.body.style.backgroundColor = '#7fcbcd';
-        document.getElementById('CLI_content').style.backgroundColor = '#006468';
+        document.getElementById('CLI_content').style.backgroundColor = '#7fcbcd';
         document.getElementById('setup_content').style.backgroundColor = '#7fcbcd';
         document.getElementById('barre_h').style.backgroundColor = '#7fcbcd';
         document.getElementById('verifyButton').disabled = true;

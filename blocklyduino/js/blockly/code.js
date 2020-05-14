@@ -445,11 +445,12 @@ Code.init = function () {
                 element.style.left = mouse_down_info.offsetLeft + delta.x + "px";
                 first.style.width = (mouse_down_info.firstWidth + delta.x) + "px";
                 second.style.width = (mouse_down_info.secondWidth - delta.x) + "px";
+                //hide button if div si too thin
                 if (document.getElementById("code_peek").offsetWidth < 50)
                     document.getElementById("copyCodeButton").style.visibility = 'hidden';
                 else
                     document.getElementById("copyCodeButton").style.visibility = 'visible';
-            }
+            } 
             if (direction === "V") // Vertical
             {
                 // prevent negative-sized elements
@@ -462,8 +463,8 @@ Code.init = function () {
             Blockly.svgResize(Code.workspace);
         }
     }
-    dragElement(document.getElementById("separator"), "H", document.getElementById("content_area"), document.getElementById("code_peek"));
     dragElement(document.getElementById("barre_h"), "V", document.getElementById("wrapper_up"), document.getElementById("content_serial"));
+    dragElement(document.getElementById("separator"), "H", document.getElementById("content_area"), document.getElementById("code_peek"));
 
     Code.renderContent();
     Code.workspace.addChangeListener(Code.renderContent);

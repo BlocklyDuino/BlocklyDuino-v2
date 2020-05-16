@@ -31,17 +31,20 @@ goog.require('Blockly.Arduino');
 
 Blockly.Arduino['colour_picker'] = function (block) {
     // Colour picker.
-    var code = '\'' + block.getFieldValue('COLOUR') + '\'';
+    var code = '\"' + block.getFieldValue('COLOUR') + '\"';
     return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
 Blockly.Arduino['colour_random'] = function (block) {
     // Generate a random colour.
-    var functionName = Blockly.Arduino.provideFunction_(
-            'colourRandom',
+    var functionName = Blockly.Arduino.provideFunction_('colourRandom',
             ['function ' + Blockly.Arduino.FUNCTION_NAME_PLACEHOLDER_ + '() {',
-                '  var num = Math.floor(Math.random() * Math.pow(2, 24));',
-                '  return \'#\' + (\'00000\' + num.toString(16)).substr(-6);',
+                '  String colorRand = "";',
+                '  for (int i = 0; i < 6; i++) {',
+                '    int randNum = random(0, 16);',
+                '    colorRand += String(randNum, HEX);',
+                '  }',
+                '  return (\'#\' + colorRand);',
                 '}']);
     var code = functionName + '()';
     return [code, Blockly.Arduino.ORDER_FUNCTION_CALL];
@@ -56,10 +59,10 @@ Blockly.Arduino['colour_rgb'] = function (block) {
             'colourRgb',
             ['String ' + Blockly.Arduino.FUNCTION_NAME_PLACEHOLDER_ +
                         '(int r, int g, int b) {',
-                '  r = max(min(r, 100), 0) * 2.55;',
-                '  g = max(min(g, 100), 0) * 2.55;',
-                '  b = max(min(b, 100), 0) * 2.55;',
-                '  return (\'#\' + String(r) + String(g) + String(b));',
+                '  r = max(min(r * 2.55, 255), 0);',
+                '  g = max(min(g * 2.55, 255), 0);',
+                '  b = max(min(b * 2.55, 255), 0);',
+                '  return (\'#\' + String(r, HEX) + String(g, HEX) + String(b, HEX));',
                 '}']);
     var code = functionName + '(' + red + ', ' + green + ', ' + blue + ')';
     return [code, Blockly.Arduino.ORDER_FUNCTION_CALL];

@@ -115,7 +115,7 @@
                                 <div id="separator" ></div>
                                 <div id="code_peek">
                                     <pre id="code_peek_content" class="code_peek_content prettyprint linenums"> </pre>
-                                    <button id="copyCodeButton" class="iconButtons" data-clipboard-action="copy" data-clipboard-target="#code_peek">
+                                    <button id="copyCodeButton" class="iconButtons" onclick="Code.copyToClipboard()">
                                         <span id="copyCodeButton_span">
                                             <i class="far fa-copy"></i>
                                         </span>
@@ -301,7 +301,6 @@
     <script src="./blocklyduino/js/blockly/keyboard_nav.js"></script>
     <script src="./blocklyduino/js/blockly/playground.js"></script>
     <!-- BlocklyDuino libraries of external functions -->
-    <script src="./blocklyduino/js/addon/clipboard.min.js"></script>
     <script src="./blocklyduino/js/addon/diff.js"></script>
     <script src="./blocklyduino/js/addon/prettify.js"></script>
     <script src="./blocklyduino/js/buttons_functions.js"></script>

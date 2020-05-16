@@ -275,7 +275,6 @@ Code.init = function () {
     Code.setBoard();
     Code.initLanguage();
     setOnOffLine();
-    var clipboard = new Clipboard(document.getElementById('copyCodeButton'));
     var rtl = Code.isRtl();
     //define resizable workspace
     var container = document.getElementById('content_area');

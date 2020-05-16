@@ -95,6 +95,25 @@ if (document.fullscreenElement || document.webkitIsFullScreen || document.mozFul
         fullScreen_ = false;
     }
 };
+
+
+/**
+ * Copy code from div code_peek in clipboard system
+ */
+Code.copyToClipboard = function () {
+    if (document.selection) { // IE
+        var range = document.body.createTextRange();
+        range.moveToElementText(document.getElementById("code_peek"));
+        range.select();
+    } else if (window.getSelection) {
+        var range = document.createRange();
+        range.selectNode(document.getElementById("code_peek"));
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+    }
+  	document.execCommand("copy");    
+};
+
 /**
  * Undo/redo functions
  */

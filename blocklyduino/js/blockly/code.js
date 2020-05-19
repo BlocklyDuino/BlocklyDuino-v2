@@ -209,7 +209,7 @@ Code.LANG = Code.getLang();
  * @type {!String}
  * @private
  */
-Code.PREV_CODE_ = 'void setup() {\n\n}\n\n\nvoid loop() {\n\n}';
+Code.PREV_CODE_ = 'void setup() {\n}\n\n\nvoid loop() {\n\n}';
 
 /**
  * Populate the currently selected pane with content generated from the blocks.
@@ -217,26 +217,35 @@ Code.PREV_CODE_ = 'void setup() {\n\n}\n\n\nvoid loop() {\n\n}';
 Code.renderContent = function () {
     var codePeakPre = document.getElementById('code_peek_content');
     var generatedCode = Blockly.Arduino.workspaceToCode(Code.workspace);
-    codePeakPre.textContent = Blockly.Arduino.workspaceToCode(Code.workspace);
+    // if (generatedCode !== Code.PREV_CODE_) {
+    // var diff = JsDiff.diffWords(Code.PREV_CODE_, generatedCode);
+    // var resultStringArray = [];
+    // for (var i = 0; i < diff.length; i++) {
+    // if (!diff[i].removed) {
+    // var escapedCode = diff[i].value.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    // if (diff[i].added) {
+    // resultStringArray.push(
+    // '<span class="new_code_highlight">' + escapedCode + '</span>');
+    // } else {
+    // resultStringArray.push(escapedCode);
+    // }
+    // }
+    // }
+    // Code.PREV_CODE_ = generatedCode;
+    // codePeakPre.innerHTML = PR.prettyPrintOne(resultStringArray.join(''), 'cpp');
+    // }
     if (generatedCode !== Code.PREV_CODE_) {
-        var diff = JsDiff.diffWords(Code.PREV_CODE_, generatedCode);
-        var resultStringArray = [];
-        for (var i = 0; i < diff.length; i++) {
-            if (!diff[i].removed) {
-                var escapedCode = diff[i].value.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-                if (diff[i].added) {
-                    resultStringArray.push(
-                        '<span class="new_code_highlight">' + escapedCode + '</span>');
-                } else {
-                    resultStringArray.push(escapedCode);
-                }
-            }
-        }
+        var textTemp = '';
+        codePeakPre.className = codePeakPre.className.replace('prettyprinted', '');
+        generatedCode.split('').forEach(function (val, i) {
+            if (val !== Code.PREV_CODE_.charAt(i))
+                textTemp += "<span class='new_code_highlight'>" + val + "</span>";
+            else
+                textTemp += val;
+        });
         Code.PREV_CODE_ = generatedCode;
-        codePeakPre.innerHTML = PR.prettyPrintOne(resultStringArray.join(''), 'cpp');
-    }
-    // Remove the 'prettyprinted' class, so that Prettify will recalculate.
-    codePeakPre.className = codePeakPre.className.replace('prettyprinted', '');
+        codePeakPre.innerHTML = PR.prettyPrintOne(textTemp, 'cpp');
+    } else codePeakPre.className = codePeakPre.className.replace('new_code_highlight', '');
     if (typeof PR == 'object') {
         PR.prettyPrint();
     }
@@ -275,6 +284,7 @@ Code.init = function () {
     Code.setBoard();
     Code.initLanguage();
     setOnOffLine();
+    collapsibleContentInit();
     var rtl = Code.isRtl();
     //define resizable workspace
     var container = document.getElementById('content_area');
@@ -306,40 +316,41 @@ Code.init = function () {
     var renderer = match ? match[1] : 'geras';
     document.forms.options.elements.renderer.value = renderer;
     Code.workspace = Blockly.inject('content_blocks', {
-            comments: true,
-            collapse: true,
-            disable: true,
-            grid: {
-                spacing: 25,
-                length: 3,
-                colour: '#ccc',
-                snap: true
-            },
-            maxBlocks: Infinity,
-            maxInstances: {
-                'test_basic_limit_instances': 3
-            },
-            maxTrashcanContents: 256,
-            media: './blockly/media/',
-            oneBasedIndex: true,
-            readOnly: false,
-            rtl: rtl,
-            move: {
-                scrollbars: true,
-                drag: true,
-                wheel: false
-            },
-            toolbox: BLOCKLY_TOOLBOX_XML['toolboxDuino'],
-            renderer: renderer,
-            zoom: {
-                controls: true,
-                wheel: true,
-                startScale: 1.0,
-                maxScale: 4,
-                minScale: 0.25,
-                scaleSpeed: 1.1
-            }
-        });
+        comments: true,
+        collapse: true,
+        disable: true,
+        grid: {
+            spacing: 25,
+            length: 3,
+            colour: '#ccc',
+            snap: true
+        },
+        maxBlocks: Infinity,
+        maxInstances: {
+            'test_basic_limit_instances': 3
+        },
+        maxTrashcanContents: 256,
+        media: './blockly/media/',
+        sounds : true,
+        oneBasedIndex: true,
+        readOnly: false,
+        rtl: rtl,
+        move: {
+            scrollbars: true,
+            drag: true,
+            wheel: false
+        },
+        toolbox: BLOCKLY_TOOLBOX_XML['toolboxDuino'],
+        renderer: renderer,
+        zoom: {
+            controls: true,
+            wheel: true,
+            startScale: 1.0,
+            maxScale: 4,
+            minScale: 0.25,
+            scaleSpeed: 1.1
+        }
+    });
 
     //button callback register with functions
     Code.workspace.registerButtonCallback('createVarBtnInt', createVarBtnIntCallBack);
@@ -353,31 +364,29 @@ Code.init = function () {
 
     Code.workspace.configureContextMenu = configureContextualMenu;
 
-	// load blocks stored in session or passed by url
-	var urlFile = Code.getStringParamFromUrl('url', '');
-	var loadOnce = null;
-	try {
-			loadOnce = window.localStorage.loadOnceBlocks;
-		} catch (e) {
-			// Firefox sometimes throws a SecurityError when accessing
-			// localStorage.
-			// Restarting Firefox fixes this, so it looks like a bug.
-		}        
-	if (urlFile) {
-		if (loadOnce !== null)
-			{
-			if (!confirm(MSG['xmlLoad']))
-				{
-				Code.loadBlocks();
-				}
-			}
-		// $.get( urlFile, function( data ) {
-	        // Code.loadBlocks(data );
-			// }, 'text');
-	} else {
-		Code.loadBlocks();
-	}
-    
+    // load blocks stored in session or passed by url
+    var urlFile = Code.getStringParamFromUrl('url', '');
+    var loadOnce = null;
+    try {
+        loadOnce = window.localStorage.loadOnceBlocks;
+    } catch (e) {
+        // Firefox sometimes throws a SecurityError when accessing
+        // localStorage.
+        // Restarting Firefox fixes this, so it looks like a bug.
+    }
+    if (urlFile) {
+        if (loadOnce !== null) {
+            if (!confirm(MSG['xmlLoad'])) {
+                Code.loadBlocks();
+            }
+        }
+        // $.get( urlFile, function( data ) {
+        // Code.loadBlocks(data );
+        // }, 'text');
+    } else {
+        Code.loadBlocks();
+    }
+
     // Code.loadBlocks('');
     // Hook a save function onto unload.
     window.addEventListener('unload', auto_save_and_restore_blocks, false);
@@ -392,7 +401,7 @@ Code.init = function () {
     var theme = match ? match[1] : 'classic';
     document.forms.options.elements.theme.value = theme;
     changeTheme(theme);
-    
+
     //keyboard nav attribution
     var actions = [
         Blockly.navigation.ACTION_PREVIOUS,
@@ -449,7 +458,7 @@ Code.init = function () {
                     document.getElementById("copyCodeButton").style.visibility = 'hidden';
                 else
                     document.getElementById("copyCodeButton").style.visibility = 'visible';
-            } 
+            }
             if (direction === "V") // Vertical
             {
                 // prevent negative-sized elements
@@ -516,9 +525,11 @@ Code.initLanguage = function () {
     document.getElementById('languageSpan').textContent = MSG['languageSpan'];
     document.getElementById('themeSpan').textContent = MSG['themeSpan'];
     document.getElementById('renderSpan').textContent = MSG['renderSpan'];
-    document.getElementById('boardIcon').title = MSG['boardSpan'];
+    document.getElementById('boardButton').title = MSG['boardButtonSpan'];
+    document.getElementById('boardMenuSpan').textContent = MSG['boardSpan'];
     document.getElementById('boardMenu').title = MSG['boardSpan'];
-    document.getElementById('serialIcon').title = MSG['serialSpan'];
+    document.getElementById('serialButton').title = MSG['serialButtonSpan'];
+    document.getElementById('serialMenuSpan').textContent = MSG['serialSpan'];
     document.getElementById('serialMenu').title = MSG['serialSpan'];
     document.getElementById('fullScreenButton').title = MSG['fullScreenButton_span'];
     document.getElementById('undoButton').title = MSG['undoButton_span'];
@@ -548,7 +559,7 @@ Code.initLanguage = function () {
     document.getElementById('installLibButton').title = MSG['installLibButton_span'];
     document.getElementById('installBoard_title_span').textContent = MSG['installBoard_title_span'];
     document.getElementById('searchlLib_title_span').textContent = MSG['searchlLib_title_span'];
-    document.getElementById('installLib_title_span').textContent = MSG['installLib_title_span'];    
+    document.getElementById('installLib_title_span').textContent = MSG['installLib_title_span'];
     //setup panel
     document.getElementById('accessibilitySpan').textContent = MSG['accessibilitySpan'];
     document.getElementById('defaultCursorSpan').textContent = MSG['defaultCursorSpan'];
@@ -582,7 +593,7 @@ Code.initLanguage = function () {
     Blockly.navigation.ACTION_MOVE_WS_CURSOR_LEFT.name = MSG['actionName10'];
     Blockly.navigation.ACTION_MOVE_WS_CURSOR_DOWN.name = MSG['actionName11'];
     Blockly.navigation.ACTION_MOVE_WS_CURSOR_RIGHT.name = MSG['actionName12'];
-    
+
 };
 
 /**

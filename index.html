@@ -25,9 +25,25 @@
                 </tr>
                 <tr style="height: 30px;">
                     <td class="tabmax" colspan="2">
-                        <button id="fullScreenButton" class="iconButtons" onclick="fullScreen()">
-                            <span id="fullScreenButton_span" style="font-size: 1em;">
-                                <i class="fas fa-expand-arrows-alt"></i>
+                        <button id="newButton"  class="iconButtons" onclick="Code.discard()">
+                            <span id="newButton_span">
+                                <i class="far fa-file"></i>
+                            </span>
+                        </button>
+                        <button id="loadXMLfakeButton" class="iconButtons" onclick="Code.openXmlDialog()">
+                            <span id="loadXMLfakeButton_span">
+                                <i class="fas fa-file-upload"></i>
+                            </span>
+                        </button>
+                        <input type="file" id="loadXMLfile" hidden onchange="Code.loadXmlBlocklyFile(this.files)" />
+                        <button id="saveXMLButton" class="iconButtons" onclick="Code.saveXmlBlocklyFile()">
+                            <span id="saveXMLButton_span">
+                                <i class="fas fa-file-download"></i>
+                            </span>
+                        </button>
+                        <button id="saveCodeButton" class="iconButtons" onclick="Code.saveCodeFile()">
+                            <span id="saveCodeButton_span">
+                                <i class="fas fa-file-export"></i>
                             </span>
                         </button>
                         <button id="undoButton" class="iconButtons" onclick="Code.Undo()">
@@ -39,29 +55,20 @@
                             <i class="fas fa-redo-alt"></i>
                             <span id="redoButton_span"></span>
                         </button>
-                        <i class="fas fa-microchip UIText" id="boardIcon"></i>
-                        <select id="boardMenu" onchange="changeBoard()" class="UIText">
-                            <option value="none" selected="selected">...</option>
-                            <option value="arduino_leonardo">Arduino Leonardo</option>
-                            <option value="arduino_mega">Arduino Mega 2560 / ADK</option>
-                            <option value="arduino_micro">Arduino Micro</option>
-                            <option value="arduino_mini">Arduino Mini ATmega328</option>
-                            <option value="arduino_nano">Arduino Nano ATmega328</option>
-                            <option value="arduino_pro8">Arduino Pro Mini 3.3V ATmega328</option>
-                            <option value="arduino_pro16">Arduino Pro Mini 5V ATmega328</option>
-                            <option value="arduino_uno">Arduino Uno</option>
-                            <option value="arduino_yun">Arduino Yùn</option>
-                            <option value="lilypad">LilyPad Arduino ATmega328P</option>
-                        </select>
+                        <button id="boardButton" class="iconButtons" onclick="Code.boardsListModalShow()">
+                            <i class="fas fa-microchip"></i>
+                            <span id="boardButton_span"></span>
+                        </button>
                         <button id="verifyButton" class="iconButtons">
                             <span id="verifyButton_span">
                                 <i class="fas fa-check"></i>
                             </span>
                         </button>
-                        <i class="fab fa-usb UIText" id="serialIcon"></i>
-                        <select id="serialMenu" class="UIText">
-                            <option value="none">...</option>
-                        </select>
+                        <button id="serialButton" class="iconButtons" onclick="Code.portsListModalShow()">
+                            <span id="serialButton_span">
+                                <i class="fab fa-usb"></i>
+                            </span>
+                        </button>
                         <button id="uploadButton" class="iconButtons">
                             <span id="uploadButton_span">
                                 <i class="fas fa-sign-out-alt"></i>
@@ -72,27 +79,11 @@
                                 <i class="fas fa-search"></i>
                             </span>
                         </button>
-                        <button id="saveCodeButton" class="iconButtons" onclick="Code.saveCodeFile()">
-                            <span id="saveCodeButton_span">
-                                <i class="fas fa-file-export"></i>
+                        <button id="fullScreenButton" class="iconButtons" onclick="fullScreen()">
+                            <span id="fullScreenButton_span" style="font-size: 1em;">
+                                <i class="fas fa-expand-arrows-alt"></i>
                             </span>
                         </button>
-                        <button id="newButton"  class="iconButtons" onclick="Code.discard()">
-                            <span id="newButton_span">
-                                <i class="far fa-file"></i>
-                            </span>
-                        </button>
-                        <button id="saveXMLButton" class="iconButtons" onclick="Code.saveXmlBlocklyFile()">
-                            <span id="saveXMLButton_span">
-                                <i class="fas fa-file-download"></i>
-                            </span>
-                        </button>
-                        <button id="loadXMLfakeButton" class="iconButtons" onclick="Code.openXmlDialog()">
-                            <span id="loadXMLfakeButton_span">
-                                <i class="fas fa-file-upload"></i>
-                            </span>
-                        </button>
-                        <input type="file" id="loadXMLfile" hidden onchange="Code.loadXmlBlocklyFile(this.files)" />
                         <button id="resetButton" class="iconButtons" onclick="Code.ResetWorkspace()">
                             <span id="resetButton_span">
                                 <i class="fas fa-power-off"></i>
@@ -210,7 +201,7 @@
             <input id="lateral-panel-setup-input" type="checkbox">
             <label id="lateral-panel-setup-label" for="lateral-panel-setup-input" class="label_panel">
                 <span id="setup_side_span">
-                    <i class="fas fa-wrench"></i>
+                    <i class="fas fa-cog"></i>
                 </span>
             </label>
             <div id="lateral-panel-setup-bloc">
@@ -222,6 +213,28 @@
                         <!-- <option value="simple">Simple</option> -->
                         <!-- <option value="test-blocks">Test Blocks</option> -->
                         <!-- </select> -->
+                        <span id="boardMenuSpan" class="UIText">...</span>
+                        <select id="boardMenu" onchange="changeBoard()">
+                            <option value="none" selected="selected">...</option>
+                            <option value="arduino_leonardo">Arduino Leonardo</option>
+                            <option value="arduino_mega">Arduino Mega</option>
+                            <option value="arduino_micro">Arduino Micro</option>
+                            <option value="arduino_mini">Arduino Mini</option>
+                            <option value="arduino_nano">Arduino Nano</option>
+                            <option value="arduino_pro8">Arduino Pro Mini 3.3V</option>
+                            <option value="arduino_pro16">Arduino Pro Mini 5V</option>
+                            <option value="arduino_uno">Arduino Uno</option>
+                            <option value="arduino_yun">Arduino Yùn</option>
+                            <option value="lilypad">LilyPad</option>
+                        </select>
+                        <br>
+                        <br>
+                        <span id="serialMenuSpan" class="UIText">...</span>
+                        <select id="serialMenu">
+                            <option value="none">...</option>
+                        </select>
+                        <br>
+                        <br>
                         <span id="languageSpan" class="UIText">...</span>
                         <select id="languageMenu"></select>
                         <br>
@@ -278,6 +291,64 @@
                 </div>
             </div>
         </div>
+        <div id="overlayForModals" class="overlay" style="display: none;"></div>
+        <div id="boardListModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header"> 
+                    <i class="fa fa-microchip"></i>Boards description
+                    <span class="closeModal" id="closeModalBoards">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div id="arduino_mini_picture_div">
+                        <img id="arduino_board_mini_picture" />
+                    </div>
+                    <div id="hideSelectScrollbar">
+                        <select id="boardDescriptionSelector" size="11" onchange="Code.boardDescription()">
+                            <optgroup label="C / C++">
+                                <option value="arduino_leonardo" >Arduino Léonardo</option>
+                                <option value="arduino_mega" >Arduino Mega</option>
+                                <option value="arduino_micro" >Arduino Micro</option>
+                                <option value="arduino_mini" >Arduino Mini</option>
+                                <option value="arduino_nano" >Arduino Nano</option>
+                                <option value="arduino_pro8" >Arduino Pro Mini 3.3V</option>
+                                <option value="arduino_pro16" >Arduino Pro Mini 5V</option>
+                                <option value="arduino_uno" >Arduino Uno</option>
+                                <option value="arduino_yun" >Arduino Yùn</option>
+                                <option value="lilypad" >LilyPad</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <button type="button" class="collapsibleButton">Details</button>
+                <div class="collapsibleContent" id="collapsibleContent">
+                    <span id="span_boardModal_connect">Connecteur</span><span id="board_connect" class="modalBoard_info">...</span><br>
+                    <span id="span_boardModal_voltage">Tension d'alimentation</span><span id="board_voltage" class="modalBoard_info">...</span><br>
+                    <span id="span_boardModal_cpu">Microcontrôleur µC</span><span id="board_cpu" class="modalBoard_info">...</span><br>
+                    <span id="span_boardModal_inout">Nombre d'E/S</span><span id="board_inout" class="modalBoard_info">...</span><br>
+                    <span id="span_boardModal_in_analog">Entrées analogiques</span><span id="board_in_analog" class="modalBoard_info">...</span><br>
+                    <span id="span_boardModal_out_analog">Sorties PWM</span><span id="board_out_analog" class="modalBoard_info">...</span><br>
+                    <span id="span_boardModal_flash">Mémoire flash</span><span id="board_flash" class="modalBoard_info">...</span><br>
+                    <span id="span_boardModal_ram"></span>RAM<span id="board_ram" class="modalBoard_info">...</span><br>
+                    <span id="span_boardModal_eeprom"></span>EEPROM<span id="board_eeprom" class="modalBoard_info">...</span><br>
+                </div> 
+            </div>
+        </div>
+        <div id="portListModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="closeModal" id="closeModalPorts">&times;</span>
+                    <h2>Modal Header Ports</h2>
+                </div>
+                <div class="modal-body">
+                    <p>Some text in the Modal Body</p>
+                    <p>Some other text...</p>
+                </div>
+                <div class="modal-footer">
+                    <h3>Modal Footer</h3>
+                </div>
+            </div>
+        </div>
     </body>
     <!-- load JavaScript just before the closing HTML body tag ensures the scripts don’t block loading of other content and page content is readable before scripts are downloaded and executed -->
     <!-- Blockly libraries -->
@@ -301,7 +372,6 @@
     <script src="./blocklyduino/js/blockly/keyboard_nav.js"></script>
     <script src="./blocklyduino/js/blockly/playground.js"></script>
     <!-- BlocklyDuino libraries of external functions -->
-    <script src="./blocklyduino/js/addon/diff.js"></script>
     <script src="./blocklyduino/js/addon/prettify.js"></script>
     <script src="./blocklyduino/js/buttons_functions.js"></script>
     <script src="./blocklyduino/js/dialog.js"></script>
@@ -332,6 +402,7 @@
     <script type="text/javascript" src="./blocklyduino/themes/bw.js"></script>
     <script type="text/javascript" src="./blocklyduino/themes/themes_blocks.js"></script>
     <script type="text/javascript" src="./blocklyduino/themes/themes_categories.js"></script>
+    <script type="text/javascript" src="./blocklyduino/themes/themes_components_override.js"></script>
     <!-- BlocklyDuino external toolbox hacked -->
     <script src="./blocklyduino/toolbox/toolbox_blocklyduino.js"></script>
     <script src="./blocklyduino/toolbox/toolbox_standard.js"></script>

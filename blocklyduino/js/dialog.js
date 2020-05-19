@@ -1,11 +1,10 @@
 // Make the DIV element draggable-keyboard-dialog draggable:
 dragElement(document.getElementById("keyboard_nav"));
-
 function dragElement(elmnt) {
-    var     pos1 = 0,
-            pos2 = 0,
-            pos3 = 0,
-            pos4 = 0;
+    var pos1 = 0,
+    pos2 = 0,
+    pos3 = 0,
+    pos4 = 0;
     if (document.getElementById(elmnt.id + "_header")) {
         // if present, the header is where you move the DIV from:
         document.getElementById(elmnt.id + "_header").onmousedown = dragMouseDown;
@@ -13,7 +12,6 @@ function dragElement(elmnt) {
         // otherwise, move the DIV from anywhere inside the DIV:
         elmnt.onmousedown = dragMouseDown;
     }
-
     function dragMouseDown(e) {
         e = e || window.event;
         e.preventDefault();
@@ -24,7 +22,6 @@ function dragElement(elmnt) {
         // call a function whenever the cursor moves:
         document.onmousemove = elementDrag;
     }
-
     function elementDrag(e) {
         e = e || window.event;
         e.preventDefault();
@@ -37,13 +34,35 @@ function dragElement(elmnt) {
         elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
         elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
     }
-
     function closeDragElement() {
         // stop moving when mouse button is released:
         document.onmouseup = null;
         document.onmousemove = null;
     }
 };
+
+// javascript function for collapsible content
+function collapsibleContentInit() {
+    var coll = document.getElementsByClassName("collapsibleButton");
+    var i;
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;                
+                document.getElementById("arduino_mini_picture_div").style.transform = "scale(1)";
+                document.getElementById("arduino_mini_picture_div").style.top = "";
+                document.getElementById("collapsibleContent").style.visibility = "hidden";
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                document.getElementById("arduino_mini_picture_div").style.transform = "scale(1.7)";
+                document.getElementById("arduino_mini_picture_div").style.top = "150px";
+                document.getElementById("collapsibleContent").style.visibility = "visible";
+            }
+        });
+    }
+}
 
 //icons button mouser over
 document.getElementById('fullScreenButton').onmouseover = function () {
@@ -64,14 +83,14 @@ document.getElementById('redoButton').onmouseover = function () {
 document.getElementById('redoButton').onmouseout = function () {
     document.getElementById("content_hoverButton").textContent = "";
 };
-document.getElementById('boardIcon').onmouseover = function () {
-    document.getElementById("content_hoverButton").textContent = MSG['boardSpan'];
+document.getElementById('boardButton').onmouseover = function () {
+    document.getElementById("content_hoverButton").textContent = MSG['boardButtonSpan'];
 };
-document.getElementById('boardIcon').onmouseout = function () {
+document.getElementById('boardButton').onmouseout = function () {
     document.getElementById("content_hoverButton").textContent = "";
 };
 document.getElementById('boardMenu').onmouseover = function () {
-    document.getElementById("content_hoverButton").textContent = MSG['boardSpan'];
+    document.getElementById("content_hoverButton").textContent = MSG['boardButtonSpan'];
 };
 document.getElementById('boardMenu').onmouseout = function () {
     document.getElementById("content_hoverButton").textContent = "";
@@ -82,10 +101,10 @@ document.getElementById('verifyButton').onmouseover = function () {
 document.getElementById('verifyButton').onmouseout = function () {
     document.getElementById("content_hoverButton").textContent = "";
 };
-document.getElementById('serialIcon').onmouseover = function () {
-    document.getElementById("content_hoverButton").textContent = MSG['serialSpan'];
+document.getElementById('serialButton').onmouseover = function () {
+    document.getElementById("content_hoverButton").textContent = MSG['serialButtonSpan'];
 };
-document.getElementById('serialIcon').onmouseout = function () {
+document.getElementById('serialButton').onmouseout = function () {
     document.getElementById("content_hoverButton").textContent = "";
 };
 document.getElementById('serialMenu').onmouseover = function () {

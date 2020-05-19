@@ -27,22 +27,6 @@ goog.provide('Blockly.Arduino.servo');
 
 goog.require('Blockly.Arduino');
 
-/*
- //servo
- #include <Servo.h>
-
- Servo servo_11;
-
- void setup() {
- servo_11.attach(11);
- }
-
- void loop() {
- servo_11.write(0);
-
- servo_11.write(150); //0~180
- }
- */
 Blockly.Arduino['servo_move'] = function (block) {
     var dropdown_pin = block.getFieldValue('PIN');
     var value_degree = Blockly.Arduino.valueToCode(block, 'DEGREE', Blockly.Arduino.ORDER_ATOMIC);

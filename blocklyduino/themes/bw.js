@@ -106,7 +106,7 @@ Blockly.Themes.blackWhite.defaultBlockStyles = {
 
 Blockly.Themes.blackWhite.categoryStyles = {
     "colour_category": {
-        "colour": "#FFFFFF"
+        "colour": "#000000"
     },
     "list_category": {
         "colour": "#000000"
@@ -146,10 +146,20 @@ Blockly.Themes.blackWhite.categoryStyles = {
     }
 };
 
-// Blockly.Themes.blackWhite.setComponentStyle('toolboxBackgroundColour', '#f9f9f9');
-// Blockly.Themes.blackWhite.setComponentStyle('toolboxForegroundColour', '#f9f9f9');
-// Blockly.Themes.blackWhite.setComponentStyle('flyoutOpacity', 0);
-
 Blockly.Themes.blackWhite =
         new Blockly.Theme('blackWhite', Blockly.Themes.blackWhite.defaultBlockStyles,
                 Blockly.Themes.blackWhite.categoryStyles);
+
+Blockly.Themes.blackWhite.setComponentStyle('toolboxBackgroundColour', '#f9f9f9');
+Blockly.Themes.blackWhite.setComponentStyle('toolboxForegroundColour', '#000000');
+Blockly.Themes.blackWhite.setComponentStyle('flyoutBackgroundColour', '#f9f9f9');
+Blockly.Themes.blackWhite.setComponentStyle('flyoutForegroundColour', '#f9f9f9');
+Blockly.Themes.blackWhite.setComponentStyle('flyoutOpacity', 1);
+Blockly.Themes.blackWhite.setComponentStyle('scrollbarColour', '#000000');
+Blockly.Themes.blackWhite.setComponentStyle('scrollbarOpacity', '1');
+
+Blockly.Themes.blackWhite.setFontStyle({
+  'family': 'Trebuchet MS', // Use default font-family
+  'weight': null, // Use default font-weight
+  'size': 12
+});

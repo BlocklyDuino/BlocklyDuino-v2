@@ -84,18 +84,17 @@ function fullScreen(_element) {
                     }
                 }
 };
-function exitFullScreen()
-{
-if (document.fullscreenElement || document.webkitIsFullScreen || document.mozFullScreen || document.msFullscreenElement !== null)
-    if (fullScreen_ === false) {
-        fullScreenButton.className = 'iconButtonsClicked';
-        fullScreen_ = true;
-    } else {
-        fullScreenButton.className = 'iconButtons';
-        fullScreen_ = false;
-    }
-};
 
+function exitFullScreen() {
+    if (document.fullscreenElement || document.webkitIsFullScreen || document.mozFullScreen || document.msFullscreenElement !== null)
+        if (fullScreen_ === false) {
+            fullScreenButton.className = 'iconButtonsClicked';
+            fullScreen_ = true;
+        } else {
+            fullScreenButton.className = 'iconButtons';
+            fullScreen_ = false;
+        }
+};
 
 /**
  * Copy code from div code_peek in clipboard system
@@ -111,9 +110,64 @@ Code.copyToClipboard = function () {
         window.getSelection().removeAllRanges();
         window.getSelection().addRange(range);
     }
-  	document.execCommand("copy");    
+    document.execCommand("copy");
 };
 
+/**
+ * modal controllers
+ */
+Code.boardsListModalShow = function () {
+    document.getElementById('overlayForModals').style.display = "block";
+    document.getElementById('boardListModal').classList.add('show');
+    var boardValue = document.getElementById("boardMenu").value;
+    if (boardValue !== 'none') {
+        document.getElementById("boardDescriptionSelector").selectedIndex = boardValue;
+        document.getElementById("boardDescriptionSelector").value = boardValue;
+        document.getElementById("boardDescriptionSelector").options[document.getElementById("boardDescriptionSelector").selectedIndex].style.backgroundColor = 'yellow';
+    }
+    window.addEventListener('click', Code.boardsListModalHide, 'once');
+    Code.boardDescription();
+}
+Code.portsListModalShow = function () {
+    document.getElementById('overlayForModals').style.display = "block";
+    document.getElementById('portListModal').classList.add('show');
+    window.addEventListener('click', Code.portsListModalHide, 'once');
+}
+document.getElementById("closeModalBoards").onclick = function () {
+    document.getElementById('overlayForModals').style.display = "none";
+    document.getElementById('boardListModal').classList.remove('show');
+}
+document.getElementById("closeModalPorts").onclick = function () {
+    document.getElementById('overlayForModals').style.display = "none";
+    document.getElementById('portListModal').classList.remove('show');
+}
+// When the user clicks anywhere outside of the modal, close it
+Code.boardsListModalHide = function (event) {
+    if (!document.getElementById('boardListModal').contains(event.target)) {
+        document.getElementById('overlayForModals').style.display = "none";
+        document.getElementById('boardListModal').classList.remove('show');
+    }
+}
+Code.portsListModalHide = function (event) {
+    if (!document.getElementById('boardListModal').contains(event.target)) {
+        document.getElementById('overlayForModals').style.display = "none";
+        document.getElementById('portListModal').classList.remove('show');
+    }
+}
+/**
+ * change information in the boards modal
+ **/
+Code.boardDescription = function () {
+    var boardValue = document.getElementById("boardDescriptionSelector").value;
+    if (boardValue === '')
+        boardValue = 'none';
+    document.getElementById("arduino_board_mini_picture").setAttribute("src", profile[boardValue]['picture']);
+    document.getElementById("board_connect").textContent = profile[boardValue]['usb'];
+    document.getElementById("board_cpu").textContent = profile[boardValue]['cpu'];
+    document.getElementById("board_voltage").textContent = profile[boardValue]['voltage'];
+    document.getElementById("board_inout").textContent = profile[boardValue]['inout'];
+
+};
 /**
  * Undo/redo functions
  */
@@ -132,8 +186,8 @@ Code.saveCodeFile = function () {
     var utc = new Date().toJSON().slice(0, 10).replace(/-/g, '_');
     var dataToSave = Blockly.Arduino.workspaceToCode(Blockly.getMainWorkspace());
     var blob = new Blob([dataToSave], {
-            type: 'text/plain;charset=utf-8'
-        });
+        type: 'text/plain;charset=utf-8'
+    });
     var fileNameSave = prompt(MSG['saveXML_span']);
     if (fileNameSave !== null) {
         var fakeDownloadLink = document.createElement("a");
@@ -156,8 +210,8 @@ Code.saveXmlBlocklyFile = function () {
     var xmlData = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
     var dataToSave = Blockly.Xml.domToPrettyText(xmlData);
     var blob = new Blob([dataToSave], {
-            type: 'text/xml;charset=utf-8'
-        });
+        type: 'text/xml;charset=utf-8'
+    });
     var fileNameSave = prompt(MSG['saveXML_span']);
     if (fileNameSave !== null) {
         var fakeDownloadLink = document.createElement("a");
@@ -174,19 +228,19 @@ Code.saveXmlBlocklyFile = function () {
 
 /**
  * Add or replace a parameter to the URL.
- * 
+ *
  * @param {string} name The name of the parameter.
  * @param {string} value Value to set
  * @return {string} The url completed with parameter and value
  */
-Code.addReplaceParamToUrl = function(url, param, value) {
-	var re = new RegExp("([?&])" + param + "=.*?(&|$)", "i");
-	var separator = url.indexOf('?') !== -1 ? "&" : "?";
-	if (url.match(re)) {
-		return url.replace(re, '$1' + param + "=" + value + '$2');
-	} else {
-		return url + separator + param + "=" + value;
-	}
+Code.addReplaceParamToUrl = function (url, param, value) {
+    var re = new RegExp("([?&])" + param + "=.*?(&|$)", "i");
+    var separator = url.indexOf('?') !== -1 ? "&" : "?";
+    if (url.match(re)) {
+        return url.replace(re, '$1' + param + "=" + value + '$2');
+    } else {
+        return url + separator + param + "=" + value;
+    }
 };
 
 /**
@@ -226,8 +280,8 @@ Code.loadXmlBlocklyFile = function (files) {
         var search = window.location.search;
         search = search.replace(/([?&]url=)[^&]*/, '');
         window.location = window.location.protocol + '//'
-                + window.location.host + window.location.pathname
-                + search;
+             + window.location.host + window.location.pathname
+             + search;
     };
     // Reset value of input after loading because Chrome will not fire
     // a 'change' event if the same file is loaded again.

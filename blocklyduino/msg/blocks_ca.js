@@ -26,7 +26,7 @@ Blockly.Msg.CONTROLS_SWITCH_TOOLTIP_3 = "Si el valor és cert executa el primer 
 Blockly.Msg.CONTROLS_SWITCH_TOOLTIP_4 = "Si el valor és cert executa el primer bloc d'ordres. En cas contrari executa el bloc següent d'ordres si la condició és certa. Si ninguna condició és verifica, llavors executa el darrer bloc d'ordres per defecte.";
 Blockly.Msg.CONTROLS_SWITCH_VAR_TOOLTIP = "Desplaça el bloc des de l'esquerra per afegir-lo.";
 Blockly.Msg.CONTROLS_SWITCH_CASEBREAK_TOOLTIP = "Afegeix un bloc d'ordres cas trenca";
-Blockly.Msg.CONTROLS_SWITCH_DEFAULT_TOOLTIP ="Afegeix un bloc d'accions per defecte";
+Blockly.Msg.CONTROLS_SWITCH_DEFAULT_TOOLTIP = "Afegeix un bloc d'accions per defecte";
 //Arduino base cateory blocks
 Blockly.Msg.VAR_CREATE_INT = "integer";
 Blockly.Msg.VAR_CREATE_FLOAT = "float";

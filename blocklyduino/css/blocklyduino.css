@@ -255,10 +255,10 @@ td.tabMiddle {
 
 /* Colours for the new code highlighting in code peek */
 .new_code_highlight {
-  background-color: #FFF200; /* same color as blockly highlight */
+    background-color: #FFF200; /* same color as blockly highlight */
 }
 
- /* The boards list modal (background) */
+/* The boards list modal (background) */
 .modal {
     position: fixed; /* Stay in place */
     z-index: 200; /* Sit on top */
@@ -278,13 +278,13 @@ td.tabMiddle {
     transition: top 0.5s, opacity 0.4s;
 }
 .overlay{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 100;
-  background-color: rgba(0,0,0,0.5); /*dim the background*/
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background-color: rgba(0,0,0,0.5); /*dim the background*/
 }
 .modal.show {
     /* Firefox */
@@ -347,65 +347,65 @@ td.tabMiddle {
     width: 200px;
 }
 #hideSelectScrollbar {
-  display: inline-block;
-  vertical-align: top;
-  overflow: hidden;
-  border: solid grey 1px;
+    display: inline-block;
+    vertical-align: top;
+    overflow: hidden;
+    border: solid grey 1px;
 }
 #hideSelectScrollbar > select {
-  padding: 10px;
-  margin: -5px -20px -5px -5px;
+    padding: 10px;
+    margin: -5px -20px -5px -5px;
 }
 #arduino_mini_picture_div {
-	position:absolute;
-	right:65px;
-	width:166px;
-	height:266px;
+    position:absolute;
+    right:65px;
+    width:166px;
+    height:266px;
 }
 #arduino_board_mini_picture {
     text-align: center;
-	width:166px;
-	height:266px;
+    width:166px;
+    height:266px;
     object-fit: contain;
 }
 .modalBoard_info {
-    left: 230px;
+    left: 380px;
     position: absolute;
 }
 /* collapsible content inside div */
 .collapsibleButton {
-  background-color: #006468;
-  color: #FFFFFF;
-  cursor: pointer;
-  padding: 10px;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: large;
-  font-weight: bold;
+    background-color: #006468;
+    color: #FFFFFF;
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: large;
+    font-weight: bold;
 }
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .active, .collapsibleButton:hover {
-  background-color: #FFCC00;
-  color: #000000;
+    background-color: #FFCC00;
+    color: #000000;
 }
 /* Style the collapsible content. Note: hidden by default */
 .collapsibleContent {
-  visibility: hidden;
-  padding: 0 18px;
-  background-color: white;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.1s ease-out;
+    visibility: hidden;
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.1s ease-out;
 }
 .collapsibleButton:after {
-  content: '\02795'; /* Unicode character for "plus" sign (+) */
-  float: left;
-  padding-right: 5px;
-  transition: 0.1s ease-out;
+    content: '\02795'; /* Unicode character for "plus" sign (+) */
+    float: left;
+    padding-right: 5px;
+    transition: 0.1s ease-out;
 }
 .active:after {
-  transform: rotateZ(45deg);
-  transition: 0.1s ease-out;
+    transform: rotateZ(45deg);
+    transition: 0.1s ease-out;
 }

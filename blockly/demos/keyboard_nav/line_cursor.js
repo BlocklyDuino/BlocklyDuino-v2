@@ -22,8 +22,8 @@
  * @constructor
  * @extends {Blockly.BasicCursor}
  */
-Blockly.LineCursor = function() {
-  Blockly.LineCursor.superClass_.constructor.call(this);
+Blockly.LineCursor = function () {
+    Blockly.LineCursor.superClass_.constructor.call(this);
 };
 Blockly.utils.object.inherits(Blockly.LineCursor, Blockly.BasicCursor);
 
@@ -34,23 +34,23 @@ Blockly.utils.object.inherits(Blockly.LineCursor, Blockly.BasicCursor);
  *     not set or there is no next value.
  * @override
  */
-Blockly.LineCursor.prototype.next = function() {
-  var curNode = this.getCurNode();
-  if (!curNode) {
-    return null;
-  }
-  var newNode = this.getNextNode_(curNode, this.validLineNode_);
+Blockly.LineCursor.prototype.next = function () {
+    var curNode = this.getCurNode();
+    if (!curNode) {
+        return null;
+    }
+    var newNode = this.getNextNode_(curNode, this.validLineNode_);
 
-  // Skip the input or next value if there is a connected block.
-  if (newNode && (newNode.getType() == Blockly.ASTNode.types.INPUT ||
-      newNode.getType() == Blockly.ASTNode.types.NEXT) &&
-      newNode.getLocation().targetBlock()) {
-    newNode = this.getNextNode_(newNode, this.validLineNode_);
-  }
-  if (newNode) {
-    this.setCurNode(newNode);
-  }
-  return newNode;
+    // Skip the input or next value if there is a connected block.
+    if (newNode && (newNode.getType() == Blockly.ASTNode.types.INPUT ||
+            newNode.getType() == Blockly.ASTNode.types.NEXT) &&
+            newNode.getLocation().targetBlock()) {
+        newNode = this.getNextNode_(newNode, this.validLineNode_);
+    }
+    if (newNode) {
+        this.setCurNode(newNode);
+    }
+    return newNode;
 };
 
 /**
@@ -60,17 +60,17 @@ Blockly.LineCursor.prototype.next = function() {
  *     not set or there is no next value.
  * @override
  */
-Blockly.LineCursor.prototype.in = function() {
-  var curNode = this.getCurNode();
-  if (!curNode) {
-    return null;
-  }
-  var newNode = this.getNextNode_(curNode, this.validInLineNode_);
+Blockly.LineCursor.prototype.in = function () {
+    var curNode = this.getCurNode();
+    if (!curNode) {
+        return null;
+    }
+    var newNode = this.getNextNode_(curNode, this.validInLineNode_);
 
-  if (newNode) {
-    this.setCurNode(newNode);
-  }
-  return newNode;
+    if (newNode) {
+        this.setCurNode(newNode);
+    }
+    return newNode;
 };
 
 /**
@@ -79,23 +79,23 @@ Blockly.LineCursor.prototype.in = function() {
  *     is not set or there is no previous value.
  * @override
  */
-Blockly.LineCursor.prototype.prev = function() {
-  var curNode = this.getCurNode();
-  if (!curNode) {
-    return null;
-  }
-  var newNode = this.getPreviousNode_(curNode, this.validLineNode_);
-  
-  if (newNode && (newNode.getType() == Blockly.ASTNode.types.INPUT ||
-    newNode.getType() == Blockly.ASTNode.types.NEXT) &&
-    newNode.getLocation().targetBlock()) {
-    newNode = this.getPreviousNode_(newNode, this.validLineNode_);
-  }
+Blockly.LineCursor.prototype.prev = function () {
+    var curNode = this.getCurNode();
+    if (!curNode) {
+        return null;
+    }
+    var newNode = this.getPreviousNode_(curNode, this.validLineNode_);
 
-  if (newNode) {
-    this.setCurNode(newNode);
-  }
-  return newNode;
+    if (newNode && (newNode.getType() == Blockly.ASTNode.types.INPUT ||
+            newNode.getType() == Blockly.ASTNode.types.NEXT) &&
+            newNode.getLocation().targetBlock()) {
+        newNode = this.getPreviousNode_(newNode, this.validLineNode_);
+    }
+
+    if (newNode) {
+        this.setCurNode(newNode);
+    }
+    return newNode;
 };
 
 /**
@@ -105,17 +105,17 @@ Blockly.LineCursor.prototype.prev = function() {
  *     not set or there is no previous value.
  * @override
  */
-Blockly.LineCursor.prototype.out = function() {
-  var curNode = this.getCurNode();
-  if (!curNode) {
-    return null;
-  }
-  var newNode = this.getPreviousNode_(curNode, this.validInLineNode_);
+Blockly.LineCursor.prototype.out = function () {
+    var curNode = this.getCurNode();
+    if (!curNode) {
+        return null;
+    }
+    var newNode = this.getPreviousNode_(curNode, this.validInLineNode_);
 
-  if (newNode) {
-    this.setCurNode(newNode);
-  }
-  return newNode;
+    if (newNode) {
+        this.setCurNode(newNode);
+    }
+    return newNode;
 
 };
 
@@ -126,24 +126,24 @@ Blockly.LineCursor.prototype.out = function() {
  * @return {boolean} True if the node should be visited, false otherwise.
  * @private
  */
-Blockly.LineCursor.prototype.validLineNode_ = function(node) {
-  if (!node) {
-    return false;
-  }
-  var isValid = false;
-  var location = node.getLocation();
-  var type = node && node.getType();
-  if (type == Blockly.ASTNode.types.BLOCK) {
-    if (location.outputConnection === null) {
-      isValid = true;
+Blockly.LineCursor.prototype.validLineNode_ = function (node) {
+    if (!node) {
+        return false;
     }
-  } else if (type == Blockly.ASTNode.types.INPUT && 
-      location.type == Blockly.NEXT_STATEMENT) {
-    isValid = true;
-  } else if (type == Blockly.ASTNode.types.NEXT) {
-    isValid = true;
-  }
-  return isValid;
+    var isValid = false;
+    var location = node.getLocation();
+    var type = node && node.getType();
+    if (type == Blockly.ASTNode.types.BLOCK) {
+        if (location.outputConnection === null) {
+            isValid = true;
+        }
+    } else if (type == Blockly.ASTNode.types.INPUT &&
+            location.type == Blockly.NEXT_STATEMENT) {
+        isValid = true;
+    } else if (type == Blockly.ASTNode.types.NEXT) {
+        isValid = true;
+    }
+    return isValid;
 };
 
 /**
@@ -152,18 +152,18 @@ Blockly.LineCursor.prototype.validLineNode_ = function(node) {
  * @return {boolean} True if the node should be visited, false otherwise.
  * @private
  */
-Blockly.LineCursor.prototype.validInLineNode_ = function(node) {
-  if (!node) {
-    return false;
-  }
-  var isValid = false;
-  var location = node.getLocation();
-  var type = node && node.getType();
-  if (type == Blockly.ASTNode.types.FIELD) {
-      isValid = true;
-  } else if (type == Blockly.ASTNode.types.INPUT &&
-      location.type == Blockly.INPUT_VALUE) {
-      isValid = true;
-  }
-  return isValid;
+Blockly.LineCursor.prototype.validInLineNode_ = function (node) {
+    if (!node) {
+        return false;
+    }
+    var isValid = false;
+    var location = node.getLocation();
+    var type = node && node.getType();
+    if (type == Blockly.ASTNode.types.FIELD) {
+        isValid = true;
+    } else if (type == Blockly.ASTNode.types.INPUT &&
+            location.type == Blockly.INPUT_VALUE) {
+        isValid = true;
+    }
+    return isValid;
 };

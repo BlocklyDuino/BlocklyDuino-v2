@@ -25,7 +25,7 @@ Blockly.Msg.CONTROLS_SWITCH_TOOLTIP_3 = "If the first value is true, then do the
 Blockly.Msg.CONTROLS_SWITCH_TOOLTIP_4 = "If the first value is true, then do the first block of statements. Otherwise, if the second value is true, do the second block of statements. If none of the values are true, do the last block of statements.";
 Blockly.Msg.CONTROLS_SWITCH_VAR_TOOLTIP = "Drag from the left into here to add";
 Blockly.Msg.CONTROLS_SWITCH_CASEBREAK_TOOLTIP = "Add additional case break do";
-Blockly.Msg.CONTROLS_SWITCH_DEFAULT_TOOLTIP ="Add optional default action";
+Blockly.Msg.CONTROLS_SWITCH_DEFAULT_TOOLTIP = "Add optional default action";
 //Arduino base cateory blocks
 Blockly.Msg.VAR_CREATE_INT = "integer";
 Blockly.Msg.VAR_CREATE_FLOAT = "float";

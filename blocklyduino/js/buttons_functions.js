@@ -34,7 +34,8 @@ function auto_save_and_restore_blocks() {
         var text = Blockly.Xml.domToText(xml);
         window.sessionStorage.loadOnceBlocks = text;
     }
-};
+}
+;
 
 var fullScreen_ = false;
 
@@ -53,37 +54,38 @@ function fullScreen(_element) {
             document.removeEventListener('fullscreenchange', exitFullScreen, false);
         }
     } else
-        // Mozilla
-        if (document.mozFullScreenEnabled) {
-            if (!document.mozFullScreenElement) {
-                elementClicked.mozRequestFullScreen();
-                document.addEventListener('mozfullscreenchange', exitFullScreen, false);
-            } else {
-                document.mozCancelFullScreen();
-                document.removeEventListener('mozfullscreenchange', exitFullScreen, false);
-            }
-        } else
-            // Chrome, Safari and Opera
-            if (document.webkitFullscreenEnabled) {
-                if (!document.webkitFullscreenElement) {
-                    elementClicked.webkitRequestFullscreen();
-                    document.addEventListener('webkitfullscreenchange', exitFullScreen, false);
-                } else {
-                    document.webkitExitFullscreen();
-                    document.removeEventListener('webkitfullscreenchange', exitFullScreen, false);
-                }
-            } else
-                // IE/Edge
-                if (document.msFullscreenEnabled) {
-                    if (!document.msFullscreenElement) {
-                        elementClicked.msRequestFullscreen();
-                        document.addEventListener('MSFullscreenChange', exitFullScreen, false);
-                    } else {
-                        document.msExitFullscreen();
-                        document.removeEventListener('MSFullscreenChange', exitFullScreen, false);
-                    }
-                }
-};
+    // Mozilla
+    if (document.mozFullScreenEnabled) {
+        if (!document.mozFullScreenElement) {
+            elementClicked.mozRequestFullScreen();
+            document.addEventListener('mozfullscreenchange', exitFullScreen, false);
+        } else {
+            document.mozCancelFullScreen();
+            document.removeEventListener('mozfullscreenchange', exitFullScreen, false);
+        }
+    } else
+    // Chrome, Safari and Opera
+    if (document.webkitFullscreenEnabled) {
+        if (!document.webkitFullscreenElement) {
+            elementClicked.webkitRequestFullscreen();
+            document.addEventListener('webkitfullscreenchange', exitFullScreen, false);
+        } else {
+            document.webkitExitFullscreen();
+            document.removeEventListener('webkitfullscreenchange', exitFullScreen, false);
+        }
+    } else
+    // IE/Edge
+    if (document.msFullscreenEnabled) {
+        if (!document.msFullscreenElement) {
+            elementClicked.msRequestFullscreen();
+            document.addEventListener('MSFullscreenChange', exitFullScreen, false);
+        } else {
+            document.msExitFullscreen();
+            document.removeEventListener('MSFullscreenChange', exitFullScreen, false);
+        }
+    }
+}
+;
 
 function exitFullScreen() {
     if (document.fullscreenElement || document.webkitIsFullScreen || document.mozFullScreen || document.msFullscreenElement !== null)
@@ -94,7 +96,8 @@ function exitFullScreen() {
             fullScreenButton.className = 'iconButtons';
             fullScreen_ = false;
         }
-};
+}
+;
 
 /**
  * Copy code from div code_peek in clipboard system
@@ -280,8 +283,8 @@ Code.loadXmlBlocklyFile = function (files) {
         var search = window.location.search;
         search = search.replace(/([?&]url=)[^&]*/, '');
         window.location = window.location.protocol + '//'
-             + window.location.host + window.location.pathname
-             + search;
+                + window.location.host + window.location.pathname
+                + search;
     };
     // Reset value of input after loading because Chrome will not fire
     // a 'change' event if the same file is loaded again.

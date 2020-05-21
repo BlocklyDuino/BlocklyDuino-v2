@@ -26,7 +26,7 @@ Blockly.Msg.CONTROLS_SWITCH_TOOLTIP_3 = "もし最初の値が真なら、最初
 Blockly.Msg.CONTROLS_SWITCH_TOOLTIP_4 = "もし最初の値が真なら、最初のブロックを実行、そうでなければ、2番目の値が真なら、2番目のブロックを実行 もし両方とも真でなければ、最後のブロックを実行";
 Blockly.Msg.CONTROLS_SWITCH_VAR_TOOLTIP = "追加するために左からここにドラッグ";
 Blockly.Msg.CONTROLS_SWITCH_CASEBREAK_TOOLTIP = "ケース　ブレイク　実行を追加";//"Add additional case break do"
-Blockly.Msg.CONTROLS_SWITCH_DEFAULT_TOOLTIP ="デフォルトのアクションを追加";//"Add optional default action"
+Blockly.Msg.CONTROLS_SWITCH_DEFAULT_TOOLTIP = "デフォルトのアクションを追加";//"Add optional default action"
 //Arduino base cateory blocks
 Blockly.Msg.VAR_CREATE_INT = "integer";
 Blockly.Msg.VAR_CREATE_FLOAT = "float";

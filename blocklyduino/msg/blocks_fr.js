@@ -25,7 +25,7 @@ Blockly.Msg.CONTROLS_SWITCH_TOOLTIP_3 = "Si une valeur est vraie alors exécuter
 Blockly.Msg.CONTROLS_SWITCH_TOOLTIP_4 = "Si une valeur est vraie alors exécuter le premier bloc de commandes. Sinon exécuter le bloc suivant de commandes si la condition est vraie.  Si aucune condition n'est vérifiée, alors faire le bloc de commandes par défaut.";
 Blockly.Msg.CONTROLS_SWITCH_VAR_TOOLTIP = "Déplacer le bloc de gauche pour l'ajouter.";
 Blockly.Msg.CONTROLS_SWITCH_CASEBREAK_TOOLTIP = "Ajoute un bloc de commandes sous condition";
-Blockly.Msg.CONTROLS_SWITCH_DEFAULT_TOOLTIP ="Ajoute un bloc d'actions par défaut";
+Blockly.Msg.CONTROLS_SWITCH_DEFAULT_TOOLTIP = "Ajoute un bloc d'actions par défaut";
 //Arduino base cateory blocks
 Blockly.Msg.VAR_CREATE_INT = "de type nombre entier";
 Blockly.Msg.VAR_CREATE_FLOAT = "de type nombre à virgule";

@@ -45,8 +45,8 @@ Blockly.Arduino = new Blockly.Generator('Arduino');
  * @private
  */
 Blockly.Arduino.addReservedWords(
-    // http://arduino.cc/en/Reference/HomePage
-    'setup,loop,if,else,for,switch,case,while,do,break,continue,return,goto,define,include,HIGH,LOW,INPUT,OUTPUT,INPUT_PULLUP,true,false,interger, constants,floating,point,void,bookean,char,unsigned,byte,int,word,long,float,double,string,String,array,static, volatile,const,sizeof,pinMode,digitalWrite,digitalRead,analogReference,analogRead,analogWrite,tone,noTone,shiftOut,shitIn,pulseIn,millis,micros,delay,delayMicroseconds,min,max,abs,constrain,map,pow,sqrt,sin,cos,tan,randomSeed,random,lowByte,highByte,bitRead,bitWrite,bitSet,bitClear,bit,attachInterrupt,detachInterrupt,interrupts,noInterrupts');
+        // http://arduino.cc/en/Reference/HomePage
+        'setup,loop,if,else,for,switch,case,while,do,break,continue,return,goto,define,include,HIGH,LOW,INPUT,OUTPUT,INPUT_PULLUP,true,false,interger, constants,floating,point,void,bookean,char,unsigned,byte,int,word,long,float,double,string,String,array,static, volatile,const,sizeof,pinMode,digitalWrite,digitalRead,analogReference,analogRead,analogWrite,tone,noTone,shiftOut,shitIn,pulseIn,millis,micros,delay,delayMicroseconds,min,max,abs,constrain,map,pow,sqrt,sin,cos,tan,randomSeed,random,lowByte,highByte,bitRead,bitWrite,bitSet,bitClear,bit,attachInterrupt,detachInterrupt,interrupts,noInterrupts');
 
 /**
  * Order of operation ENUMs.
@@ -125,14 +125,14 @@ Blockly.Arduino.init = function (workspace) {
 
     if (!Blockly.Arduino.variableDB_) {
         Blockly.Arduino.variableDB_ =
-            new Blockly.Names(Blockly.Arduino.RESERVED_WORDS_);
+                new Blockly.Names(Blockly.Arduino.RESERVED_WORDS_);
     } else {
         Blockly.Arduino.variableDB_.reset();
     }
 
     Blockly.Arduino.variableDB_.setVariableMap(workspace.getVariableMap());
     Blockly.Arduino.definitions_['variables'] = "";
-    
+
     // get all types from all variable in workspace
     var allTypes = Code.workspace.getVariableTypes();
     for (var i = 0; i < allTypes.length - 1; i++) {
@@ -153,10 +153,10 @@ Blockly.Arduino.init = function (workspace) {
  */
 Blockly.Arduino.finish = function (code) {
     var includes = [],
-    definitions = [],
-    variables = [],
-    functions = [],
-    BLOCK_GLOBALS_ARRAY_SIZE = [];
+            definitions = [],
+            variables = [],
+            functions = [],
+            BLOCK_GLOBALS_ARRAY_SIZE = [];
     for (var name in Blockly.Arduino.includes_) {
         includes.push(Blockly.Arduino.includes_[name]);
     }
@@ -185,7 +185,7 @@ Blockly.Arduino.finish = function (code) {
         functions.push('\n');
     }
     var setups = [''],
-    userSetupCode = '';
+            userSetupCode = '';
     if (Blockly.Arduino.setups_['userSetupCode'] !== undefined) {
         userSetupCode = '\n' + Blockly.Arduino.setups_['userSetupCode'];
         delete Blockly.Arduino.setups_['userSetupCode'];
@@ -229,9 +229,9 @@ Blockly.Arduino.scrubNakedValue = function (line) {
 Blockly.Arduino.quote_ = function (string) {
     // TODO: This is a quick hack.  Replace with goog.string.quote
     string = string.replace(/\\/g, '\\\\')
-        .replace(/\n/g, '\\\n')
-        .replace(/\$/g, '\\$')
-        .replace(/'/g, '\\\'');
+            .replace(/\n/g, '\\\n')
+            .replace(/\$/g, '\\$')
+            .replace(/'/g, '\\\'');
     return '\"' + string + '\"';
 };
 

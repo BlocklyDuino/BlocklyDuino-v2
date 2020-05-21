@@ -159,7 +159,7 @@ Blockly.Themes.blackWhite.setComponentStyle('scrollbarColour', '#000000');
 Blockly.Themes.blackWhite.setComponentStyle('scrollbarOpacity', '1');
 
 Blockly.Themes.blackWhite.setFontStyle({
-  'family': 'Trebuchet MS', // Use default font-family
-  'weight': null, // Use default font-weight
-  'size': 12
+    'family': 'Trebuchet MS', // Use default font-family
+    'weight': null, // Use default font-weight
+    'size': 12
 });

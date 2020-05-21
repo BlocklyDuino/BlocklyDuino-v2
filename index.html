@@ -239,12 +239,15 @@
                         <select id="languageMenu"></select>
                         <br>
                         <br>
-                        <span id="renderSpan" class="UIText">...</span>
-                        <select name="renderer" onchange="document.forms.options.submit('options')">
-                            <option value="geras">Geras</option>
-                            <option value="thrasos">Thrasos</option>
-                            <option value="zelos">Zelos</option>
-                            <option value="minimalist">Minimalist</option>
+                        <span id="interfaceColorSpan" class="UIText">...</span>
+                        <select id="interfaceColorMenu">
+                            <option value="arduino" selected="selected">BlocklyDuino2</option>
+                        </select>
+                        <br>
+                        <br>
+                        <span id="codeEditorColorSpan" class="UIText">...</span>
+                        <select id="codeEditorColorMenu">
+                            <option value="arduino" selected="selected">BlocklyDuino2</option>
                         </select>
                         <br>
                         <br>
@@ -259,13 +262,23 @@
                             <option value="dark" id="themeDarkSpan">dark</option>
                             <option value="blackWhite" id="themeBwSpan">blackWhite</option>
                         </select>
+                        <br>
+                        <br>
+                        <span id="renderSpan" class="UIText">...</span>
+                        <select name="renderer" onchange="document.forms.options.submit('options')">
+                            <option value="geras">Geras</option>
+                            <option value="thrasos">Thrasos</option>
+                            <option value="zelos">Zelos</option>
+                            <option value="minimalist">Minimalist</option>
+                        </select>
                     </form>
                     <br>
                     <span id="fontSizeSpan" class="UIText"></span>
                     <select id="rendering-constant-selector">
-                        <option value="fontSizeBlocks" id="optionFontSizeBlocks">Blocks Font Size</option>
+                        <option value="fontSizeBlocks" id="optionFontSizeBlocks" selected="selected">Blocks Font Size</option>
                         <option value="fontSizePage" id="optionFontSizePage">Page Font Size</option>
                         <option value="fontSpacingPage" id="optionFontSpacingPage">Page Font Spacing</option>
+                        <option value="fontSizeCodeEditor" id="optionFontSizeCodeEditor">Code editor Font Size</option>
                     </select>
                     <br>
                     <input type="range" min="3" max="50" value="4"
@@ -322,31 +335,35 @@
                 <br>
                 <button type="button" class="collapsibleButton">Details</button>
                 <div class="collapsibleContent" id="collapsibleContent">
-                    <span id="span_boardModal_connect">Connecteur</span><span id="board_connect" class="modalBoard_info">...</span><br>
-                    <span id="span_boardModal_voltage">Tension d'alimentation</span><span id="board_voltage" class="modalBoard_info">...</span><br>
-                    <span id="span_boardModal_cpu">Microcontrôleur µC</span><span id="board_cpu" class="modalBoard_info">...</span><br>
-                    <span id="span_boardModal_inout">Nombre d'E/S</span><span id="board_inout" class="modalBoard_info">...</span><br>
-                    <span id="span_boardModal_in_analog">Entrées analogiques</span><span id="board_in_analog" class="modalBoard_info">...</span><br>
-                    <span id="span_boardModal_out_analog">Sorties PWM</span><span id="board_out_analog" class="modalBoard_info">...</span><br>
-                    <span id="span_boardModal_flash">Mémoire flash</span><span id="board_flash" class="modalBoard_info">...</span><br>
-                    <span id="span_boardModal_ram"></span>RAM<span id="board_ram" class="modalBoard_info">...</span><br>
-                    <span id="span_boardModal_eeprom"></span>EEPROM<span id="board_eeprom" class="modalBoard_info">...</span><br>
+                    <span id="boardModal_connect">Connecteur</span><span id="boardModal_connect_span" class="modalBoard_info">...</span><br>
+                    <span id="boardModal_voltage">Tension de fonctionnement</span><span id="boardModal_voltage_span" class="modalBoard_info">...</span><br>
+                    <span id="boardModal_voltage_normal">Tension d'alimentation (recommandée)</span><span id="boardModal_voltage_normal_span" class="modalBoard_info">...</span><br>
+                    <span id="boardModal_voltage_maxi">Tension d'alimentation (limites)</span><span id="boardModal_voltage_maxi_span" class="modalBoard_info">...</span><br>
+                    <span id="boardModal_cpu">Microcontrôleur µC</span><span id="boardModal_cpu_span" class="modalBoard_info">...</span><br>
+                    <span id="boardModal_speed"></span>Vitesse d'horloge<span id="boardModal_speed_span" class="modalBoard_info">...</span><br>
+                    <span id="boardModal_inout">Nombre d'E/S logiques</span><span id="boardModal_inout_span" class="modalBoard_info">...</span><br>
+                    <span id="boardModal_in_analog">Nombre d'E/S analogiques</span><span id="boardModal_in_analog_span" class="modalBoard_info">...</span><br>
+                    <span id="boardModal_out_analog">Nombre de sorties PWM</span><span id="boardModal_out_analog_span" class="modalBoard_info">...</span><br>
+                    <span id="boardModal_i_max_out">Intensité maxi par broche (5V)</span><span id="boardModal_i_max_out_span" class="modalBoard_info">...</span><br>
+                    <span id="boardModal_i_max3">Intensité maxi la sortie 3.3V</span><span id="boardModal_i_max3_span" class="modalBoard_info">...</span><br>
+                    <span id="boardModal_i_max_5">Intensité maxi la sortie 5V</span><span id="boardModal_i_max_5_span" class="modalBoard_info">...</span><br>
+                    <span id="boardModal_flash">Mémoire flash</span><span id="boardModal_flash_span" class="modalBoard_info">...</span><br>
+                    <span id="boardModal_sram"></span>Mémoire SRAM<span id="boardModal_sram_span" class="modalBoard_info">...</span><br>
+                    <span id="boardModal_eeprom"></span>EEPROM<span id="boardModal_eeprom_span" class="modalBoard_info">...</span><br>
                 </div> 
             </div>
         </div>
         <div id="portListModal" class="modal">
             <div class="modal-content">
                 <div class="modal-header">
+                    <i class="fab fa-usb"></i>Modal Header Ports
                     <span class="closeModal" id="closeModalPorts">&times;</span>
-                    <h2>Modal Header Ports</h2>
                 </div>
-                <div class="modal-body">
-                    <p>Some text in the Modal Body</p>
-                    <p>Some other text...</p>
+                <div class="modal-body" id="portListModalBody">
                 </div>
-                <div class="modal-footer">
-                    <h3>Modal Footer</h3>
-                </div>
+                <!-- <div class="modal-footer"> -->
+                    <!-- <h3>Modal Footer</h3> -->
+                <!-- </div> -->
             </div>
         </div>
     </body>
@@ -407,8 +424,9 @@
     <script src="./blocklyduino/toolbox/toolbox_blocklyduino.js"></script>
     <script src="./blocklyduino/toolbox/toolbox_standard.js"></script>
     <script type="text/javascript">
-        require('../CLI_functions.js');
-        require('../IDE_functions.js');
-<!-- require('../resources/app.asar/functions.js'); -->
+        <!-- require('../CLI_functions.js'); -->
+        <!-- require('../IDE_functions.js'); -->
+        require('../resources/app.asar/CLI_functions.js');
+        require('../resources/app.asar/IDE_functions.js');
     </script>
 </HTML>

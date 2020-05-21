@@ -245,7 +245,8 @@ Code.renderContent = function () {
         });
         Code.PREV_CODE_ = generatedCode;
         codePeakPre.innerHTML = PR.prettyPrintOne(textTemp, 'cpp');
-    } else codePeakPre.className = codePeakPre.className.replace('new_code_highlight', '');
+    } else
+        codePeakPre.className = codePeakPre.className.replace('new_code_highlight', '');
     if (typeof PR == 'object') {
         PR.prettyPrint();
     }
@@ -270,7 +271,7 @@ Code.checkAllGeneratorFunctionsDefined = function (generator) {
     var valid = missingBlockGenerators.length === 0;
     if (!valid) {
         var msg = 'The generator code for the following blocks not specified for ' +
-            generator.name_ + ':\n - ' + missingBlockGenerators.join('\n - ');
+                generator.name_ + ':\n - ' + missingBlockGenerators.join('\n - ');
         Blockly.alert(msg); // Assuming synchronous. No callback.
     }
     return valid;
@@ -331,7 +332,7 @@ Code.init = function () {
         },
         maxTrashcanContents: 256,
         media: './blockly/media/',
-        sounds : true,
+        sounds: true,
         oneBasedIndex: true,
         readOnly: false,
         rtl: rtl,
@@ -523,6 +524,8 @@ Code.initLanguage = function () {
     document.getElementById('appName').textContent = MSG['appName'];
     //change Blockly title buttons by this one
     document.getElementById('languageSpan').textContent = MSG['languageSpan'];
+    document.getElementById('interfaceColorSpan').textContent = MSG['interfaceColorSpan'];
+    document.getElementById('codeEditorColorSpan').textContent = MSG['codeEditorColorSpan'];
     document.getElementById('themeSpan').textContent = MSG['themeSpan'];
     document.getElementById('renderSpan').textContent = MSG['renderSpan'];
     document.getElementById('boardButton').title = MSG['boardButtonSpan'];
@@ -578,6 +581,7 @@ Code.initLanguage = function () {
     document.getElementById('optionFontSizeBlocks').textContent = MSG['optionFontSizeBlocks'];
     document.getElementById('optionFontSizePage').textContent = MSG['optionFontSizePage'];
     document.getElementById('optionFontSpacingPage').textContent = MSG['optionFontSpacingPage'];
+    document.getElementById('optionFontSizeCodeEditor').textContent = MSG['optionFontSizeCodeEditor'];
     document.getElementById('keyMappingExplanationSpan').innerHTML = MSG['keyMappingExplanationSpan'];
     //keyboard nav
     Blockly.navigation.ACTION_PREVIOUS.name = MSG['actionName0'];
@@ -602,7 +606,7 @@ Code.initLanguage = function () {
 Code.discard = function () {
     var count = Code.workspace.getAllBlocks(false).length;
     if (count < 2 ||
-        window.confirm(Blockly.Msg['DELETE_ALL_BLOCKS'].replace('%1', count))) {
+            window.confirm(Blockly.Msg['DELETE_ALL_BLOCKS'].replace('%1', count))) {
         Code.workspace.clear();
         if (window.location.hash) {
             window.location.hash = '';

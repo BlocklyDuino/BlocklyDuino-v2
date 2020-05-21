@@ -2,9 +2,9 @@
 dragElement(document.getElementById("keyboard_nav"));
 function dragElement(elmnt) {
     var pos1 = 0,
-    pos2 = 0,
-    pos3 = 0,
-    pos4 = 0;
+            pos2 = 0,
+            pos3 = 0,
+            pos4 = 0;
     if (document.getElementById(elmnt.id + "_header")) {
         // if present, the header is where you move the DIV from:
         document.getElementById(elmnt.id + "_header").onmousedown = dragMouseDown;
@@ -39,7 +39,8 @@ function dragElement(elmnt) {
         document.onmouseup = null;
         document.onmousemove = null;
     }
-};
+}
+;
 
 // javascript function for collapsible content
 function collapsibleContentInit() {
@@ -50,7 +51,7 @@ function collapsibleContentInit() {
             this.classList.toggle("active");
             var content = this.nextElementSibling;
             if (content.style.maxHeight) {
-                content.style.maxHeight = null;                
+                content.style.maxHeight = null;
                 document.getElementById("arduino_mini_picture_div").style.transform = "scale(1)";
                 document.getElementById("arduino_mini_picture_div").style.top = "";
                 document.getElementById("collapsibleContent").style.visibility = "hidden";

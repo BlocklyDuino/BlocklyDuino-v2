@@ -32,14 +32,14 @@ Blockly.Arduino['controls_if'] = function (block) {
     // If/elseif/else condition.
     var n = 0;
     var code = '',
-    branchCode,
-    conditionCode;
+            branchCode,
+            conditionCode;
     do {
         conditionCode = Blockly.Arduino.valueToCode(block, 'IF' + n,
                 Blockly.Arduino.ORDER_NONE) || 'false';
         branchCode = Blockly.Arduino.statementToCode(block, 'DO' + n);
         code += (n > 0 ? ' else ' : '') +
-        'if (' + conditionCode + ') {\n' + branchCode + '}';
+                'if (' + conditionCode + ') {\n' + branchCode + '}';
 
         ++n;
     } while (block.getInput('IF' + n));
@@ -63,7 +63,7 @@ Blockly.Arduino['logic_compare'] = function (block) {
     };
     var operator = OPERATORS[block.getFieldValue('OP')];
     var order = (operator == '==' || operator == '!=') ?
-    Blockly.Arduino.ORDER_EQUALITY : Blockly.Arduino.ORDER_RELATIONAL;
+            Blockly.Arduino.ORDER_EQUALITY : Blockly.Arduino.ORDER_RELATIONAL;
     var argument0 = Blockly.Arduino.valueToCode(block, 'A', order) || '0';
     var argument1 = Blockly.Arduino.valueToCode(block, 'B', order) || '0';
     var code = argument0 + ' ' + operator + ' ' + argument1;
@@ -74,7 +74,7 @@ Blockly.Arduino['logic_operation'] = function (block) {
     // Operations 'and', 'or'.
     var operator = (block.getFieldValue('OP') == 'AND') ? '&&' : '||';
     var order = (operator == '&&') ? Blockly.Arduino.ORDER_LOGICAL_AND :
-    Blockly.Arduino.ORDER_LOGICAL_OR;
+            Blockly.Arduino.ORDER_LOGICAL_OR;
     var argument0 = Blockly.Arduino.valueToCode(block, 'A', order);
     var argument1 = Blockly.Arduino.valueToCode(block, 'B', order);
     if (!argument0 && !argument1) {

@@ -97,7 +97,7 @@ function exitFullScreen() {
             fullScreen_ = false;
         }
 }
-;
+; 
 
 /**
  * Copy code from div code_peek in clipboard system
@@ -105,17 +105,17 @@ function exitFullScreen() {
 Code.copyToClipboard = function () {
     if (document.selection) { // IE
         var range = document.body.createTextRange();
-        range.moveToElementText(document.getElementById("code_peek"));
+        range.moveToElementText(document.getElementById("content_code"));
         range.select();
     } else if (window.getSelection) {
         var range = document.createRange();
-        range.selectNode(document.getElementById("code_peek"));
+        range.selectNode(document.getElementById("content_code"));
         window.getSelection().removeAllRanges();
         window.getSelection().addRange(range);
     }
     document.execCommand("copy");
 };
-
+ 
 /**
  * modal controllers
  */
@@ -320,11 +320,19 @@ Code.ResetWorkspace = function () {
  */
 Code.changeRenderingConstant = function (value) {
     var type = document.getElementById('rendering-constant-selector').value;
-    if (type === 'fontSize') {
-        var fontStyle = {
-            'size': value
-        };
-        Blockly.getMainWorkspace().getTheme().setFontStyle(fontStyle);
+    switch (type) {
+        case 'fontSizeBlocks':
+            var fontStyle = {
+                'size': value
+            };
+            Blockly.getMainWorkspace().getTheme().setFontStyle(fontStyle);
+            editor.setOptions({
+                fontSize: value + "pt"
+            });
+        case 'fontSizePage':
+            // fontSizePageModify('access', value);
+        case 'fontSpacingPage':
+            // document.body.style.fontSize = value + 'px';
     }
     // Refresh theme.
     Blockly.getMainWorkspace().setTheme(Blockly.getMainWorkspace().getTheme());

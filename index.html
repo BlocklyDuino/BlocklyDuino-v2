@@ -9,7 +9,6 @@
         <link rel="stylesheet" href="./blocklyduino/css/font_awesome_all.min.css" />
         <link rel="stylesheet" href="./blocklyduino/css/keyboard_nav.css" />
         <link rel="stylesheet" href="./blocklyduino/css/lateral-panel.css" />
-        <link rel="stylesheet" href="./blocklyduino/css/prettify.css" />
         <link rel="stylesheet" href="./blocklyduino/css/style.css" />
     </head>
     <body>
@@ -104,14 +103,12 @@
                                     <div id="content_blocks"></div>
                                 </div>
                                 <div id="separator" ></div>
-                                <div id="code_peek">
-                                    <pre id="code_peek_content" class="code_peek_content prettyprint linenums"> </pre>
                                     <button id="copyCodeButton" class="iconButtons" onclick="Code.copyToClipboard()">
                                         <span id="copyCodeButton_span">
                                             <i class="far fa-copy"></i>
                                         </span>
                                     </button>
-                                </div>
+                                <div id="content_code"></div>
                             </div>
                             <div id="barre_h">
                                 <div id="checkDetails">
@@ -275,15 +272,12 @@
                     <br>
                     <span id="fontSizeSpan" class="UIText"></span>
                     <select id="rendering-constant-selector">
-                        <option value="fontSizeBlocks" id="optionFontSizeBlocks" selected="selected">Blocks Font Size</option>
+                        <option value="fontSizeBlocks" id="optionFontSizeBlocks" selected="selected">Blocks & Editor Font Size</option>
                         <option value="fontSizePage" id="optionFontSizePage">Page Font Size</option>
                         <option value="fontSpacingPage" id="optionFontSpacingPage">Page Font Spacing</option>
-                        <option value="fontSizeCodeEditor" id="optionFontSizeCodeEditor">Code editor Font Size</option>
                     </select>
                     <br>
-                    <input type="range" min="3" max="50" value="4"
-                           oninput="changeRenderingConstant(this.value)"
-                           onchange="changeRenderingConstant(this.value)" />
+                    <input type="range" min="3" max="50" value="4" oninput="Code.changeRenderingConstant(this.value)" onchange="Code.changeRenderingConstant(this.value)" />
                     <br>
                     <br>
                     <span id="keyMappingExplanationSpan" class="UITextSmall"></span>
@@ -383,15 +377,18 @@
     <script src="./blockly/demos/keyboard_nav/line_cursor.js"></script>
     <script src="./blockly/tests/playgrounds/screenshot.js"></script>
     <!-- Blockly libraries of function, hacked from different demos -->
-    <script src="./blocklyduino/js/boards.js"></script>
-    <script src="./blocklyduino/js/typed_variable.js"></script>
     <script src="./blocklyduino/js/blockly/code.js"></script>
     <script src="./blocklyduino/js/blockly/keyboard_nav.js"></script>
     <script src="./blocklyduino/js/blockly/playground.js"></script>
-    <!-- BlocklyDuino libraries of external functions -->
-    <script src="./blocklyduino/js/addon/prettify.js"></script>
+    <script src="./blocklyduino/js/boards.js"></script>
+    <script src="./blocklyduino/js/boards.json"></script>
+    <script src="./blocklyduino/js/typed_variable.js"></script>
     <script src="./blocklyduino/js/buttons_functions.js"></script>
     <script src="./blocklyduino/js/dialog.js"></script>
+    <script src="./blocklyduino/js/renderingConstant.js"></script>
+    <!-- BlocklyDuino libraries of external functions -->
+    <script src="./blocklyduino/js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="./blocklyduino/js/ace/ext-language_tools.js"></script>
     <!-- BlocklyDuino specific: block design -->
     <script type="text/javascript" src="./blocklyduino/blocks/blocks_colors.js"></script>
     <script type="text/javascript" src="./blocklyduino/blocks/arduino_base/arduino_base.js"></script>
@@ -424,9 +421,33 @@
     <script src="./blocklyduino/toolbox/toolbox_blocklyduino.js"></script>
     <script src="./blocklyduino/toolbox/toolbox_standard.js"></script>
     <script type="text/javascript">
+        ace.require("ace/ext/language_tools");
+        var editor = ace.edit("content_code");
+        editor.setTheme("ace/theme/sqlserver");
+        editor.session.setMode("ace/mode/c_cpp");
+        editor.setShowPrintMargin(false);
+        editor.setOptions({
+            autoScrollEditorIntoView: false,
+            readOnly: false,
+            highlightGutterLine: true,
+            animatedScroll: true,
+            enableBasicAutocompletion: true,
+            enableSnippets: true,
+            enableLiveAutocompletion: true
+        });
+        editor.find('needle',{
+            backwards: false,
+            wrap: false,
+            caseSensitive: false,
+            wholeWord: false,
+            regExp: false
+        });
+        editor.findNext();
+        editor.findPrevious();
+
         <!-- require('../CLI_functions.js'); -->
         <!-- require('../IDE_functions.js'); -->
-        require('../resources/app.asar/CLI_functions.js');
-        require('../resources/app.asar/IDE_functions.js');
+        <!-- require('../resources/app.asar/CLI_functions.js'); -->
+        <!-- require('../resources/app.asar/IDE_functions.js'); -->
     </script>
 </HTML>

@@ -89,29 +89,6 @@ function changeTheme(themeChoice) {
 ;
 
 /**
- * Change font size in blocks in all workspace
- */
-function changeRenderingConstant(value) {
-    var type = document.getElementById('rendering-constant-selector').value;
-    if (type === 'fontSizeBlocks') {
-        var fontStyle = {
-            'size': value
-        };
-        Code.workspace.getTheme().setFontStyle(fontStyle);
-        // Refresh theme.
-        Code.workspace.setTheme(Code.workspace.getTheme());
-    }
-    // if (type === 'fontSizePage') {
-    // fontSizePageModify('access', value);
-    // }
-    // if (type === 'fontSpacingPage') {
-    // document.body.style.fontSize = value + 'px';
-    // console.log(value);
-    // }
-}
-;
-
-/**
  * Sort and list elements with class 'access' for size change
  */
 function getElementsByClass(searchClass, node, tag) {

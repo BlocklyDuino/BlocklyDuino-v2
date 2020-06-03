@@ -9,7 +9,7 @@
     <body>
         <div class="grid-container">
             <div id="serialSend" class="serialSend">
-                <input type="text" placeholder="Texte" id="serialSendBox" class="form-control">
+                <input type="text" name="inputTextSerial" id="serialSendBox" class="form-control">
                 <span class="input-group-btn">
                     <button id="btn_serialSend" type="button" class="btn btn-info"></button>
                 </span>
@@ -22,26 +22,32 @@
                 <select id="serialConnectSpeed_Menu" > </select>
                 <button id="btn_serialConnect" type="button" class="btn btn-info"> 
                     <span class='fa fa-play'></span>
+                    <span id="btn_serialConnect_span" ></span>
                 </button>
                 <button id="btn_serialPeekClear" type="button" class="btn btn-info">
                     <span class='fa fa-eraser'></span>
+                    <span id="btn_serialPeekClear_span"></span>
                 </button>
                 <button id="btn_serialPeekCSV" type="button" class="btn btn-info">
                     <span class='fa fa-eject'></span>
+                    <span id="btn_serialPeekCSV_span"></span>
                 </button>
                 <button id="btn_serialChart" type="button" class="btn btn-info">
                     <span class='fa fa-chart-line'></span>
+                    <span id="btn_serialChart_span"></span>
                 </button>
                 <button id="btn_serialChartPause" type="button" class="btn btn-info" style="visibility: hidden;"> 
                     <span class='fa fa-play'></span>
+                    <span id="btn_serialChartPause_span"></span>
                 </button>
             </div>
         </div>
-    </body>
-    <script src="./js/addon/smoothie.js"></script>
     <script src="../blockly/blockly_compressed.js"></script>
+    <script src="./js/addon/smoothie.js"></script>
     <script src="./js/serialMonitorPlotter.js"></script>
+    </body>
     <script type="text/javascript">
-        require('../../serialMonitor.js');
+        <!-- require('../../serialMonitor.js'); -->
+        require('../../resources/app.asar/serialMonitor.js');
     </script>
 </HTML>

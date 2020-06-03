@@ -166,15 +166,6 @@ Code.bindClick = function (el, func) {
 };
 
 /**
- * Load the Prettify CSS and Arduino.
- */
-Code.importPrettify = function () {
-    var script = document.createElement('script');
-    script.setAttribute('src', './blocklyduino/js/addon/run_prettify.js');
-    document.head.appendChild(script);
-};
-
-/**
  * Compute the absolute coordinates and dimensions of an HTML element.
  * @param {!Element} element Element to match.
  * @return {!Object} Contains height, width, x, and y properties.
@@ -205,76 +196,12 @@ Code.getBBox_ = function (element) {
 Code.LANG = Code.getLang();
 
 /**
- * Private variable to save the previous version of the Arduino Code.
- * @type {!String}
- * @private
- */
-Code.PREV_CODE_ = 'void setup() {\n}\n\n\nvoid loop() {\n\n}';
-
-/**
  * Populate the currently selected pane with content generated from the blocks.
  */
 Code.renderContent = function () {
-    var codePeakPre = document.getElementById('code_peek_content');
+    var codePeakPre = document.getElementById('content_code');
     var generatedCode = Blockly.Arduino.workspaceToCode(Code.workspace);
-    // if (generatedCode !== Code.PREV_CODE_) {
-    // var diff = JsDiff.diffWords(Code.PREV_CODE_, generatedCode);
-    // var resultStringArray = [];
-    // for (var i = 0; i < diff.length; i++) {
-    // if (!diff[i].removed) {
-    // var escapedCode = diff[i].value.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    // if (diff[i].added) {
-    // resultStringArray.push(
-    // '<span class="new_code_highlight">' + escapedCode + '</span>');
-    // } else {
-    // resultStringArray.push(escapedCode);
-    // }
-    // }
-    // }
-    // Code.PREV_CODE_ = generatedCode;
-    // codePeakPre.innerHTML = PR.prettyPrintOne(resultStringArray.join(''), 'cpp');
-    // }
-    if (generatedCode !== Code.PREV_CODE_) {
-        var textTemp = '';
-        codePeakPre.className = codePeakPre.className.replace('prettyprinted', '');
-        generatedCode.split('').forEach(function (val, i) {
-            if (val !== Code.PREV_CODE_.charAt(i))
-                textTemp += "<span class='new_code_highlight'>" + val + "</span>";
-            else
-                textTemp += val;
-        });
-        Code.PREV_CODE_ = generatedCode;
-        codePeakPre.innerHTML = PR.prettyPrintOne(textTemp, 'cpp');
-    } else
-        codePeakPre.className = codePeakPre.className.replace('new_code_highlight', '');
-    if (typeof PR == 'object') {
-        PR.prettyPrint();
-    }
-};
-
-/**
- * Check whether all blocks in use have generator functions.
- * @param generator {!Blockly.Generator} The generator to use.
- */
-Code.checkAllGeneratorFunctionsDefined = function (generator) {
-    var blocks = Code.workspace.getAllBlocks(false);
-    var missingBlockGenerators = [];
-    for (var i = 0; i < blocks.length; i++) {
-        var blockType = blocks[i].type;
-        if (!generator[blockType]) {
-            if (missingBlockGenerators.indexOf(blockType) === -1) {
-                missingBlockGenerators.push(blockType);
-            }
-        }
-    }
-
-    var valid = missingBlockGenerators.length === 0;
-    if (!valid) {
-        var msg = 'The generator code for the following blocks not specified for ' +
-                generator.name_ + ':\n - ' + missingBlockGenerators.join('\n - ');
-        Blockly.alert(msg); // Assuming synchronous. No callback.
-    }
-    return valid;
+    editor.setValue(generatedCode, 1);
 };
 
 /**
@@ -455,7 +382,7 @@ Code.init = function () {
                 first.style.width = (mouse_down_info.firstWidth + delta.x) + "px";
                 second.style.width = (mouse_down_info.secondWidth - delta.x) + "px";
                 //hide button if div si too thin
-                if (document.getElementById("code_peek").offsetWidth < 50)
+                if (document.getElementById("content_code").offsetWidth < 50)
                     document.getElementById("copyCodeButton").style.visibility = 'hidden';
                 else
                     document.getElementById("copyCodeButton").style.visibility = 'visible';
@@ -473,13 +400,11 @@ Code.init = function () {
         }
     }
     dragElement(document.getElementById("barre_h"), "V", document.getElementById("wrapper_up"), document.getElementById("content_serial"));
-    dragElement(document.getElementById("separator"), "H", document.getElementById("content_area"), document.getElementById("code_peek"));
+    dragElement(document.getElementById("separator"), "H", document.getElementById("content_area"), document.getElementById("content_code"));
 
     Code.renderContent();
     Code.workspace.addChangeListener(Code.renderContent);
-
-    // Lazy-load the syntax-highlighting.
-    window.setTimeout(Code.importPrettify, 1);
+    renderingConstantInit();
 };
 
 /**
@@ -581,7 +506,6 @@ Code.initLanguage = function () {
     document.getElementById('optionFontSizeBlocks').textContent = MSG['optionFontSizeBlocks'];
     document.getElementById('optionFontSizePage').textContent = MSG['optionFontSizePage'];
     document.getElementById('optionFontSpacingPage').textContent = MSG['optionFontSpacingPage'];
-    document.getElementById('optionFontSizeCodeEditor').textContent = MSG['optionFontSizeCodeEditor'];
     document.getElementById('keyMappingExplanationSpan').innerHTML = MSG['keyMappingExplanationSpan'];
     //keyboard nav
     Blockly.navigation.ACTION_PREVIOUS.name = MSG['actionName0'];

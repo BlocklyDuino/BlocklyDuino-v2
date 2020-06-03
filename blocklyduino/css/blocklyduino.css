@@ -179,6 +179,7 @@ td.tabMiddle {
     top: 75px;
     right: 5px;
     border-radius: 5px;
+    z-index: 5;
 }
 
 /* Content blocks */
@@ -227,12 +228,12 @@ td.tabMiddle {
     margin: 5px;
     background-color: #006468;
 }
-#code_peek {
-    background-color: #FFFFFF;
+#content_code {
     width: 50px;
     height: 100%;
     min-width: 5px;
 }
+
 #barre_h{
     cursor: row-resize;
     width: 100%;
@@ -272,7 +273,7 @@ td.tabMiddle {
     left: -o-calc(50% - 350px);
     /* Standard */
     left: calc(50% - 350px);
-    overflow: auto; /* Enable scroll if needed */
+    overflow: hidden; /* Enable scroll if needed */
     top: -100%;
     opacity: 0;
     transition: top 0.5s, opacity 0.4s;

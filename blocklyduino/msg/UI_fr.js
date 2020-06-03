@@ -79,7 +79,6 @@ var MSG = {
     optionFontSizeBlocks: "police des blocs",
     optionFontSizePage: "police de l'interface",
     optionFontSpacingPage: "espacement entre les lettres",
-    optionFontSizeCodeEditor: "police de l'éditeur",
     keyMappingExplanationSpan: "accessibilité : documentation <a href='https://github.com/BlocklyDuino/BlocklyDuino-v2' target='_blank'>en ligne.</a>",
     //CLI_functions.js
     config_sideButton_span: "gestion du compilateur",
@@ -116,8 +115,9 @@ var MSG = {
     serial_btn_stop: "<span class='fa fa-pause'></span> Arrêter",
     serial_info_start: 'démarrage de la communication<br>',
     serial_CSV: 'Exporter les données au format CSV',
+    inputTextSerial: 'Texte',
     btn_serialSend_span: 'Envoyer',
-    btn_serialConnect_span: 'Démarrer',
+    btn_serialConnect_span: "Démarrer",
     btn_serialPeekClear_span: 'Effacer',
     btn_serialPeekCSV_span: 'Exporter',
     btn_serialChart_span: 'Graphique',

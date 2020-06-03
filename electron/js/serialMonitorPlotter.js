@@ -57,14 +57,21 @@ serialMonitor.isRtl = function () {
 serialMonitor.LANG = serialMonitor.getLang();
 
 serialMonitor.initLanguageSerialMonitor = function () {
+    document.getElementsByName('inputTextSerial')[0].placeholder = MSG['inputTextSerial'];
     document.getElementById('btn_serialSend').title = MSG['btn_serialSend_span'];
+    document.getElementById('btn_serialSend').innerText = MSG['btn_serialSend_span'];
     document.getElementById('btn_serialConnect').title = MSG['btn_serialConnect_span'];
+    document.getElementById('btn_serialConnect_span').innerText = MSG['btn_serialConnect_span'];
     document.getElementById('btn_serialPeekClear').title = MSG['btn_serialPeekClear_span'];
+    document.getElementById('btn_serialPeekClear_span').innerText = MSG['btn_serialPeekClear_span'];
     document.getElementById('btn_serialPeekCSV').title = MSG['btn_serialPeekCSV_span'];
+    document.getElementById('btn_serialPeekCSV_span').innerText = MSG['btn_serialPeekCSV_span'];
     document.getElementById('btn_serialChart').title = MSG['btn_serialChart_span'];
+    document.getElementById('btn_serialChart_span').innerText = MSG['btn_serialChart_span'];
     document.getElementById('btn_serialChartPause').title = MSG['btn_serialChartPause_span'];
-
+    document.getElementById('btn_serialChartPause_span').innerText = MSG['btn_serialChartPause_span'];
 };
 
 // Load language strings.
 document.write('<script src="../blocklyduino/msg/UI_' + serialMonitor.LANG + '.js"></script>\n');
+window.addEventListener('load', serialMonitor.initLanguageSerialMonitor);

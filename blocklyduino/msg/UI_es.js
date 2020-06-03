@@ -79,7 +79,6 @@ var MSG = {
     optionFontSizeBlocks: "Tamaño del tipo de letra bloques",
     optionFontSizePage: "Tamaño del tipo de letra página",
     optionFontSpacingPage: "Espaciado de letra página",
-    optionFontSizeCodeEditor: "Code Editor Font Size",
     keyMappingExplanationSpan: "accessibility: <a href='https://github.com/BlocklyDuino/BlocklyDuino-v2' target='_blank'>online documentation</a>",
     //CLI_functions.js
     config_sideButton_span: "Control del compilador Arduino CLI",
@@ -116,6 +115,7 @@ var MSG = {
     serial_btn_stop: "<span class='fa fa-pause'></span> Stop",
     serial_info_start: 'communication starting<br>',
     serial_CSV: 'Export data to CSV',
+    inputTextSerial: 'Text',
     btn_serialSend_span: 'Send',
     btn_serialConnect_span: 'Start',
     btn_serialPeekClear_span: 'Clean',

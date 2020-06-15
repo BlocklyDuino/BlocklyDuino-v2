@@ -5,18 +5,18 @@
         <meta name="google" value="notranslate">
         <title>BlocklyDuino</title>
         <link rel="icon" type="image/png" href="./blocklyduino/media/logo_only.png" />
+        <link rel="stylesheet" href="./css/font_awesome_all.min.css" />
+        <link rel="stylesheet" href="./css/keyboard_nav.css" />
+        <link rel="stylesheet" href="./css/lateral-panel.css" />
+        <link rel="stylesheet" href="./css/style.css" />
         <link rel="stylesheet" href="./blocklyduino/css/blocklyduino.css" />
-        <link rel="stylesheet" href="./blocklyduino/css/font_awesome_all.min.css" />
-        <link rel="stylesheet" href="./blocklyduino/css/keyboard_nav.css" />
-        <link rel="stylesheet" href="./blocklyduino/css/lateral-panel.css" />
-        <link rel="stylesheet" href="./blocklyduino/css/style.css" />
     </head>
     <body>
         <div class="table_wrapper">
             <table style="width: 100%; height: 100%;">
                 <tr id="optionsTop" style="height: 30px;">
-                    <td style="width: 268px;">
-                        <span id="appName" class='TitleText'></span> 
+                    <td style="width: 268px;white-space: nowrap;">
+                        <span id="appName" class='TitleText'></span>
                     </td>
                     <td class="tabMiddle" style="width: 100%;">
                         <span id="content_hoverButton"></span>
@@ -103,11 +103,11 @@
                                     <div id="content_blocks"></div>
                                 </div>
                                 <div id="separator" ></div>
-                                    <button id="copyCodeButton" class="iconButtons" onclick="Code.copyToClipboard()">
-                                        <span id="copyCodeButton_span">
-                                            <i class="far fa-copy"></i>
-                                        </span>
-                                    </button>
+                                <button id="copyCodeButton" class="iconButtons" onclick="Code.copyToClipboard()">
+                                    <span id="copyCodeButton_span">
+                                        <i class="far fa-copy"></i>
+                                    </span>
+                                </button>
                                 <div id="content_code"></div>
                             </div>
                             <div id="barre_h">
@@ -212,17 +212,17 @@
                         <!-- </select> -->
                         <span id="boardMenuSpan" class="UIText">...</span>
                         <select id="boardMenu" onchange="changeBoard()">
-                            <option value="none" selected="selected">...</option>
-                            <option value="arduino_leonardo">Arduino Leonardo</option>
-                            <option value="arduino_mega">Arduino Mega</option>
-                            <option value="arduino_micro">Arduino Micro</option>
-                            <option value="arduino_mini">Arduino Mini</option>
-                            <option value="arduino_nano">Arduino Nano</option>
-                            <option value="arduino_pro8">Arduino Pro Mini 3.3V</option>
-                            <option value="arduino_pro16">Arduino Pro Mini 5V</option>
-                            <option value="arduino_uno">Arduino Uno</option>
-                            <option value="arduino_yun">Arduino Yùn</option>
-                            <option value="lilypad">LilyPad</option>
+                            <!-- <option value="none" selected="selected">...</option> -->
+                            <!-- <option value="arduino_leonardo">Arduino Leonardo</option> -->
+                            <!-- <option value="arduino_mega">Arduino Mega</option> -->
+                            <!-- <option value="arduino_micro">Arduino Micro</option> -->
+                            <!-- <option value="arduino_mini">Arduino Mini</option> -->
+                            <!-- <option value="arduino_nano">Arduino Nano</option> -->
+                            <!-- <option value="arduino_pro8">Arduino Pro Mini 3.3V</option> -->
+                            <!-- <option value="arduino_pro16">Arduino Pro Mini 5V</option> -->
+                            <!-- <option value="arduino_uno">Arduino Uno</option> -->
+                            <!-- <option value="arduino_yun">Arduino Yùn</option> -->
+                            <!-- <option value="lilypad">LilyPad</option> -->
                         </select>
                         <br>
                         <br>
@@ -311,18 +311,18 @@
                     </div>
                     <div id="hideSelectScrollbar">
                         <select id="boardDescriptionSelector" size="11" onchange="Code.boardDescription()">
-                            <optgroup label="C / C++">
-                                <option value="arduino_leonardo" >Arduino Léonardo</option>
-                                <option value="arduino_mega" >Arduino Mega</option>
-                                <option value="arduino_micro" >Arduino Micro</option>
-                                <option value="arduino_mini" >Arduino Mini</option>
-                                <option value="arduino_nano" >Arduino Nano</option>
-                                <option value="arduino_pro8" >Arduino Pro Mini 3.3V</option>
-                                <option value="arduino_pro16" >Arduino Pro Mini 5V</option>
-                                <option value="arduino_uno" >Arduino Uno</option>
-                                <option value="arduino_yun" >Arduino Yùn</option>
-                                <option value="lilypad" >LilyPad</option>
-                            </optgroup>
+                            <!-- <optgroup label="C / C++"> -->
+                            <!-- <option value="arduino_leonardo" >Arduino Léonardo</option> -->
+                            <!-- <option value="arduino_mega" >Arduino Mega</option> -->
+                            <!-- <option value="arduino_micro" >Arduino Micro</option> -->
+                            <!-- <option value="arduino_mini" >Arduino Mini</option> -->
+                            <!-- <option value="arduino_nano" >Arduino Nano</option> -->
+                            <!-- <option value="arduino_pro8" >Arduino Pro Mini 3.3V</option> -->
+                            <!-- <option value="arduino_pro16" >Arduino Pro Mini 5V</option> -->
+                            <!-- <option value="arduino_uno" >Arduino Uno</option> -->
+                            <!-- <option value="arduino_yun" >Arduino Yùn</option> -->
+                            <!-- <option value="lilypad" >LilyPad</option> -->
+                            <!-- </optgroup> -->
                         </select>
                     </div>
                 </div>
@@ -356,71 +356,71 @@
                 <div class="modal-body" id="portListModalBody">
                 </div>
                 <!-- <div class="modal-footer"> -->
-                    <!-- <h3>Modal Footer</h3> -->
+                <!-- <h3>Modal Footer</h3> -->
                 <!-- </div> -->
             </div>
         </div>
     </body>
     <!-- load JavaScript just before the closing HTML body tag ensures the scripts don’t block loading of other content and page content is readable before scripts are downloaded and executed -->
     <!-- Blockly libraries -->
-    <script src="./blockly/blockly_compressed.js"></script>
-    <script src="./blockly/blocks_compressed.js"></script>
-    <script src="./blockly/closure/goog/base.js"></script>
+    <script src="./@blockly/blockly_compressed.js"></script>
+    <script src="./@blockly/blocks_compressed.js"></script>
+    <script src="./@blockly/closure/goog/base.js"></script>
     <!-- Blockly libraries for themes and renderers -->
-    <script src="./blockly/core/renderers/minimalist/info.js"></script>
-    <script src="./blockly/core/renderers/minimalist/constants.js"></script>
-    <script src="./blockly/core/renderers/minimalist/drawer.js"></script>
-    <script src="./blockly/core/renderers/minimalist/renderer.js"></script>
-    <script src="./blockly/core/theme/modern.js"></script>
-    <script src="./blockly/core/theme/zelos.js"></script>
+    <script src="./@blockly/core/renderers/minimalist/info.js" async></script>
+    <script src="./@blockly/core/renderers/minimalist/constants.js" async></script>
+    <script src="./@blockly/core/renderers/minimalist/drawer.js" async></script>
+    <script src="./@blockly/core/renderers/minimalist/renderer.js" async></script>
+    <script src="./@blockly/core/theme/modern.js" async></script>
+    <script src="./@blockly/core/theme/zelos.js" async></script>
     <!-- Blockly libraries of function, from different demos -->
-    <script src="./blockly/demos/keyboard_nav/line_cursor.js"></script>
-    <script src="./blockly/tests/playgrounds/screenshot.js"></script>
+    <script src="./@blockly/demos/keyboard_nav/line_cursor.js" async></script>
+    <script src="./@blockly/tests/playgrounds/screenshot.js" async></script>
     <!-- Blockly libraries of function, hacked from different demos -->
-    <script src="./blocklyduino/js/blockly/code.js"></script>
-    <script src="./blocklyduino/js/blockly/keyboard_nav.js"></script>
-    <script src="./blocklyduino/js/blockly/playground.js"></script>
-    <script src="./blocklyduino/js/boards.js"></script>
-    <script src="./blocklyduino/js/boards.json"></script>
-    <script src="./blocklyduino/js/typed_variable.js"></script>
-    <script src="./blocklyduino/js/buttons_functions.js"></script>
-    <script src="./blocklyduino/js/dialog.js"></script>
-    <script src="./blocklyduino/js/renderingConstant.js"></script>
+    <script src="./blocklyduino/code.js"></script>
+    <script src="./js/blockly/keyboard_nav.js"></script>
+    <script src="./js/blockly/playground.js"></script>
+    <script src="./js/boards.json"></script>
+    <script src="./js/boards.js"></script>
+    <script src="./js/typed_variable.js"></script>
+    <script src="./js/buttons_functions.js"></script>
+    <script src="./js/dialog.js"></script>
+    <script src="./js/renderingConstant.js"></script>
     <!-- BlocklyDuino libraries of external functions -->
-    <script src="./blocklyduino/js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
-    <script src="./blocklyduino/js/ace/ext-language_tools.js"></script>
+    <script src="./js/ace/ace.js" charset="utf-8"></script>
+    <script src="./js/ace/ext-language_tools.js"></script>
     <!-- BlocklyDuino specific: block design -->
-    <script type="text/javascript" src="./blocklyduino/blocks/blocks_colors.js"></script>
-    <script type="text/javascript" src="./blocklyduino/blocks/arduino_base/arduino_base.js"></script>
-    <script type="text/javascript" src="./blocklyduino/blocks/blockly/logic.js"></script>
-    <script type="text/javascript" src="./blocklyduino/blocks/blockly/math.js"></script>
-    <script type="text/javascript" src="./blocklyduino/blocks/grove/grove.js"></script>
-    <script type="text/javascript" src="./blocklyduino/blocks/servo/servo.js"></script>
-    <script type="text/javascript" src="./blocklyduino/blocks/typed_variable.js"></script>
+    <script src="./blocklyduino/blocks/blocks_colors.js" async></script>
+    <script src="./blocklyduino/blocks/arduino_base/arduino_base.js" async></script>
+    <script src="./blocklyduino/blocks/blockly/logic.js" async></script>
+    <script src="./blocklyduino/blocks/blockly/math.js" async></script>
+    <script src="./blocklyduino/blocks/grove/grove.js" async></script>
+    <script src="./blocklyduino/blocks/servo/servo.js" async></script>
+    <script src="./blocklyduino/blocks/typed_variable.js" async></script>
     <!-- BlocklyDuino specific: common generator code -->
-    <script type="text/javascript" src="./blocklyduino/generators/arduino_generator.js"></script>
-    <script type="text/javascript" src="./blocklyduino/generators/arduino/blockly/colour.js"></script>
-    <script type="text/javascript" src="./blocklyduino/generators/arduino/blockly/lists.js"></script>
-    <script type="text/javascript" src="./blocklyduino/generators/arduino/blockly/logic.js"></script>
-    <script type="text/javascript" src="./blocklyduino/generators/arduino/blockly/loops.js"></script>
-    <script type="text/javascript" src="./blocklyduino/generators/arduino/blockly/math.js"></script>
-    <script type="text/javascript" src="./blocklyduino/generators/arduino/blockly/procedures.js"></script>
-    <script type="text/javascript" src="./blocklyduino/generators/arduino/blockly/text.js"></script>
+    <script src="./generators/arduino_generator.js"></script>
+    <script src="./blocklyduino/arduino/blockly/colour.js" async></script>
+    <script src="./blocklyduino/arduino/blockly/lists.js" async></script>
+    <script src="./blocklyduino/arduino/blockly/logic.js" async></script>
+    <script src="./blocklyduino/arduino/blockly/loops.js" async></script>
+    <script src="./blocklyduino/arduino/blockly/math.js" async></script>
+    <script src="./blocklyduino/arduino/blockly/procedures.js" async></script>
+    <script src="./blocklyduino/arduino/blockly/text.js" async></script>
     <!-- BlocklyDuino specific: addon generator code -->
-    <script type="text/javascript" src="./blocklyduino/generators/arduino/arduino_base.js"></script>
-    <script type="text/javascript" src="./blocklyduino/generators/arduino/typed_variable.js"></script>
-    <script type="text/javascript" src="./blocklyduino/generators/arduino/addon/grove.js"></script>
-    <script type="text/javascript" src="./blocklyduino/generators/arduino/addon/servo.js"></script>
+    <script src="./blocklyduino/arduino/arduino_base.js" async></script>
+    <script src="./blocklyduino/arduino/typed_variable.js" async></script>
+    <script src="./blocklyduino/arduino/addon/grove.js" async></script>
+    <script src="./blocklyduino/arduino/addon/servo.js" async></script>
     <!-- BlocklyDuino specific -->
     <!-- Blockly themes added -->
-    <script type="text/javascript" src="./blocklyduino/themes/bw.js"></script>
-    <script type="text/javascript" src="./blocklyduino/themes/themes_blocks.js"></script>
-    <script type="text/javascript" src="./blocklyduino/themes/themes_categories.js"></script>
-    <script type="text/javascript" src="./blocklyduino/themes/themes_components_override.js"></script>
+    <script src="./blocklyduino/themes/bw.js" async></script>
+    <script src="./blocklyduino/themes/themes_blocks.js" async></script>
+    <script src="./blocklyduino/themes/themes_categories.js" async></script>
+    <script src="./blocklyduino/themes/themes_components_override.js" async></script>
     <!-- BlocklyDuino external toolbox hacked -->
     <script src="./blocklyduino/toolbox/toolbox_blocklyduino.js"></script>
     <script src="./blocklyduino/toolbox/toolbox_standard.js"></script>
-    <script type="text/javascript">
+    <script>
         ace.require("ace/ext/language_tools");
         var editor = ace.edit("content_code");
         editor.setTheme("ace/theme/sqlserver");
@@ -435,7 +435,7 @@
             enableSnippets: true,
             enableLiveAutocompletion: true
         });
-        editor.find('needle',{
+        editor.find('needle', {
             backwards: false,
             wrap: false,
             caseSensitive: false,
@@ -445,8 +445,8 @@
         editor.findNext();
         editor.findPrevious();
 
-        <!-- require('../CLI_functions.js'); -->
-        <!-- require('../IDE_functions.js'); -->
+        require('../CLI_functions.js');
+        require('../IDE_functions.js');
         <!-- require('../resources/app.asar/CLI_functions.js'); -->
         <!-- require('../resources/app.asar/IDE_functions.js'); -->
     </script>

@@ -26,7 +26,6 @@
  * Create a namespace for the application.
  */
 var Code = {};
-Code.selectedTabBoard = "none";
 
 /**
  * Lookup for names of supported languages.  Keys should be in ISO 639 format.
@@ -258,7 +257,7 @@ Code.init = function () {
             'test_basic_limit_instances': 3
         },
         maxTrashcanContents: 256,
-        media: './blockly/media/',
+        media: './@blockly/media/',
         sounds: true,
         oneBasedIndex: true,
         readOnly: false,
@@ -530,7 +529,7 @@ Code.initLanguage = function () {
 Code.discard = function () {
     var count = Code.workspace.getAllBlocks(false).length;
     if (count < 2 ||
-            window.confirm(Blockly.Msg['DELETE_ALL_BLOCKS'].replace('%1', count))) {
+        window.confirm(Blockly.Msg['DELETE_ALL_BLOCKS'].replace('%1', count))) {
         Code.workspace.clear();
         if (window.location.hash) {
             window.location.hash = '';
@@ -538,25 +537,13 @@ Code.discard = function () {
     }
 };
 
-/**
- * Sets Arduino board
- */
-Code.setBoard = function () {
-    var boardId = Code.getStringParamFromUrl('board', '');
-    if (!boardId) {
-        boardId = Code.selectedTabBoard;
-    }
-    document.getElementById('boardMenu').value = boardId;
-    profile.default = profile[boardId];
-};
-
 // Load the Code demo's language strings.
-document.write('<script src="./blockly/demos/code/msg/' + Code.LANG + '.js"></script>\n');
+document.write('<script src="./@blockly/demos/code/msg/' + Code.LANG + '.js"></script>\n');
 // Load Blockly's language strings.
-document.write('<script src="./blockly/msg/js/' + Code.LANG + '.js"></script>\n');
+document.write('<script src="./@blockly/msg/js/' + Code.LANG + '.js"></script>\n');
 
 // Load BlocklyDuino's language strings.
-document.write('<script src="./blocklyduino/msg/UI_' + Code.LANG + '.js"></script>\n');
+document.write('<script src="./msg/UI_' + Code.LANG + '.js"></script>\n');
 document.write('<script src="./blocklyduino/msg/blocks_' + Code.LANG + '.js"></script>\n');
 document.write('<script src="./blocklyduino/msg/categories_' + Code.LANG + '.js"></script>\n');
 

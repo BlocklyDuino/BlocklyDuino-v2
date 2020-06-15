@@ -164,11 +164,11 @@ Code.boardDescription = function () {
     var boardValue = document.getElementById("boardDescriptionSelector").value;
     if (boardValue === '')
         boardValue = 'none';
-    document.getElementById("arduino_board_mini_picture").setAttribute("src", profile[boardValue]['picture']);
-    document.getElementById("board_connect").textContent = profile[boardValue]['usb'];
-    document.getElementById("board_cpu").textContent = profile[boardValue]['cpu'];
-    document.getElementById("board_voltage").textContent = profile[boardValue]['voltage'];
-    document.getElementById("board_inout").textContent = profile[boardValue]['inout'];
+    document.getElementById("arduino_board_mini_picture").setAttribute("src", profile[boardValue][0]['picture']);
+    document.getElementById("board_connect").textContent = profile[boardValue][0]['usb'];
+    document.getElementById("board_cpu").textContent = profile[boardValue][0]['cpu'];
+    document.getElementById("board_voltage").textContent = profile[boardValue][0]['voltage'];
+    document.getElementById("board_inout").textContent = profile[boardValue][0]['inout'];
 
 };
 /**

@@ -161,6 +161,7 @@ td {
 }
 #resetButton:hover{
     background: #FFFFFF;
+    cursor: no-drop;
 }
 td.tabMiddle {
     border-top-style: none !important;

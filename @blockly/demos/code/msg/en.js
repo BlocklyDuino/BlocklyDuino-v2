@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ * @author Google's Blockly team
+ */
 var MSG = {
   title: "Code",
   blocks: "Blocks",

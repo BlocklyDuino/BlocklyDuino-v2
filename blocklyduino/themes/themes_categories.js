@@ -1,3 +1,14 @@
+/**
+* @license
+* Copyright 2020 Sébastien CANET
+* SPDX-License-Identifier: GPL-3.0-or-later
+*/
+
+/**
+ * @fileoverview Blockly themes add on for categories.
+ * @author scanet@libreduc.cc (Sébastien CANET)
+ */
+
 //Classic Theme
 Blockly.Themes.Classic.categoryStyles['arduino_category'] = {
     "colour": "#007481"

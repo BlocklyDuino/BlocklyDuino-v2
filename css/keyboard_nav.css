@@ -1,5 +1,16 @@
+/**
+* @license
+* Copyright 2020 Sébastien CANET
+* SPDX-License-Identifier: BSD-3-Clause
+*/
+
+/**
+ * @fileoverview Modified from https://github.com/google/blockly/commit/5a92aff63e93dce884bbe2e715ba832244628501
+ * @author scanet@libreduc.cc (Sébastien CANET)
+ */
+
 #keyboard_nav {
-    background-color: #ededed;
+    background-color: #ebebeb;
     border: 1px solid black;
     padding: 1em;
     position: absolute;
@@ -12,7 +23,7 @@
     padding: 5px;
     cursor: move;
     z-index: 10;
-    background-color: #2196F3;
+    background-color: #006468;
     color: #fff;
 }
 #keyboard_announce {

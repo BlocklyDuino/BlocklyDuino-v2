@@ -1,39 +1,27 @@
 /**
  * @license
- * Visual Blocks Editor
- *
- * Copyright 2012 Fred Lin.
- * https://github.com/gasolin/BlocklyDuino
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright 2012 Fred Lin
+ * SPDX-License-Identifier: Apache-2.0
  */
 
 /**
- * @fileoverview Helper functions for generating Arduino blocks.
+ * @fileoverview Basics board command blocks for Blockly.
  * @author gasolin@gmail.com (Fred Lin)
+ * @author scanet@libreduc.cc (Sébastien Canet)
  */
+
 'use strict';
 
 //To support syntax defined in http://arduino.cc/en/Reference/HomePage
 
-goog.provide('Blockly.Constants.arduino_base');
+goog.provide('Blockly.Constants.board_base');
 
 goog.require('Blockly.Blocks');
 goog.require('Blockly');
 
 var mediaFolder = "./blocklyduino/media/";
 
-Blockly.Blocks['arduino_base_inout_buildin_led'] = {
+Blockly.Blocks['board_base_inout_buildin_led'] = {
     init: function () {
         this.setHelpUrl(Blockly.Msg.ARDUINO_INOUT_BUILDIN_LED_HELPURL);
         this.appendDummyInput()
@@ -42,11 +30,11 @@ Blockly.Blocks['arduino_base_inout_buildin_led'] = {
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setTooltip(Blockly.Msg.ARDUINO_INOUT_BUILDIN_LED_TOOLTIP);
-        this.setStyle('arduino_blocks');
+        this.setStyle('board_blocks');
     }
 };
 
-Blockly.Blocks['arduino_base_inout_digital_write'] = {
+Blockly.Blocks['board_base_inout_digital_write'] = {
     init: function () {
         this.appendDummyInput()
                 .appendField(new Blockly.FieldImage(mediaFolder + "digital.jpg", 64, 64))
@@ -58,11 +46,11 @@ Blockly.Blocks['arduino_base_inout_digital_write'] = {
         this.setNextStatement(true, null);
         this.setTooltip(Blockly.Msg.ARDUINO_INOUT_DIGITAL_WRITE_TOOLTIP);
         this.setHelpUrl(Blockly.Msg.ARDUINO_INOUT_DIGITAL_WRITE_HELPURL);
-        this.setStyle('arduino_blocks');
+        this.setStyle('board_blocks');
     }
 };
 
-Blockly.Blocks['arduino_base_inout_digital_read'] = {
+Blockly.Blocks['board_base_inout_digital_read'] = {
     init: function () {
         this.appendDummyInput()
                 .appendField(Blockly.Msg.ARDUINO_INOUT_DIGITAL_READ_INPUT)
@@ -70,22 +58,22 @@ Blockly.Blocks['arduino_base_inout_digital_read'] = {
         this.setOutput(true, 'Boolean');
         this.setTooltip(Blockly.Msg.ARDUINO_INOUT_DIGITAL_READ_TOOLTIP);
         this.setHelpUrl(Blockly.Msg.ARDUINO_INOUT_DIGITAL_READ_HELPURL);
-        this.setStyle('arduino_blocks');
+        this.setStyle('board_blocks');
     }
 };
 
-Blockly.Blocks['arduino_base_inout_highlow'] = {
+Blockly.Blocks['board_base_inout_highlow'] = {
     init: function () {
         this.appendDummyInput()
                 .appendField(new Blockly.FieldDropdown(Blockly.Msg.FIELDDROPDOWN), 'BOOL')
         this.setOutput(true, 'Boolean');
         this.setTooltip(Blockly.Msg.LOGIC_BOOLEAN_TOOLTIP);
         this.setHelpUrl(Blockly.Msg.ARDUINO_INOUT_ONOFF_HELPURL);
-        this.setStyle('arduino_blocks');
+        this.setStyle('board_blocks');
     }
 };
 
-Blockly.Blocks['arduino_base_inout_analog_write'] = {
+Blockly.Blocks['board_base_inout_analog_write'] = {
     init: function () {
         this.appendDummyInput()
                 .appendField(new Blockly.FieldImage(mediaFolder + "pwm.png", 64, 64))
@@ -99,11 +87,11 @@ Blockly.Blocks['arduino_base_inout_analog_write'] = {
         this.setNextStatement(true, null);
         this.setTooltip(Blockly.Msg.ARDUINO_INOUT_ANALOG_WRITE_TOOLTIP);
         this.setHelpUrl(Blockly.Msg.ARDUINO_INOUT_ANALOG_WRITE_HELPURL);
-        this.setStyle('arduino_blocks');
+        this.setStyle('board_blocks');
     }
 };
 
-Blockly.Blocks['arduino_base_inout_analog_read'] = {
+Blockly.Blocks['board_base_inout_analog_read'] = {
     init: function () {
         this.appendDummyInput()
                 .appendField(Blockly.Msg.ARDUINO_INOUT_ANALOG_READ_INPUT)
@@ -111,11 +99,11 @@ Blockly.Blocks['arduino_base_inout_analog_read'] = {
         this.setOutput(true, 'int');
         this.setTooltip(Blockly.Msg.ARDUINO_INOUT_ANALOG_READ_TOOLTIP);
         this.setHelpUrl(Blockly.Msg.ARDUINO_INOUT_ANALOG_READ_HELPURL);
-        this.setStyle('arduino_blocks');
+        this.setStyle('board_blocks');
     }
 };
 
-Blockly.Blocks['arduino_base_delay'] = {
+Blockly.Blocks['board_base_delay'] = {
     init: function () {
         this.appendValueInput("DELAY_TIME", 'Number')
                 .appendField(Blockly.Msg.ARDUINO_BASE_DELAY_DELAY_TIME)
@@ -125,11 +113,11 @@ Blockly.Blocks['arduino_base_delay'] = {
         this.setNextStatement(true, null);
         this.setTooltip(Blockly.Msg.ARDUINO_BASE_DELAY_TOOLTIP);
         this.setHelpUrl(Blockly.Msg.ARDUINO_BASE_DELAY_HELPURL);
-        this.setStyle('arduino_blocks');
+        this.setStyle('board_blocks');
     }
 };
 
-Blockly.Blocks['arduino_base_angle'] = {
+Blockly.Blocks['board_base_angle'] = {
     init: function () {
         this.appendDummyInput()
                 .appendField(Blockly.Msg.ARDUINO_BASE_ANGLE)
@@ -137,11 +125,11 @@ Blockly.Blocks['arduino_base_angle'] = {
         this.setOutput(true, intCompatibility);
         this.setTooltip(Blockly.Msg.ARDUINO_BASE_ANGLE_TOOLTIP);
         this.setHelpUrl(Blockly.Msg.ARDUINO_BASE_ANGLE_HELPURL);
-        this.setStyle('arduino_blocks');
+        this.setStyle('board_blocks');
     }
 };
 
-Blockly.Blocks['arduino_base_map'] = {
+Blockly.Blocks['board_base_map'] = {
     init: function () {
         this.appendValueInput("NUM", 'Number')
                 .appendField(Blockly.Msg.ARDUINO_BASE_MAP1)
@@ -155,11 +143,11 @@ Blockly.Blocks['arduino_base_map'] = {
         this.setOutput(true);
         this.setTooltip(Blockly.Msg.ARDUINO_BASE_MAP_TOOLTIP);
         this.setHelpUrl(Blockly.Msg.ARDUINO_BASE_MAP_HELPURL);
-        this.setStyle('arduino_blocks');
+        this.setStyle('board_blocks');
     }
 };
 
-Blockly.Blocks['arduino_base_inout_tone'] = {
+Blockly.Blocks['board_base_inout_tone'] = {
     init: function () {
         this.appendDummyInput()
                 .appendField(Blockly.Msg.ARDUINO_TONE_INPUT1)
@@ -172,11 +160,11 @@ Blockly.Blocks['arduino_base_inout_tone'] = {
         this.setNextStatement(true, null);
         this.setTooltip(Blockly.Msg.ARDUINO_TONE_TOOLTIP);
         this.setHelpUrl(Blockly.Msg.ARDUINO_TONE_HELPURL);
-        this.setStyle('arduino_blocks');
+        this.setStyle('board_blocks');
     }
 };
 
-Blockly.Blocks['arduino_base_inout_notone'] = {
+Blockly.Blocks['board_base_inout_notone'] = {
     init: function () {
         this.appendDummyInput()
                 .appendField(Blockly.Msg.ARDUINO_NOTONE_INPUT)
@@ -186,19 +174,6 @@ Blockly.Blocks['arduino_base_inout_notone'] = {
         this.setNextStatement(true, null);
         this.setTooltip(Blockly.Msg.ARDUINO_NOTONE_TOOLTIP);
         this.setHelpUrl(Blockly.Msg.ARDUINO_NOTONE_HELPURL);
-        this.setStyle('arduino_blocks');
-    }
-};
-
-Blockly.Blocks['arduino_base_serial_print'] = {
-    init: function () {
-        this.appendValueInput("CONTENT", 'String')
-                .appendField(Blockly.Msg.ARDUINO_SERIAL_PRINT_CONTENT)
-                .setCheck(stringCompatibility);
-        this.setPreviousStatement(true, null);
-        this.setNextStatement(true, null);
-        this.setTooltip(Blockly.Msg.ARDUINO_SERIAL_PRINT_TOOLTIP);
-        this.setHelpUrl(Blockly.Msg.ARDUINO_SERIAL_PRINT_HELPURL);
-        this.setStyle('arduino_blocks');
+        this.setStyle('board_blocks');
     }
 };

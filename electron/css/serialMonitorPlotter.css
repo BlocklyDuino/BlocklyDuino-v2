@@ -1,4 +1,15 @@
-@CHARSET "UTF-8";
+/**
+* @license
+* Copyright 2020 Sébastien CANET
+* SPDX-License-Identifier: BSD-3-Clause
+*/
+
+/**
+ * @fileoverview CSS for add-on used in Electron version,
+ * add a 'serial monitor' to interact with boards.
+ * @author scanet@libreduc.cc (Sébastien CANET)
+ */
+
 body {
     background-color: #F8F8F8;
 }

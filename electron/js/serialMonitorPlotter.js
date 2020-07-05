@@ -1,3 +1,15 @@
+/**
+ * @license
+ * Copyright 2020 Sébastien CANET
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+/**
+ * @fileoverview Set of functions for dd-on used in Electron version,
+ * add a 'serial monitor' to interact with boards.
+ * @author scanet@libreduc.cc (Sébastien CANET)
+ */
+
 var smoothieChart = new SmoothieChart({
     millisPerPixel: 44,
     grid: {
@@ -25,7 +37,7 @@ smoothieChart.addTimeSeries(line0, {
     strokeStyle: 'none',
     fillStyle: 'rgba(0,64,128,0.53)'
 });
-smoothieChart.streamTo(document.getElementById("serialGraph"), 500);
+smoothieChart.streamTo(document.getElementById("serialGraph"), 0);
 smoothieChart.stop();
 
 var serialMonitor = {};
@@ -51,7 +63,7 @@ serialMonitor.getLang = function () {
 };
 
 serialMonitor.isRtl = function () {
-    return serialMonitor.LANGUAGE_RTL.indexOf(serialMonitor.LANG) != -1;
+    return serialMonitor.LANGUAGE_RTL.indexOf(serialMonitor.LANG) !== -1;
 };
 
 serialMonitor.LANG = serialMonitor.getLang();
@@ -73,5 +85,5 @@ serialMonitor.initLanguageSerialMonitor = function () {
 };
 
 // Load language strings.
-document.write('<script src="../blocklyduino/msg/UI_' + serialMonitor.LANG + '.js"></script>\n');
+document.write('<script src="../msg/UI_' + serialMonitor.LANG + '.js"></script>\n');
 window.addEventListener('load', serialMonitor.initLanguageSerialMonitor);

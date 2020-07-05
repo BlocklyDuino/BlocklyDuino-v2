@@ -1,3 +1,15 @@
+/**
+ * @license
+ * Copyright 2020 Sébastien CANET
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+/**
+ * @fileoverview Utility functions for handling typed variables.
+ * Freely adapted from https://github.com/google/blockly/commit/4e2f8e6e02b0473a86330eb7414794e6bfea430e
+ * @author scanet@libreduc.cc (Sébastien CANET)
+ */
+
 var intCompatibility = ['int', 'Number'];
 var floatCompatibility = ['int', 'float', 'Number'];
 var stringCompatibility = ['String'];

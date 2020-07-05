@@ -1,5 +1,11 @@
+/**
+ * @license
+ * Copyright 2020 Toshiyuki Nakamura (Toshiyuki Nakamura)
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
 var MSG = {
-    title: "BlocklyDuino",
+    title: "BDuino",
     appName: "BlocklyDuino",
     blocks: "ブロック",
     prog: "Program",
@@ -39,8 +45,28 @@ var MSG = {
     loadXML_error_span: "Error parsing XML:\n",
     resetButton_span: "Reset BlocklyDuino",
     helpButton_span: "About",
+    helpModalSpan_title: "Help - About",
+    helpModalSpan_text:
+        '<table>' +
+        '<tbody>' +
+        '<tr>' +
+        '<td style="width: 142px;"><img src="./blocklyduino/media/logo_only.png" alt="" width="129" height="144" /></td>' +
+        '<td>' +
+        '<p style="text-align: left;"><strong>BlocklyDuino</strong></p>' +
+        '<p style="text-align: left;">BlocklyDuino is a <strong>web program for editing and visual block programming for <a href="https://www.arduino.cc/">Arduino</a> boards</strong>. It is based on <a href="https://developers.google.com/blockly/">Blockly</a>, the graphical online programming editor and on the work done on <a href="https://github.com/A-S-T-U-C-E/STudio4Education">STudio4Education</a>, a similar project for <a href="https://www.st.com/">STmicroelectronics</a> boards.</p>' +
+        '<p style="text-align: left;">BlocklyDuino provides a block programming environment and their translation into \'Arduino\' C code.</p>' +
+        '</td>' +
+        '</tr>' +
+        '</tbody>' +
+        '</table>' +
+        '<p style="text-align: left;">Accessibility: <a href="https://github.com/BlocklyDuino/BlocklyDuino-v2#accessibility">online documentation</a>.</p>' +
+        '<p style="text-align: left;">Official documentation: <a href="https://developers.google.com/blockly/guides/configure/web/keyboard-nav" rel="nofollow">Blockly developers</a>.</p>' +
+        '<p style="text-align: left;">Wiki: <a href="http://www.libreduc.cc/wiki">on LibrEduc</a>.</p>' +
+        '<p style="text-align: left;">A bug? Post it here: <a href="https://github.com/BlocklyDuino/BlocklyDuino-v2/issues">on Github</a>.</p>' +
+        '<p style="text-align: center;">v0.7.2 - license GNU GPL version 3',
+    editorReadOnlyToggle_span: "code editor writable or read-only",
     copyCodeButton_span: "copy code to clipboard",
-    accessibilitySpan: "Enable Accessibility Mode (Shift + Ctrl + K):",
+    accessibilitySpan: "Enable Accessibility Mode",
     defaultCursorSpan: "Default Cursor",
     basicCursorSpan: "Basic Cursor",
     lineCursorSpan: "Line Cursor",
@@ -79,7 +105,6 @@ var MSG = {
     optionFontSizeBlocks: "Blocks Font Size",
     optionFontSizePage: "Page Font Size",
     optionFontSpacingPage: "Page Font Spacing",
-    keyMappingExplanationSpan: "accessibility: <a href='https://github.com/BlocklyDuino/BlocklyDuino-v2' target='_blank'>online documentation</a>",
     //CLI_functions.js
     config_sideButton_span: "Arduino CLI control",
     CLI_githubLinkButton_span: "documentation",

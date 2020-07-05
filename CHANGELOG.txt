@@ -1,0 +1,10 @@
+v0.7.1, 2020-06-24
+- add button switchable readnonly option in Ace Editor
+- fix last translation
+- WIP flat design + white everywhere for contrats enhancement
+
+v0.7.2, 2020-07-03
+- update blockly core to v3.20200625.1
+- add comment on workspace
+- add serial board communication category
+- add shield X-NUCLEO-IKS01A3 T� & humidity function

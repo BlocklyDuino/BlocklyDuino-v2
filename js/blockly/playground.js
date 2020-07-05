@@ -1,26 +1,21 @@
-/*
- Copyright (C) 2020 Sebastien Canet <scanet@libreduc.cc>
- 
- This program is free software: you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation, either version 3 of the License, or
- (at your option) any later version.
- 
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
- 
- You should have received a copy of the GNU General Public License
- along with this program.  If not, see <http://www.gnu.org/licenses/>.
+/**
+ * @license
+ * Copyright 2020 Sébastien CANET
+ * SPDX-License-Identifier: BSD-3-Clause
  */
-/*
- Created on : 30 janv. 2020, 18:00:25
- Author     : Sebastien Canet <scanet@libreduc.cc>
+
+/**
+ * @fileoverview Accessibility functions, forked from https://github.com/google/blockly/commit/21763b7e00fbfe8010595382bf196410cd30844e
+ * @author scanet@libreduc.cc (Sébastien CANET)
  */
+ 
+// Custom requires for the playground.
+// goog.require('Blockly.WorkspaceCommentSvg');
+// goog.require('Blockly.WorkspaceCommentSvg.render');
 
 'use strict';
 var Code;
+
 
 function setRenderDebugOptionCheckboxState(overrideOptions) {
     Code.blockRendering.Debug.config = overrideOptions || {};
@@ -141,9 +136,9 @@ function setOnOffLine() {
         document.getElementById('serialConnectButton').disabled = false;
         document.getElementById('serialMenu').disabled = false;
     } else {
-        document.body.style.backgroundColor = '#7fcbcd';
-        document.getElementById('CLI_content').style.backgroundColor = '#7fcbcd';
-        document.getElementById('setup_content').style.backgroundColor = '#7fcbcd';
+        document.body.style.backgroundColor = '#00abdf';
+        document.getElementById('CLI_content').style.backgroundColor = '#00abdf';
+        document.getElementById('setup_content').style.backgroundColor = '#00abdf';
         document.getElementById('verifyButton').disabled = true;
         document.getElementById('serialButton').disabled = true;
         document.getElementById('uploadButton').disabled = true;
@@ -154,6 +149,7 @@ function setOnOffLine() {
         for (var i = 0; i < elmts.length; i++)
             elmts[i].disabled = true;
     }
+    document.getElementsByClassName("ace_content").position = "";
 }
 
 function getToolboxElement() {
@@ -187,6 +183,6 @@ function configureContextualMenu(menuOptions, e) {
     menuOptions.push(screenshotOption);
 
     // Adds a default-sized workspace comment to the workspace.
-    // menuOptions.push(Blockly.ContextMenu.workspaceCommentOption(Code.workspace, e));
+    menuOptions.push(Blockly.ContextMenu.workspaceCommentOption(Code.workspace, e));
 }
 ;

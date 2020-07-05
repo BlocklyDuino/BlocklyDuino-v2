@@ -1,90 +1,16 @@
 /**
  * @license
- * Copyright 2012 Google LLC
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright 2020 Sébastien CANET
+ * SPDX-License-Identifier: BSD-3-Clause
  */
 
 /**
- * @fileoverview BlocklyDuino, hacked from Blockly's Code demo.
- * @author fraser@google.com (Neil Fraser)
- * @author scanet@libreduc.cc (Sébastien Canet)
+ * @fileoverview JS function for intialisation, forked from https://github.com/google/blockly/commit/4e2f8e6e02b0473a86330eb7414794e6bfea430e.
+ * @author scanet@libreduc.cc (Sébastien CANET)
  */
-'use strict';
 
 /**
- * Create a namespace for the application.
- */
-var Code = {};
-
-/**
- * Lookup for names of supported languages.  Keys should be in ISO 639 format.
- */
-Code.LANGUAGE_NAME = {
-    'ca': 'Català - Valencià',
-    'de': 'Deutsch',
-    'en': 'English',
-    'es': 'Español',
-    'fr': 'Français',
-    'ja': '日本語'
-};
-
-/**
- * List of RTL languages.
- */
-Code.LANGUAGE_RTL = ['ar', 'fa', 'he', 'lki'];
-
-/**
- * Blockly's main workspace.
- * @type {Blockly.WorkspaceSvg}
- */
-Code.workspace = null;
-
-/**
- * Extracts a parameter from the URL.
- * If the parameter is absent default_value is returned.
- * @param {string} name The name of the parameter.
- * @param {string} defaultValue Value to return if parameter not found.
- * @return {string} The parameter value or the default value if not found.
- */
-Code.getStringParamFromUrl = function (name, defaultValue) {
-    var val = location.search.match(new RegExp('[?&]' + name + '=([^&]+)'));
-    return val ? decodeURIComponent(val[1].replace(/\+/g, '%20')) : defaultValue;
-};
-
-/**
- * Get the language of this user from the URL.
- * @return {string} User's language.
- */
-Code.getLang = function () {
-    var lang = Code.getStringParamFromUrl('lang', '');
-    if (Code.LANGUAGE_NAME[lang] === undefined) {
-        // Default to English.
-        lang = 'en';
-    }
-    return lang;
-};
-
-/**
- * Is the current language (Code.LANG) an RTL language?
- * @return {boolean} True if RTL, false if LTR.
- */
-Code.isRtl = function () {
-    return Code.LANGUAGE_RTL.indexOf(Code.LANG) !== -1;
-};
-
-/**
- * Load blocks saved on App Engine Storage or in session/local storage.
+ * Load blocks saved in session/local storage.
  * @param {string} defaultXml Text representation of default blocks.
  */
 Code.loadBlocks = function (defaultXml) {
@@ -95,10 +21,7 @@ Code.loadBlocks = function (defaultXml) {
         // Restarting Firefox fixes this, so it looks like a bug.
         var loadOnce = null;
     }
-    if ('BlocklyStorage' in window && window.location.hash.length > 1) {
-        // An href with #key trigers an AJAX call to retrieve saved blocks.
-        BlocklyStorage.retrieveXml(window.location.hash.substring(1));
-    } else if (loadOnce) {
+    if (loadOnce) {
         // Language switching stores the blocks during the reload.
         delete window.sessionStorage.loadOnceBlocks;
         var xml = Blockly.Xml.textToDom(loadOnce);
@@ -107,92 +30,8 @@ Code.loadBlocks = function (defaultXml) {
         // Load the editor with default starting blocks.
         var xml = Blockly.Xml.textToDom(defaultXml);
         Blockly.Xml.domToWorkspace(xml, Code.workspace);
-    } else if ('BlocklyStorage' in window) {
-        // Restore saved blocks in a separate thread so that subsequent
-        // initialization is not affected from a failed load.
-        window.setTimeout(BlocklyStorage.restoreBlocks, 0);
     }
 };
-
-/**
- * Save the blocks and reload with a different language.
- */
-Code.changeLanguage = function () {
-    // Store the blocks for the duration of the reload.
-    // MSIE 11 does not support sessionStorage on file:// URLs.
-    if (window.sessionStorage) {
-        var xml = Blockly.Xml.workspaceToDom(Code.workspace);
-        var text = Blockly.Xml.domToText(xml);
-        window.sessionStorage.loadOnceBlocks = text;
-    }
-
-    var languageMenu = document.getElementById('languageMenu');
-    var newLang = encodeURIComponent(
-            languageMenu.options[languageMenu.selectedIndex].value);
-    var search = window.location.search;
-    if (search.length <= 1) {
-        search = '?lang=' + newLang;
-    } else if (search.match(/[?&]lang=[^&]*/)) {
-        search = search.replace(/([?&]lang=)[^&]*/, '$1' + newLang);
-    } else {
-        search = search.replace(/\?/, '?lang=' + newLang + '&');
-    }
-
-    window.location = window.location.protocol + '//' + window.location.host + window.location.pathname + search;
-};
-
-/**
- * Changes the output language by clicking the tab matching
- * the selected language in the codeMenu.
- */
-Code.changeCodingLanguage = function () {
-    var codeMenu = document.getElementById('code_menu');
-    Code.tabClick(codeMenu.options[codeMenu.selectedIndex].value);
-};
-
-/**
- * Bind a function to a button's click event.
- * On touch enabled browsers, ontouchend is treated as equivalent to onclick.
- * @param {!Element|string} el Button element or ID thereof.
- * @param {!Function} func Event handler to bind.
- */
-Code.bindClick = function (el, func) {
-    if (typeof el === 'string') {
-        el = document.getElementById(el);
-    }
-    el.addEventListener('click', func, true);
-    el.addEventListener('touchend', func, true);
-};
-
-/**
- * Compute the absolute coordinates and dimensions of an HTML element.
- * @param {!Element} element Element to match.
- * @return {!Object} Contains height, width, x, and y properties.
- * @private
- */
-Code.getBBox_ = function (element) {
-    var height = element.offsetHeight;
-    var width = element.offsetWidth;
-    var x = 0;
-    var y = 0;
-    do {
-        x += element.offsetLeft;
-        y += element.offsetTop;
-        element = element.offsetParent;
-    } while (element);
-    return {
-        height: height,
-        width: width,
-        x: x,
-        y: y
-    };
-};
-
-/**
- * User's language (e.g. "en").
- * @type {string}
- */
-Code.LANG = Code.getLang();
 
 /**
  * Populate the currently selected pane with content generated from the blocks.
@@ -246,12 +85,14 @@ Code.init = function () {
         comments: true,
         collapse: true,
         disable: true,
-        grid: {
+        grid:
+          {
             spacing: 25,
-            length: 3,
+            length: 0,
             colour: '#ccc',
             snap: true
-        },
+          },
+        horizontalLayout: false,
         maxBlocks: Infinity,
         maxInstances: {
             'test_basic_limit_instances': 3
@@ -261,13 +102,14 @@ Code.init = function () {
         sounds: true,
         oneBasedIndex: true,
         readOnly: false,
-        rtl: rtl,
+        rtl: false,
         move: {
             scrollbars: true,
             drag: true,
             wheel: false
         },
-        toolbox: BLOCKLY_TOOLBOX_XML['toolboxDuino'],
+        toolbox: BLOCKLY_TOOLBOX_XML['toolboxblocklyduino'],
+        toolboxPosition: 'start',
         renderer: renderer,
         zoom: {
             controls: true,
@@ -289,7 +131,7 @@ Code.init = function () {
     Code.workspace.registerToolboxCategoryCallback('VARIABLE_TYPED_TEXT', textVariablesCallBack);
     Code.workspace.registerToolboxCategoryCallback('VARIABLE_TYPED_BOOLEAN', booleanVariablesCallBack);
 
-    Code.workspace.configureContextMenu = configureContextualMenu;
+    Code.workspace.configureContextMenu = configureContextualMenu.bind(Code.workspace);
 
     // load blocks stored in session or passed by url
     var urlFile = Code.getStringParamFromUrl('url', '');
@@ -366,7 +208,7 @@ Code.init = function () {
             document.onmouseup = () => {
                 //console.log("mouse up");
                 document.onmousemove = document.onmouseup = null;
-            }
+            };
         }
         function onMouseMove(e) {
             var delta = {
@@ -471,6 +313,8 @@ Code.initLanguage = function () {
     document.getElementById('resetButton').title = MSG['resetButton_span'];
     document.getElementById('lateral-panel-setup-label').title = MSG['setup_sideButton_span'];
     document.getElementById('helpButton').title = MSG['helpButton_span'];
+    document.getElementById('helpModalSpan_title').innerHTML = MSG['helpModalSpan_title'];
+    document.getElementById('helpModalSpan_text').innerHTML = MSG['helpModalSpan_text'];
     document.getElementById('copyCodeButton').title = MSG['copyCodeButton_span'];
     document.getElementById('keyMappingModalSpan').textContent = MSG['keyMappingModalSpan'];
     document.getElementById('detailedCompilation_span').textContent = MSG['detailedCompilation_span'];
@@ -505,7 +349,6 @@ Code.initLanguage = function () {
     document.getElementById('optionFontSizeBlocks').textContent = MSG['optionFontSizeBlocks'];
     document.getElementById('optionFontSizePage').textContent = MSG['optionFontSizePage'];
     document.getElementById('optionFontSpacingPage').textContent = MSG['optionFontSpacingPage'];
-    document.getElementById('keyMappingExplanationSpan').innerHTML = MSG['keyMappingExplanationSpan'];
     //keyboard nav
     Blockly.navigation.ACTION_PREVIOUS.name = MSG['actionName0'];
     Blockly.navigation.ACTION_OUT.name = MSG['actionName1'];
@@ -529,7 +372,7 @@ Code.initLanguage = function () {
 Code.discard = function () {
     var count = Code.workspace.getAllBlocks(false).length;
     if (count < 2 ||
-        window.confirm(Blockly.Msg['DELETE_ALL_BLOCKS'].replace('%1', count))) {
+            window.confirm(Blockly.Msg['DELETE_ALL_BLOCKS'].replace('%1', count))) {
         Code.workspace.clear();
         if (window.location.hash) {
             window.location.hash = '';
@@ -542,7 +385,7 @@ document.write('<script src="./@blockly/demos/code/msg/' + Code.LANG + '.js"></s
 // Load Blockly's language strings.
 document.write('<script src="./@blockly/msg/js/' + Code.LANG + '.js"></script>\n');
 
-// Load BlocklyDuino's language strings.
+// Load language strings.
 document.write('<script src="./msg/UI_' + Code.LANG + '.js"></script>\n');
 document.write('<script src="./blocklyduino/msg/blocks_' + Code.LANG + '.js"></script>\n');
 document.write('<script src="./blocklyduino/msg/categories_' + Code.LANG + '.js"></script>\n');

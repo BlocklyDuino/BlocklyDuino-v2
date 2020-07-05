@@ -1,27 +1,20 @@
 /**
  * @license
- * Visual Blocks Editor
- *
- * Copyright 2012 Fred Lin.
- * https://github.com/gasolin/BlocklyDuino
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright 2012 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
  */
 
 /**
- * @fileoverview Helper functions for generating Arduino blocks.
- * @author gasolin@gmail.com (Fred Lin)
+ * @fileoverview Logic blocks for Blockly.
+ *
+ * This file is scraped to extract a .json file of block definitions. The array
+ * passed to defineBlocksWithJsonArray(..) must be strict JSON: double quotes
+ * only, no outside references, no functions, no trailing commas, etc. The one
+ * exception is end-of-line comments, which the scraper will remove.
+ * @author q.neutron@gmail.com (Quynh Neutron)
+ * @author scanet@libreduc.cc (Sébastien CANET)
  */
+
 'use strict';
 
 //To support syntax defined in http://arduino.cc/en/Reference/HomePage
@@ -112,15 +105,15 @@ Blockly.Blocks['controls_switch'] = {
         this.defaultCount_ = parseInt(xmlElement.getAttribute('default'), 10);
         for (var i = 1; i <= this.casebreakCount_; i++) {
             this.appendValueInput('CASE' + i)
-            .setAlign(Blockly.ALIGN_RIGHT)
-            .appendField(Blockly.Msg.CONTROLS_SWITCH_MSG_CASEBREAK);
+                    .setAlign(Blockly.ALIGN_RIGHT)
+                    .appendField(Blockly.Msg.CONTROLS_SWITCH_MSG_CASEBREAK);
             this.appendStatementInput('DO' + i)
-            .appendField(Blockly.Msg.CONTROLS_SWITCH_MSG_DO);
+                    .appendField(Blockly.Msg.CONTROLS_SWITCH_MSG_DO);
         }
         if (this.defaultCount_) {
             this.appendStatementInput('DEFAULT')
-            .setAlign(Blockly.ALIGN_RIGHT)
-            .appendField(Blockly.Msg.CONTROLS_SWITCH_MSG_DEFAULT);
+                    .setAlign(Blockly.ALIGN_RIGHT)
+                    .appendField(Blockly.Msg.CONTROLS_SWITCH_MSG_DEFAULT);
         }
     },
     /**
@@ -167,35 +160,35 @@ Blockly.Blocks['controls_switch'] = {
         var clauseBlock = containerBlock.getInputTargetBlock('STACK');
         while (clauseBlock) {
             switch (clauseBlock.type) {
-            case 'controls_case_break':
-                this.casebreakCount_++;
-                var ifInput = this.appendValueInput('CASE' + this.casebreakCount_)
-                    .setCheck('Number')
-                    .appendField(Blockly.Msg.CONTROLS_SWITCH_MSG_CASEBREAK);
-                var doInput = this.appendStatementInput('DO' + this.casebreakCount_);
-                doInput.appendField(Blockly.Msg.CONTROLS_SWITCH_MSG_DO);
-                // Reconnect any child blocks.
-                if (clauseBlock.valueConnection_) {
-                    ifInput.connection.connect(clauseBlock.valueConnection_);
-                }
-                if (clauseBlock.statementConnection_) {
-                    doInput.connection.connect(clauseBlock.statementConnection_);
-                }
-                break;
-            case 'controls_case_default':
-                this.defaultCount_++;
-                var defaultInput = this.appendStatementInput('DEFAULT');
-                defaultInput.appendField(Blockly.Msg.CONTROLS_SWITCH_MSG_DEFAULT);
-                // Reconnect any child blocks.
-                if (clauseBlock.statementConnection_) {
-                    defaultInput.connection.connect(clauseBlock.statementConnection_);
-                }
-                break;
-            default:
-                throw 'Unknown block type.';
+                case 'controls_case_break':
+                    this.casebreakCount_++;
+                    var ifInput = this.appendValueInput('CASE' + this.casebreakCount_)
+                            .setCheck('Number')
+                            .appendField(Blockly.Msg.CONTROLS_SWITCH_MSG_CASEBREAK);
+                    var doInput = this.appendStatementInput('DO' + this.casebreakCount_);
+                    doInput.appendField(Blockly.Msg.CONTROLS_SWITCH_MSG_DO);
+                    // Reconnect any child blocks.
+                    if (clauseBlock.valueConnection_) {
+                        ifInput.connection.connect(clauseBlock.valueConnection_);
+                    }
+                    if (clauseBlock.statementConnection_) {
+                        doInput.connection.connect(clauseBlock.statementConnection_);
+                    }
+                    break;
+                case 'controls_case_default':
+                    this.defaultCount_++;
+                    var defaultInput = this.appendStatementInput('DEFAULT');
+                    defaultInput.appendField(Blockly.Msg.CONTROLS_SWITCH_MSG_DEFAULT);
+                    // Reconnect any child blocks.
+                    if (clauseBlock.statementConnection_) {
+                        defaultInput.connection.connect(clauseBlock.statementConnection_);
+                    }
+                    break;
+                default:
+                    throw 'Unknown block type.';
             }
             clauseBlock = clauseBlock.nextConnection &&
-                clauseBlock.nextConnection.targetBlock();
+                    clauseBlock.nextConnection.targetBlock();
         }
     },
     /**
@@ -208,25 +201,25 @@ Blockly.Blocks['controls_switch'] = {
         var i = 1;
         while (clauseBlock) {
             switch (clauseBlock.type) {
-            case 'controls_case_break':
-                var inputIf = this.getInput('CASE' + i);
-                var inputDo = this.getInput('DO' + i);
-                clauseBlock.valueConnection_ =
-                    inputIf && inputIf.connection.targetConnection;
-                clauseBlock.statementConnection_ =
-                    inputDo && inputDo.connection.targetConnection;
-                i++;
-                break;
-            case 'controls_case_default':
-                var inputDo = this.getInput('DEFAULT');
-                clauseBlock.statementConnection_ =
-                    inputDo && inputDo.connection.targetConnection;
-                break;
-            default:
-                throw 'Unknown block type.';
+                case 'controls_case_break':
+                    var inputIf = this.getInput('CASE' + i);
+                    var inputDo = this.getInput('DO' + i);
+                    clauseBlock.valueConnection_ =
+                            inputIf && inputIf.connection.targetConnection;
+                    clauseBlock.statementConnection_ =
+                            inputDo && inputDo.connection.targetConnection;
+                    i++;
+                    break;
+                case 'controls_case_default':
+                    var inputDo = this.getInput('DEFAULT');
+                    clauseBlock.statementConnection_ =
+                            inputDo && inputDo.connection.targetConnection;
+                    break;
+                default:
+                    throw 'Unknown block type.';
             }
             clauseBlock = clauseBlock.nextConnection &&
-                clauseBlock.nextConnection.targetBlock();
+                    clauseBlock.nextConnection.targetBlock();
         }
     }
 };

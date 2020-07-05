@@ -1,5 +1,20 @@
-// Make the DIV element draggable-keyboard-dialog draggable:
+/**
+ * @license
+ * Copyright 2020 Sébastien CANET
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+/**
+ * @fileoverview Servomotor blocks for Blockly.
+ * @author scanet@libreduc.cc (Sébastien CANET)
+ */
+
+/*
+ * Make the DIV element draggable
+ */
 dragElement(document.getElementById("keyboard_nav"));
+dragElement(document.getElementById("helpModal"));
+
 function dragElement(elmnt) {
     var pos1 = 0,
             pos2 = 0,
@@ -19,7 +34,6 @@ function dragElement(elmnt) {
         pos3 = e.clientX;
         pos4 = e.clientY;
         document.onmouseup = closeDragElement;
-        // call a function whenever the cursor moves:
         document.onmousemove = elementDrag;
     }
     function elementDrag(e) {
@@ -42,30 +56,44 @@ function dragElement(elmnt) {
 }
 ;
 
-// javascript function for collapsible content
+/*
+ * Javascript function for collapsible content in modal
+ */
 function collapsibleContentInit() {
     var coll = document.getElementsByClassName("collapsibleButton");
-    var i;
     for (i = 0; i < coll.length; i++) {
         coll[i].addEventListener("click", function () {
             this.classList.toggle("active");
             var content = this.nextElementSibling;
             if (content.style.maxHeight) {
                 content.style.maxHeight = null;
-                document.getElementById("arduino_mini_picture_div").style.transform = "scale(1)";
-                document.getElementById("arduino_mini_picture_div").style.top = "";
+                document.getElementById("board_mini_picture_div").style.transform = "scale(1)";
+                document.getElementById("board_mini_picture_div").style.top = "";
                 document.getElementById("collapsibleContent").style.visibility = "hidden";
             } else {
                 content.style.maxHeight = content.scrollHeight + "px";
-                document.getElementById("arduino_mini_picture_div").style.transform = "scale(1.7)";
-                document.getElementById("arduino_mini_picture_div").style.top = "150px";
+                document.getElementById("board_mini_picture_div").style.transform = "scale(1.7)";
+                document.getElementById("board_mini_picture_div").style.top = "150px";
                 document.getElementById("collapsibleContent").style.visibility = "visible";
             }
         });
     }
 }
 
-//icons button mouser over
+function toggleEditorReadOnly(item){
+    if(item.checked) {
+        editor.setOptions({
+            readOnly: false
+        })
+    } else {
+        editor.setOptions({
+            readOnly: true
+        })
+    }
+}
+/*
+ * Icons button mouser over
+ */
 document.getElementById('fullScreenButton').onmouseover = function () {
     document.getElementById("content_hoverButton").textContent = MSG['fullScreenButton_span'];
 };
@@ -244,5 +272,11 @@ document.getElementById('CLI_githubLinkButton').onmouseover = function () {
     document.getElementById("content_hoverButton").textContent = MSG['CLI_githubLinkButton_span'];
 };
 document.getElementById('CLI_githubLinkButton').onmouseout = function () {
+    document.getElementById("content_hoverButton").textContent = "";
+};
+document.getElementById('editorReadOnlyToggle').onmouseover = function () {
+    document.getElementById("content_hoverButton").textContent = MSG['editorReadOnlyToggle_span'];
+};
+document.getElementById('editorReadOnlyToggle').onmouseout = function () {
     document.getElementById("content_hoverButton").textContent = "";
 };

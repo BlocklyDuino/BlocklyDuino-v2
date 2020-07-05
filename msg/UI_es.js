@@ -1,5 +1,11 @@
+/**
+ * @license
+ * Copyright 2020 Carles Ferrando Garcia (ferrando_cariga@gva.es)
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
 var MSG = {
-    title: "BlocklyDuino",
+    title: "BDuino",
     appName: "BlocklyDuino",
     blocks: "Bloques",
     prog: "Program",
@@ -14,7 +20,7 @@ var MSG = {
     listVariable: "lista",
     textVariable: "texto",
     screenshot: "Descarga una captura de pantalla",
-    xmlError: "No se puede descargar vuestro fichero guardado. Quizás se ha creado con un versión diferente de S4E?",
+    xmlError: "No se puede descargar vuestro fichero guardado. Quizás se ha creado con un versión diferente de BlocklyDuino?",
     badXml: "Error de análisis XML:\n%1\n\nSelecciona 'De acuerdo' para abandonar los cambios o 'Cancela' para continuar editando el fichero.",
     languageSpan: "escoge idioma",
     interfaceColorSpan: "interface theme",
@@ -39,8 +45,28 @@ var MSG = {
     loadXML_error_span: "Error parsing XML:\n",
     resetButton_span: "Restablece BlocklyDuino",
     helpButton_span: "ayuda",
+    helpModalSpan_title: "Help - About",
+    helpModalSpan_text:
+        '<table>' +
+        '<tbody>' +
+        '<tr>' +
+        '<td style="width: 142px;"><img src="./blocklyduino/media/logo_only.png" alt="" width="129" height="144" /></td>' +
+        '<td>' +
+        '<p style="text-align: left;"><strong>BlocklyDuino</strong></p>' +
+        '<p style="text-align: left;">BlocklyDuino is a <strong>web program for editing and visual block programming for <a href="https://www.arduino.cc/">Arduino</a> boards</strong>. It is based on <a href="https://developers.google.com/blockly/">Blockly</a>, the graphical online programming editor and on the work done on <a href="https://github.com/A-S-T-U-C-E/STudio4Education">STudio4Education</a>, a similar project for <a href="https://www.st.com/">STmicroelectronics</a> boards.</p>' +
+        '<p style="text-align: left;">BlocklyDuino provides a block programming environment and their translation into \'Arduino\' C code.</p>' +
+        '</td>' +
+        '</tr>' +
+        '</tbody>' +
+        '</table>' +
+        '<p style="text-align: left;">Accessibility: <a href="https://github.com/BlocklyDuino/BlocklyDuino-v2#accessibility">online documentation</a>.</p>' +
+        '<p style="text-align: left;">Official documentation: <a href="https://developers.google.com/blockly/guides/configure/web/keyboard-nav" rel="nofollow">Blockly developers</a>.</p>' +
+        '<p style="text-align: left;">Wiki: <a href="http://www.libreduc.cc/wiki">on LibrEduc</a>.</p>' +
+        '<p style="text-align: left;">A bug? Post it here: <a href="https://github.com/BlocklyDuino/BlocklyDuino-v2/issues">on Github</a>.</p>' +
+        '<p style="text-align: center;">v0.7.2 - license GNU GPL version 3',
+    editorReadOnlyToggle_span: "code editor writable or read-only",
     copyCodeButton_span: "Copia código a  portapapeles",
-    accessibilitySpan: "habilita modo accesibilidad (Shift + Ctrl + K):",
+    accessibilitySpan: "habilita modo accesibilidad",
     defaultCursorSpan: "Cursor por defecto",
     basicCursorSpan: "Cursor básico",
     lineCursorSpan: "Cursor linia",
@@ -79,7 +105,6 @@ var MSG = {
     optionFontSizeBlocks: "Tamaño del tipo de letra bloques",
     optionFontSizePage: "Tamaño del tipo de letra página",
     optionFontSpacingPage: "Espaciado de letra página",
-    keyMappingExplanationSpan: "accessibility: <a href='https://github.com/BlocklyDuino/BlocklyDuino-v2' target='_blank'>online documentation</a>",
     //CLI_functions.js
     config_sideButton_span: "Control del compilador Arduino CLI",
     CLI_githubLinkButton_span: "documentación",

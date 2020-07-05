@@ -1,10 +1,14 @@
+/**
+ * @license
+ * Copyright 2020 Carles Ferrando Garcia (ferrando_cariga@gva.es)
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
 'use strict';
 
 goog.provide('Blockly.Msg.blocks_es');
 
 goog.require('Blockly.Msg');
-
-Blockly.Msg.TITLE2 = " > Programación visual de bloques para Arduino";
 
 //text in blocks
 Blockly.Msg.FIELDDROPDOWN = [["1 (activado)", "HIGH"], ["0 (desactivado)", "LOW"]];
@@ -67,6 +71,38 @@ Blockly.Msg.ARDUINO_TONE_HELPURL = "http://arduino.cc/en/Reference/AnalogWrite";
 Blockly.Msg.ARDUINO_NOTONE_INPUT = "para el sonido en el pin";
 Blockly.Msg.ARDUINO_NOTONE_TOOLTIP = "para el sonido en el pin seleccionado";
 Blockly.Msg.ARDUINO_NOTONE_HELPURL = "http://arduino.cc/en/Reference/AnalogWrite";
-Blockly.Msg.ARDUINO_SERIAL_PRINT_CONTENT = "envía el texto al puerto serie:";
-Blockly.Msg.ARDUINO_SERIAL_PRINT_TOOLTIP = "envía datos al puerto serie para vigilancia con el monitor ASCII";
-Blockly.Msg.ARDUINO_SERIAL_PRINT_HELPURL = "http://www.arduino.cc/en/Serial/Print";
+
+//SERIAL
+Blockly.Msg.SERIAL_INIT = "Serial communication init speed";
+Blockly.Msg.SERIAL_PRINT_FORMAT = "Print  Format";
+Blockly.Msg.SERIAL_PRINT_FORDECIMAL = "decimal";
+Blockly.Msg.SERIAL_PRINT_FORHEXA = "hexadecimal";
+Blockly.Msg.SERIAL_PRINT_FORBIN = "binary";
+Blockly.Msg.SERIAL_PRINT_FOROCT = "octal";
+Blockly.Msg.SERIAL_READ = "Serial Read";
+Blockly.Msg.SERIAL_AVAILABLE = "Serial Available?";
+Blockly.Msg.SERIAL_FLUSH = "Serial flush";
+Blockly.Msg.SERIAL_READSTRINGUNTIL_HELPURL = "https://www.arduino.cc/en/Serial/ReadStringUntil";
+Blockly.Msg.SERIAL_READSTRINGUNTIL_CONTENT = "String read until";
+Blockly.Msg.SERIAL_READSTRINGUNTIL_TOOLTIP = "reads characters from the serial buffer into a string";
+Blockly.Msg.SERIAL_PRINT_CONTENT = "envía el texto al puerto serie:";
+Blockly.Msg.SERIAL_PRINT_TOOLTIP = "envía datos al puerto serie para vigilancia con el monitor ASCII";
+Blockly.Msg.SERIAL_PRINT_HELPURL = "http://www.arduino.cc/en/Serial/Print";
+
+//Arduino base servo category blocks
+Blockly.Msg.SERVO_MOVE_TOOLTIP = "rotation possible between 0 ~ 180 degrees";
+Blockly.Msg.SERVO_MOVE_HELPURL = "http://www.arduino.cc/playground/ComponentLib/servo";
+Blockly.Msg.SERVO_PIN = "PIN#";
+Blockly.Msg.SERVO_MOVE_INPUT = "Girar el servomotor";
+Blockly.Msg.SERVO_MOVE_DEGREE = "en ángulo (0 ~ 180 °) de";
+Blockly.Msg.SERVO_READ_DEGREES_INPUT = "the angle of the servo motor";
+Blockly.Msg.SERVO_READ_DEGREES_TOOLTIP = "returns the number of degrees the last rotation";
+Blockly.Msg.SERVO_READ_DEGREES_HELPURL = "http://www.arduino.cc/playground/ComponentLib/servo";
+
+//X-NUCLEO-IKS01A3 shield blocks: the X-NUCLEO-IKS01A3 is a motion MEMS and environmental sensor evaluation board system, for ST Nucleo boards.
+Blockly.Msg.X_NUCLEO_IKS01A3_Temp_Read_INPUT = "onboard temperature sensor value";
+Blockly.Msg.X_NUCLEO_IKS01A3_Temp_Read_TOOLTIP = "HTS221: capacitive digital temperature in °Celsius";
+Blockly.Msg.X_NUCLEO_IKS01A3_Temp_Read_HELPURL = "onboard temperature sensor value";
+Blockly.Msg.X_NUCLEO_IKS01A3_Humidity_Read_INPUT = "onboard humidity sensor value";
+Blockly.Msg.X_NUCLEO_IKS01A3_Humidity_Read_TOOLTIP = "HTS221: capacitive digital relative humidity in percent";
+Blockly.Msg.X_NUCLEO_IKS01A3_Humidity_Read_HELPURL = "https://www.st.com/en/ecosystems/x-nucleo-iks01a3.html";

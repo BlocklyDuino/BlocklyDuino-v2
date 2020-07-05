@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2020 Sébastien CANET
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
 'use strict';
 
 goog.provide('Blockly.Msg.categories_fr');
@@ -8,8 +14,10 @@ goog.require('Blockly.Msg');
 Blockly.Msg.CAT_VAR_NUM = "numériques";
 Blockly.Msg.CAT_VAR_TEXT = "textes";
 Blockly.Msg.CAT_VAR_BOOLEAN = "logique";
-Blockly.Msg.CAT_ARDUINO = "Arduino";
+Blockly.Msg.CAT_ARDUINO = "carte";
 Blockly.Msg.CAT_ARDUINO_IO = "entrées / sorties";
+Blockly.Msg.CAT_BOARD_SERIAL = "communication série";
+Blockly.Msg.CAT_IKS01A3 = "X-NUCLEO-IKS01A3";
 Blockly.Msg.CAT_SERVO = "servomoteurs";
 Blockly.Msg.CAT_SEEED = "Seeed studio";
 Blockly.Msg.CAT_GROVE = "Grove";

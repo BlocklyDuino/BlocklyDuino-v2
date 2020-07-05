@@ -3,12 +3,13 @@
     <head>
         <meta charset="utf-8">
         <meta name="google" value="notranslate">
-        <title>BlocklyDuino</title>
+        <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+        <title>blocklyduino</title>
         <link rel="icon" type="image/png" href="./blocklyduino/media/logo_only.png" />
         <link rel="stylesheet" href="./css/font_awesome_all.min.css" />
         <link rel="stylesheet" href="./css/keyboard_nav.css" />
         <link rel="stylesheet" href="./css/lateral-panel.css" />
-        <link rel="stylesheet" href="./css/style.css" />
+        <link rel="stylesheet" href="./css/UI.css" />
         <link rel="stylesheet" href="./blocklyduino/css/blocklyduino.css" />
     </head>
     <body>
@@ -23,7 +24,7 @@
                     </td>
                 </tr>
                 <tr style="height: 30px;">
-                    <td class="tabmax" colspan="2">
+                    <td colspan="2">
                         <button id="newButton"  class="iconButtons" onclick="Code.discard()">
                             <span id="newButton_span">
                                 <i class="far fa-file"></i>
@@ -88,7 +89,7 @@
                                 <i class="fas fa-power-off"></i>
                             </span>
                         </button>
-                        <button id="helpButton" class="iconButtons" onclick="window.location.href = 'https://github.com/BlocklyDuino/BlocklyDuino-v2'">
+                        <button id="helpButton" class="iconButtons" onclick="toggleDisplayHelpModal()">
                             <span id="helpButton_span">
                                 <i class="fas fa-question"></i>
                             </span>
@@ -102,7 +103,12 @@
                                 <div id="content_area">
                                     <div id="content_blocks"></div>
                                 </div>
-                                <div id="separator" ></div>
+                                <div id="separator">
+                                    <label id="editorReadOnlyToggle" class="switch">
+                                        <input type="checkbox" onclick="toggleEditorReadOnly(this)">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
                                 <button id="copyCodeButton" class="iconButtons" onclick="Code.copyToClipboard()">
                                     <span id="copyCodeButton_span">
                                         <i class="far fa-copy"></i>
@@ -113,7 +119,7 @@
                             <div id="barre_h">
                                 <div id="checkDetails">
                                     <input type="checkbox" name="detailedCompilation" id="detailedCompilation"/>
-                                    <span id="detailedCompilation_span" style="color: white;"> </span>
+                                    <span id="detailedCompilation_span"> </span>
                                 </div>
                             </div>
                             <div id="content_serial"></div>
@@ -121,6 +127,14 @@
                     </td>
                 </tr>
             </table>
+        </div>
+        <div id="helpModal">
+            <div id="helpModal_header">
+                <span id="helpModalSpan_title"></span>
+            </div>
+            <div id="helpModal_text">
+                <span id="helpModalSpan_text"></span>
+            </div>
         </div>
         <div id="keyboard_nav">
             <div id="keyboard_nav_header">
@@ -190,6 +204,11 @@
                             </span>
                         </button>
                         <br>
+                        <button id="registerToOrchestrator" class="iconButtons CLI" onclick="ArrowheadRegister()">
+                            <span id="registerToOrchestrator_span">
+                                <i class="fas fa-plug"></i>
+                            </span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -212,17 +231,17 @@
                         <!-- </select> -->
                         <span id="boardMenuSpan" class="UIText">...</span>
                         <select id="boardMenu" onchange="changeBoard()">
-                            <!-- <option value="none" selected="selected">...</option> -->
-                            <!-- <option value="arduino_leonardo">Arduino Leonardo</option> -->
-                            <!-- <option value="arduino_mega">Arduino Mega</option> -->
-                            <!-- <option value="arduino_micro">Arduino Micro</option> -->
-                            <!-- <option value="arduino_mini">Arduino Mini</option> -->
-                            <!-- <option value="arduino_nano">Arduino Nano</option> -->
-                            <!-- <option value="arduino_pro8">Arduino Pro Mini 3.3V</option> -->
-                            <!-- <option value="arduino_pro16">Arduino Pro Mini 5V</option> -->
-                            <!-- <option value="arduino_uno">Arduino Uno</option> -->
-                            <!-- <option value="arduino_yun">Arduino Yùn</option> -->
-                            <!-- <option value="lilypad">LilyPad</option> -->
+                            <option value="none" selected="selected">...</option>
+                            <option value="arduino_leonardo">Arduino Leonardo</option>
+                            <option value="arduino_mega">Arduino Mega</option>
+                            <option value="arduino_micro">Arduino Micro</option>
+                            <option value="arduino_mini">Arduino Mini</option>
+                            <option value="arduino_nano">Arduino Nano</option>
+                            <option value="arduino_pro8">Arduino Pro Mini 3.3V</option>
+                            <option value="arduino_pro16">Arduino Pro Mini 5V</option>
+                            <option value="arduino_uno">Arduino Uno</option>
+                            <option value="arduino_yun">Arduino Yùn</option>
+                            <option value="lilypad">LilyPad</option>
                         </select>
                         <br>
                         <br>
@@ -238,13 +257,13 @@
                         <br>
                         <span id="interfaceColorSpan" class="UIText">...</span>
                         <select id="interfaceColorMenu">
-                            <option value="arduino" selected="selected">BlocklyDuino2</option>
+                            <option value="arduino" selected="selected">blocklyduino2</option>
                         </select>
                         <br>
                         <br>
                         <span id="codeEditorColorSpan" class="UIText">...</span>
                         <select id="codeEditorColorMenu">
-                            <option value="arduino" selected="selected">BlocklyDuino2</option>
+                            <option value="arduino" selected="selected">blocklyduino2</option>
                         </select>
                         <br>
                         <br>
@@ -280,14 +299,11 @@
                     <input type="range" min="3" max="50" value="4" oninput="Code.changeRenderingConstant(this.value)" onchange="Code.changeRenderingConstant(this.value)" />
                     <br>
                     <br>
-                    <span id="keyMappingExplanationSpan" class="UITextSmall"></span>
-                    <br>
-                    <br>
-                    <span id="accessibilitySpan" class="UIText"></span>
                     <input id="accessibilityModeCheck" type="checkbox" onclick="toggleAccessibilityMode(this.checked)">
+                    <span id="accessibilitySpan" class="UIText"></span>
                     <br>
-                    <span id="keyMappingSpan" class="UIText"></span>
                     <input id="displayKeyMappings" type="checkbox" onclick="toggleDisplayKeyMappings(this.checked)">
+                    <span id="keyMappingSpan" class="UIText"></span>
                     <br>
                     <select id="cursorChanger" name="cursor" onchange="changeCursor(this.value)">
                         <option value="default" id="defaultCursorSpan">default</option> 
@@ -306,23 +322,23 @@
                     <span class="closeModal" id="closeModalBoards">&times;</span>
                 </div>
                 <div class="modal-body">
-                    <div id="arduino_mini_picture_div">
-                        <img id="arduino_board_mini_picture" />
+                    <div id="board_mini_picture_div">
+                        <img id="board_mini_picture" />
                     </div>
                     <div id="hideSelectScrollbar">
                         <select id="boardDescriptionSelector" size="11" onchange="Code.boardDescription()">
-                            <!-- <optgroup label="C / C++"> -->
-                            <!-- <option value="arduino_leonardo" >Arduino Léonardo</option> -->
-                            <!-- <option value="arduino_mega" >Arduino Mega</option> -->
-                            <!-- <option value="arduino_micro" >Arduino Micro</option> -->
-                            <!-- <option value="arduino_mini" >Arduino Mini</option> -->
-                            <!-- <option value="arduino_nano" >Arduino Nano</option> -->
-                            <!-- <option value="arduino_pro8" >Arduino Pro Mini 3.3V</option> -->
-                            <!-- <option value="arduino_pro16" >Arduino Pro Mini 5V</option> -->
-                            <!-- <option value="arduino_uno" >Arduino Uno</option> -->
-                            <!-- <option value="arduino_yun" >Arduino Yùn</option> -->
-                            <!-- <option value="lilypad" >LilyPad</option> -->
-                            <!-- </optgroup> -->
+                            <optgroup label="C / C++">
+                            <option value="arduino_leonardo" >Arduino Léonardo</option>
+                            <option value="arduino_mega" >Arduino Mega</option>
+                            <option value="arduino_micro" >Arduino Micro</option>
+                            <option value="arduino_mini" >Arduino Mini</option>
+                            <option value="arduino_nano" >Arduino Nano</option>
+                            <option value="arduino_pro8" >Arduino Pro Mini 3.3V</option>
+                            <option value="arduino_pro16" >Arduino Pro Mini 5V</option>
+                            <option value="arduino_uno" >Arduino Uno</option>
+                            <option value="arduino_yun" >Arduino Yùn</option>
+                            <option value="lilypad" >LilyPad</option>
+                            </optgroup>
                         </select>
                     </div>
                 </div>
@@ -361,12 +377,14 @@
             </div>
         </div>
     </body>
-    <!-- load JavaScript just before the closing HTML body tag ensures the scripts don’t block loading of other content and page content is readable before scripts are downloaded and executed -->
     <!-- Blockly libraries -->
     <script src="./@blockly/blockly_compressed.js"></script>
     <script src="./@blockly/blocks_compressed.js"></script>
     <script src="./@blockly/closure/goog/base.js"></script>
     <!-- Blockly libraries for themes and renderers -->
+    <script src="./@blockly/core/workspace_comment.js" async></script>
+    <script src="./@blockly/core/workspace_comment_svg.js" async></script>
+    <script src="./@blockly/core/workspace_comment_render_svg.js" async></script>
     <script src="./@blockly/core/renderers/minimalist/info.js" async></script>
     <script src="./@blockly/core/renderers/minimalist/constants.js" async></script>
     <script src="./@blockly/core/renderers/minimalist/drawer.js" async></script>
@@ -374,30 +392,33 @@
     <script src="./@blockly/core/theme/modern.js" async></script>
     <script src="./@blockly/core/theme/zelos.js" async></script>
     <!-- Blockly libraries of function, from different demos -->
+    <script src="./@blockly/demos/code/code.js"></script>
     <script src="./@blockly/demos/keyboard_nav/line_cursor.js" async></script>
     <script src="./@blockly/tests/playgrounds/screenshot.js" async></script>
     <!-- Blockly libraries of function, hacked from different demos -->
-    <script src="./blocklyduino/code.js"></script>
     <script src="./js/blockly/keyboard_nav.js"></script>
     <script src="./js/blockly/playground.js"></script>
-    <script src="./js/boards.json"></script>
-    <script src="./js/boards.js"></script>
+    <script src="./js/init.js"></script>
     <script src="./js/typed_variable.js"></script>
     <script src="./js/buttons_functions.js"></script>
     <script src="./js/dialog.js"></script>
     <script src="./js/renderingConstant.js"></script>
-    <!-- BlocklyDuino libraries of external functions -->
+    <!-- blocklyduino libraries of external functions -->
     <script src="./js/ace/ace.js" charset="utf-8"></script>
     <script src="./js/ace/ext-language_tools.js"></script>
-    <!-- BlocklyDuino specific: block design -->
+    <!-- blocklyduino libraries of boards definition -->
+    <script src="./blocklyduino/js/boards.json"></script>
+    <script src="./blocklyduino/js/boards.js"></script>
+    <!-- blocklyduino specific: block design -->
     <script src="./blocklyduino/blocks/blocks_colors.js" async></script>
-    <script src="./blocklyduino/blocks/arduino_base/arduino_base.js" async></script>
+    <script src="./blocklyduino/blocks/board/board_base.js" async></script>
+    <script src="./blocklyduino/blocks/board/board_serial.js" async></script>
     <script src="./blocklyduino/blocks/blockly/logic.js" async></script>
     <script src="./blocklyduino/blocks/blockly/math.js" async></script>
     <script src="./blocklyduino/blocks/grove/grove.js" async></script>
     <script src="./blocklyduino/blocks/servo/servo.js" async></script>
     <script src="./blocklyduino/blocks/typed_variable.js" async></script>
-    <!-- BlocklyDuino specific: common generator code -->
+    <!-- blocklyduino specific: common generator code -->
     <script src="./generators/arduino_generator.js"></script>
     <script src="./blocklyduino/arduino/blockly/colour.js" async></script>
     <script src="./blocklyduino/arduino/blockly/lists.js" async></script>
@@ -406,18 +427,19 @@
     <script src="./blocklyduino/arduino/blockly/math.js" async></script>
     <script src="./blocklyduino/arduino/blockly/procedures.js" async></script>
     <script src="./blocklyduino/arduino/blockly/text.js" async></script>
-    <!-- BlocklyDuino specific: addon generator code -->
-    <script src="./blocklyduino/arduino/arduino_base.js" async></script>
+    <!-- blocklyduino specific: addon generator code -->
+    <script src="./blocklyduino/arduino/board/board_base.js" async></script>
+    <script src="./blocklyduino/arduino/board/board_serial.js" async></script>
     <script src="./blocklyduino/arduino/typed_variable.js" async></script>
     <script src="./blocklyduino/arduino/addon/grove.js" async></script>
     <script src="./blocklyduino/arduino/addon/servo.js" async></script>
-    <!-- BlocklyDuino specific -->
+    <!-- blocklyduino specific -->
     <!-- Blockly themes added -->
     <script src="./blocklyduino/themes/bw.js" async></script>
     <script src="./blocklyduino/themes/themes_blocks.js" async></script>
     <script src="./blocklyduino/themes/themes_categories.js" async></script>
     <script src="./blocklyduino/themes/themes_components_override.js" async></script>
-    <!-- BlocklyDuino external toolbox hacked -->
+    <!-- blocklyduino external toolbox hacked -->
     <script src="./blocklyduino/toolbox/toolbox_blocklyduino.js"></script>
     <script src="./blocklyduino/toolbox/toolbox_standard.js"></script>
     <script>
@@ -444,10 +466,9 @@
         });
         editor.findNext();
         editor.findPrevious();
-
-        require('../CLI_functions.js');
-        require('../IDE_functions.js');
-        <!-- require('../resources/app.asar/CLI_functions.js'); -->
-        <!-- require('../resources/app.asar/IDE_functions.js'); -->
+        <!-- require('../CLI_functions.js'); -->
+        <!-- require('../IDE_functions.js'); -->
+        require('../resources/app.asar/CLI_functions.js');
+        require('../resources/app.asar/IDE_functions.js');
     </script>
 </HTML>

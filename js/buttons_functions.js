@@ -1,25 +1,11 @@
 /**
  * @license
- * Visual Blocks Language
- *
- * Copyright 2012 Google Inc.
- * https://developers.google.com/blockly/
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright 2020 Sébastien CANET
+ * SPDX-License-Identifier: BSD-3-Clause
  */
 
 /**
- * @fileoverview Helper functions for generating Arduino for blocks.
+ * @fileoverview Helper functions for buttons visible in UI.
  * @author scanet@libreduc.cc (SebCanet)
  */
 
@@ -45,23 +31,13 @@ var fullScreen_ = false;
 function fullScreen(_element) {
     var elementClicked = _element || document.documentElement;
     // HTML5
-    if (document.fullscreenElement) {
+    if (document.fullscreenEnabled) {
         if (!document.fullscreenElement) {
             elementClicked.requestFullscreen();
             document.addEventListener('fullscreenchange', exitFullScreen, false);
         } else {
             document.exitFullscreen();
             document.removeEventListener('fullscreenchange', exitFullScreen, false);
-        }
-    } else
-    // Mozilla
-    if (document.mozFullScreenEnabled) {
-        if (!document.mozFullScreenElement) {
-            elementClicked.mozRequestFullScreen();
-            document.addEventListener('mozfullscreenchange', exitFullScreen, false);
-        } else {
-            document.mozCancelFullScreen();
-            document.removeEventListener('mozfullscreenchange', exitFullScreen, false);
         }
     } else
     // Chrome, Safari and Opera
@@ -88,7 +64,7 @@ function fullScreen(_element) {
 ;
 
 function exitFullScreen() {
-    if (document.fullscreenElement || document.webkitIsFullScreen || document.mozFullScreen || document.msFullscreenElement !== null)
+    if (document.fullscreenElement || document.webkitIsFullScreen || document.msFullscreenElement !== null)
         if (fullScreen_ === false) {
             fullScreenButton.className = 'iconButtonsClicked';
             fullScreen_ = true;
@@ -97,7 +73,7 @@ function exitFullScreen() {
             fullScreen_ = false;
         }
 }
-; 
+;
 
 /**
  * Copy code from div code_peek in clipboard system
@@ -105,17 +81,17 @@ function exitFullScreen() {
 Code.copyToClipboard = function () {
     if (document.selection) { // IE
         var range = document.body.createTextRange();
-        range.moveToElementText(document.getElementById("content_code"));
+        range.moveToElementText(document.getElementsByClassName("ace_content")[0]);
         range.select();
     } else if (window.getSelection) {
         var range = document.createRange();
-        range.selectNode(document.getElementById("content_code"));
+        range.selectNode(document.getElementsByClassName("ace_content")[0]);
         window.getSelection().removeAllRanges();
         window.getSelection().addRange(range);
     }
     document.execCommand("copy");
 };
- 
+
 /**
  * modal controllers
  */
@@ -130,33 +106,33 @@ Code.boardsListModalShow = function () {
     }
     window.addEventListener('click', Code.boardsListModalHide, 'once');
     Code.boardDescription();
-}
+};
 Code.portsListModalShow = function () {
     document.getElementById('overlayForModals').style.display = "block";
     document.getElementById('portListModal').classList.add('show');
     window.addEventListener('click', Code.portsListModalHide, 'once');
-}
+};
 document.getElementById("closeModalBoards").onclick = function () {
     document.getElementById('overlayForModals').style.display = "none";
     document.getElementById('boardListModal').classList.remove('show');
-}
+};
 document.getElementById("closeModalPorts").onclick = function () {
     document.getElementById('overlayForModals').style.display = "none";
     document.getElementById('portListModal').classList.remove('show');
-}
+};
 // When the user clicks anywhere outside of the modal, close it
 Code.boardsListModalHide = function (event) {
     if (!document.getElementById('boardListModal').contains(event.target)) {
         document.getElementById('overlayForModals').style.display = "none";
         document.getElementById('boardListModal').classList.remove('show');
     }
-}
+};
 Code.portsListModalHide = function (event) {
     if (!document.getElementById('boardListModal').contains(event.target)) {
         document.getElementById('overlayForModals').style.display = "none";
         document.getElementById('portListModal').classList.remove('show');
     }
-}
+};
 /**
  * change information in the boards modal
  **/
@@ -164,13 +140,13 @@ Code.boardDescription = function () {
     var boardValue = document.getElementById("boardDescriptionSelector").value;
     if (boardValue === '')
         boardValue = 'none';
-    document.getElementById("arduino_board_mini_picture").setAttribute("src", profile[boardValue][0]['picture']);
+    document.getElementById("board_mini_picture").setAttribute("src", profile[boardValue][0]['picture']);
     document.getElementById("board_connect").textContent = profile[boardValue][0]['usb'];
     document.getElementById("board_cpu").textContent = profile[boardValue][0]['cpu'];
     document.getElementById("board_voltage").textContent = profile[boardValue][0]['voltage'];
     document.getElementById("board_inout").textContent = profile[boardValue][0]['inout'];
-
 };
+
 /**
  * Undo/redo functions
  */
@@ -330,10 +306,31 @@ Code.changeRenderingConstant = function (value) {
                 fontSize: value + "pt"
             });
         case 'fontSizePage':
-            // fontSizePageModify('access', value);
+        // fontSizePageModify('access', value);
         case 'fontSpacingPage':
-            // document.body.style.fontSize = value + 'px';
+        // document.body.style.fontSize = value + 'px';
     }
     // Refresh theme.
     Blockly.getMainWorkspace().setTheme(Blockly.getMainWorkspace().getTheme());
 };
+
+
+/**
+ * Hide/show the help modal.
+ * @param {boolean} state The state of the checkbox. True if checked, false
+ *     otherwise.
+ */
+ var HelpModalDisplay_ = false;
+ 
+function toggleDisplayHelpModal() {
+    if (!HelpModalDisplay_) {
+        document.getElementById('helpModal').style.display = 'block';
+        document.getElementById('helpModal').style.left = (top.innerWidth - document.getElementById('helpModal').offsetWidth) / 2 + "px";
+        document.getElementById('helpModal').style.top = (top.innerHeight - document.getElementById('helpModal').offsetHeight) / 2 + "px";
+        helpButton.className = 'iconButtonsClicked';
+    } else {
+        document.getElementById('helpModal').style.display = 'none';
+        helpButton.className = 'iconButtons';
+    }
+    HelpModalDisplay_ = !HelpModalDisplay_;
+}

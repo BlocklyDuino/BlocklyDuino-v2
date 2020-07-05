@@ -1,23 +1,15 @@
-/*
- Copyright (C) 2020 Sebastien Canet <scanet@libreduc.cc>
- 
- This program is free software: you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation, either version 3 of the License, or
- (at your option) any later version.
- 
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
- 
- You should have received a copy of the GNU General Public License
- along with this program.  If not, see <http://www.gnu.org/licenses/>.
+/**
+ * @license
+ * Copyright 2020 Sébastien CANET
+ * SPDX-License-Identifier: BSD-3-Clause
  */
-/*
- Created on : 30 janv. 2020, 18:00:25
- Author     : Sebastien Canet <scanet@libreduc.cc>
+
+/**
+ * @fileoverview Set of function for keybaord navigation
+ * forked from https://github.com/google/blockly/commit/5a92aff63e93dce884bbe2e715ba832244628501
+ * @author scanet@libreduc.cc (Sébastien CANET)
  */
+
 var timeout;
 
 /**

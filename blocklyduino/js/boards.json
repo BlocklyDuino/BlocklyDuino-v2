@@ -1,3 +1,15 @@
+/**
+* @license
+* Copyright 2012 Fred Lin
+* SPDX-License-Identifier: GPL-3.0-or-later
+*/
+
+/**
+ * @fileoverview Helper functions for generating seeeduino grove blocks.
+ * @author gasolin@gmail.com (Fred Lin)
+ * @author scanet@libreduc.cc (Sébastien CANET)
+ */
+
 var profile = {
 	"none": [{
 			"I2C": [],

@@ -1,5 +1,11 @@
+/**
+ * @license
+ * Copyright 2020 Sébastien CANET
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
 var MSG = {
-    title: "BlocklyDuino",
+    title: "BDuino",
     appName: "BlocklyDuino",
     blocks: "Blocs",
     prog: "Programme",
@@ -39,8 +45,28 @@ var MSG = {
     loadXML_error_span: "Erreur dans le fichier Blockly :\n",
     resetButton_span: "réinitialiser BlocklyDuino",
     helpButton_span: "aide",
+    helpModalSpan_title: "Aide",
+    helpModalSpan_text:
+        '<table>' +
+        '<tbody>' +
+        '<tr>' +
+        '<td style="width: 142px;"><img src="./blocklyduino/media/logo_only.png" alt="" width="129" height="144" /></td>' +
+        '<td>' +
+        '<p style="text-align: left;"><strong>BlocklyDuino</strong></p>' +
+        '<p style="text-align: left;">BlocklyDuino est un <strong>programme web d\'édition et de programmation visuelle par blocs pour les cartes <a href="https://www.arduino.cc/">Arduino</a>, </strong>il est basé sur <a href="https://developers.google.com/blockly/" rel="nofollow">Blockly</a>, l\'éditeur graphique de programmation en ligne ainsi que sur le travail fait sur <a href="https://github.com/A-S-T-U-C-E/STudio4Education">STudio4Education</a>, projet similaire pour les cartes <strong> <a href="https://www.st.com" rel="nofollow">ST microelectronics.</a></strong></p>' +
+        '<p style="text-align: left;">BlocklyDuino fournit un environnement de programmation par blocs et leurs traductions en code C \'Arduino\'</p>' +
+        '</td>' +
+        '</tr>' +
+        '</tbody>' +
+        '</table>' +
+        '<p style="text-align: left;">Accessibilité : <a href="https://github.com/BlocklyDuino/BlocklyDuino-v2#accessibility">documentation en ligne</a>.</p>' +
+        '<p style="text-align: left;">Documentation officielle : <a href="https://developers.google.com/blockly/guides/configure/web/keyboard-nav" rel="nofollow">développeurs Blockly</a>.</p>' +
+        '<p style="text-align: left;">Wiki : <a href="http://www.libreduc.cc/wiki">chez LibrEduc</a>.</p>' +
+        '<p style="text-align: left;">Un bug ? Merci d\'écrire ici : <a href="https://github.com/BlocklyDuino/BlocklyDuino-v2/issues">sur Github</a>.</p>' +
+        '<p style="text-align: center;">v0.7.2 - licence GNU GPL version 3',
+    editorReadOnlyToggle_span: "éditeur de code en lecture seule ou non",
     copyCodeButton_span: "copier le code dans le presse papiers",
-    accessibilitySpan: "activer le contrôle clavier (Shift + Ctrl + K) :",
+    accessibilitySpan: "activer le contrôle clavier",
     defaultCursorSpan: "curseur par défaut",
     basicCursorSpan: "curseur classique",
     lineCursorSpan: "curseur ligne",
@@ -79,7 +105,6 @@ var MSG = {
     optionFontSizeBlocks: "police des blocs",
     optionFontSizePage: "police de l'interface",
     optionFontSpacingPage: "espacement entre les lettres",
-    keyMappingExplanationSpan: "accessibilité : documentation <a href='https://github.com/BlocklyDuino/BlocklyDuino-v2' target='_blank'>en ligne.</a>",
     //CLI_functions.js
     config_sideButton_span: "gestion du compilateur",
     CLI_githubLinkButton_span: "documentation",

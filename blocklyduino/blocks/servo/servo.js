@@ -1,27 +1,15 @@
 /**
  * @license
- * Visual Blocks Editor
- *
- * Copyright 2012 Fred Lin.
- * https://github.com/gasolin/BlocklyDuino
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright 2012 Fred Lin
+ * SPDX-License-Identifier: Apache-2.0
  */
 
 /**
- * @fileoverview Helper functions for generating Arduino blocks.
+ * @fileoverview Servomotor blocks for Blockly.
  * @author gasolin@gmail.com (Fred Lin)
+ * @author scanet@libreduc.cc (Sébastien Canet)
  */
+ 
 'use strict';
 
 goog.provide('Blockly.Constants.servo');
@@ -34,18 +22,18 @@ var servoMediaFolder = "./blocklyduino/blocks/servo/";
 Blockly.Blocks['servo_move'] = {
     init: function () {
         this.appendDummyInput()
-                .appendField("Servo")
+                .appendField(Blockly.Msg.SERVO_MOVE_INPUT)
                 .appendField(new Blockly.FieldImage(servoMediaFolder + "servo.jpg", 64, 64))
-                .appendField("PIN#")
+                .appendField(Blockly.Msg.SERVO_PIN)
                 .appendField(new Blockly.FieldDropdown(profile.default.dropdownDigital), "PIN");
         this.appendValueInput("DEGREE")
                 .setCheck(intCompatibility)
                 .setAlign(Blockly.ALIGN_RIGHT)
-                .appendField("Degree (0~180)");
+                .appendField(Blockly.Msg.SERVO_MOVE_DEGREE);
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setTooltip('move between 0~180 degree');
-        this.setHelpUrl('http://playground.arduino.cc/ComponentLib/servo');
+        this.setTooltip(Blockly.Msg.SERVO_MOVE_TOOLTIP);
+        this.setHelpUrl(Blockly.Msg.SERVO_MOVE_HELPURL);
         this.setStyle('servo_blocks');
     }
 };
@@ -53,16 +41,13 @@ Blockly.Blocks['servo_move'] = {
 Blockly.Blocks['servo_read_degrees'] = {
     init: function () {
         this.appendDummyInput()
-                .appendField("Servo")
+                .appendField(Blockly.Msg.SERVO_READ_DEGREES_INPUT)
                 .appendField(new Blockly.FieldImage(servoMediaFolder + "servo.jpg", 64, 64))
-                .appendField("PIN#")
+                .appendField(Blockly.Msg.SERVO_PIN)
                 .appendField(new Blockly.FieldDropdown(profile.default.dropdownDigital), "PIN");
-        this.appendDummyInput()
-                .setAlign(Blockly.ALIGN_RIGHT)
-                .appendField("Read Degrees")
         this.setOutput(true, "int");
-        this.setTooltip('return that degree with the last servo move.');
-        this.setHelpUrl('http://playground.arduino.cc/ComponentLib/servo');
+        this.setTooltip(Blockly.Msg.SERVO_READ_DEGREES_TOOLTIP);
+        this.setHelpUrl(Blockly.Msg.SERVO_READ_DEGREES_HELPURL);
         this.setStyle('servo_blocks');
     }
 };

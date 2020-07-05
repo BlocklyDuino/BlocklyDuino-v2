@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2020 Carles Ferrando Garcia (ferrando_cariga@gva.es)
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
 'use strict';
 
 goog.provide('Blockly.Msg.categories_es');
@@ -10,6 +16,8 @@ Blockly.Msg.CAT_VAR_TEXT = "text";
 Blockly.Msg.CAT_VAR_BOOLEAN = "boolean";
 Blockly.Msg.CAT_ARDUINO = "Arduino";
 Blockly.Msg.CAT_ARDUINO_IO = "Entrada / Salida";
+Blockly.Msg.CAT_BOARD_SERIAL = "Serial communication";
+Blockly.Msg.CAT_IKS01A3 = "X-NUCLEO-IKS01A3";
 Blockly.Msg.CAT_SERVO = "Servo";
 Blockly.Msg.CAT_SEEED = "Seeed studio";
 Blockly.Msg.CAT_GROVE = "Grove";

@@ -1,21 +1,23 @@
-# Welcome to BlocklyDuino
+# ![enter image description here](https://raw.githubusercontent.com/BlocklyDuino/BlocklyDuino2Electron/master/src/app.png) Welcome to BlocklyDuino2
 
-BlocklyDuino is a **web-based visual programming editor for [Arduino](http://www.arduino.cc/)** electronic board.
+BlocklyDuino is a **web-base program for editing and visual block programming editor for [Arduino](http://www.arduino.cc/)** electronic boards.
 
-BlocklyDuino is based on [Blockly](https://developers.google.com/blockly/), the web-based, graphical programming editor.
+BlocklyDuino is based on [Blockly](https://developers.google.com/blockly/), the web-based graphical programming editor.
 
-![](https://github.com/BlocklyDuino/BlocklyDuino-v2/blob/master/blocklyduino/media/logo_built_on.png)
+![](https://raw.githubusercontent.com/BlocklyDuino/BlocklyDuino-v2/master/blocklyduino/media/logo_built_on.png)
 
-BlocklyDuino provides static type language blocks and code generators for simple Arduino programming.
+This new v2 version is also based on the work done on [STudio4Education](https://github.com/A-S-T-U-C-E/STudio4Education), a similar project for [STmicroelectronics](https://www.st.com/) boards, and inspired by all fork of BlocklyDuino's original Gasolin's work.
 
-BlocklyDuino also supports some [Grove](http://wiki.seeedstudio.com/Grove_System/) blocks to easily get started with microcontroller-based experimentation and learning.
+It provides static type language blocks and code generators for simple Arduino programming.
 
-## Features
+BlocklyDuino also supports some [Grove](https://wiki.seeedstudio.com/Grove_System/) blocks to easily get started with microcontroller-based experimentation and learning.
+
+### Features
 
 * Programming Arduino with visually drag and drop code blocks
 * Generate fully compatible Arduino source code
 * Multiple Arduino boards choice for automatic selection of pin functions
-* Interact Arduino board with at least 10+ predefined Grove sensor blocks
+* Interact Arduino board with dozen of sensor blocks
 * Load different on-site examples with url parameters
 * Keyboard navigation and accessibility helpers
 * Theme choice
@@ -52,41 +54,38 @@ The cursor controls how the user navigates the blocks, inputs, fields and connec
 
 ## Demo
 
-BlocklyDuino is a web tool. You can give it a try at
-[Web](https://blocklyduino.github.io/BlocklyDuino-v2/) to see working BlocklyDuino.
+BlocklyDuino is a web tool. You can give it a try at [Web](https://blocklyduino.github.io/BlocklyDuino-v2/) demo to see BlocklyDuino working.
 
-## Run locally on your web browser
+### Run locally on your web browser
 
-If you want to install it locally. Get code from github and open `index.html` in your browser.
+If you want to install it locally, get code from github and open `index.html` in your browser.
 
 The prefered way is to put the BlocklyDuino/web folder into a web server and open the url like localhost/index.html for use.
 
-## Integrated Arduino upload
+### Integrated Arduino upload
 
-Soon an [Electron](https://www.electronjs.org/) version with [arduino-cli](https://github.com/arduino/arduino-cli) embbeded for an off-line version: [https://github.com/BlocklyDuino/BlocklyDuinoElectron](https://github.com/BlocklyDuino/BlocklyDuinoElectron)
+You can try an [Electron](https://www.electronjs.org/) version with [arduino-cli](https://github.com/arduino/arduino-cli) embbeded for an off-line version: [https://github.com/BlocklyDuino/BlocklyDuinoElectron](https://github.com/BlocklyDuino/BlocklyDuinoElectron)
 
-## Usage
+### Usage
 
-1. Open browser to BlocklyDuino and select your Arduino board, your language, your favorite theme + renderer.
+1. Open BlocklyDuino and select your Arduino board, your language, your favorite theme + renderer.
 2. Drag and drop blocks to make an Arduino program.
-3. Select the 'Arduino' tab and copy all of the source code into an existing or new project in the Arduino IDE
+3. Copy all of the source code into an existing or new project in the Arduino IDE.
 4. Configure your Arduino IDE with the rght board and communication port.
 5. Press the 'Upload' button in the Arduino IDE to burn the code into a connected Arduino board.
 
-## ChangeLog
+### ChangeLog
 
 Check changelog [here](https://github.com/BlocklyDuino/BlocklyDuino/blob/master/CHANGELOG.txt)
 
-## Tools used
+### Tools used
 
-[Eli Grey's File Saver](https://github.com/eligrey/FileSaver.js/)
-
-[Google Code prettify](https://github.com/google/code-prettify)
+[Ace editor](https://ace.c9.io/)
 
 
-## Authors and Contributors
+### Authors and Contributors
 
-Sébastien Canet ([scanet@libreduc.cc](scanet@libreduc.cc)) for this reboot and Electron version.
+Sébastien CANET ([scanet@libreduc.cc](scanet@eu.c(libreduc.cc))) for this reboot and Electron version.
 
 Fred Lin (@gasolin) for original [BlocklyDuino](https://github.com/BlocklyDuino/BlocklyDuino).
 
@@ -99,9 +98,9 @@ The BlocklyDuino project is also inspired by [ardublock](https://github.com/tawe
 This BlocklyDuino reboot project is also inspired by [Blockly@rduino](https://github.com/technologiescollege/Blockly-at-rduino),  [ardublockly](https://github.com/carlosperate/ardublockly) and [Blocklino](https://github.com/fontainejp/blocklino).
 
 
-## License
+### License
 
-Copyright (C) 2020 Sébastien Canet scanet@libreduc.cc & Fred Lin gasolin@gmail.com
+Copyright (C) 2020 Sébastien CANET scanet@libreduc.cc & Fred Lin gasolin@gmail.com
 -   Licensed under the GNU General Public License v3.0 (the "License").
 -   You may not use this project or any file except in compliance with the License.
 -   You may obtain a copy of the License at    [https://www.gnu.org/licenses/#GPL](https://www.gnu.org/licenses/#GPL).
@@ -113,7 +112,7 @@ Google's Blockly is a web-based, visual programming editor.  Users can drag bloc
 
 **The project page is https://developers.google.com/blockly/**
 
-![](https://developers.google.com/blockly/images/sample.png)
+![](https://camo.githubusercontent.com/2b4c453a05d72a3201ad8cbfed77cb3d37fbb462/68747470733a2f2f646576656c6f706572732e676f6f676c652e636f6d2f626c6f636b6c792f696d616765732f73616d706c652e706e67)
 
 Blockly has an active [developer forum](https://groups.google.com/forum/#!forum/blockly). Please drop by and say hello. Show us your prototypes early; collectively we have a lot of experience and can offer hints which will save you time.
 

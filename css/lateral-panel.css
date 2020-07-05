@@ -1,4 +1,14 @@
-/* code from https://nosmoking.developpez.com/demos/css/panneau-lateral.html */
+/**
+* @license
+* Copyright 2020 Sébastien CANET
+* SPDX-License-Identifier: BSD-3-Clause
+*/
+
+/**
+ * @fileoverview Modified from https://nosmoking.developpez.com/demos/css/panneau-lateral.html
+ * @author scanet@libreduc.cc (Sébastien CANET)
+ */
+
 .label_panel{
     display: grid;
     align-items: center;
@@ -37,7 +47,7 @@
     width: 28px;
     height: 28px;
     cursor: pointer;
-    font-size: x-large;
+    font-size: 1.5em;
 }
 #lateral-panel-CLI-label {
     z-index: 1;
@@ -46,7 +56,7 @@
     width: 28px;
     height: 28px;
     cursor: pointer;
-    font-size: x-large;
+    font-size: 1.5em;
 }
 #lateral-panel-CLI-label,
 #lateral-panel-CLI-bloc,

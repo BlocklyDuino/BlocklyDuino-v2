@@ -1,21 +1,7 @@
 /**
  * @license
- * Visual Blocks Language
- *
- * Copyright 2012 Google Inc.
- * https://developers.google.com/blockly/
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright 2012 Fred Lin
+ * SPDX-License-Identifier: Apache-2.0
  */
 
 /**
@@ -23,6 +9,7 @@
  * @author gasolin@gmail.com (Fred Lin)
  * @author scanet@libreduc.cc (SebCanet)
  */
+
 'use strict';
 
 goog.provide('Blockly.Arduino');
@@ -153,27 +140,27 @@ Blockly.Arduino.init = function (workspace) {
  */
 Blockly.Arduino.finish = function (code) {
     var includes = [],
-            definitions = [],
-            variables = [],
-            functions = [],
-            BLOCK_GLOBALS_ARRAY_SIZE = [];
+        definitions = [],
+        variables = [],
+        functions = [],
+        BLOCK_GLOBALS_ARRAY_SIZE = [];
     for (var name in Blockly.Arduino.includes_) {
         includes.push(Blockly.Arduino.includes_[name]);
     }
     if (includes.length) {
         includes.push('\n');
     }
-    for (var name in Blockly.Arduino.variables_) {
-        variables.push(Blockly.Arduino.variables_[name]);
-    }
-    if (variables.length) {
-        variables.push('\n');
-    }
     for (var name in Blockly.Arduino.definitions_) {
         definitions.push(Blockly.Arduino.definitions_[name]);
     }
     if (definitions.length) {
         definitions.push('\n');
+    }
+    for (var name in Blockly.Arduino.variables_) {
+        variables.push(Blockly.Arduino.variables_[name]);
+    }
+    if (variables.length) {
+        variables.push('\n');
     }
     for (var name in Blockly.Arduino.codeFunctions_) {
         functions.push(Blockly.Arduino.codeFunctions_[name]);
@@ -204,7 +191,7 @@ Blockly.Arduino.finish = function (code) {
     delete Blockly.Arduino.setups_;
     delete Blockly.Arduino.pins_;
     Blockly.Arduino.variableDB_.reset();
-    var allDefs = includes.join('\n') + variables.join('\n') + definitions.join('\n') + functions.join('\n');
+    var allDefs = includes.join('\n') + definitions.join('\n') + variables.join('\n') + functions.join('\n');
     var setup = 'void setup() {' + setups.join('\n  ') + '\n}\n\n';
     var loop = 'void loop() {\n  ' + code.replace(/\n/g, '\n  ') + '\n}';
     return allDefs + setup + loop;

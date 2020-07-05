@@ -30,7 +30,7 @@ Blockly.Blocks['board_serial_init'] = {
         this.setNextStatement(true, null);
         this.setTooltip(Blockly.Msg.SERIAL_PRINT_TOOLTIP);
         this.setHelpUrl(Blockly.Msg.SERIAL_PRINT_HELPURL);
-        this.setStyle('board_blocks');
+        this.setStyle('arduino_blocks');
     }
 };
 
@@ -45,7 +45,7 @@ Blockly.Blocks['board_serial_printfor'] = {
         this.setNextStatement(true, null);
         this.setTooltip(Blockly.Msg.SERIAL_PRINT_TOOLTIP);
         this.setHelpUrl(Blockly.Msg.SERIAL_PRINT_HELPURL);
-        this.setStyle('board_blocks');
+        this.setStyle('arduino_blocks');
     }
 };
 
@@ -58,7 +58,7 @@ Blockly.Blocks['board_serial_print'] = {
         this.setNextStatement(true, null);
         this.setTooltip(Blockly.Msg.SERIAL_PRINT_TOOLTIP);
         this.setHelpUrl(Blockly.Msg.SERIAL_PRINT_HELPURL);
-        this.setStyle('board_blocks');
+        this.setStyle('arduino_blocks');
     }
 };
 
@@ -70,7 +70,7 @@ Blockly.Blocks['board_serial_available'] = {
         this.setOutput(true, "Boolean");
         this.setTooltip(Blockly.Msg.SERIAL_PRINT_TOOLTIP);
         this.setHelpUrl(Blockly.Msg.SERIAL_PRINT_HELPURL);
-        this.setStyle('board_blocks');
+        this.setStyle('arduino_blocks');
     }
 };
 
@@ -82,7 +82,7 @@ Blockly.Blocks['board_serial_read'] = {
         this.setOutput(true, "Number");
         this.setTooltip(Blockly.Msg.SERIAL_PRINT_TOOLTIP);
         this.setHelpUrl(Blockly.Msg.SERIAL_PRINT_HELPURL);
-        this.setStyle('board_blocks');
+        this.setStyle('arduino_blocks');
     }
 };
 
@@ -95,7 +95,7 @@ Blockly.Blocks['board_serial_readStringUntil'] = {
         this.setOutput(true, "String");
         this.setTooltip(Blockly.Msg.SERIAL_READSTRINGUNTIL_TOOLTIP);
         this.setHelpUrl(Blockly.Msg.SERIAL_READSTRINGUNTIL_HELPURL);
-        this.setStyle('board_blocks');
+        this.setStyle('arduino_blocks');
     }
 };
 
@@ -107,6 +107,6 @@ Blockly.Blocks['board_serial_flush'] = {
         this.setNextStatement(true, null);
         this.setTooltip(Blockly.Msg.SERIAL_PRINT_TOOLTIP);
         this.setHelpUrl(Blockly.Msg.SERIAL_PRINT_HELPURL);
-        this.setStyle('board_blocks');
+        this.setStyle('arduino_blocks');
     }
 };

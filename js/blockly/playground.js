@@ -136,9 +136,9 @@ function setOnOffLine() {
         document.getElementById('serialConnectButton').disabled = false;
         document.getElementById('serialMenu').disabled = false;
     } else {
-        document.body.style.backgroundColor = '#00abdf';
-        document.getElementById('CLI_content').style.backgroundColor = '#00abdf';
-        document.getElementById('setup_content').style.backgroundColor = '#00abdf';
+        document.body.style.backgroundColor = '#17a1a5';
+        document.getElementById('CLI_content').style.backgroundColor = '#17a1a5';
+        document.getElementById('setup_content').style.backgroundColor = '#17a1a5';
         document.getElementById('verifyButton').disabled = true;
         document.getElementById('serialButton').disabled = true;
         document.getElementById('uploadButton').disabled = true;

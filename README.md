@@ -1,6 +1,6 @@
 # ![enter image description here](https://raw.githubusercontent.com/BlocklyDuino/BlocklyDuino2Electron/master/src/app.png) Welcome to BlocklyDuino2
 
-BlocklyDuino is a **web-base program for editing and visual block programming editor for [Arduino](http://www.arduino.cc/)** electronic boards.
+BlocklyDuino is a **web-based program for editing and visual block programming editor for [Arduino](http://www.arduino.cc/)** electronic boards.
 
 BlocklyDuino is based on [Blockly](https://developers.google.com/blockly/), the web-based graphical programming editor.
 
@@ -64,7 +64,7 @@ The prefered way is to put the BlocklyDuino/web folder into a web server and ope
 
 ### Integrated Arduino upload
 
-You can try an [Electron](https://www.electronjs.org/) version with [arduino-cli](https://github.com/arduino/arduino-cli) embbeded for an off-line version: [https://github.com/BlocklyDuino/BlocklyDuinoElectron](https://github.com/BlocklyDuino/BlocklyDuinoElectron)
+You can try an [Electron](https://www.electronjs.org/) version with [arduino-cli](https://github.com/arduino/arduino-cli) embbeded for an off-line version: [https://github.com/BlocklyDuino/BlocklyDuino2Electron](https://github.com/BlocklyDuino/BlocklyDuino2Electron)
 
 ### Usage
 
@@ -76,7 +76,7 @@ You can try an [Electron](https://www.electronjs.org/) version with [arduino-cli
 
 ### ChangeLog
 
-Check changelog [here](https://github.com/BlocklyDuino/BlocklyDuino/blob/master/CHANGELOG.txt)
+Check changelog [here](https://github.com/BlocklyDuino/BlocklyDuino-v2/blob/master/CHANGELOG.txt)
 
 ### Tools used
 
@@ -85,7 +85,7 @@ Check changelog [here](https://github.com/BlocklyDuino/BlocklyDuino/blob/master/
 
 ### Authors and Contributors
 
-Sébastien CANET ([scanet@libreduc.cc](scanet@eu.c(libreduc.cc))) for this reboot and Electron version.
+Sébastien CANET ([scanet@libreduc.cc](scanet@libreduc.cc)) for this reboot and Electron version.
 
 Fred Lin (@gasolin) for original [BlocklyDuino](https://github.com/BlocklyDuino/BlocklyDuino).
 

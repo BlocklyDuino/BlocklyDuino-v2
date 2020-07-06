@@ -12,7 +12,13 @@ It provides static type language blocks and code generators for simple Arduino p
 
 BlocklyDuino also supports some [Grove](https://wiki.seeedstudio.com/Grove_System/) blocks to easily get started with microcontroller-based experimentation and learning.
 
-### Features
+## BlocklyDuino's Demo
+
+BlocklyDuino2 is a simple webware, you can give it a try [here.](https://blocklyduino.github.io/BlocklyDuino-v2/)
+
+You can download it [here](https://github.com/BlocklyDuino/BlocklyDuino-v2) and launch `index.html`.
+
+## Features
 
 * Programming Arduino with visually drag and drop code blocks
 * Generate fully compatible Arduino source code
@@ -25,7 +31,7 @@ BlocklyDuino also supports some [Grove](https://wiki.seeedstudio.com/Grove_Syste
 * Multi language
 * Keyboard navigation
 
-## Accessibility
+### Accessibility
 
 You can enter _accessibility_ mode by **hitting Shift + Ctrl + k**.
 
@@ -52,19 +58,11 @@ The cursor controls how the user navigates the blocks, inputs, fields and connec
 -   **Basic Cursor**: Using the pre order traversal allows the user to go to the next and previous location.
 
 
-## Demo
-
-BlocklyDuino is a web tool. You can give it a try at [Web](https://blocklyduino.github.io/BlocklyDuino-v2/) demo to see BlocklyDuino working.
-
-### Run locally on your web browser
+## Run locally on your web browser
 
 If you want to install it locally, get code from github and open `index.html` in your browser.
 
 The prefered way is to put the BlocklyDuino/web folder into a web server and open the url like localhost/index.html for use.
-
-### Integrated Arduino upload
-
-You can try an [Electron](https://www.electronjs.org/) version with [arduino-cli](https://github.com/arduino/arduino-cli) embbeded for an off-line version: [https://github.com/BlocklyDuino/BlocklyDuino2Electron](https://github.com/BlocklyDuino/BlocklyDuino2Electron)
 
 ### Usage
 
@@ -74,16 +72,20 @@ You can try an [Electron](https://www.electronjs.org/) version with [arduino-cli
 4. Configure your Arduino IDE with the rght board and communication port.
 5. Press the 'Upload' button in the Arduino IDE to burn the code into a connected Arduino board.
 
-### ChangeLog
+## Integrated Arduino upload
+
+You can try an [Electron](https://www.electronjs.org/) version with [arduino-cli](https://github.com/arduino/arduino-cli) embbeded for an off-line version: [https://github.com/BlocklyDuino/BlocklyDuino2Electron](https://github.com/BlocklyDuino/BlocklyDuino2Electron)
+
+## ChangeLog
 
 Check changelog [here](https://github.com/BlocklyDuino/BlocklyDuino-v2/blob/master/CHANGELOG.txt)
 
-### Tools used
+## Tools used
 
 [Ace editor](https://ace.c9.io/)
 
 
-### Authors and Contributors
+## Authors and Contributors
 
 Sébastien CANET ([scanet@libreduc.cc](scanet@libreduc.cc)) for this reboot and Electron version.
 
@@ -95,15 +97,19 @@ Thanks Arduino and Seeeduino guys for Arduino and Grove blocks.
 
 The BlocklyDuino project is also inspired by [ardublock](https://github.com/taweili/ardublock) and [modkit](http://www.modk.it/)
 
-This BlocklyDuino reboot project is also inspired by [Blockly@rduino](https://github.com/technologiescollege/Blockly-at-rduino),  [ardublockly](https://github.com/carlosperate/ardublockly) and [Blocklino](https://github.com/fontainejp/blocklino).
+This BlocklyDuino2 project is also inspired by [Blockly@rduino](https://github.com/technologiescollege/Blockly-at-rduino),  [ardublockly](https://github.com/carlosperate/ardublockly), [Blocklino](https://github.com/fontainejp/blocklino) and [STudio4Education](https://github.com/A-S-T-U-C-E/STudio4Education).
 
 
-### License
+## License
 
 Copyright (C) 2020 Sébastien CANET scanet@libreduc.cc & Fred Lin gasolin@gmail.com
 -   Licensed under the GNU General Public License v3.0 (the "License").
 -   You may not use this project or any file except in compliance with the License.
--   You may obtain a copy of the License at    [https://www.gnu.org/licenses/#GPL](https://www.gnu.org/licenses/#GPL).
+-   You may obtain a copy of the License at [https://www.gnu.org/licenses/#GPL](https://www.gnu.org/licenses/#GPL).
+
+Code from Blockly is licensed under the Apache 2.0 license.
+Code from STudio4Education is licensed under the BSD 3-Clause license.
+
 
 # Blockly [![Build Status]( https://travis-ci.org/google/blockly.svg?branch=master)](https://travis-ci.org/google/blockly)
 
@@ -120,3 +126,15 @@ Help us focus our development efforts by telling us [what you are doing with Blo
 a few minutes and will help us better support the Blockly community.
 
 Want to contribute? Great! First, read [our guidelines for contributors](https://developers.google.com/blockly/guides/modify/contributing).
+
+
+# Links and thanks
+
+Tools without which nothing would have been possible (*and millions of thanks to their creators!*) :
+
+- [Blockly](https://developers.google.com/blockly)
+- [BlocklyDuino](https://github.com/BlocklyDuino/BlocklyDuino)
+- [Blockly@rduino](https://github.com/technologiescollege/Blockly-at-rduino)
+- [Blocklino](https://github.com/fontainejp/blocklino)
+- [STudio4Education](https://github.com/A-S-T-U-C-E/STudio4Education)
+- [Font Awesome](http://fontawesome.io)

@@ -25,17 +25,16 @@
                 </tr>
                 <tr style="height: 30px;">
                     <td colspan="2">
-                        <button id="newButton"  class="iconButtons" onclick="Code.discard()">
+                        <button id="newButton"  class="iconButtons" onclick="Code.newProject()">
                             <span id="newButton_span">
                                 <i class="far fa-file"></i>
                             </span>
                         </button>
-                        <button id="loadXMLfakeButton" class="iconButtons" onclick="Code.openXmlDialog()">
+                        <button id="loadXMLfakeButton" class="iconButtons" onclick="Code.loadXmlBlocklyFile()">
                             <span id="loadXMLfakeButton_span">
                                 <i class="fas fa-file-upload"></i>
                             </span>
                         </button>
-                        <input type="file" id="loadXMLfile" hidden onchange="Code.loadXmlBlocklyFile(this.files)" />
                         <button id="saveXMLButton" class="iconButtons" onclick="Code.saveXmlBlocklyFile()">
                             <span id="saveXMLButton_span">
                                 <i class="fas fa-file-download"></i>
@@ -403,6 +402,7 @@
     <script src="./js/buttons_functions.js"></script>
     <script src="./js/dialog.js"></script>
     <script src="./js/renderingConstant.js"></script>
+    <script src="./@blockly/demos/custom-dialogs/custom-dialog.js"></script>
     <!-- blocklyduino libraries of external functions -->
     <script src="./js/ace/ace.js" charset="utf-8"></script>
     <script src="./js/ace/ext-language_tools.js"></script>

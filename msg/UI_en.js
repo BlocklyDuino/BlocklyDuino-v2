@@ -39,11 +39,13 @@ var MSG = {
     serialConnectButton_span: "Serial monitor",
     saveCodeButton_span: "Export Code",
     newButton_span: "New project",
+    save_span: "Save file name?",
     saveXMLButton_span: "Save to BlocklyDuino file",
     loadXMLfakeButton_span: "Load BlocklyDuino file",
     loadXML_span: "Replace existing blocks?\n'Cancel' will merge.",
     loadXML_error_span: "Error parsing XML:\n",
     resetButton_span: "Reset BlocklyDuino",
+    resetQuestion_span: "Reset BlocklyDuino and",
     helpButton_span: "help",
     helpModalSpan_title: "Help - About",
     helpModalSpan_text:
@@ -63,7 +65,7 @@ var MSG = {
         '<p style="text-align: left;">Official documentation: <a href="https://developers.google.com/blockly/guides/configure/web/keyboard-nav" rel="nofollow">Blockly developers</a>.</p>' +
         '<p style="text-align: left;">Wiki: <a href="http://www.libreduc.cc/wiki">on LibrEduc</a>.</p>' +
         '<p style="text-align: left;">A bug? Post it here: <a href="https://github.com/BlocklyDuino/BlocklyDuino-v2/issues">on Github</a>.</p>' +
-        '<p style="text-align: center;">v0.7.2 - license GNU GPL version 3',
+        '<p style="text-align: center;">v0.7.3 - license GNU GPL version 3',
     editorReadOnlyToggle_span: "code editor writable or read-only",
     copyCodeButton_span: "copy code to clipboard",
     accessibilitySpan: "enable Accessibility Mode",

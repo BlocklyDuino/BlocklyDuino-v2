@@ -27,6 +27,7 @@ var fullScreen_ = false;
 
 /**
  * Full screen, thanks to HTML5 API
+ * @argument {type} _element 
  */
 function fullScreen(_element) {
     var elementClicked = _element || document.documentElement;
@@ -36,6 +37,7 @@ function fullScreen(_element) {
             elementClicked.requestFullscreen();
             document.addEventListener('fullscreenchange', exitFullScreen, false);
         } else {
+            exitFullScreen();
             document.exitFullscreen();
             document.removeEventListener('fullscreenchange', exitFullScreen, false);
         }
@@ -46,6 +48,7 @@ function fullScreen(_element) {
             elementClicked.webkitRequestFullscreen();
             document.addEventListener('webkitfullscreenchange', exitFullScreen, false);
         } else {
+            exitFullScreen();
             document.webkitExitFullscreen();
             document.removeEventListener('webkitfullscreenchange', exitFullScreen, false);
         }
@@ -56,6 +59,7 @@ function fullScreen(_element) {
             elementClicked.msRequestFullscreen();
             document.addEventListener('MSFullscreenChange', exitFullScreen, false);
         } else {
+            exitFullScreen();
             document.msExitFullscreen();
             document.removeEventListener('MSFullscreenChange', exitFullScreen, false);
         }
@@ -64,14 +68,13 @@ function fullScreen(_element) {
 ;
 
 function exitFullScreen() {
-    if (document.fullscreenElement || document.webkitIsFullScreen || document.msFullscreenElement !== null)
-        if (fullScreen_ === false) {
-            fullScreenButton.className = 'iconButtonsClicked';
-            fullScreen_ = true;
-        } else {
-            fullScreenButton.className = 'iconButtons';
-            fullScreen_ = false;
-        }
+    if (fullScreen_ === false) {
+        fullScreenButton.className = 'iconButtonsClicked';
+        fullScreen_ = true;
+    } else {
+        fullScreenButton.className = 'iconButtons';
+        fullScreen_ = false;
+    }
 }
 ;
 
@@ -161,24 +164,40 @@ Code.Redo = function () {
  * Creates an INO file containing the Arduino code from the Blockly workspace and
  * prompts the users to save it into their local file system.
  */
+Code.newProject = function () {
+    var count = Code.workspace.getAllBlocks().length;
+    if (count > 0) {
+        Blockly.confirm(Blockly.Msg['DELETE_ALL_BLOCKS'].replace('%1', count), function (confirm) {
+            if (confirm)
+                Code.workspace.clear();
+                return true;
+        });
+    }
+};
+
+/**
+ * Creates an INO file containing the Arduino code from the Blockly workspace and
+ * prompts the users to save it into their local file system.
+ */
 Code.saveCodeFile = function () {
     var utc = new Date().toJSON().slice(0, 10).replace(/-/g, '_');
-    var dataToSave = Blockly.Arduino.workspaceToCode(Blockly.getMainWorkspace());
+    var dataToSave = Blockly.Arduino.workspaceToCode(Code.workspace);
     var blob = new Blob([dataToSave], {
         type: 'text/plain;charset=utf-8'
     });
-    var fileNameSave = prompt(MSG['saveXML_span']);
-    if (fileNameSave !== null) {
-        var fakeDownloadLink = document.createElement("a");
-        fakeDownloadLink.download = fileNameSave + ".ino";
-        fakeDownloadLink.href = window.URL.createObjectURL(blob);
-        fakeDownloadLink.onclick = function destroyClickedElement(event) {
-            document.body.removeChild(event.target);
-        };
-        fakeDownloadLink.style.display = "none";
-        document.body.appendChild(fakeDownloadLink);
-        fakeDownloadLink.click();
-    }
+    Blockly.prompt(MSG['save_span'], 'code', function (fileNameSave) {
+        if (fileNameSave) {
+            var fakeDownloadLink = document.createElement("a");
+            fakeDownloadLink.download = fileNameSave + ".ino";
+            fakeDownloadLink.href = window.URL.createObjectURL(blob);
+            fakeDownloadLink.onclick = function destroyClickedElement(event) {
+                document.body.removeChild(event.target);
+            };
+            fakeDownloadLink.style.display = "none";
+            document.body.appendChild(fakeDownloadLink);
+            fakeDownloadLink.click();
+        }
+    });
 };
 
 /**
@@ -186,22 +205,78 @@ Code.saveCodeFile = function () {
  * prompts the users to save it into their local file system.
  */
 Code.saveXmlBlocklyFile = function () {
-    var xmlData = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
+    var xmlData = Blockly.Xml.workspaceToDom(Code.workspace);
     var dataToSave = Blockly.Xml.domToPrettyText(xmlData);
     var blob = new Blob([dataToSave], {
         type: 'text/xml;charset=utf-8'
     });
-    var fileNameSave = prompt(MSG['saveXML_span']);
-    if (fileNameSave !== null) {
-        var fakeDownloadLink = document.createElement("a");
-        fakeDownloadLink.download = fileNameSave + ".bduino";
-        fakeDownloadLink.href = window.URL.createObjectURL(blob);
-        fakeDownloadLink.onclick = function destroyClickedElement(event) {
-            document.body.removeChild(event.target);
+    Blockly.prompt(MSG['save_span'], 'blockly', function (fileNameSave) {
+        if (fileNameSave) {
+            var fakeDownloadLink = document.createElement("a");
+            fakeDownloadLink.download = fileNameSave + ".bduino";
+            fakeDownloadLink.href = window.URL.createObjectURL(blob);
+            fakeDownloadLink.onclick = function destroyClickedElement(event) {
+                document.body.removeChild(event.target);
+            };
+            fakeDownloadLink.style.display = "none";
+            document.body.appendChild(fakeDownloadLink);
+            fakeDownloadLink.click();
+        }
+    });
+};
+
+/**
+ * Load blocks from local file.
+ */
+Code.loadXmlBlocklyFile = function () {
+    // Create event listener function
+    var parseInputXMLfile = function (e) {
+        var files = e.target.files;
+        var reader = new FileReader();
+        reader.onloadend = function () {
+            var success = Code.loadBlocksfromXml(reader.result);
+            if (success) {
+                Code.workspace.render();
+            } else {
+                Blockly.alert(MSG[badXml], callback);
+            }
         };
-        fakeDownloadLink.style.display = "none";
-        document.body.appendChild(fakeDownloadLink);
-        fakeDownloadLink.click();
+        reader.readAsText(files[0]);
+    };
+    // Create once invisible browse button with event listener, and click it
+    var selectFile = document.getElementById('select_file');
+    if (selectFile === null) {
+        var selectFileDom = document.createElement('INPUT');
+        selectFileDom.type = 'file';
+        selectFileDom.id = 'select_file';
+        selectFileDom.accept = '.bduino, .xml';
+        selectFileDom.style.display = 'none';
+        document.body.appendChild(selectFileDom);
+        selectFile = document.getElementById('select_file');
+        selectFile.addEventListener('change', parseInputXMLfile, false);
+    }
+    selectFile.click();
+};
+
+/**
+ * Parses the XML from its input to generate and replace the blocks in the
+ * Blockly workspace.
+ * @param {!string} defaultXml String of XML code for the blocks.
+ * @return {!boolean} Indicates if the XML into blocks parse was successful.
+ */
+Code.loadBlocksfromXml = function (defaultXml) {
+    var count = Code.workspace.getAllBlocks().length;
+    var xml = Blockly.Xml.textToDom(defaultXml);
+    if (count > 0) {
+        Blockly.confirm(MSG['loadXML_span'], function (confirm) {
+            if (confirm)
+                Code.workspace.clear();
+                Blockly.Xml.domToWorkspace(xml, Code.workspace);
+                return true;
+        });
+    } else {
+        Blockly.Xml.domToWorkspace(xml, Code.workspace);
+        return true;
     }
 };
 
@@ -223,72 +298,27 @@ Code.addReplaceParamToUrl = function (url, param, value) {
 };
 
 /**
- * Creates an XML file containing the blocks from the Blockly workspace and
- * prompts the users to save it into their local file system.
- */
-Code.openXmlDialog = function () {
-    document.getElementById('loadXMLfile').click();
-};
-
-/**
- * Load blocks from local file.
- */
-Code.loadXmlBlocklyFile = function (files) {
-    // Only allow uploading one file
-    if (files.length !== 1) {
-        return;
-    }
-    // FileReader
-    var reader = new FileReader();
-    reader.onloadend = function (event) {
-        var target = event.target;
-        // 2 == FileReader.DONE
-        if (target.readyState === 2) {
-            try {
-                var xmlData = Blockly.Xml.textToDom(target.result);
-            } catch (e) {
-                alert(MSG['loadXML_error_span'] + e);
-                return;
-            }
-            var count = Blockly.getMainWorkspace().getAllBlocks().length;
-            if (count && confirm(MSG['loadXML_span'])) {
-                Blockly.getMainWorkspace().clear();
-            }
-            Blockly.Xml.domToWorkspace(xmlData, Blockly.getMainWorkspace());
-        }
-        var search = window.location.search;
-        search = search.replace(/([?&]url=)[^&]*/, '');
-        window.location = window.location.protocol + '//'
-                + window.location.host + window.location.pathname
-                + search;
-    };
-    // Reset value of input after loading because Chrome will not fire
-    // a 'change' event if the same file is loaded again.
-    document.getElementById('loadXMLfile').value = '';
-    reader.readAsText(files[0], "UTF-8");
-    Blockly.getMainWorkspace().render();
-};
-
-/**
  * Reset workspace and parameters
  */
 Code.ResetWorkspace = function () {
     var count = Blockly.mainWorkspace.getAllBlocks(false).length;
-    if (window.confirm(Blockly.Msg['DELETE_ALL_BLOCKS'].replace('%1', count))) {
-        Blockly.Events.disable();
-        Blockly.getMainWorkspace().clear();
-        Blockly.getMainWorkspace().trashcan.contents_ = [];
-        Blockly.getMainWorkspace().trashcan.setOpen('false');
-        window.removeEventListener('unload', auto_save_and_restore_blocks, false);
-        localStorage.clear();
-        sessionStorage.clear();
-        Code.renderContent();
-        Blockly.Events.enable();
-    }
-    if (window.location.hash) {
-        window.location.hash = '';
-    }
-    window.location = window.location.protocol + '//' + window.location.host + window.location.pathname;
+    Blockly.confirm(MSG['resetQuestion_span'] + ' ' + Blockly.Msg['DELETE_ALL_BLOCKS'].replace('%1', count), function (answer) {
+        if (answer) {
+            Blockly.Events.disable();
+            Blockly.getMainWorkspace().clear();
+            Blockly.getMainWorkspace().trashcan.contents_ = [];
+            Blockly.getMainWorkspace().trashcan.setOpen('false');
+            window.removeEventListener('unload', auto_save_and_restore_blocks, false);
+            localStorage.clear();
+            sessionStorage.clear();
+            Code.renderContent();
+            Blockly.Events.enable();
+            if (window.location.hash) {
+                window.location.hash = '';
+            }
+            window.location = window.location.protocol + '//' + window.location.host + window.location.pathname;
+        }
+    });
 };
 
 /**
@@ -320,8 +350,8 @@ Code.changeRenderingConstant = function (value) {
  * @param {boolean} state The state of the checkbox. True if checked, false
  *     otherwise.
  */
- var HelpModalDisplay_ = false;
- 
+var HelpModalDisplay_ = false;
+
 function toggleDisplayHelpModal() {
     if (!HelpModalDisplay_) {
         document.getElementById('helpModal').style.display = 'block';

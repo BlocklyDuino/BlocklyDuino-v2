@@ -371,12 +371,22 @@ Code.initLanguage = function () {
  */
 Code.discard = function () {
     var count = Code.workspace.getAllBlocks(false).length;
-    if (count < 2 ||
-            window.confirm(Blockly.Msg['DELETE_ALL_BLOCKS'].replace('%1', count))) {
+    if (count < 2) {
         Code.workspace.clear();
         if (window.location.hash) {
             window.location.hash = '';
         }
+        return true;
+    }
+    else if (count > 0) {
+        Blockly.confirm(Blockly.Msg['DELETE_ALL_BLOCKS'].replace('%1', count), function (confirm) {
+            if (confirm || count < 2)
+                Code.workspace.clear();
+                if (window.location.hash) {
+                    window.location.hash = '';
+                }
+                return true;
+        });
     }
 };
 

@@ -180,13 +180,20 @@ Blockly.Arduino['grove_line_finder'] = function (block) {
 Blockly.Arduino['grove_ultrasonic_ranger'] = function (block) {
     var dropdown_pin = block.getFieldValue('PIN');
     var dropdown_unit = block.getFieldValue('UNIT');
-    Blockly.Arduino.definitions_['define_ultrasonic'] = '#include <Ultrasonic.h>\n';
-    Blockly.Arduino.definitions_['var_ultrasonic' + dropdown_pin] = 'Ultrasonic ultrasonic_' + dropdown_pin + '(' + dropdown_pin + ');';
-    var code;
+    var NextPIN = _get_next_pin(dropdown_pin);
+    //Blockly.Arduino.definitions_['define_ultrasonic'] = '#include <Ultrasonic.h>\n';
+    Blockly.Arduino.definitions_['var_ultrasonic_trig' + dropdown_pin] = 'int trigPin = ' + dropdown_pin+';';
+    Blockly.Arduino.definitions_['var_ultrasonic_echo' + dropdown_pin] = 'int echoPin = ' + NextPIN +';';
+    Blockly.Arduino.setups_['setup_output_trig' + dropdown_pin] = 'pinMode(' + dropdown_pin + ', OUTPUT);';
+    Blockly.Arduino.setups_['setup_input_echo' + dropdown_pin] = 'pinMode(' + NextPIN + ', INPUT);';   
+    var funct=  '\ndouble ultrasonic_Measure(){\n\nlong duration;\ndigitalWrite(trigPin, LOW);\ndelayMicroseconds(5);\ndigitalWrite(trigPin, HIGH);\ndelayMicroseconds(10);\ndigitalWrite(trigPin, LOW);\npinMode(echoPin, INPUT);\nduration = pulseIn(echoPin, HIGH);\n\n';
+    var code; 
     if (dropdown_unit === "cm") {
-        code = 'ultrasonic_' + dropdown_pin + '.MeasureInCentimeters()';
+        Blockly.Arduino.definitions_['var_ultrasonic_funct'] = funct+'return (duration/2) / 29.1;\n}';
+        code = 'ultrasonic_Measure()';
     } else {
-        code = 'ultrasonic_' + dropdown_pin + '.MeasureInInches()';
+        Blockly.Arduino.definitions_['var_ultrasonic_funct1'] =  funct+'return (duration/2) / 74;\n}';
+        code = 'ultrasonic_Measure()';
     }
     return [code, Blockly.Arduino.ORDER_ATOMIC];
 };

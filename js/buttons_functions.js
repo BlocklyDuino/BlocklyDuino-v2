@@ -88,10 +88,12 @@ Code.copyToClipboard = function () {
         range.moveToElementText(document.getElementsByClassName("ace_content")[0]);
         range.select();
     } else if (window.getSelection) {
-        var range = document.createRange();
-        range.selectNode(document.getElementsByClassName("ace_content")[0]);
-        window.getSelection().removeAllRanges();
-        window.getSelection().addRange(range);
+        // var range = document.createRange();
+        // range.selectNode(document.getElementsByClassName("ace_content")[0]);
+        // window.getSelection().removeAllRanges();
+        // window.getSelection().addRange(range);
+        var data = document.getElementsByClassName("ace_content")[0].innerText;
+        textToCopy = data;
     }
     navigator.clipboard.writeText(textToCopy)
   .then(() => { alert(`Copied!`) })

@@ -129,6 +129,7 @@
         </div>
         <div id="helpModal">
             <div id="helpModal_header">
+                <button class="closeModal" type="button" onclick="toggleDisplayHelpModal()">X</button>
                 <span id="helpModalSpan_title"></span>
             </div>
             <div id="helpModal_text">
@@ -137,6 +138,7 @@
         </div>
         <div id="keyboard_nav">
             <div id="keyboard_nav_header">
+                <button class="closeModal" type="button" onclick="toggleDisplayKeyMappings(false)">X</button>
                 <span id="keyMappingModalSpan"></span>
             </div>
             <form id="keyboard_mappings"></form>
@@ -466,8 +468,8 @@
         });
         editor.findNext();
         editor.findPrevious();
-        <!-- require('../CLI_functions.js'); -->
-        <!-- require('../IDE_functions.js'); -->
+       // <!-- require('../CLI_functions.js'); -->
+       // <!-- require('../IDE_functions.js'); -->
         require('../resources/app.asar/CLI_functions.js');
         require('../resources/app.asar/IDE_functions.js');
     </script>

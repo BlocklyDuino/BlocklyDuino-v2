@@ -302,8 +302,10 @@ td.tabMiddle {
 /* The Close Button */
 .closeModal {
     color: #FFFFFF;
+    background-color: rgba(201, 76, 76, 0);
+    border: none;
     float: right;
-    font-size: 28px;
+    font-size: 20px;
     font-weight: bold;
 }
 .closeModal:hover,

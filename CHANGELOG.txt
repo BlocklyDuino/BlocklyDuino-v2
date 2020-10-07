@@ -1,16 +1,23 @@
-v0.7.1, 2020-06-24
-- add button switchable readnonly option in Ace Editor
-- fix last translation
-- WIP flat design + white everywhere for contrats enhancement
+v0.7.5, 2020-10-07
+- upate Blockly core to v3.20200924.2
+- bug fix on screenshot
 
-v0.7.2, 2020-07-03
-- update blockly core to v3.20200625.1
-- add comment on workspace
-- add serial board communication category
-- add shield X-NUCLEO-IKS01A3 T° & humidity function
+v0.7.4, 2020-09-12
+- change UI to simplify use, everything is under 'setup' icon top right
+- no more board select in dropdown list, but merged with board modal information
 
 v0.7.3, 2020-07-06
 - change prompt to custom-dialog from Blockly, Electron compatible
 - bug fix on all reset button
 - bug fix on all new/open/save
 - bug fix on fullscreen button
+
+v0.7.2, 2020-07-03
+- update blockly core to v3.20200625.1
+- add comment on workspace
+- add serial board communication category
+
+v0.7.1, 2020-06-24
+- add button switchable readonly option in Ace Editor
+- fix last translation
+- WIP flat design + white everywhere for contrats enhancement

@@ -29,7 +29,8 @@ Code.setBoard = function () {
 };
 
 function changeBoard() {
-    var boardMenu = document.getElementById('boardMenu');
+    // var boardMenu = document.getElementById('boardMenu');
+    var boardMenu = document.getElementById('boardDescriptionSelector');
     var newBoard = encodeURIComponent(boardMenu.options[boardMenu.selectedIndex].value);
     var search = window.location.search;
     if (search.length <= 1) {

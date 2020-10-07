@@ -17,9 +17,9 @@ dragElement(document.getElementById("helpModal"));
 
 function dragElement(elmnt) {
     var pos1 = 0,
-            pos2 = 0,
-            pos3 = 0,
-            pos4 = 0;
+    pos2 = 0,
+    pos3 = 0,
+    pos4 = 0;
     if (document.getElementById(elmnt.id + "_header")) {
         // if present, the header is where you move the DIV from:
         document.getElementById(elmnt.id + "_header").onmousedown = dragMouseDown;
@@ -53,8 +53,7 @@ function dragElement(elmnt) {
         document.onmouseup = null;
         document.onmousemove = null;
     }
-}
-;
+};
 
 /*
  * Javascript function for collapsible content in modal
@@ -80,8 +79,8 @@ function collapsibleContentInit() {
     }
 }
 
-function toggleEditorReadOnly(item){
-    if(item.checked) {
+function toggleEditorReadOnly(item) {
+    if (item.checked) {
         editor.setOptions({
             readOnly: false
         })
@@ -90,6 +89,29 @@ function toggleEditorReadOnly(item){
             readOnly: true
         })
     }
+}
+
+/*
+ * Accordion effect in lateral panel
+ * https://www.w3schools.com/howto/howto_js_accordion.asp
+ */
+var acc = document.getElementsByClassName("accordion");
+// var i;
+
+for (var i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function () {
+        /* Toggle between adding and removing the "active" class,
+        to highlight the button that controls the panel */
+        this.classList.toggle("active");
+
+        /* Toggle between hiding and showing the active panel */
+        var panel = this.nextElementSibling;
+        if (panel.style.maxHeight) {
+            panel.style.maxHeight = null;
+        } else {
+            panel.style.maxHeight = panel.scrollHeight + 15 + "px";
+        }
+    });
 }
 /*
  * Icons button mouser over
@@ -118,12 +140,6 @@ document.getElementById('boardButton').onmouseover = function () {
 document.getElementById('boardButton').onmouseout = function () {
     document.getElementById("content_hoverButton").textContent = "";
 };
-document.getElementById('boardMenu').onmouseover = function () {
-    document.getElementById("content_hoverButton").textContent = MSG['boardButtonSpan'];
-};
-document.getElementById('boardMenu').onmouseout = function () {
-    document.getElementById("content_hoverButton").textContent = "";
-};
 document.getElementById('verifyButton').onmouseover = function () {
     document.getElementById("content_hoverButton").textContent = MSG['verifyButton_span'];
 };
@@ -134,12 +150,6 @@ document.getElementById('serialButton').onmouseover = function () {
     document.getElementById("content_hoverButton").textContent = MSG['serialButtonSpan'];
 };
 document.getElementById('serialButton').onmouseout = function () {
-    document.getElementById("content_hoverButton").textContent = "";
-};
-document.getElementById('serialMenu').onmouseover = function () {
-    document.getElementById("content_hoverButton").textContent = MSG['serialSpan'];
-};
-document.getElementById('serialMenu').onmouseout = function () {
     document.getElementById("content_hoverButton").textContent = "";
 };
 document.getElementById('uploadButton').onmouseover = function () {
@@ -202,12 +212,6 @@ document.getElementById('copyCodeButton').onmouseover = function () {
 document.getElementById('copyCodeButton').onmouseout = function () {
     document.getElementById("content_hoverButton").textContent = "";
 };
-document.getElementById('lateral-panel-CLI-label').onmouseover = function () {
-    document.getElementById("content_hoverButton").textContent = MSG['config_sideButton_span'];
-};
-document.getElementById('lateral-panel-CLI-label').onmouseout = function () {
-    document.getElementById("content_hoverButton").textContent = "";
-};
 document.getElementById('coreUpdateButton').onmouseover = function () {
     document.getElementById("content_hoverButton").textContent = MSG['coreUpdateButton_span'];
 };
@@ -260,12 +264,6 @@ document.getElementById('installLibButton').onmouseover = function () {
     document.getElementById("content_hoverButton").textContent = MSG['installLibButton_span'];
 };
 document.getElementById('installLibButton').onmouseout = function () {
-    document.getElementById("content_hoverButton").textContent = "";
-};
-document.getElementById('lateral-panel-CLI-label').onmouseover = function () {
-    document.getElementById("content_hoverButton").textContent = MSG['config_sideButton_span'];
-};
-document.getElementById('lateral-panel-CLI-label').onmouseout = function () {
     document.getElementById("content_hoverButton").textContent = "";
 };
 document.getElementById('CLI_githubLinkButton').onmouseover = function () {

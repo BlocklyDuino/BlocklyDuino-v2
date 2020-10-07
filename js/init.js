@@ -295,11 +295,7 @@ Code.initLanguage = function () {
     document.getElementById('themeSpan').textContent = MSG['themeSpan'];
     document.getElementById('renderSpan').textContent = MSG['renderSpan'];
     document.getElementById('boardButton').title = MSG['boardButtonSpan'];
-    document.getElementById('boardMenuSpan').textContent = MSG['boardSpan'];
-    document.getElementById('boardMenu').title = MSG['boardSpan'];
     document.getElementById('serialButton').title = MSG['serialButtonSpan'];
-    document.getElementById('serialMenuSpan').textContent = MSG['serialSpan'];
-    document.getElementById('serialMenu').title = MSG['serialSpan'];
     document.getElementById('fullScreenButton').title = MSG['fullScreenButton_span'];
     document.getElementById('undoButton').title = MSG['undoButton_span'];
     document.getElementById('redoButton').title = MSG['redoButton_span'];
@@ -319,7 +315,6 @@ Code.initLanguage = function () {
     document.getElementById('keyMappingModalSpan').textContent = MSG['keyMappingModalSpan'];
     document.getElementById('detailedCompilation_span').textContent = MSG['detailedCompilation_span'];
     // CLI panel
-    document.getElementById('lateral-panel-CLI-label').title = MSG['config_sideButton_span'];
     document.getElementById('CLI_title_span').textContent = MSG['CLI_title_span'];
     document.getElementById('CLI_githubLinkButton').title = MSG['CLI_githubLinkButton_span'];
     document.getElementById('coreUpdateButton').title = MSG['coreUpdateButton_span'];
@@ -332,6 +327,7 @@ Code.initLanguage = function () {
     document.getElementById('searchlLib_title_span').textContent = MSG['searchlLib_title_span'];
     document.getElementById('installLib_title_span').textContent = MSG['installLib_title_span'];
     //setup panel
+    document.getElementById('config_UI_title_span').textContent = MSG['config_UI_title_span'];
     document.getElementById('accessibilitySpan').textContent = MSG['accessibilitySpan'];
     document.getElementById('defaultCursorSpan').textContent = MSG['defaultCursorSpan'];
     document.getElementById('basicCursorSpan').textContent = MSG['basicCursorSpan'];

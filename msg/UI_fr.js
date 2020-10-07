@@ -30,10 +30,8 @@ var MSG = {
     fullScreenButton_span: "plein écran",
     undoButton_span: "annuler",
     redoButton_span: "refaire",
-    boardSpan: "choix de la carte",
     boardButtonSpan: "liste des cartes",
     verifyButton_span: "compiler le code",
-    serialSpan: "choix du port COM",
     serialButtonSpan: "liser les ports COM",
     uploadButton_span: "téléverser",
     serialConnectButton_span: "moniteur série",
@@ -45,7 +43,7 @@ var MSG = {
     loadXML_span: "Remplacer les blocs déjà présents ?\n'Annuler' les rajoutera.",
     loadXML_error_span: "Erreur dans le fichier Blockly :\n",
     resetButton_span: "réinitialiser BlocklyDuino",
-    resetQuestion_span: "Réinitialiser BlocklyDuino et",
+    resetQuestion_span: "Réinitialiser BlocklyDuino et ",
     helpButton_span: "aide",
     helpModalSpan_title: "Aide",
     helpModalSpan_text:
@@ -65,7 +63,7 @@ var MSG = {
         '<p style="text-align: left;">Documentation officielle : <a href="https://developers.google.com/blockly/guides/configure/web/keyboard-nav" rel="nofollow">développeurs Blockly</a>.</p>' +
         '<p style="text-align: left;">Wiki : <a href="http://www.libreduc.cc/wiki">chez LibrEduc</a>.</p>' +
         '<p style="text-align: left;">Un bug ? Merci d\'écrire ici : <a href="https://github.com/BlocklyDuino/BlocklyDuino-v2/issues">sur Github</a>.</p>' +
-        '<p style="text-align: center;">v0.7.3 - licence GNU GPL version 3',
+        '<p style="text-align: center;">v0.7.5 - licence GNU GPL version 3',
     editorReadOnlyToggle_span: "éditeur de code en lecture seule ou non",
     copyCodeButton_span: "copier le code dans le presse papiers",
     accessibilitySpan: "activer le contrôle clavier",
@@ -84,7 +82,7 @@ var MSG = {
     compilationInProgress: "Carte",
     keyMappingModalSpan: "Attrbution des touches",
     detailedCompilation_span: "Résultats détaillés",
-    CLI_title_span: "compilateur - gestion",
+    CLI_title_span: "compilateur",
     installBoard_title_span: "cartes à rajouter",
     searchlLib_title_span: "recherche de bibliothèque",
     installLib_title_span: "installation de biblitohèque",
@@ -103,12 +101,12 @@ var MSG = {
     actionName12: "espace de travail vers la droite",
     actionName13: "basculer la navigation clavier",
     setup_sideButton_span: "configuration",
+    config_UI_title_span: "interface",
     fontSizeSpan: "choix de la taille",
     optionFontSizeBlocks: "police des blocs",
     optionFontSizePage: "police de l'interface",
     optionFontSpacingPage: "espacement entre les lettres",
     //CLI_functions.js
-    config_sideButton_span: "gestion du compilateur",
     CLI_githubLinkButton_span: "documentation",
     coreUpdateButton_msg: "Mise à jour en cours...\n<i class='fa fa-spinner fa-pulse fa-1_5x fa-fw'></i>",
     cleanCLIcacheButton_msg: "Nettoyage en cours...\n<i class='fa fa-spinner fa-pulse fa-1_5x fa-fw'></i>",

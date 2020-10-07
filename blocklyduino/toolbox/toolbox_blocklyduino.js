@@ -1,12 +1,12 @@
 /**
 * @license
-* Copyright 2020 S�bastien CANET
+* Copyright 2020 Sébastien CANET
 * SPDX-License-Identifier: GPL-3.0-or-later
 */
 
 /**
  * @fileoverview 'Toolbox' menu as objetc for Blockly inject.
- * @author scanet@libreduc.cc (S�bastien CANET)
+ * @author scanet@libreduc.cc (Sébastien CANET)
  */
 
 var BLOCKLY_TOOLBOX_XML = BLOCKLY_TOOLBOX_XML || Object.create(null);

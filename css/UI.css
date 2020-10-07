@@ -30,6 +30,28 @@ html[dir=rtl] {
     font-size: x-large;
     font-weight: bold;
 }
+
+#globalTable {
+    width: 100%;
+    height: 100%;
+}
+#optionsTop {
+    height: 30px;
+}
+#optionsTopTitle {
+    width: 268px;
+    white-space: nowrap;
+}
+#optionsTopInteractiveHelp {
+    width: 100%;
+}
+#functionsIcons {
+    height: 30px;
+}
+#globalWorkspace {
+    width: 100%;
+    height: 100%;
+}
 /* ace editor */
 .ace_content{
     left: 0px !important;
@@ -173,7 +195,6 @@ td.tabMiddle {
     color: #fff;
 }
 
-
 /* Content blocks */
 .content_wrapper {
     height: 100%;
@@ -221,7 +242,7 @@ td.tabMiddle {
     background-color: #006468;
 }
 #content_code {
-    width: 50px;
+    width: 40px;
     height: 100%;
     min-width: 5px;
 }
@@ -277,6 +298,7 @@ td.tabMiddle {
     height: 100%;
     z-index: 100;
     background-color: rgba(0,0,0,0.5); /*dim the background*/
+    display: none;
 }
 .modal.show {
     /* Firefox */
@@ -302,10 +324,8 @@ td.tabMiddle {
 /* The Close Button */
 .closeModal {
     color: #FFFFFF;
-    background-color: rgba(201, 76, 76, 0);
-    border: none;
     float: right;
-    font-size: 20px;
+    font-size: 28px;
     font-weight: bold;
 }
 .closeModal:hover,

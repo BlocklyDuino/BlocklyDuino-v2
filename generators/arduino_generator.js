@@ -228,10 +228,11 @@ Blockly.Arduino.quote_ = function (string) {
  * Calls any statements following this block.
  * @param {!Blockly.Block} block The current block.
  * @param {string} code The Arduino code created for this block.
+ * @param {boolean=} opt_thisOnly True to generate code for only this statement.
  * @return {string} Arduino code with comments and subsequent blocks added.
  * @private
  */
-Blockly.Arduino.scrub_ = function (block, code) {
+Blockly.Arduino.scrub_ = function (block, code, opt_thisOnly) {
     if (code === null) {
         // Block has handled code generation itself.
         return '';

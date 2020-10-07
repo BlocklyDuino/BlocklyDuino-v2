@@ -82,22 +82,22 @@ function exitFullScreen() {
  * Copy code from div code_peek in clipboard system
  */
 Code.copyToClipboard = function () {
-    var textToCopy;
     if (document.selection) { // IE
         var range = document.body.createTextRange();
         range.moveToElementText(document.getElementsByClassName("ace_content")[0]);
         range.select();
+        document.execCommand("copy");
     } else if (window.getSelection) {
         // var range = document.createRange();
         // range.selectNode(document.getElementsByClassName("ace_content")[0]);
         // window.getSelection().removeAllRanges();
         // window.getSelection().addRange(range);
-        var data = document.getElementsByClassName("ace_content")[0].innerText;
-        textToCopy = data;
+    // }
+    // document.execCommand("copy");
+        navigator.clipboard.writeText(document.getElementsByClassName("ace_content")[0].innerText)
+                .then(() => {console.log('Code copied!') })
+                .catch((error) => { console.log('Copy failed! ${error}') });
     }
-    navigator.clipboard.writeText(textToCopy)
-  .then(() => { alert(`Copied!`) })
-  .catch((error) => { alert(`Copy failed! ${error}`) });
 };
 
 /**
@@ -141,6 +141,7 @@ Code.portsListModalHide = function (event) {
         document.getElementById('portListModal').classList.remove('show');
     }
 };
+
 /**
  * change information in the boards modal
  **/

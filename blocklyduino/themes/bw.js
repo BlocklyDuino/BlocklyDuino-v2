@@ -7,7 +7,6 @@
 /**
  * @fileoverview black & white UI theme.
  */
- 
 'use strict';
 
 goog.provide('Blockly.Themes.blackWhite');
@@ -141,7 +140,7 @@ Blockly.Themes.blackWhite.setComponentStyle('toolboxBackgroundColour', '#f9f9f9'
 Blockly.Themes.blackWhite.setComponentStyle('toolboxForegroundColour', '#000000');
 Blockly.Themes.blackWhite.setComponentStyle('flyoutBackgroundColour', '#f9f9f9');
 Blockly.Themes.blackWhite.setComponentStyle('flyoutForegroundColour', '#f9f9f9');
-Blockly.Themes.blackWhite.setComponentStyle('flyoutOpacity', 1);
+Blockly.Themes.blackWhite.setComponentStyle('flyoutOpacity', 0);
 Blockly.Themes.blackWhite.setComponentStyle('scrollbarColour', '#000000');
 Blockly.Themes.blackWhite.setComponentStyle('scrollbarOpacity', '1');
 

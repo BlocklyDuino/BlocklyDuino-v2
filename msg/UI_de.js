@@ -30,10 +30,8 @@ var MSG = {
     fullScreenButton_span: "full screen",
     undoButton_span: "Undo",
     redoButton_span: "Redo",
-    boardSpan: "choose board",
     boardButtonSpan: "list boards",
     verifyButton_span: "Verify code",
-    serialSpan: "choose COM port",
     serialButtonSpan: "list COM port",
     uploadButton_span: "Upload",
     serialConnectButton_span: "Serial monitor",
@@ -65,7 +63,7 @@ var MSG = {
         '<p style="text-align: left;">Official documentation: <a href="https://developers.google.com/blockly/guides/configure/web/keyboard-nav" rel="nofollow">Blockly developers</a>.</p>' +
         '<p style="text-align: left;">Wiki: <a href="http://www.libreduc.cc/wiki">on LibrEduc</a>.</p>' +
         '<p style="text-align: left;">A bug? Post it here: <a href="https://github.com/BlocklyDuino/BlocklyDuino-v2/issues">on Github</a>.</p>' +
-        '<p style="text-align: center;">v0.7.3 - license GNU GPL version 3',
+        '<p style="text-align: center;">v0.7.5 - license GNU GPL version 3',
     editorReadOnlyToggle_span: "code editor writable or read-only",
     copyCodeButton_span: "copy code to clipboard",
     accessibilitySpan: "Enable Accessibility Mode",
@@ -84,7 +82,7 @@ var MSG = {
     compilationInProgress: "Board",
     keyMappingModalSpan: "Set key mappings below",
     detailedCompilation_span: "Detailed compilation verbose",
-    CLI_title_span: "Arduino CLI setup",
+    CLI_title_span: "compiler management",
     installBoard_title_span: "board install to CLI",
     searchlLib_title_span: "search for a library",
     installLib_title_span: "library install to CLI",
@@ -103,12 +101,12 @@ var MSG = {
     actionName12: "move workspace cursor right",
     actionName13: "toggle keyboard navigation",
     setup_sideButton_span: "setup",
+    config_UI_title_span: "interface",
     fontSizeSpan: "rendering",
     optionFontSizeBlocks: "Blocks Font Size",
     optionFontSizePage: "Page Font Size",
     optionFontSpacingPage: "Page Font Spacing",
     //CLI_functions.js
-    config_sideButton_span: "Arduino CLI control",
     CLI_githubLinkButton_span: "documentation",
     coreUpdateButton_msg: "Updating...\n<i class='fa fa-spinner fa-pulse fa-1_5x fa-fw'></i>",
     cleanCLIcacheButton_msg: "Cleaning...\n<i class='fa fa-spinner fa-pulse fa-1_5x fa-fw'></i>",

@@ -14,16 +14,17 @@
     </head>
     <body>
         <div class="table_wrapper">
-            <table style="width: 100%; height: 100%;">
-                <tr id="optionsTop" style="height: 30px;">
-                    <td style="width: 268px;white-space: nowrap;">
-                        <span id="appName" class='TitleText'></span>
+            <table id="globalTable">
+                <tr id="optionsTop">
+                    <td  id="optionsTopTitle">
+                        <img src="./blocklyduino/media/logo_only2.png" style="width: 25px; vertical-align: middle;" />
+                            <span class="TitleText" id="appName"></span>
                     </td>
-                    <td class="tabMiddle" style="width: 100%;">
+                    <td  id="optionsTopInteractiveHelp" class="tabMiddle">
                         <span id="content_hoverButton"></span>
                     </td>
                 </tr>
-                <tr style="height: 30px;">
+                <tr  id="functionsIcons">
                     <td colspan="2">
                         <button id="newButton"  class="iconButtons" onclick="Code.newProject()">
                             <span id="newButton_span">
@@ -46,17 +47,19 @@
                             </span>
                         </button>
                         <button id="undoButton" class="iconButtons" onclick="Code.Undo()">
-                            <span id="undoButton_span" style="font-size: 1em;">
+                            <span id="undoButton_span">
                                 <i class="fas fa-undo-alt"></i>
                             </span>
                         </button>
-                        <button id="redoButton" class="iconButtons" onclick="Code.Redo()">
-                            <i class="fas fa-redo-alt"></i>
-                            <span id="redoButton_span"></span>
+                        <button id="redoButton" class="iconButtons" onclick="Code.Redo()">                           
+                            <span id="redoButton_span">
+                                <i class="fas fa-redo-alt"></i>
+                            </span>
                         </button>
                         <button id="boardButton" class="iconButtons" onclick="Code.boardsListModalShow()">
-                            <i class="fas fa-microchip"></i>
-                            <span id="boardButton_span"></span>
+                            <span id="boardButton_span">
+                                <i class="fas fa-microchip"></i>
+                            </span>
                         </button>
                         <button id="verifyButton" class="iconButtons">
                             <span id="verifyButton_span">
@@ -79,7 +82,7 @@
                             </span>
                         </button>
                         <button id="fullScreenButton" class="iconButtons" onclick="fullScreen()">
-                            <span id="fullScreenButton_span" style="font-size: 1em;">
+                            <span id="fullScreenButton_span">
                                 <i class="fas fa-expand-arrows-alt"></i>
                             </span>
                         </button>
@@ -95,7 +98,7 @@
                         </button>
                     </td>
                 </tr>
-                <tr style="width: 100%; height: 100%;">
+                <tr id="globalWorkspace">
                     <td colspan="2">
                         <div class="content_wrapper">
                             <div id="wrapper_up" class="wrapper_up">
@@ -129,7 +132,6 @@
         </div>
         <div id="helpModal">
             <div id="helpModal_header">
-                <button class="closeModal" type="button" onclick="toggleDisplayHelpModal()">X</button>
                 <span id="helpModalSpan_title"></span>
             </div>
             <div id="helpModal_text">
@@ -138,81 +140,9 @@
         </div>
         <div id="keyboard_nav">
             <div id="keyboard_nav_header">
-                <button class="closeModal" type="button" onclick="toggleDisplayKeyMappings(false)">X</button>
                 <span id="keyMappingModalSpan"></span>
             </div>
             <form id="keyboard_mappings"></form>
-        </div>
-        <div id="lateral-panel-CLI">
-            <input id="lateral-panel-CLI-input" type="checkbox">
-            <label id="lateral-panel-CLI-label" for="lateral-panel-CLI-input" class="label_panel">
-                <span id="config_side_span">
-                    <i class="fas fa-terminal"></i>
-                </span>
-            </label>
-            <div id="lateral-panel-CLI-bloc">
-                <div id="CLI_content" class="side_content config_content CLI">
-                    <div id="configCLI">
-                        <span id="CLI_title_span" class="UIText">CLI</span>
-                        <br>
-                        <div id="CLI_title" style="display:flex;text-align: center;">
-                            <button id="coreUpdateButton" class="iconButtons CLI" onclick="">
-                                <span id="coreUpdateButton_span">
-                                    <i class="fas fa-sync"></i>
-                                </span>
-                            </button>
-                            <button id="cleanCLIcacheButton" class="iconButtons CLI" onclick="">
-                                <span id="cleanCLIcache_span">
-                                    <i class="fas fa-eraser"></i>
-                                </span>
-                            </button>
-                            <button id="listBoardsButton" class="iconButtons CLI" onclick="">
-                                <span id="listBoardsButton_span">
-                                    <i class="fas fa-list"></i>
-                                </span>
-                            </button>
-                            <a href="https://arduino.github.io/arduino-cli/" id="CLI_githubLinkButton" target="_blank">
-                                <img src="./blocklyduino/media/featured-CLI.png" style="height: 40px" />
-                            </a>
-                        </div>
-                        <br>
-                        <span id="installBoard_title_span" class="UIText CLI">install board</span>
-                        <br>
-                        <input type="text" id="installBoardsInput" name="installBoardsInput" style="width: 250px;font-size:20px;">
-                        <button id="installBoardsButton" class="iconButtons CLI" onclick="">
-                            <span id="installBoardsButton_span">
-                                <i class="fas fa-cloud-download-alt"></i>
-                            </span>
-                        </button>
-                        <br>
-                        <br>
-                        <span id="searchlLib_title_span" class="UIText">search library</span>
-                        <br>
-                        <input type="text" id="searchlLibInput" name="searchlLibInput" style="width: 250px;font-size:20px;">
-                        <button id="searchlLibButton" class="iconButtons CLI" onclick="">
-                            <span id="searchlLibButton_span">
-                                <i class="fab fa-searchengin"></i>
-                            </span>
-                        </button>
-                        <br>
-                        <br>
-                        <span id="installLib_title_span" class="UIText">install library</span>
-                        <br>
-                        <input type="text" id="installLibInput" name="installLibInput" size="18" style="width: 250px;font-size:20px;">
-                        <button id="installLibButton" class="iconButtons CLI" onclick="">
-                            <span id="installLibButton_span">
-                                <i class="fas fa-cloud-download-alt"></i>
-                            </span>
-                        </button>
-                        <br>
-                        <button id="registerToOrchestrator" class="iconButtons CLI" onclick="ArrowheadRegister()">
-                            <span id="registerToOrchestrator_span">
-                                <i class="fas fa-plug"></i>
-                            </span>
-                        </button>
-                    </div>
-                </div>
-            </div>
         </div>
         <div id="lateral-panel-setup">
             <input id="lateral-panel-setup-input" type="checkbox">
@@ -222,7 +152,10 @@
                 </span>
             </label>
             <div id="lateral-panel-setup-bloc">
-                <div id="setup_content" class="side_content config_content">
+                <button class="accordion">
+                    <span id="config_UI_title_span" aria-expanded="false" aria-controls="accordion_setup_content"></span>
+                </button></button>
+                <div id="setup_content" class="side_content config_content panel">
                     <form id="options">
                         <!-- <select name="toolbox" onchange="document.forms.options.submit('options')"> -->
                         <!-- <option value="categories">Categories (untyped variables)</option> -->
@@ -230,8 +163,7 @@
                         <!-- <option value="simple">Simple</option> -->
                         <!-- <option value="test-blocks">Test Blocks</option> -->
                         <!-- </select> -->
-                        <span id="boardMenuSpan" class="UIText">...</span>
-                        <select id="boardMenu" onchange="changeBoard()">
+                        <select id="boardMenu" onchange="changeBoard()" style='display:none'>
                             <option value="none" selected="selected">...</option>
                             <option value="arduino_leonardo">Arduino Leonardo</option>
                             <option value="arduino_mega">Arduino Mega</option>
@@ -244,13 +176,9 @@
                             <option value="arduino_yun">Arduino Yùn</option>
                             <option value="lilypad">LilyPad</option>
                         </select>
-                        <br>
-                        <br>
-                        <span id="serialMenuSpan" class="UIText">...</span>
-                        <select id="serialMenu">
+                        <select id="serialMenu" style='display:none'>
                             <option value="none">...</option>
                         </select>
-                        <br>
                         <br>
                         <span id="languageSpan" class="UIText">...</span>
                         <select id="languageMenu"></select>
@@ -313,9 +241,71 @@
                     </select>
                     <br>
                 </div>
+                <button class="accordion">
+                    <span id="CLI_title_span" aria-expanded="false" aria-controls="accordion_CLI_content"></span>
+                </button>
+                <div id="CLI_content" class="side_content config_content CLI panel">
+                    <div id="configCLI">
+                        <div id="CLI_title">
+                            <button id="coreUpdateButton" class="iconButtons CLI" onclick="">
+                                <span id="coreUpdateButton_span">
+                                    <i class="fas fa-sync"></i>
+                                </span>
+                            </button>
+                            <button id="cleanCLIcacheButton" class="iconButtons CLI" onclick="">
+                                <span id="cleanCLIcache_span">
+                                    <i class="fas fa-eraser"></i>
+                                </span>
+                            </button>
+                            <button id="listBoardsButton" class="iconButtons CLI" onclick="">
+                                <span id="listBoardsButton_span">
+                                    <i class="fas fa-list"></i>
+                                </span>
+                            </button>
+                            <a href="https://arduino.github.io/arduino-cli/" id="CLI_githubLinkButton" target="_blank">
+                                <img src="./blocklyduino/media/featured-CLI.png" style="height: 40px" />
+                            </a>
+                        </div>
+                        <br>
+                        <span id="installBoard_title_span" class="UIText CLI">install board</span>
+                        <br>
+                        <input type="text" id="installBoardsInput" name="installBoardsInput">
+                        <button id="installBoardsButton" class="iconButtons CLI" onclick="">
+                            <span id="installBoardsButton_span">
+                                <i class="fas fa-cloud-download-alt"></i>
+                            </span>
+                        </button>
+                        <br>
+                        <br>
+                        <span id="searchlLib_title_span" class="UIText">search library</span>
+                        <br>
+                        <input type="text" id="searchlLibInput" name="searchlLibInput">
+                        <button id="searchlLibButton" class="iconButtons CLI" onclick="">
+                            <span id="searchlLibButton_span">
+                                <i class="fab fa-searchengin"></i>
+                            </span>
+                        </button>
+                        <br>
+                        <br>
+                        <span id="installLib_title_span" class="UIText">install library</span>
+                        <br>
+                        <input type="text" id="installLibInput" name="installLibInput" size="18">
+                        <button id="installLibButton" class="iconButtons CLI" onclick="">
+                            <span id="installLibButton_span">
+                                <i class="fas fa-cloud-download-alt"></i>
+                            </span>
+                        </button>
+                        <br>
+                        <button id="registerToOrchestrator" class="iconButtons CLI" onclick="ArrowheadRegister()">
+                            <span id="registerToOrchestrator_span">
+                                <i class="fas fa-plug"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
-        <div id="overlayForModals" class="overlay" style="display: none;"></div>
+        <div id="overlayForModals" class="overlay"></div>
         <div id="boardListModal" class="modal">
             <div class="modal-content">
                 <div class="modal-header"> 
@@ -343,7 +333,7 @@
                         </select>
                     </div>
                 </div>
-                <br>
+                <button id="boardListModalDialogOkay" onclick="changeBoard()" style="border: none; font-size: xx-large; background-color: #4CAF50; border-radius: 12px; box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19); margin: 5px; position: relative; left: 68px;">&#10004;</button>
                 <button type="button" class="collapsibleButton">Details</button>
                 <div class="collapsibleContent" id="collapsibleContent">
                     <span id="boardModal_connect">Connecteur</span><span id="boardModal_connect_span" class="modalBoard_info">...</span><br>
@@ -468,8 +458,8 @@
         });
         editor.findNext();
         editor.findPrevious();
-       // <!-- require('../CLI_functions.js'); -->
-       // <!-- require('../IDE_functions.js'); -->
+        <!-- require('../CLI_functions.js'); -->
+        <!-- require('../IDE_functions.js'); -->
         require('../resources/app.asar/CLI_functions.js');
         require('../resources/app.asar/IDE_functions.js');
     </script>

@@ -59,13 +59,19 @@ function workspaceToSvg_(workspace, callback, customCss) {
   var width = bBox.width || bBox.right - x;
   var height = bBox.height || bBox.bottom - y;
 
-  var blockCanvas = workspace.getCanvas();
-  var clone = blockCanvas.cloneNode(true);
-  clone.removeAttribute('transform');
-  
   var svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
   svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+  
+  var blockCanvas = workspace.getCanvas();
+  var clone = blockCanvas.cloneNode(true);
+  clone.removeAttribute('transform');  
   svg.appendChild(clone);
+  
+  var commentCanvas = workspace.getBubbleCanvas();
+  clone = commentCanvas.cloneNode(true);
+  clone.removeAttribute('transform');
+  svg.appendChild(clone);
+  
   svg.setAttribute('viewBox',
       x + ' ' + y + ' ' + width + ' ' + height);
 

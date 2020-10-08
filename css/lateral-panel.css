@@ -13,7 +13,6 @@
     display: grid;
     align-items: center;
     text-align: center;
-    color: #FFFFFF;
 }
 #CLI_title {
     display:flex;
@@ -57,7 +56,6 @@
     height: 28px;
     cursor: pointer;
     font-size: 1.5em;
-    color: #03234B;
 }
 #lateral-panel-CLI-bloc,
 #lateral-panel-setup-label,
@@ -84,7 +82,6 @@
  * accordion effect inside setup panel
  */
 .accordion {
-  background-color: #03234b;
   color: #FFFFFF;
   cursor: pointer;
   padding: 8px;
@@ -105,7 +102,6 @@
 }
 .accordion:hover {
   background-color: #FFFFFF;
-  color: #03234b;
 }
 
 /* Style the accordion panel. Note: hidden by default */

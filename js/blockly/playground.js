@@ -125,20 +125,14 @@ function fontSpacingPageModify(classToModify, spacingToModify) {
 }
 
 function setOnOffLine() {
-    // Set background colour to differentiate server vs local copy.
+    // Set UI to differentiate server vs local copy.
     if (location.protocol === 'file:') {
-        document.body.style.backgroundColor = '#006468';
-        document.getElementById('CLI_content').style.backgroundColor = '#006468';
-        document.getElementById('setup_content').style.backgroundColor = '#006468';
         document.getElementById('verifyButton').disabled = false;
         document.getElementById('serialButton').disabled = false;
         document.getElementById('uploadButton').disabled = false;
         document.getElementById('serialConnectButton').disabled = false;
         document.getElementById('serialMenu').disabled = false;
     } else {
-        document.body.style.backgroundColor = '#17a1a5';
-        document.getElementById('CLI_content').style.backgroundColor = '#17a1a5';
-        document.getElementById('setup_content').style.backgroundColor = '#17a1a5';
         document.getElementById('verifyButton').disabled = true;
         document.getElementById('serialButton').disabled = true;
         document.getElementById('uploadButton').disabled = true;

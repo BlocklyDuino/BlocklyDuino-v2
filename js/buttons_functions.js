@@ -118,6 +118,11 @@ Code.boardsListModalShow = function () {
 Code.portsListModalShow = function () {
     document.getElementById('overlayForModals').style.display = "block";
     document.getElementById('portListModal').classList.add('show');
+    var portValue = document.getElementById("serialMenu").value;
+    if (portValue !== 'none') {
+        document.getElementById("serialMenu").selectedIndex = portValue;
+        document.getElementById("serialMenu").value = portValue;
+    }
     window.addEventListener('click', Code.portsListModalHide, 'once');
 };
 document.getElementById("closeModalBoards").onclick = function () {
@@ -136,7 +141,7 @@ Code.boardsListModalHide = function (event) {
     }
 };
 Code.portsListModalHide = function (event) {
-    if (!document.getElementById('boardListModal').contains(event.target)) {
+    if (!document.getElementById('portListModal').contains(event.target)) {
         document.getElementById('overlayForModals').style.display = "none";
         document.getElementById('portListModal').classList.remove('show');
     }

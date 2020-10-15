@@ -177,9 +177,6 @@
                             <option value="arduino_yun">Arduino Yùn</option>
                             <option value="lilypad">LilyPad</option>
                         </select>
-                        <select id="serialMenu" style='display:none'>
-                            <option value="none">...</option>
-                        </select>
                         <br>
                         <span id="languageSpan" class="UIText">...</span>
                         <select id="languageMenu"></select>
@@ -334,7 +331,7 @@
                         </select>
                     </div>
                 </div>
-                <button id="boardListModalDialogOkay" onclick="changeBoard()" style="border: none; font-size: xx-large; background-color: #4CAF50; border-radius: 12px; box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19); margin: 5px; position: relative; left: 68px;">&#10004;</button>
+                <button id="boardListModalDialogOkay" onclick="Code.changeBoard()">&#10004;</button>
                 <button type="button" class="collapsibleButton">Details</button>
                 <div class="collapsibleContent" id="collapsibleContent">
                     <span id="boardModal_connect">Connecteur</span><span id="boardModal_connect_span" class="modalBoard_info">...</span><br>
@@ -363,9 +360,12 @@
                 </div>
                 <div class="modal-body" id="portListModalBody">
                 </div>
-                <!-- <div class="modal-footer"> -->
-                <!-- <h3>Modal Footer</h3> -->
-                <!-- </div> -->
+                <div class="modal-footer">
+                    <select id="serialMenu">
+                        <option value="none">...</option>
+                    </select>
+                    <button id="portListModalDialogOkay" onclick="Code.setPort()">&#10004;</button>
+                </div>
             </div>
         </div>
     </body>
@@ -395,6 +395,7 @@
     <script src="./js/buttons_functions.js"></script>
     <script src="./js/dialog.js"></script>
     <script src="./js/renderingConstant.js"></script>
+    <script src="./js/toolbox.js"></script>
     <script src="./@blockly/demos/custom-dialogs/custom-dialog.js"></script>
     <!-- blocklyduino libraries of external functions -->
     <script src="./js/ace/ace.js" charset="utf-8"></script>
@@ -433,8 +434,8 @@
     <script src="./blocklyduino/themes/themes_categories.js" async></script>
     <script src="./blocklyduino/themes/themes_components_override.js" async></script>
     <!-- blocklyduino external toolbox hacked -->
-    <script src="./blocklyduino/toolbox/toolbox_blocklyduino.js"></script>
     <script src="./blocklyduino/toolbox/toolbox_standard.js"></script>
+    <script src="./blocklyduino/toolbox/toolbox_blocklyduino.js"></script>
     <script>
         ace.require("ace/ext/language_tools");
         var editor = ace.edit("content_code");

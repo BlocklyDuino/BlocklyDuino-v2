@@ -55,6 +55,44 @@ function dragElement(elmnt) {
     }
 };
 
+// Simulate jQuery selector « $ »
+// return a matrix if an element has right class
+if (!document.getElementsByClassName ) {
+  document.getElementsByClassName = function(cl, tag) {
+    var els, matches = [],
+      i = 0, len,
+      regex = new RegExp('(?:\\s|^)' + cl + '(?:\\s|$)');
+      els = document.getElementsByTagName(tag || "*");
+      if ( !els[0] ) return false;
+      for ( len = els.length; i < len; i++ ) {
+        if ( els[i].className.match(regex) ) {
+          matches.push( els[i]);
+        }
+      }      
+      return matches;
+  };
+}
+ 
+// Validate id, class, or tag.
+var $ = function(el, tag) {
+  var firstChar = el.charAt(0);
+  if ( document.querySelectorAll ) return document.querySelectorAll(el);
+  switch ( firstChar ) {
+    case "#": return document.getElementById(el.slice(1) );
+    case ".": return document.getElementsByClassName(el.slice(1), tag );
+    default : return document.getElementsByTagName(el);
+  }
+};
+
+// Usage
+// $('#conteneur');
+// Retourne un élément de classe « maClasse »
+// $('.maClasse');
+// Retourne un élément DIV de classe « maClasse »
+// $('.maClasse', 'div');
+// Retourne tous les éléments P
+// $('p');
+
 /*
  * Javascript function for collapsible content in modal
  */
@@ -132,12 +170,6 @@ document.getElementById('redoButton').onmouseover = function () {
     document.getElementById("content_hoverButton").textContent = MSG['redoButton_span'];
 };
 document.getElementById('redoButton').onmouseout = function () {
-    document.getElementById("content_hoverButton").textContent = "";
-};
-document.getElementById('boardButton').onmouseover = function () {
-    document.getElementById("content_hoverButton").textContent = MSG['boardButtonSpan'];
-};
-document.getElementById('boardButton').onmouseout = function () {
     document.getElementById("content_hoverButton").textContent = "";
 };
 document.getElementById('verifyButton').onmouseover = function () {

@@ -108,7 +108,7 @@ Code.init = function () {
             drag: true,
             wheel: false
         },
-        toolbox: BLOCKLY_TOOLBOX_XML['toolboxblocklyduino'],
+        toolbox: Code.buildToolbox(),
         toolboxPosition: 'start',
         renderer: renderer,
         zoom: {
@@ -120,7 +120,6 @@ Code.init = function () {
             scaleSpeed: 1.1
         }
     });
-
     //button callback register with functions
     Code.workspace.registerButtonCallback('createVarBtnInt', createVarBtnIntCallBack);
     Code.workspace.registerButtonCallback('createVarBtnFloat', createVarBtnFloatCallBack);
@@ -294,7 +293,6 @@ Code.initLanguage = function () {
     document.getElementById('codeEditorColorSpan').textContent = MSG['codeEditorColorSpan'];
     document.getElementById('themeSpan').textContent = MSG['themeSpan'];
     document.getElementById('renderSpan').textContent = MSG['renderSpan'];
-    document.getElementById('boardButton').title = MSG['boardButtonSpan'];
     document.getElementById('serialButton').title = MSG['serialButtonSpan'];
     document.getElementById('fullScreenButton').title = MSG['fullScreenButton_span'];
     document.getElementById('undoButton').title = MSG['undoButton_span'];

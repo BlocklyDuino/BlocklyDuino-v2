@@ -192,6 +192,24 @@ td.tabMiddle {
     z-index: 10;
     color: #fff;
 }
+/* modal buttons */
+#boardListModalDialogOkay{
+    border: none;
+    font-size: x-large;
+    background-color: #4CAF50;
+    border-radius: 12px;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    margin: 5px;
+    position: relative;
+    left: 88px;
+}
+#portListModalDialogOkay{
+    border: none;
+    font-size: large;
+    background-color: #4CAF50;
+    border-radius: 12px;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
 
 /* Content blocks */
 .content_wrapper {
@@ -223,6 +241,7 @@ td.tabMiddle {
     height: 100%;
     min-width: 10px;
 }
+    
 /* side panel */
 .side_content {
     min-width: 10px;
@@ -324,9 +343,12 @@ td.tabMiddle {
     float: right;
     font-size: 28px;
     font-weight: bold;
+    -ms-transform: translateY(-20%);
+    transform: translateY(-20%);
 }
 .closeModal:hover,
 .closeModal:focus {
+    color: #FFCC00;
     text-decoration: none;
     cursor: pointer;
 }
@@ -345,15 +367,17 @@ td.tabMiddle {
 }
 /* Modal Footer */
 .modal-footer {
-    padding: 2px 16px;
-    background-color: #5cb85c;
+    padding: 10px;
     color: white;
+    -webkit-border-radius: 15px !important;
+    -moz-border-radius: 15px !important;
+    border-top-left-radius: 15px !important;
+    border-top-right-radius: 15px !important;
 }
 
 /* Modal board selector information */
 #boardDescriptionSelector {
     overflow: auto;
-    width: 200px;
 }
 #hideSelectScrollbar {
     display: inline-block;
@@ -363,7 +387,6 @@ td.tabMiddle {
 }
 #hideSelectScrollbar > select {
     padding: 10px;
-    margin: -5px -20px -5px -5px;
 }
 #board_mini_picture_div {
     position:absolute;
@@ -392,6 +415,11 @@ td.tabMiddle {
     outline: none;
     font-size: large;
     font-weight: bold;
+}
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .collapsibleButton:hover {
+    background-color: #FFCC00;
+    color: #000000;
 }
 /* Style the collapsible content. Note: hidden by default */
 .collapsibleContent {

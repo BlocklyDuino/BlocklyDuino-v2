@@ -1,3 +1,8 @@
+v0.7.6 2020-10-15
+- fix UI bugs
+- add toolbox sorting through list in URL (index.html?toolboxids=SERVO)
+- COM port selection is inside list COM port modal 
+
 v0.7.5, 2020-10-07
 - upate Blockly core to v3.20200924.2
 - bug fix on screenshot

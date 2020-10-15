@@ -63,7 +63,7 @@ var MSG = {
         '<p style="text-align: left;">Documentation officielle : <a href="https://developers.google.com/blockly/guides/configure/web/keyboard-nav" rel="nofollow">développeurs Blockly</a>.</p>' +
         '<p style="text-align: left;">Wiki : <a href="http://www.libreduc.cc/wiki">chez LibrEduc</a>.</p>' +
         '<p style="text-align: left;">Un bug ? Merci d\'écrire ici : <a href="https://github.com/BlocklyDuino/BlocklyDuino-v2/issues">sur Github</a>.</p>' +
-        '<p style="text-align: center;">v0.7.5 - licence GNU GPL version 3',
+        '<p style="text-align: center;">v0.7.6 - licence GNU GPL version 3',
     editorReadOnlyToggle_span: "éditeur de code en lecture seule ou non",
     copyCodeButton_span: "copier le code dans le presse papiers",
     accessibilitySpan: "activer le contrôle clavier",

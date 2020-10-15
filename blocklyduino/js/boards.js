@@ -17,7 +17,7 @@ goog.provide('Blockly.Boards');
 profile.default = profile["none"][0];
 
 /**
- * Sets board
+ * Set board when click in board modal
  */
 Code.setBoard = function () {
     var boardId = Code.getStringParamFromUrl('board', '');
@@ -26,10 +26,33 @@ Code.setBoard = function () {
     }
     document.getElementById('boardMenu').value = boardId;
     profile.default = profile[boardId][0];
+	// change tooltip & info when a board is selected
+	if (boardId != "none") {
+		document.getElementById('boardButton').classList.add('active');
+		document.getElementById('boardButton').title = profile["default"].description;
+		document.getElementById('boardButton').onmouseover = function () {
+			document.getElementById("content_hoverButton").textContent = profile["default"].description;
+		};
+		document.getElementById('boardButton').onmouseout = function () {
+			document.getElementById("content_hoverButton").textContent = "";
+		};
+	}
+		else {
+			document.getElementById('boardButton').classList.remove('active');
+			document.getElementById('boardButton').title = MSG['boardButtonSpan'];
+			document.getElementById('boardButton').onmouseover = function () {
+				document.getElementById("content_hoverButton").textContent = MSG['boardButtonSpan'];
+			};
+			document.getElementById('boardButton').onmouseout = function () {
+				document.getElementById("content_hoverButton").textContent = "";
+			};
+		}
 };
 
-function changeBoard() {
-    // var boardMenu = document.getElementById('boardMenu');
+/**
+ * Set board throught URL
+ */
+Code.changeBoard = function ()  {
     var boardMenu = document.getElementById('boardDescriptionSelector');
     var newBoard = encodeURIComponent(boardMenu.options[boardMenu.selectedIndex].value);
     var search = window.location.search;
@@ -42,5 +65,37 @@ function changeBoard() {
     }
     profile["default"] = profile[newBoard][0];
     window.location = window.location.protocol + '//' + window.location.host + window.location.pathname + search;
+}
+;
+
+/**
+ * Set COM port
+ */
+Code.setPort = function ()  {
+    var serialPortMenu = document.getElementById('serialMenu');
+    var newPort = encodeURIComponent(serialPortMenu.options[serialPortMenu.selectedIndex].value);
+	console.log(newPort);
+	document.getElementById('overlayForModals').style.display = "none";
+	document.getElementById('portListModal').classList.remove('show');
+	if (newPort != 'none') {
+		document.getElementById('serialButton').classList.add('active');
+		document.getElementById('serialButton').title = newPort;
+		document.getElementById('serialButton').onmouseover = function () {
+			document.getElementById("content_hoverButton").textContent = newPort;
+		};
+		document.getElementById('serialButton').onmouseout = function () {
+			document.getElementById("content_hoverButton").textContent = "";
+		}
+	}
+		else {
+			document.getElementById('serialButton').classList.remove('active');
+			document.getElementById('serialButton').title = MSG['serialButtonSpan'];
+			document.getElementById('serialButton').onmouseover = function () {
+				document.getElementById("content_hoverButton").textContent = MSG['serialButtonSpan'];
+			};
+			document.getElementById('serialButton').onmouseout = function () {
+				document.getElementById("content_hoverButton").textContent = "";
+			};
+		}
 }
 ;

@@ -18,7 +18,7 @@ body {
 .config_content {
     background-color: #006468;
 }
-.modal-header {
+.modal-header, .modal-footer {
     background-color: #006468;
 }
 .accordion {

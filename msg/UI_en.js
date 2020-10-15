@@ -63,7 +63,7 @@ var MSG = {
         '<p style="text-align: left;">Official documentation: <a href="https://developers.google.com/blockly/guides/configure/web/keyboard-nav" rel="nofollow">Blockly developers</a>.</p>' +
         '<p style="text-align: left;">Wiki: <a href="http://www.libreduc.cc/wiki">on LibrEduc</a>.</p>' +
         '<p style="text-align: left;">A bug? Post it here: <a href="https://github.com/BlocklyDuino/BlocklyDuino-v2/issues">on Github</a>.</p>' +
-        '<p style="text-align: center;">v0.7.5 - license GNU GPL version 3',
+        '<p style="text-align: center;">v0.7.6 - license GNU GPL version 3',
     editorReadOnlyToggle_span: "code editor writable or read-only",
     copyCodeButton_span: "copy code to clipboard",
     accessibilitySpan: "enable Accessibility Mode",

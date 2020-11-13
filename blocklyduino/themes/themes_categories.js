@@ -19,6 +19,9 @@ Blockly.Themes.Classic.categoryStyles['seeed_category'] = {
 Blockly.Themes.Classic.categoryStyles['grove_category'] = {
     "colour": "#91C11E"
 };
+Blockly.Themes.Classic.categoryStyles['ds18b20_category'] = {
+    "colour": "#343434"
+};
 Blockly.Themes.Classic.categoryStyles['servo_category'] = {
     "colour": "#343434"
 };
@@ -31,6 +34,9 @@ Blockly.Themes.Modern.categoryStyles['seeed_category'] = {
 };
 Blockly.Themes.Modern.categoryStyles['grove_category'] = {
     "colour": "#91C11E"
+};
+Blockly.Themes.Modern.categoryStyles['ds18b20_category'] = {
+    "colour": "#343434"
 };
 Blockly.Themes.Modern.categoryStyles['servo_category'] = {
     "colour": "#343434"
@@ -45,6 +51,9 @@ Blockly.Themes.Deuteranopia.categoryStyles['seeed_category'] = {
 Blockly.Themes.Deuteranopia.categoryStyles['grove_category'] = {
     "colour": "#91C11E"
 };
+Blockly.Themes.Deuteranopia.categoryStyles['ds18b20_category'] = {
+    "colour": "#343434"
+};
 Blockly.Themes.Deuteranopia.categoryStyles['servo_category'] = {
     "colour": "#343434"
 };
@@ -57,6 +66,9 @@ Blockly.Themes.Tritanopia.categoryStyles['seeed_category'] = {
 };
 Blockly.Themes.Tritanopia.categoryStyles['grove_category'] = {
     "colour": "#91C11E"
+};
+Blockly.Themes.Tritanopia.categoryStyles['ds18b20_category'] = {
+    "colour": "#343434"
 };
 Blockly.Themes.Tritanopia.categoryStyles['servo_category'] = {
     "colour": "#343434"
@@ -71,6 +83,9 @@ Blockly.Themes.Zelos.categoryStyles['seeed_category'] = {
 Blockly.Themes.Zelos.categoryStyles['grove_category'] = {
     "colour": "#91C11E"
 };
+Blockly.Themes.Zelos.categoryStyles['ds18b20_category'] = {
+    "colour": "#343434"
+};
 Blockly.Themes.Zelos.categoryStyles['servo_category'] = {
     "colour": "#343434"
 };
@@ -84,6 +99,9 @@ Blockly.Themes.HighContrast.categoryStyles['seeed_category'] = {
 Blockly.Themes.HighContrast.categoryStyles['grove_category'] = {
     "colour": "#91C11E"
 };
+Blockly.Themes.HighContrast.categoryStyles['ds18b20_category'] = {
+    "colour": "#343434"
+};
 Blockly.Themes.HighContrast.categoryStyles['servo_category'] = {
     "colour": "#343434"
 };
@@ -96,6 +114,9 @@ Blockly.Themes.Dark.categoryStyles['seeed_category'] = {
 };
 Blockly.Themes.Dark.categoryStyles['grove_category'] = {
     "colour": "#91C11E"
+};
+Blockly.Themes.Dark.categoryStyles['ds18b20_category'] = {
+    "colour": "#343434"
 };
 Blockly.Themes.Dark.categoryStyles['servo_category'] = {
     "colour": "#343434"

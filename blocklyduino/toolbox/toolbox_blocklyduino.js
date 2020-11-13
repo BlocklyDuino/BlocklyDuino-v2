@@ -343,8 +343,8 @@ BLOCKLY_TOOLBOX_XML['toolboxblocklyduino'] =
 + '</category>'
 + '<category name="%{BKY_CATFUNCTIONS}" categorystyle="procedure_category" custom="PROCEDURE" toolboxitemid="CAT_FUNCTIONS"></category>'
 +    '<sep></sep>'
-+    '<category name="%{BKY_CAT_ARDUINO}" categorystyle="arduino_category" toolboxitemid="ARDUINO_IO">'
-+        '<category name="%{BKY_CAT_ARDUINO_IO}" categorystyle="arduino_category">'
++    '<category name="%{BKY_CAT_BOARD}" categorystyle="arduino_category" toolboxitemid="ARDUINO_IO">'
++        '<category name="%{BKY_CAT_BOARD_IO}" categorystyle="arduino_category">'
 +            '<block type="board_base_inout_buildin_led"></block>'
 +            '<block type="board_base_inout_digital_write"></block>'
 +            '<block type="board_base_inout_digital_read"></block>'
@@ -440,5 +440,5 @@ BLOCKLY_TOOLBOX_XML['toolboxblocklyduino'] =
 +        '</block>'
 +        '<block type="servo_read_degrees"></block>'
 +    '</category>'
-+ '<category name="END" categorystyle="board_category" disabled="true" hidden="true" toolboxitemid="END"></category>'
++ '<category name="END" categorystyle="arduino_category" disabled="true" hidden="true" toolboxitemid="END"></category>'
 + '</xml>';

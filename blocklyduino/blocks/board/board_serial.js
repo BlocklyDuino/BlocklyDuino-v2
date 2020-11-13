@@ -52,8 +52,7 @@ Blockly.Blocks['board_serial_printfor'] = {
 Blockly.Blocks['board_serial_print'] = {
     init: function () {
         this.appendValueInput("CONTENT")
-                .appendField(Blockly.Msg.SERIAL_PRINT_CONTENT);
-                // .setCheck(stringCompatibility);
+            .appendField(Blockly.Msg.SERIAL_PRINT_CONTENT);
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setTooltip(Blockly.Msg.SERIAL_PRINT_TOOLTIP);

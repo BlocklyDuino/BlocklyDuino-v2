@@ -30,23 +30,18 @@ Blockly.Arduino['text_join'] = function (block) {
         case 1:
             var element = Blockly.Arduino.valueToCode(block, 'ADD0',
                     Blockly.Arduino.ORDER_NONE) || '\'\'';
-            var code = 'String(' + element + ')';
+            var code = element;
             return [code, Blockly.Arduino.ORDER_FUNCTION_CALL];
-        case 2:
-            var element0 = Blockly.Arduino.valueToCode(block, 'ADD0',
-                    Blockly.Arduino.ORDER_NONE) || '\'\'';
-            var element1 = Blockly.Arduino.valueToCode(block, 'ADD1',
-                    Blockly.Arduino.ORDER_NONE) || '\'\'';
-            var code = 'String(' + element0 + ') + String(' + element1 + ')';
-            return [code, Blockly.Arduino.ORDER_ADDITION];
         default:
             var elements = new Array(block.itemCount_);
             for (var i = 0; i < block.itemCount_; i++) {
-                elements[i] = Blockly.Arduino.valueToCode(block, 'ADD' + i,
-                        Blockly.Arduino.ORDER_COMMA) || '\'\'';
+                elements[i] = (Blockly.Arduino.valueToCode(block, 'ADD' + i,
+                        Blockly.Arduino.ORDER_ADDITIVE) + ' + ') || '\'\'';
             }
-            var code = '[' + elements.join(',') + '].join(\'\')';
-            return [code, Blockly.Arduino.ORDER_FUNCTION_CALL];
+            var code = elements.join('');
+            code = code.substring(0, code.length - 3);
+            // code = code.slice(0, code.lenght-3);
+            return [code, Blockly.Arduino.ORDER_ATOMIC];
     }
 };
 

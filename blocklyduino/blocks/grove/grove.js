@@ -9,6 +9,8 @@
  * @author gasolin@gmail.com (Fred Lin)
  * @author scanet@libreduc.cc (Sébastien CANET)
  */
+ 
+'use strict';
 
 goog.provide('Blockly.Constants.grove');
 

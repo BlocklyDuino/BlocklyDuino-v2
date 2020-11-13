@@ -226,16 +226,88 @@ document.getElementById('resetButton').onmouseover = function () {
 document.getElementById('resetButton').onmouseout = function () {
     document.getElementById("content_hoverButton").textContent = "";
 };
-document.getElementById('lateral-panel-setup-label').onmouseover = function () {
+document.getElementById('parametersButton').onmouseover = function () {
     document.getElementById("content_hoverButton").textContent = MSG['setup_sideButton_span'];
 };
-document.getElementById('lateral-panel-setup-label').onmouseout = function () {
+document.getElementById('parametersButton').onmouseout = function () {
     document.getElementById("content_hoverButton").textContent = "";
 };
 document.getElementById('helpButton').onmouseover = function () {
     document.getElementById("content_hoverButton").textContent = MSG['helpButton_span'];
 };
 document.getElementById('helpButton').onmouseout = function () {
+    document.getElementById("content_hoverButton").textContent = "";
+};
+document.getElementById('toolsButton').onmouseover = function () {
+    document.getElementById("content_hoverButton").textContent = MSG['toolsButton_span'];
+};
+document.getElementById('toolsButton').onmouseout = function () {
+    document.getElementById("content_hoverButton").textContent = "";
+};
+document.getElementById('wiringButton').onmouseover = function () {
+    document.getElementById("content_hoverButton").textContent = MSG['wiringButton_span'];
+};
+document.getElementById('wiringButton').onmouseout = function () {
+    document.getElementById("content_hoverButton").textContent = "";
+};
+document.getElementById('factoryButton').onmouseover = function () {
+    document.getElementById("content_hoverButton").textContent = MSG['factoryButton_span'];
+};
+document.getElementById('factoryButton').onmouseout = function () {
+    document.getElementById("content_hoverButton").textContent = "";
+};
+document.getElementById('htmlButton').onmouseover = function () {
+    document.getElementById("content_hoverButton").textContent = MSG['htmlButton_span'];
+};
+document.getElementById('htmlButton').onmouseout = function () {
+    document.getElementById("content_hoverButton").textContent = "";
+};
+document.getElementById('colorConversionButton').onmouseover = function () {
+    document.getElementById("content_hoverButton").textContent = MSG['colorConversionButton_span'];
+};
+document.getElementById('colorConversionButton').onmouseout = function () {
+    document.getElementById("content_hoverButton").textContent = "";
+};
+document.getElementById('dataConversionButton').onmouseover = function () {
+    document.getElementById("content_hoverButton").textContent = MSG['dataConversionButton_span'];
+};
+document.getElementById('dataConversionButton').onmouseout = function () {
+    document.getElementById("content_hoverButton").textContent = "";
+};
+document.getElementById('iotConnectButton').onmouseover = function () {
+    document.getElementById("content_hoverButton").textContent = MSG['iotConnectButton_span'];
+};
+document.getElementById('iotConnectButton').onmouseout = function () {
+    document.getElementById("content_hoverButton").textContent = "";
+};
+document.getElementById('launchWebServer').onmouseover = function () {
+    document.getElementById("content_hoverButton").textContent = MSG['launchWebServer_span'];
+};
+document.getElementById('launchWebServer').onmouseout = function () {
+    document.getElementById("content_hoverButton").textContent = "";
+};
+document.getElementById('papyrusConnect').onmouseover = function () {
+    document.getElementById("content_hoverButton").textContent = MSG['papyrusConnect_span'];
+};
+document.getElementById('papyrusConnect').onmouseout = function () {
+    document.getElementById("content_hoverButton").textContent = "";
+};
+document.getElementById('registerToOrchestrator').onmouseover = function () {
+    document.getElementById("content_hoverButton").textContent = MSG['registerToOrchestrator_span'];
+};
+document.getElementById('registerToOrchestrator').onmouseout = function () {
+    document.getElementById("content_hoverButton").textContent = "";
+};
+document.getElementById('blynkConnect').onmouseover = function () {
+    document.getElementById("content_hoverButton").textContent = MSG['blynkConnect_span'];
+};
+document.getElementById('blynkConnect').onmouseout = function () {
+    document.getElementById("content_hoverButton").textContent = "";
+};
+document.getElementById('lateral-panel-setup-label').onmouseover = function () {
+    document.getElementById("content_hoverButton").textContent = MSG['setup_sideButton_span'];
+};
+document.getElementById('lateral-panel-setup-label').onmouseout = function () {
     document.getElementById("content_hoverButton").textContent = "";
 };
 document.getElementById('copyCodeButton').onmouseover = function () {

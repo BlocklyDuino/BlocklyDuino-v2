@@ -30,6 +30,116 @@ html[dir=rtl] {
     font-size: x-large;
     font-weight: bold;
 }
+/* Popup box  */
+.popup_bckgrd{
+    background:rgba(0,0,0,.4);
+    cursor:pointer;
+    display:none;
+    height:100%;
+    position:fixed;
+    text-align:center;
+    top:0;
+    width:100%;
+    z-index:10000;
+}
+.popup_bckgrd > div {
+    background-color: #fff;
+    box-shadow: 10px 10px 60px #555;
+    display: inline-block;
+    height: auto;
+    max-width: 551px;
+    min-height: 100px;
+    /* vertical-align: middle; */
+    width: 60%;
+    position: relative;
+    border-radius: 8px;
+    padding: 15px 5%;
+}
+#menuButton.active{
+    transform: rotate(90deg);
+}
+#buttonsMenuPopup{
+    animation: fadein 0.5s;
+    position: absolute;
+    top: 70px;
+    left: 5px;
+    padding: 5px;
+    margin: 5px;
+    width: auto;
+}
+#buttonsToolsPopup{
+    animation: fadein 0.5s;
+    position: absolute;
+    top: 70px;
+    left: 145px;
+    padding: 5px;
+    margin: 5px;
+    width: auto;
+}
+#buttonsIotPopup{
+    animation: fadein 0.5s;
+    position: absolute;
+    top: 70px;
+    left: 185px;
+    padding: 5px;
+    margin: 5px;
+    width: auto;
+}
+@keyframes fadein {
+    from {opacity:0;} to {opacity:1;}
+}
+.menu_text{
+    color: white;
+    display: inline; 
+}
+.menu_div{
+    align-content: start;
+    text-align: left;
+}
+/*****************/
+/*  Sketch name  */
+/*****************/
+.sketch_name_wrapper {
+  display: inline-block;
+  padding-left: 5px;
+}
+.sketch_name_icon {
+  display: inline !important;
+  font-size: 1.2rem !important;
+  float: right;
+  padding-top: 3px;
+}
+.sketch_name {
+  width: auto !important;
+  max-width: 400px;
+  line-height: 64px;
+  height: 3rem !important;
+  font-size: 1.5rem !important;
+  border-bottom: 0px solid #EEE !important;
+  font-style: italic;
+}
+.sketch_name:focus {
+    border-bottom: 1px solid #EEE !important;
+}
+@media only screen and (min-width: 0px) and (max-width: 600px) {
+  .sketch_name {
+    max-width: 200px;
+  }
+  /* Remove the title only leaving the sketch name */
+  .app_title {
+    display: none;
+  }
+}
+@media only screen and (min-width : 600px) {
+  .sketch_name {
+    max-width: 275px;
+  }
+}
+@media only screen and (min-width : 993px) {
+  .sketch_name {
+    max-width: 350px;
+  }
+}
 
 #globalTable {
     width: 100%;
@@ -89,17 +199,7 @@ html[dir=rtl] {
   -webkit-transition: .4s;
   transition: .4s;
 }
-input:checked + .slider {
-  background-color: #17a1a5;
-}
-input:focus + .slider {
-  box-shadow: 0 0 1px #17a1a5;
-}
-input:checked + .slider:before {
-  -webkit-transform: translateY(27px);
-  -ms-transform: translateY(27px);
-  transform: translateY(27px);
-}
+
 /* Table */
 .table_wrapper {
     height: -moz-calc(100%);
@@ -176,15 +276,37 @@ td.tabMiddle {
     color: #FFFFFF;
 }
 /* Help modal */
-#helpModal {
+.helpModal {
     background-color: #ebebeb;
     border: 1px solid black;
     padding: 1em;
-    position: absolute;
-    z-index: 9;
     text-align: center;
     width: 500px;
     height: auto;
+    position: fixed; /* Stay in place */
+    z-index: 200; /* Sit on top */
+    /* Firefox */
+    left: -moz-calc(50% - 500px);
+    /* WebKit */
+    left: -webkit-calc(50% - 500px);
+    /* Opera */
+    left: -o-calc(50% - 500px);
+    /* Standard */
+    left: calc(50% - 500px);
+    top: -100%;
+    opacity: 0;
+    transition: top 0.5s, opacity 0.4s;
+}
+.helpModal.show {
+    /* Firefox */
+    top: -moz-calc(50% - 325px);
+    /* WebKit */
+    top: -webkit-calc(50% - 325px);
+    /* Opera */
+    top: -o-calc(50% - 325px);
+    /* Standard */
+    top: calc(50% - 325px);
+    opacity: 1;
 }
 #helpModal_header {
     padding: 5px;
@@ -222,13 +344,13 @@ td.tabMiddle {
 .wrapper_up {
     width: 100%;
     /* Firefox */
-    height: -moz-calc(100% - 35px);
+    height: -moz-calc(100% - 41px);
     /* WebKit */
-    height: -webkit-calc(100% - 35px);
+    height: -webkit-calc(100% - 41px);
     /* Opera */
-    height: -o-calc(100% - 35px);
+    height: -o-calc(100% - 41px);
     /* Standard */
-    height: calc(100% - 35px);
+    height: calc(100% - 41px);
     min-height: 5px;
     display: flex;
 }
@@ -274,7 +396,9 @@ td.tabMiddle {
     -ms-user-select: none;
     user-select: none;
 }
-#detailedCompilation_span{
+#detailedCompilation_span,
+#boardSelected_span,
+#portSelected_span{
     color: white;
     vertical-align: middle;
 }
@@ -285,6 +409,8 @@ td.tabMiddle {
     width: 100%;
     height: 10px;
     min-height: 10px;
+    white-space: pre-wrap;
+    overflow-y: scroll;
 }
 
 /* The boards list modal (background) */

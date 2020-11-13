@@ -12,6 +12,9 @@ goog.require('Blockly.Msg');
 
 //text in blocks
 Blockly.Msg.FIELDDROPDOWN = [["1 (activat)", "HIGH"], ["0 (desactivat)", "LOW"]];
+Blockly.Msg.FIELDDROPDOWN_ONOFF = [["turn on", "ON"], ["turn off", "OFF"]];
+Blockly.Msg.FIELDDROPDOWN_ONOFF2 = [["switch on", "HIGH"], ["switch off", "LOW"]];
+Blockly.Msg.FIELDDROPDOWN_ONOFF3 = [["close", "HIGH"], ["open", "LOW"]];
 
 //blockly logic
 Blockly.Msg.CONTROLS_SWITCH_CASEBREAK_TOOLTIP = "Afegeix una condició al bloc de «casos».";
@@ -106,3 +109,22 @@ Blockly.Msg.X_NUCLEO_IKS01A3_Temp_Read_HELPURL = "onboard temperature sensor val
 Blockly.Msg.X_NUCLEO_IKS01A3_Humidity_Read_INPUT = "onboard humidity sensor value";
 Blockly.Msg.X_NUCLEO_IKS01A3_Humidity_Read_TOOLTIP = "HTS221: capacitive digital relative humidity in percent";
 Blockly.Msg.X_NUCLEO_IKS01A3_Humidity_Read_HELPURL = "https://www.st.com/en/ecosystems/x-nucleo-iks01a3.html";
+
+//DS18B20 sensors
+Blockly.Msg.DS18B20_TEXT1 = "a DS18B20 sensor";
+Blockly.Msg.DS18B20_INPUT1 = "is connected on pin#";
+Blockly.Msg.DS18B20_INPUT2 = "address #";
+Blockly.Msg.DS18B20_TOOLTIP1 = "test if a DS18B20 temperature sensor is present, returns 'true' if present";
+Blockly.Msg.DS18B20_HELPURL = "https://www.carnetdumaker.net/articles/mesurer-une-temperature-avec-un-capteur-1-wire-ds18b20-et-une-carte-arduino-genuino/";
+Blockly.Msg.DS18B20_TEXT2 = "sensor DS18B20 value";
+Blockly.Msg.DS18B20_TOOLTIP2 = "returns the value of the temperature sensor, as a floating number";
+
+//Relays actuators
+Blockly.Msg.RELAY_LOGICAL_TEXT = "relay";
+Blockly.Msg.RELAY_LOGICAL_INPUT = "on pin#";
+Blockly.Msg.RELAY_LOGICAL_TOOLTIP = "the relay is a remote switch, it is a switch placed in a power circuit which is switched by a digital signal";
+Blockly.Msg.RELAY_LOGICAL_HELPURL = "https://arduinogetstarted.com/tutorials/arduino-relay";
+Blockly.Msg.RELAY_MOSFET_TEXT = "MOSFET transistor";
+Blockly.Msg.RELAY_MOSFET_INPUT = "on pin#";
+Blockly.Msg.RELAY_MOSFET_TOOLTIP = "the MOSFET transistor is a remote switch, a switch in a power circuit that is switched by a digital signal";
+Blockly.Msg.RELAY_MOSFET_HELPURL = "http://sin.lyceeleyguescouffignal.fr/irf520-mosfet-driver-module";

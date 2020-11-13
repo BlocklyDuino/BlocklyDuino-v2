@@ -12,6 +12,9 @@ goog.require('Blockly.Msg');
 
 //text in blocks
 Blockly.Msg.FIELDDROPDOWN = [["1 (état haut)", "HIGH"], ["0 (état bas)", "LOW"]];
+Blockly.Msg.FIELDDROPDOWN_ONOFF = [["allumer", "ON"], ["éteindre", "OFF"]];
+Blockly.Msg.FIELDDROPDOWN_ONOFF2 = [["Allumer", "HIGH"], ["Eteindre", "LOW"]];
+Blockly.Msg.FIELDDROPDOWN_ONOFF3 = [["Fermer", "HIGH"], ["Ouvrir", "LOW"]];
 
 //blockly logic
 Blockly.Msg.CONTROLS_SWITCH_CASEBREAK_TOOLTIP = "Ajoute une condition au bloc 'suivant que'.";
@@ -106,3 +109,22 @@ Blockly.Msg.X_NUCLEO_IKS01A3_Temp_Read_HELPURL = "onboard temperature sensor val
 Blockly.Msg.X_NUCLEO_IKS01A3_Humidity_Read_INPUT = "pourcentage d'humidité";
 Blockly.Msg.X_NUCLEO_IKS01A3_Humidity_Read_TOOLTIP = "HTS221: capteur de la carte, renvoie l'humidité en %";
 Blockly.Msg.X_NUCLEO_IKS01A3_Humidity_Read_HELPURL = "https://www.st.com/en/ecosystems/x-nucleo-iks01a3.html";
+
+//DS18B20 sensors
+Blockly.Msg.DS18B20_TEXT1 = "un capteur DS18B20";
+Blockly.Msg.DS18B20_INPUT1 = "est présent sur la broche";
+Blockly.Msg.DS18B20_INPUT2 = "à l'adresse";
+Blockly.Msg.DS18B20_TOOLTIP1 = "test si un capteur de température est présent, renvoie 'vrai' si présent";
+Blockly.Msg.DS18B20_HELPURL = "https://www.carnetdumaker.net/articles/mesurer-une-temperature-avec-un-capteur-1-wire-ds18b20-et-une-carte-arduino-genuino/";
+Blockly.Msg.DS18B20_TEXT2 = "la valeur du capteur DS18B20";
+Blockly.Msg.DS18B20_TOOLTIP2 = "renvoie la valeur du capteur de température, en nombre à virgule.";
+
+//Relays actuators
+Blockly.Msg.RELAY_LOGICAL_TEXT = "le relais";
+Blockly.Msg.RELAY_LOGICAL_INPUT = "connecté sur la broche N°";
+Blockly.Msg.RELAY_LOGICAL_TOOLTIP = "un relais est un télérupteur, c'est un interrupteur placé dans un circuit de puissance qui est actionné par un signal numérique";
+Blockly.Msg.RELAY_LOGICAL_HELPURL = "http://riton-duino.blogspot.com/2018/08/alimenter-un-relais-transistor.html";
+Blockly.Msg.RELAY_MOSFET_TEXT = "le transistor MOSFET";
+Blockly.Msg.RELAY_MOSFET_INPUT = "connecté sur la broche N°";
+Blockly.Msg.RELAY_MOSFET_TOOLTIP = "un transistor MOSFET est un télérupteur, c'est un interrupteur placé dans un circuit de puissance qui est actionné par un signal numérique";
+Blockly.Msg.RELAY_MOSFET_HELPURL = "http://sin.lyceeleyguescouffignal.fr/irf520-mosfet-driver-module";

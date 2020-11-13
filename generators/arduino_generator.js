@@ -172,7 +172,7 @@ Blockly.Arduino.finish = function (code) {
         functions.push('\n');
     }
     var setups = [''],
-            userSetupCode = '';
+        userSetupCode = '';
     if (Blockly.Arduino.setups_['userSetupCode'] !== undefined) {
         userSetupCode = '\n' + Blockly.Arduino.setups_['userSetupCode'];
         delete Blockly.Arduino.setups_['userSetupCode'];

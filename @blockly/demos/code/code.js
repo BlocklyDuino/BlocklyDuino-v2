@@ -21,13 +21,13 @@ var Code = {};
  * Lookup for names of supported languages.  Keys should be in ISO 639 format.
  */
 Code.LANGUAGE_NAME = {
-    'ca': 'Català - Valencià',
-    'de': 'Deutsch',
-    'en': 'English',
-    'es': 'Español',
-    'fr': 'Français',
-    'ja': '日本語',
-    'ar': 'العربية'
+  'ar': 'العربية',
+  'ca': 'Català - Valencià',
+  'de': 'Deutsch',
+  'en': 'English',
+  'es': 'Español',
+  'fr': 'Français',
+  'ja': '日本語'
 };
 
 /**

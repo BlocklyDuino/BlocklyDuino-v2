@@ -64,7 +64,18 @@ Code.changeBoard = function ()  {
         search = search.replace(/\?/, '?board=' + newBoard + '&');
     }
     profile["default"] = profile[newBoard][0];
-    window.location = window.location.protocol + '//' + window.location.host + window.location.pathname + search;
+	document.getElementById("boardDescriptionSelector").selectedIndex = newBoard;
+	document.getElementById("boardDescriptionSelector").value = newBoard;
+	document.getElementById("boardSelected_span").textContent = profile["default"].description;
+	document.getElementById("portSelected_span").textContent = ' : ' + document.getElementById('serialMenu').options[document.getElementById('serialMenu').selectedIndex].value;
+	window.history.pushState({}, "blocklyduino", window.location.host + window.location.pathname + search);
+	// "reboot" elements
+	document.getElementById('overlayForModals').style.display = "none";
+	document.getElementById('boardListModal').classList.remove('show');
+	Code.setBoard();
+	Code.buildToolbox();
+	var xml = Blockly.Xml.workspaceToDom(Code.workspace);
+	Blockly.Xml.domToWorkspace(xml, Code.workspace);
 }
 ;
 
@@ -74,9 +85,9 @@ Code.changeBoard = function ()  {
 Code.setPort = function ()  {
     var serialPortMenu = document.getElementById('serialMenu');
     var newPort = encodeURIComponent(serialPortMenu.options[serialPortMenu.selectedIndex].value);
-	console.log(newPort);
 	document.getElementById('overlayForModals').style.display = "none";
 	document.getElementById('portListModal').classList.remove('show');
+	document.getElementById("portSelected_span").textContent = ' : ' + newPort;
 	if (newPort != 'none') {
 		document.getElementById('serialButton').classList.add('active');
 		document.getElementById('serialButton').title = newPort;

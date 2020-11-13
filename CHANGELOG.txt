@@ -1,3 +1,20 @@
+v0.8.0
+- modify UI to add menus for less used commands
+- add HackCable
+- add Blockly2HTML
+- add BlockFactory
+- toolbox disassembled in different JSON (road to 0.9)
+
+v0.7.8
+- enhance URL argument to get configuration Papyrus through Arrowhead
+- no refresh ! Board selection refresh workspace & toolbox without need of reload all page, and lost parameters.
+- reset button enhanced
+
+v0.7.7 2020-10-31
+- upate Blockly core to v3.20200924.3
+- lateral settings panel add categories available: click to select for toolbox
+- if URL argument (toolboxids) exists, only this categories are selectable ; if no argument then all categories from js definition toolbox can be selectable
+
 v0.7.6 2020-10-15
 - fix UI bugs
 - add toolbox sorting through list in URL (index.html?toolboxids=SERVO)

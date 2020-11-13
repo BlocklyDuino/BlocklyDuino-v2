@@ -77,6 +77,10 @@
 }
 #barre_h{
     background-color : #17a1a5;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items:center;
 }
 
 /* boutons classiques */

@@ -106,6 +106,8 @@ Code.copyToClipboard = function () {
 Code.boardsListModalShow = function () {
     document.getElementById('overlayForModals').style.display = "block";
     document.getElementById('boardListModal').classList.add('show');
+    for (var i = 0; i < document.getElementById("boardDescriptionSelector").length; i++)
+        document.getElementById("boardDescriptionSelector").options[i].style.backgroundColor = 'white';
     var boardValue = document.getElementById("boardMenu").value;
     if (boardValue !== 'none') {
         document.getElementById("boardDescriptionSelector").selectedIndex = boardValue;
@@ -169,6 +171,17 @@ Code.Undo = function () {
 };
 Code.Redo = function () {
     Blockly.getMainWorkspace().undo(1);
+};
+
+/**
+ * Luanch blockFatcory with language argument
+ */
+Code.BlockFactory = function () {
+    var lang = Code.getStringParamFromUrl('lang', '');
+    if (!lang) {
+        lang = "en";
+    }
+    parent.open('tools/blockFactory/blockFactory.html?lang=' + lang);
 };
 
 /**
@@ -318,7 +331,7 @@ Code.ResetWorkspace = function () {
             Blockly.Events.disable();
             Blockly.getMainWorkspace().clear();
             Blockly.getMainWorkspace().trashcan.contents_ = [];
-            Blockly.getMainWorkspace().trashcan.setOpen('false');
+            Blockly.getMainWorkspace().trashcan.setLidOpen('false');
             window.removeEventListener('unload', auto_save_and_restore_blocks, false);
             localStorage.clear();
             sessionStorage.clear();
@@ -366,11 +379,13 @@ var HelpModalDisplay_ = false;
 function toggleDisplayHelpModal() {
     if (!HelpModalDisplay_) {
         document.getElementById('helpModal').style.display = 'block';
+    	document.getElementById('helpModal').classList.add('show');
         document.getElementById('helpModal').style.left = (top.innerWidth - document.getElementById('helpModal').offsetWidth) / 2 + "px";
         document.getElementById('helpModal').style.top = (top.innerHeight - document.getElementById('helpModal').offsetHeight) / 2 + "px";
         helpButton.className = 'iconButtonsClicked';
     } else {
         document.getElementById('helpModal').style.display = 'none';
+    	document.getElementById('helpModal').classList.remove('show');
         helpButton.className = 'iconButtons';
     }
     HelpModalDisplay_ = !HelpModalDisplay_;

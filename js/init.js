@@ -44,7 +44,7 @@ Code.renderContent = function () {
 
 /**
  * Initialize Blockly.  Called on page load.
- */
+ */ 
 Code.init = function () {
     // board menu as  URL choice
     Code.setBoard();
@@ -55,22 +55,6 @@ Code.init = function () {
     //define resizable workspace
     var container = document.getElementById('content_area');
     var blocklyDiv = document.getElementById('content_blocks');
-    var onresize = function (e) {
-        var element = container;
-        var x = 0;
-        var y = 0;
-        do {
-            x += element.offsetLeft;
-            y += element.offsetTop;
-            element = element.offsetParent;
-        } while (element);
-        blocklyDiv.style.left = x + 'px';
-        blocklyDiv.style.top = y + 'px';
-        blocklyDiv.style.width = container.offsetWidth + 'px';
-        blocklyDiv.style.height = container.offsetHeight + 'px';
-        Blockly.svgResize(Code.workspace);
-    };
-    window.addEventListener('resize', onresize, false);
 
     for (var messageKey in MSG) {
         if (messageKey.indexOf('cat') === 0) {
@@ -120,6 +104,36 @@ Code.init = function () {
             scaleSpeed: 1.1
         }
     });
+    const metrics = Code.workspace.getMetrics();
+    var onresize = function (e) {
+        var element = container;
+        var x = 0;
+        var y = 0;
+        do {
+            x += element.offsetLeft;
+            y += element.offsetTop;
+            element = element.offsetParent;
+        } while (element);
+        blocklyDiv.style.left = x + 'px';
+        blocklyDiv.style.top = y + 'px';
+        blocklyDiv.style.width = container.offsetWidth + 'px';
+        blocklyDiv.style.height = container.offsetHeight + 'px';
+        Blockly.svgResize(Code.workspace);
+//        if (Code.workspace.RTL) {
+//          blocklyDiv.style.left = metrics.absoluteLeft + 'px';
+//          blocklyDiv.style.right = 'auto';
+//        } else {
+//          blocklyDiv.style.left = 'auto';
+//          if (metrics.toolboxPosition === Blockly.TOOLBOX_AT_RIGHT) {
+//            blocklyDiv.style.right = metrics.toolboxWidth + 'px';
+//          } else {
+//            blocklyDiv.style.right = '0';
+//          }
+//        }
+//        blocklyDiv.style.top = metrics.absoluteTop + 'px';
+    };
+    window.addEventListener('resize', onresize, false);
+    
     //button callback register with functions
     Code.workspace.registerButtonCallback('createVarBtnInt', createVarBtnIntCallBack);
     Code.workspace.registerButtonCallback('createVarBtnFloat', createVarBtnFloatCallBack);
@@ -131,7 +145,7 @@ Code.init = function () {
     Code.workspace.registerToolboxCategoryCallback('VARIABLE_TYPED_BOOLEAN', booleanVariablesCallBack);
 
     Code.workspace.configureContextMenu = configureContextualMenu.bind(Code.workspace);
-
+	Code.buildControlPanelForToolbox();
     // load blocks stored in session or passed by url
     var urlFile = Code.getStringParamFromUrl('url', '');
     var loadOnce = null;
@@ -244,7 +258,6 @@ Code.init = function () {
 
     Code.renderContent();
     Code.workspace.addChangeListener(Code.renderContent);
-    renderingConstantInit();
 };
 
 /**
@@ -305,6 +318,13 @@ Code.initLanguage = function () {
     document.getElementById('saveXMLButton').title = MSG['saveXMLButton_span'];
     document.getElementById('loadXMLfakeButton').title = MSG['loadXMLfakeButton_span'];
     document.getElementById('resetButton').title = MSG['resetButton_span'];
+    document.getElementById('newButton_span_menu').textContent = MSG['newButton_span'];
+    document.getElementById('loadXMLfakeButton_span_menu').textContent = MSG['loadXMLfakeButton_span'];
+    document.getElementById('saveXMLButton_span_menu').textContent = MSG['saveXMLButton_span'];
+    document.getElementById('saveCodeButton_span_menu').textContent = MSG['saveCodeButton_span'];
+    document.getElementById('parametersButton_span_menu').textContent = MSG['setup_sideButton_span'];
+    document.getElementById('resetButton_span_menu').textContent = MSG['resetButton_span'];
+    document.getElementById('helpButton_span_menu').textContent = MSG['helpButton_span'];
     document.getElementById('lateral-panel-setup-label').title = MSG['setup_sideButton_span'];
     document.getElementById('helpButton').title = MSG['helpButton_span'];
     document.getElementById('helpModalSpan_title').innerHTML = MSG['helpModalSpan_title'];
@@ -312,6 +332,28 @@ Code.initLanguage = function () {
     document.getElementById('copyCodeButton').title = MSG['copyCodeButton_span'];
     document.getElementById('keyMappingModalSpan').textContent = MSG['keyMappingModalSpan'];
     document.getElementById('detailedCompilation_span').textContent = MSG['detailedCompilation_span'];
+    // menu tools
+    document.getElementById('toolsButton').title = MSG['toolsButton_span'];
+    document.getElementById('wiringButton').title = MSG['wiringButton_span'];
+    document.getElementById('factoryButton').title = MSG['factoryButton_span'];
+    document.getElementById('htmlButton').title = MSG['htmlButton_span'];
+    document.getElementById('colorConversionButton').title = MSG['colorConversionButton_span'];
+    document.getElementById('dataConversionButton').title = MSG['dataConversionButton_span'];
+    document.getElementById('wiringButton_span_menu').textContent = MSG['wiringButton_span'];
+    document.getElementById('factoryButton_span_menu').textContent = MSG['factoryButton_span'];
+    document.getElementById('htmlButton_span_menu').textContent = MSG['htmlButton_span'];
+    document.getElementById('colorConversionButton_span_menu').textContent = MSG['colorConversionButton_span'];
+    document.getElementById('dataConversionButton_span_menu').textContent = MSG['dataConversionButton_span'];
+    // menu IoT
+    document.getElementById('iotConnectButton').title = MSG['iotConnectButton_span'];
+    document.getElementById('launchWebServer').title = MSG['launchWebServer_span'];
+    document.getElementById('papyrusConnect').title = MSG['papyrusConnect_span'];
+    document.getElementById('registerToOrchestrator').title = MSG['registerToOrchestrator_span'];
+    document.getElementById('blynkConnect').title = MSG['blynkConnect_span'];
+    document.getElementById('launchWebServer_span_menu').textContent = MSG['launchWebServer_span'];
+    document.getElementById('papyrusConnect_span_menu').textContent = MSG['loadXMLfakeButton_span'];
+    document.getElementById('registerToOrchestrator_span_menu').textContent = MSG['registerToOrchestrator_span'];
+    document.getElementById('blynkConnect_span_menu').textContent = MSG['blynkConnect_span'];
     // CLI panel
     document.getElementById('CLI_title_span').textContent = MSG['CLI_title_span'];
     document.getElementById('CLI_githubLinkButton').title = MSG['CLI_githubLinkButton_span'];
@@ -339,10 +381,38 @@ Code.initLanguage = function () {
     document.getElementById('themeHighContrastSpan').textContent = MSG['themeHighContrastSpan'];
     document.getElementById('themeDarkSpan').textContent = MSG['themeDarkSpan'];
     document.getElementById('themeBwSpan').textContent = MSG['themeBwSpan'];
+    document.getElementById('displaySpan').textContent = MSG['displaySpan'];
+    document.getElementById('displayChoiceButtons').textContent = MSG['displayChoiceButtons'];
+    document.getElementById('displayChoiceBandT').textContent = MSG['displayChoiceBandT'];
+    document.getElementById('displayChoiceText').textContent = MSG['displayChoiceText'];
+    document.getElementById('fontSpan').textContent = MSG['fontSpan'];
     document.getElementById('fontSizeSpan').textContent = MSG['fontSizeSpan'];
     document.getElementById('optionFontSizeBlocks').textContent = MSG['optionFontSizeBlocks'];
     document.getElementById('optionFontSizePage').textContent = MSG['optionFontSizePage'];
     document.getElementById('optionFontSpacingPage').textContent = MSG['optionFontSpacingPage'];
+    //categories panel
+    document.getElementById('categories_title_span').textContent = MSG['categories_title_span'];
+    //IoT panel
+    document.getElementById('iot_title_span').textContent = MSG['iot_title_span'];
+    //board list modal
+    document.getElementById('boardListModalHeader_span').textContent = MSG['boardListModalHeader_span'];
+    document.getElementById('boardListModalButton_span').textContent = MSG['boardListModalButton_span'];
+    document.getElementById('boardModal_connect').textContent = MSG['boardModal_connect'];
+    document.getElementById('boardModal_voltage').textContent = MSG['boardModal_voltage'];
+    document.getElementById('boardModal_voltage_normal').textContent = MSG['boardModal_voltage_normal'];
+    document.getElementById('boardModal_voltage_maxi').textContent = MSG['boardModal_voltage_maxi'];
+    document.getElementById('boardModal_cpu').textContent = MSG['boardModal_cpu'];
+    document.getElementById('boardModal_speed').textContent = MSG['boardModal_speed'];
+    document.getElementById('boardModal_inout').textContent = MSG['boardModal_inout'];
+    document.getElementById('boardModal_in_analog').textContent = MSG['boardModal_in_analog'];
+    document.getElementById('boardModal_out_analog').textContent = MSG['boardModal_out_analog'];
+    document.getElementById('boardModal_i_max_out').textContent = MSG['boardModal_i_max_out'];
+    document.getElementById('boardModal_i_max3').textContent = MSG['boardModal_i_max3'];
+    document.getElementById('boardModal_i_max_5').textContent = MSG['boardModal_i_max_5'];
+    document.getElementById('boardModal_flash').textContent = MSG['boardModal_flash'];
+    document.getElementById('boardModal_sram').textContent = MSG['boardModal_sram'];
+    document.getElementById('boardModal_eeprom').textContent = MSG['boardModal_eeprom'];
+    document.getElementById('portListModalHeader_span').textContent = MSG['portListModalHeader_span'];
     //keyboard nav
     Blockly.navigation.ACTION_PREVIOUS.name = MSG['actionName0'];
     Blockly.navigation.ACTION_OUT.name = MSG['actionName1'];

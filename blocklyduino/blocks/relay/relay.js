@@ -30,7 +30,7 @@ Blockly.Blocks['RELAY_LOGICAL'] = {
 			.appendField(new Blockly.FieldTextInput(''), 'PIN');
 		this.setPreviousStatement(true, null);
 		this.setNextStatement(true, null);
-		this.setStyle('grove_blocks');
+		this.setStyle('relay_blocks');
 		this.setTooltip(Blockly.Msg.RELAY_LOGICAL_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.RELAY_LOGICAL_HELPURL);
 	}
@@ -48,7 +48,7 @@ Blockly.Blocks['RELAY_MOSFET'] = {
 			.appendField(new Blockly.FieldTextInput(''), 'PIN');
 		this.setPreviousStatement(true, null);
 		this.setNextStatement(true, null);
-		this.setStyle('grove_blocks');
+		this.setStyle('relay_blocks');
 		this.setTooltip(Blockly.Msg.RELAY_MOSFET_TOOLTIP);
 		this.setHelpUrl(Blockly.Msg.RELAY_MOSFET_HELPURL);
 	}

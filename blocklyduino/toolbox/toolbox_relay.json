@@ -6,7 +6,7 @@ var toolbox_relay = {
 		"toolboxitemid": "RELAY",
 		"levels": "1,2,3",
 		"level": "1",
-	  "categorystyle": "grove_category",
+	  "categorystyle": "relay_category",
 		"cssConfig": {
 		  "icon": "customIcon fas fa-bolt"
 		},

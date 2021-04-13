@@ -88,6 +88,11 @@ Blockly.Themes.blackWhite.defaultBlockStyles = {
         "colourSecondary": "#000000",
         "colourTertiary": "#000000"
     },
+    "relay_blocks": {
+        "colourPrimary": "#000000",
+        "colourSecondary": "#000000",
+        "colourTertiary": "#000000"
+    },
     "servo_blocks": {
         "colourPrimary": "#000000",
         "colourSecondary": "#000000",
@@ -136,6 +141,9 @@ Blockly.Themes.blackWhite.categoryStyles = {
         "colour": "#000000"
     },
     "servo_category": {
+        "colour": "#000000"
+    },
+    "relay_category": {
         "colour": "#000000"
     }
 };

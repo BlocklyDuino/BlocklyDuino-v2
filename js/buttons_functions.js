@@ -258,11 +258,15 @@ Code.loadXmlBlocklyFile = function () {
         var files = e.target.files;
         var reader = new FileReader();
         reader.onloadend = function () {
-            var success = Code.loadBlocksfromXml(reader.result);
+            var success = false;
+            if (reader.result != null) {
+                Code.loadBlocksfromXml(reader.result);
+                success = true;
+            }
             if (success) {
                 Code.workspace.render();
             } else {
-                Blockly.alert(MSG[badXml], callback);
+                Blockly.alert(MSG['badXml'], callback);
             }
         };
         reader.readAsText(files[0]);
@@ -279,6 +283,11 @@ Code.loadXmlBlocklyFile = function () {
         selectFile = document.getElementById('select_file');
         selectFile.addEventListener('change', parseInputXMLfile, false);
     }
+
+    selectFile.onclick = function destroyClickedElement(event) {
+        document.body.removeChild(event.target);
+    };
+
     selectFile.click();
 };
 

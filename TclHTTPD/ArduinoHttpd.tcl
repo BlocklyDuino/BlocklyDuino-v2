@@ -8,7 +8,7 @@
 #  Author        : $Author$
 #  Created By    : Robert Heller
 #  Created       : Fri Mar 22 12:20:38 2024
-#  Last Modified : <240322.1515>
+#  Last Modified : <240322.1528>
 #
 #  Description	
 #
@@ -87,8 +87,11 @@ appmain uri direct * /* {} {
     puts -nonewline $fp $prog
     close $fp
     my log "($request) saved as $inofile"
-    if {[regexp {^/(^/*)(.*)$} $request => mode opts] < 1} {
-        set mode verify
+    if {[regexp {^/(^[/]*)(.*)$} $request => mode opts] < 1} {
+        regexp {^/(.*)$} $request => mode
+        if {$mode ni {upload verify}} {
+            set mode verify
+        }
         set opts {}
     }
     switch $mode {
@@ -100,7 +103,7 @@ appmain uri direct * /* {} {
         }
     }
     foreach o [split $opts ,] {
-        if {[regexp {^(^=+)=(.*)$} $o => opt value] > 0} {
+        if {[regexp {^(^[=]+)=(.*)$} $o => opt value] > 0} {
             lappend cmd "--$opt" $value
         }
     }

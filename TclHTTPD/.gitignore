@@ -2,4 +2,10 @@ Makefile
 Makefile.in
 *~
 *#
-
+ArduinoHttpd
+BuildData/tclkit
+autom4te.cache/*
+config.log
+config.status
+configure
+                

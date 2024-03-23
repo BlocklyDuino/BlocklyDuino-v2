@@ -8,7 +8,7 @@
 #  Author        : $Author$
 #  Created By    : Robert Heller
 #  Created       : Fri Mar 22 12:20:38 2024
-#  Last Modified : <240322.1528>
+#  Last Modified : <240323.1127>
 #
 #  Description	
 #
@@ -87,8 +87,9 @@ appmain uri direct * /* {} {
     puts -nonewline $fp $prog
     close $fp
     my log "($request) saved as $inofile"
-    if {[regexp {^/(^[/]*)(.*)$} $request => mode opts] < 1} {
+    if {[regexp {^/([^/]*)/(.*)$} $request => mode opts] < 1} {
         regexp {^/(.*)$} $request => mode
+        my log "($request) mode is $mode"
         if {$mode ni {upload verify}} {
             set mode verify
         }
@@ -96,29 +97,29 @@ appmain uri direct * /* {} {
     }
     switch $mode {
         upload {
-            set cmd [list exec -ignorestderr [auto_execok arduino] --upload]
+            set cmd [list exec [auto_execok arduino] --upload]
         }
         verify {
-            set cmd [list exec -ignorestderr [auto_execok arduino] --verify]
+            set cmd [list exec [auto_execok arduino] --verify]
         }
     }
     foreach o [split $opts ,] {
-        if {[regexp {^(^[=]+)=(.*)$} $o => opt value] > 0} {
-            lappend cmd "--$opt" $value
+        if {[regexp {^([^=]+)=(.*)$} $o => opt value] > 0} {
+            if {$value ne ""} {
+                lappend cmd "--$opt" $value
+            } else {
+                lappend cmd "--$opt"
+            }
         }
     }
-    lappend cmd $inofile
+    lappend cmd $inofile "2>@1"
     my log "($request) cmd is \{$cmd\}"
     set status [catch $cmd result]
     my reply set Access-Control-Allow-Origin *
+    my reply set "Content-Type" "text/plain;charset=UTF-8"
     my log "($request) status is $status"
     my log "($request) result is $result"
-    my puts "<HTML><HEAD><TITLE>$inofile</TITLE></HEAD><BODY>"
-    my puts "<h1>$inofile $request</h1>"
-    my puts "<p>Command: [lrange $cmd 2 end]</p>"
-    my puts "<p>Status: $status</p>"
-    my puts "<pre>$result</pre>"
-    my puts "</body></html>"
+    my puts $result
 }
 
 puts [list LISTENING on [appmain port_listening]]
